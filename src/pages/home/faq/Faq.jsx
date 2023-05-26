@@ -5,6 +5,12 @@ const Faq = () => {
             <h2>this is faq page</h2>
             <h2>this is faq page</h2>
             <h2>this is faq page</h2>
+            <h2>this is faq page</h2>
+            <h2>this is faq page</h2>
+            <h2>this is faq page</h2>
+            <h2>this is faq page</h2>
+            <h2>this is faq page</h2>
+            <h2>this is faq page</h2>
         </div>
     );
 };
