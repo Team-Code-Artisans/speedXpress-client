@@ -2,7 +2,7 @@ import bannerImage from "../../../Assets/Images/Yellow-Truck-PNG-Image.png";
 
 const Banner = () => {
     return (
-        <div className='bg-[#101920]'>
+        <div className='bg-[#101920] overflow-x-hidden'>
             <div id="Banner" className="px-8 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl xl:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20 ">
 
                 <h1 className="px-4 md:px-8 text-4xl md:text-6xl tracking-normal leading-relaxed uppercase font-bold py-8 text-fuchsia-50" >
