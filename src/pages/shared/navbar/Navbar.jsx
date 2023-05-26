@@ -17,6 +17,9 @@ const Navbar = () => {
             
             {/* upper line of nav  */}
 
+
+            <h1>hlw .. world </h1>
+
             <div className="hidden bg-gray-800 py-1 text-zinc-500 font-semibold lg:flex justify-center gap-4">
                 <div className="mx-4"><span><ImLocation2 className="inline text-yellow"></ImLocation2></span>2500 Southbranch Blvd A, United States</div>
                 <div className="mx-4"><span><BsClockHistory className="inline text-yellow"></BsClockHistory></span>Mon - Sat: 8 am - 5 pm, Sunday: CLOSED</div>
