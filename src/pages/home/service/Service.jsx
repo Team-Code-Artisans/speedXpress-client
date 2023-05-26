@@ -5,6 +5,8 @@ const Service = () => {
             <h2>this is service page</h2>
             <h2>this is service page</h2>
             <h2>this is service page</h2>
+            <h2>this is service page</h2>
+            <h2>this is service page</h2>
         </div>
     );
 };
