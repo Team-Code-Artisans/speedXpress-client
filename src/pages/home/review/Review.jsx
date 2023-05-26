@@ -69,7 +69,7 @@ export default Review;
 const ReviewCard = () => {
     return (
         <div className="px-5 py-8 border border-gray-200 rounded shadow max-w-2xl m-4 cursor-pointer">
-            <div className="flex justify-center items-center gap-6">
+            <div className="block md:flex justify-center items-center gap-6">
 
                 <img src="https://meetmighty.com/wp-themes/cargoton/wp-content/uploads/2021/04/5.png" alt="" className="block w-32 object-cover h-32" />
                 <div className="text-left">
