@@ -42,7 +42,7 @@ const Pricing = () => {
                             </div>
                         </div>
                         <div className="flex w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
-                            <div className="flex flex-col p-6 space-y-6 rounded shadow sm:p-8 bg-yellow text-gray-900 -translate-y-8">
+                            <div className="flex flex-col p-6 space-y-6 rounded shadow sm:p-8 bg-yellow text-gray-900 md:-translate-y-8">
                                 <div className="space-y-2">
                                     <h4 className="text-2xl font-bold">PREMIUM </h4>
                                     <span className="text-6xl font-bold">6000৳
