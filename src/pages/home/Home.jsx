@@ -9,14 +9,13 @@ import Service from "./service/Service";
 const Home = () => {
     return (
         <div>
-            <h2>this is home page</h2>
-            <Banner/>
-            <Service/>
-            <Feature/>
-            <Pricing/>
-            <Review/>
-            <Faq/>
-            <About/>
+            <Banner />
+            <Service />
+            <Feature />
+            <Pricing />
+            <Review />
+            <Faq />
+            <About />
         </div>
     );
 };
