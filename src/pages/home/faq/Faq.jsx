@@ -6,6 +6,7 @@ const Faq = () => {
       <div className="flex justify-center items-center mb-5">
         <span className="w-1 h-5 bg-amber-400"></span>
         <p className="text-sm font-bold ml-2">F A Q</p>
+        <h2>test</h2>
       </div>
       <h2 className="text-center text-4xl font-semibold mb-14">
         Get Your <span className="text-amber-400">Queries Solved</span>
