@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
+import SenderDashboardMain from "../layout/DashboardAll/SenderDashboardMain";
 import Main from "../layout/Main";
+import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
+import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
+import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
-import SenderDashboardMain from "../layout/DashboardAll/SenderDashboardMain";
-import SenderReturnProduct from "../pages/senderDashboard/SenderReturnProduct";
-import SenderHome from "../pages/senderDashboard/SenderHome";
-import SenderHistory from "../pages/senderDashboard/SenderHistory";
 
 const router = createBrowserRouter([
     {
