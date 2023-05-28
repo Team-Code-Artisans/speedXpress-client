@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import SenderNav from "../pages/dashboard/senderDashboard/SenderNav";
+import { DashboardNavbar } from "../pages/dashboard/DashboardNavbar";
 
 
 const DashBoard = () => {
     return (
         <div>
-            <SenderNav></SenderNav>
+            <DashboardNavbar />
 
             <Outlet></Outlet>
 

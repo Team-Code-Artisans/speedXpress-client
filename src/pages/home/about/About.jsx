@@ -24,7 +24,7 @@ const About = () => {
 
 
             <div className="max-w-full mx-auto my-12 lg:my-16  shadow-lg ">
-                <video src={video} autoPlay className='w-full max-h-[380px] object-cover' loop></video>
+                <video src={video} autoPlay className='w-full max-h-[380px] object-cover' loop />
             </div>
 
 
