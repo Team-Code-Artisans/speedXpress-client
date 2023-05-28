@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import SenderNav from "../pages/dashboard/senderDashboard/SenderNav";
 
 
-const SenderDashboardMain = () => {
+const DashBoard = () => {
     return (
         <div>
             <SenderNav></SenderNav>
@@ -13,4 +13,4 @@ const SenderDashboardMain = () => {
     );
 };
 
-export default SenderDashboardMain;
+export default DashBoard;
