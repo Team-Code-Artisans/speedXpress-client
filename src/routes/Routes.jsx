@@ -6,38 +6,49 @@ import SenderDashboardMain from "../layout/DashboardAll/SenderDashboardMain";
 import SenderReturnProduct from "../pages/senderDashboard/SenderReturnProduct";
 import SenderHome from "../pages/senderDashboard/SenderHome";
 import SenderHistory from "../pages/senderDashboard/SenderHistory";
+import AdminNav from "../pages/AdminDashboard/AdminNav";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Main/>,
+        element: <Main />,
         children: [
             {
                 path: "/",
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: "/about",
-                element: <About/>
+                element: <About />
             }
         ]
     },
     {
-        path:"/senderDashboard",
-        element:<SenderDashboardMain></SenderDashboardMain>,
-        children:[
+        path: "/senderDashboard",
+        element: <SenderDashboardMain></SenderDashboardMain>,
+        children: [
             {
-                path:"/senderDashboard",
-                element:<SenderHome></SenderHome>
+                path: "/senderDashboard",
+                element: <SenderHome></SenderHome>
             },
             {
-                path:"/senderDashboard/productreturn",
-                element:<SenderReturnProduct></SenderReturnProduct>
+                path: "/senderDashboard/productreturn",
+                element: <SenderReturnProduct></SenderReturnProduct>
             },
             {
-                path:"/senderDashboard/history",
-                element:<SenderHistory></SenderHistory>
+                path: "/senderDashboard/history",
+                element: <SenderHistory></SenderHistory>
             },
+        ]
+    },
+    {
+        path: '/adminDashboard',
+        element: <AdminNav />,
+        children: [
+            {
+                path: "",
+                element: ""
+            }
         ]
     }
 ])
