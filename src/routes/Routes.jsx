@@ -3,7 +3,6 @@ import DashBoard from "../layout/Dashboard";
 import Main from "../layout/Main";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
-import OrderList from "../pages/dashboard/adminDashboard/OrderList";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList";
 import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
@@ -40,10 +39,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/employee",
         element: <EmployeePage />,
-      },
-      {
-        path: "/dashboard/order-list",
-        element: <OrderList />,
       },
       {
         path: "/dashboard/order-tracking",
