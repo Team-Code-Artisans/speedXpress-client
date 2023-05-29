@@ -10,9 +10,9 @@ export const AllMarchants = () => {
                 <div className="bg-white p-8 rounded-md w-full">
                     <div className=" lg:flex items-center justify-between pb-6">
                         <div>
-                            <h2 className="text-gray-600 font-semibold text-3xl">All Products <span className="text-orange-600">Order</span></h2>
+                            <h2 className="text-gray-600 font-semibold text-3xl">All  <span className="text-orange-600">marchents</span></h2>
 
-                            <span className="text-xs">All marchents</span>
+
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex bg-gray-100 items-center p-2 rounded-md border w-60 lg:w-96">
