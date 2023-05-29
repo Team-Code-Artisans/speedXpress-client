@@ -4,7 +4,7 @@ import Main from "../layout/Main";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
-import ParcelList from "../pages/dashboard/adminDashboard/ParcelList";
+import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
 import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
 import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
