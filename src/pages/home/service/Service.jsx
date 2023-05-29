@@ -2,9 +2,6 @@ import { MdOutlineShareLocation, MdAddHome, MdAttachMoney } from 'react-icons/md
 import { Link } from 'react-router-dom';
 
 const Service = () => {
-
-    // const data = a; sldkfjas:
-
     return (
         <div className="max-w-screen-xl mx-auto rounded-2xl bg-white shadow-xl p-8 -mt-20">
             <div className="grid grid-cols-2 pb-8">
