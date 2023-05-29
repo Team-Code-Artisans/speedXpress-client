@@ -1,6 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashBoard from "../layout/Dashboard";
 import Main from "../layout/Main";
+import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
+import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
+import OrderList from "../pages/dashboard/adminDashboard/OrderList";
+import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
+import ParcelList from "../pages/dashboard/adminDashboard/ParcelList";
+import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
 import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
 import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
@@ -26,8 +32,34 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashBoard />,
     children: [
+      // admin routes
       {
-        path: "/dashboard",
+        path: "/dashboard/admin",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/employee",
+        element: <EmployeePage />,
+      },
+      {
+        path: "/dashboard/order-list",
+        element: <OrderList />,
+      },
+      {
+        path: "/dashboard/order-tracking",
+        element: <OrderTracking />,
+      },
+      {
+        path: "/dashboard/parcel-list",
+        element: <ParcelList />,
+      },
+      {
+        path: "/dashboard/return-parcel",
+        element: <ReturnParcel />,
+      },
+      // sender routes
+      {
+        path: "/dashboard/sender",
         element: <SenderHome />,
       },
       {
