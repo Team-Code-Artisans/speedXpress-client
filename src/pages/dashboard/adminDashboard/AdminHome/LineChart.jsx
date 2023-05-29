@@ -1,8 +1,9 @@
 import React from 'react'
+import { Line } from 'react-chartjs-2';
 
 const LineChart = () => {
 
-    const labels = Utils.months({ count: 7 });
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June']
     const data = {
         labels: labels,
         datasets: [{
@@ -14,8 +15,15 @@ const LineChart = () => {
         }]
     };
 
+    const config = {
+        type: 'line',
+        data: data,
+    };
+
     return (
-        <div>LineChart</div>
+        <div>
+            <Line data={data} />
+        </div>
     )
 }
 
