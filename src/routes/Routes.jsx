@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashBoard from "../layout/Dashboard";
 import Main from "../layout/Main";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
+import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/history",
         element: <SenderHistory />,
+      },
+      {
+        path: "/dashboard/marchents",
+        element: <AllMarchants />,
       },
     ],
   },
