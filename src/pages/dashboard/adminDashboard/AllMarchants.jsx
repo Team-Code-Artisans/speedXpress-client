@@ -22,7 +22,7 @@ export const AllMarchants = () => {
                                         d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                                         clipRule="evenodd" />
                                 </svg>
-                                <input className="bg-gray-100 outline-none ml-1 block " type="text" name="" id="" placeholder="search by ashik ..." />
+                                <input className="bg-gray-100 outline-none ml-3 block " type="text" name="" id="" placeholder="search by name ..." />
                             </div>
                             <div className="lg:ml-5 ml-5 space-x-8">
                                 <button className="bg-orange-600 hover:bg-orange-800 active:bg-gray-800 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer text-xs lg:text-base">search</button>
@@ -40,12 +40,9 @@ export const AllMarchants = () => {
                                         <tr>
                                             <th
                                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Name
+                                                Name & Phone-NO
                                             </th>
-                                            <th
-                                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Phone-NO
-                                            </th>
+
                                             <th
                                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                                 Business Name
@@ -53,6 +50,14 @@ export const AllMarchants = () => {
                                             <th
                                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                                 email
+                                            </th>
+                                            <th
+                                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                District
+                                            </th>
+                                            <th
+                                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                Total orders
                                             </th>
 
                                             <th
@@ -78,12 +83,11 @@ export const AllMarchants = () => {
                                                             <p className="text-gray-900 whitespace-no-wrap">
                                                                 Ashikur Rahman
                                                             </p>
+                                                            <p className="text-gray-900 whitespace-no-wrap">+880183727</p>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p className="text-gray-900 whitespace-no-wrap">+880183727</p>
-                                                </td>
+
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                     <p className="text-gray-900 whitespace-no-wrap">
                                                         ecommerce
@@ -94,16 +98,21 @@ export const AllMarchants = () => {
                                                         ashik@gmail.com
                                                     </p>
                                                 </td>
-
+                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                    <p className="text-gray-900 whitespace-no-wrap">Dhaka</p>
+                                                </td>
+                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                    <p className="text-gray-900 whitespace-no-wrap">100</p>
+                                                </td>
 
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm flex space-x-4 ">
-                                                    <span className="text-gray-900 whitespace-no-wrap text-xl cursor-pointer">
+                                                    <span className="text-gray-900 hover:text-orange-600 whitespace-no-wrap text-xl cursor-pointer">
                                                         <HiPencilSquare onClick={() => alert("functionlity is good")}></HiPencilSquare>
                                                     </span>
-                                                    <span className="text-gray-900 whitespace-no-wrap text-xl cursor-pointer">
+                                                    <span className="text-gray-900  hover:text-orange-600 whitespace-no-wrap text-xl cursor-pointer">
                                                         <MdDeleteOutline onClick={() => alert("functionlity is good")}></MdDeleteOutline>
                                                     </span>
-                                                    <span className="text-gray-900 whitespace-no-wrap text-xl cursor-pointer">
+                                                    <span className="text-gray-900  hover:text-orange-600 whitespace-no-wrap text-xl cursor-pointer">
                                                         <BiInfoCircle onClick={() => alert("functionlity is good")}></BiInfoCircle>
                                                     </span>
                                                 </td>
