@@ -8,12 +8,11 @@ import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
-import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
 import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
-import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
+import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
 
 const router = createBrowserRouter([
   {
@@ -65,16 +64,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/return-parcel",
-        element: <ReturnParcel />,
+        element:<AllReturnParcel/>,
       },
       // sender routes
       {
         path: "/dashboard/sender",
         element: <SenderHome />,
-      },
-      {
-        path: "/dashboard/productReturn",
-        element: <SenderReturnProduct />,
       },
       {
         path: "/dashboard/history",
