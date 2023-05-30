@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashBoard from "../layout/Dashboard";
 import Main from "../layout/Main";
+import Login from "../pages/Authentication/Login";
+import Register from "../pages/Authentication/Register";
+import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
@@ -11,7 +14,6 @@ import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
 import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
-import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -26,13 +28,25 @@ const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
     ],
   },
   {
     path: "/dashboard",
-    element: <DashBoard />,
+    element: <DashBoard><AdminHome /></DashBoard>,
     children: [
       // admin routes
+      {
+        path: "/dashboard/",
+        element: <AdminHome />,
+      },
       {
         path: "/dashboard/admin",
         element: <AdminHome />,
