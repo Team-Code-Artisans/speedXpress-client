@@ -4,7 +4,7 @@ import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
-    var role = "admin"
+    var role = "sender"
     console.log(role)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
