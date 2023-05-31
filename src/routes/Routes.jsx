@@ -9,10 +9,10 @@ import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
-import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
+import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
 
 const router = createBrowserRouter([
   {
@@ -69,11 +69,19 @@ const router = createBrowserRouter([
       // sender routes
       {
         path: "/dashboard/sender",
-        element: <SenderHome />,
+        element:<div>sender dashboard</div> ,
+      },
+      {
+        path: "/dashboard/create-parcel",
+        element: <CreateParcel/>,
       },
       {
         path: "/dashboard/history",
         element: <SenderHistory />,
+      },
+      {
+        path: "/dashboard/productreturn",
+        element: <div>product return need to make a compo</div>,
       },
       {
         path: "/dashboard/marchents",
