@@ -1,30 +1,47 @@
+import React from 'react'
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend, Filler } from 'chart.js'
 
-// import { Line } from 'react-chartjs-2';
+ChartJS.register(
+    LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip, Filler,
+)
 
-// const LineChart = () => {
+const LineChart = () => {
 
-//     const labels = ['January', 'February', 'March', 'April', 'May', 'June']
-//     const data = {
-//         labels: labels,
-//         datasets: [{
-//             label: 'My First Dataset',
-//             data: [65, 59, 80, 81, 56, 55, 40],
-//             fill: false,
-//             borderColor: 'rgb(75, 192, 192)',
-//             tension: 0.1
-//         }]
-//     };
+    const data = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Showing Monthly Order',
+            data: [65, 59, 80, 81, 56, 55, 40, 67, 84, 79],
+            fill: true,
+            borderColor: 'rgb(244, 91, 29)',
+            pointBorderColor: 'rgb(244, 91, 29)',
+            backgroundColor: '#ffd8ae',
+            tension: 0.1
+        }]
+    }
 
-//     const config = {
-//         type: 'line',
-//         data: data,
-//     };
+    const options = {
+        Plugin: {
+            legend: true,
+            Tooltip: true,
+            filler: {
+                propagate: false,
+            },
+        },
+        scales: {
+            y: {
+                min: 10,
+                max: 100,
+            }
+        }
+    };
 
-//     return (
-//         <div>
-//             <Line data={data} />
-//         </div>
-//     )
-// }
+    return (
+        <div className='md:w-[50rem]'>
+            <Line data={data} options={options} />
+        </div>
+    )
+}
 
-// export default LineChart
+export default LineChart
