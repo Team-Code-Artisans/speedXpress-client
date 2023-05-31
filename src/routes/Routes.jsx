@@ -13,6 +13,7 @@ import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
 import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
+import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 
 const router = createBrowserRouter([
   {
@@ -80,8 +81,8 @@ const router = createBrowserRouter([
         element: <SenderHistory />,
       },
       {
-        path: "/dashboard/productreturn",
-        element: <div>product return need to make a compo</div>,
+        path: "/dashboard/sender-product-return",
+        element: <SenderReturnParcel/>,
       },
       {
         path: "/dashboard/marchents",
