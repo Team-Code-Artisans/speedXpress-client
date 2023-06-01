@@ -9,8 +9,10 @@ import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
 import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
+import { CompletedParcels } from "../pages/dashboard/senderDashboard/CompletedParcels";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
 import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
+import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment";
 import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
@@ -83,6 +85,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/marchents",
         element: <AllMarchants />,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <SenderPayment />,
+      },
+      {
+        path: "/dashboard/completed-parcel",
+        element: <CompletedParcels />,
       },
     ],
   },
