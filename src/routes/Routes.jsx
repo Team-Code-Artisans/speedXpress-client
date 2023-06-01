@@ -8,7 +8,12 @@ import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
+import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
+import { CompletedParcels } from "../pages/dashboard/senderDashboard/CompletedParcels";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
+import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
+import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment";
+import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
@@ -65,16 +70,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/return-parcel",
-        element:<AllReturnParcel/>,
+        element: <AllReturnParcel />,
       },
       // sender routes
       {
         path: "/dashboard/sender",
-        element:<div>sender dashboard</div> ,
+        element: <div>sender dashboard</div>,
       },
       {
         path: "/dashboard/create-parcel",
-        element: <CreateParcel/>,
+        element: <CreateParcel />,
       },
       {
         path: "/dashboard/history",
@@ -82,11 +87,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/sender-product-return",
-        element: <SenderReturnParcel/>,
+        element: <SenderReturnParcel />,
       },
       {
         path: "/dashboard/marchents",
         element: <AllMarchants />,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <SenderPayment />,
+      },
+      {
+        path: "/dashboard/completed-parcel",
+        element: <CompletedParcels />,
       },
     ],
   },

@@ -13,9 +13,12 @@ const Login = () => {
 
                     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 min-h-screen">
                         <div className="mx-auto max-w-lg text-white">
-                            <h1 className="text-center text-2xl font-bold  text-white sm:text-3xl">
-                                Login to your account
-                            </h1>
+
+                            <div className="text-center text-3xl font-bold">
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r bg-gradient-to-tr from-orange-600 via-amber-500 to-yellow">
+                                    Login to your account
+                                </span>
+                            </div>
                             <form action="" className="mt-6 mb-0 space-y-4 bg-neutral rounded-lg p-8 shadow-2xl"
 
                             >

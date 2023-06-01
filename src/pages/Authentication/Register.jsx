@@ -12,9 +12,12 @@ const Register = () => {
                 <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden  border-red-950">
                     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 text-white">
                         <div className="mx-auto max-w-lg">
-                            <h1 className="text-center text-2xl font-bold text-primary sm:text-3xl">
-                                Create new account
-                            </h1>
+                            <div className="text-center text-3xl font-bold">
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r bg-gradient-to-tr from-orange-600 via-amber-500 to-yellow">
+                                    Login to your account
+                                </span>
+                            </div>
+                            <p>Already have an account <Link>Signin</Link></p>
                             <form action="" className="mt-6 mb-0 space-y-4 bg-neutral rounded-lg p-8 shadow-2xl"
 
                             >
