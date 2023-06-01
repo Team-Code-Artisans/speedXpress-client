@@ -115,6 +115,7 @@ export const DashboardNavbar = () => {
                                     <nav>
                                         {role === "sender" && <SenderNav mobile />}
                                         {role === "admin" && <AdminNav mobile />}
+                                        {role === "employee" && <EmployeeNav mobile />}
                                     </nav>
                                 </div>
                             </div>
