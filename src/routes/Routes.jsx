@@ -8,12 +8,19 @@ import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
+// import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
+import { CompletedParcels } from "../pages/dashboard/senderDashboard/CompletedParcels";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
-import Home from "../pages/home/Home";
-import About from "../pages/home/about/About";
+// import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
+import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment";
+// import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
+import { CompletedDeliveries } from "../pages/dashboard/employeeDashboard/CompletedDeliveries";
+import { PendingDeliveries } from "../pages/dashboard/employeeDashboard/PendingDeliveries";
 import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
 import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
+import Home from "../pages/home/Home";
+import About from "../pages/home/about/About";
 
 const router = createBrowserRouter([
   {
@@ -65,16 +72,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/return-parcel",
-        element:<AllReturnParcel/>,
+        element: <AllReturnParcel />,
       },
       // sender routes
       {
         path: "/dashboard/sender",
-        element:<div>sender dashboard</div> ,
+        element: <div>sender dashboard</div>,
       },
       {
         path: "/dashboard/create-parcel",
-        element: <CreateParcel/>,
+        element: <CreateParcel />,
       },
       {
         path: "/dashboard/history",
@@ -82,11 +89,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/sender-product-return",
-        element: <SenderReturnParcel/>,
+        element: <SenderReturnParcel />,
       },
       {
         path: "/dashboard/marchents",
         element: <AllMarchants />,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <SenderPayment />,
+      },
+      {
+        path: "/dashboard/completed-parcel",
+        element: <CompletedParcels />,
+      },
+      {
+        path: "/dashboard/pending-deliveries-list",
+        element: <PendingDeliveries />,
+      },
+      {
+        path: "/dashboard/completed-deliveries",
+        element: <CompletedDeliveries />,
       },
     ],
   },

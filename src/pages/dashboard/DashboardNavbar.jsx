@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AdminNav } from "./adminDashboard/AdminNav";
+import EmployeeNav from "./employeeDashboard/EmployeeNav";
 import SenderNav from "./senderDashboard/SenderNav";
 
 
@@ -39,6 +40,8 @@ export const DashboardNavbar = () => {
                     <ul className="flex items-center hidden space-x-8 lg:flex">
                         {role === "sender" && <SenderNav />}
                         {role === "admin" && <AdminNav />}
+                        {role === "employee" && <EmployeeNav />}
+
                     </ul>
                     <div className="lg:hidden">
                         <button
