@@ -18,6 +18,7 @@ import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllR
 import { CompletedDeliveries } from "../pages/dashboard/employeeDashboard/CompletedDeliveries";
 import { PendingDeliveries } from "../pages/dashboard/employeeDashboard/PendingDeliveries";
 import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
+import SenderParcelTracking from "../pages/dashboard/senderDashboard/SenderParcelTracking";
 import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
       // sender routes
       {
         path: "/dashboard/sender",
-        element: <div>sender dashboard</div>,
+        element: <SenderParcelTracking/>,
       },
       {
         path: "/dashboard/create-parcel",
