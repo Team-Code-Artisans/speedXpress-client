@@ -1,5 +1,5 @@
 
-const SenderHome = () => {
+const CreateParcel = () => {
     return (
         <div className="container m-auto">
                 <div className="lg:grid grid-cols-6 gap-4 lg:mx-0 mx-2">
@@ -195,4 +195,4 @@ const SenderHome = () => {
     );
 };
 
-export default SenderHome;
+export default CreateParcel;

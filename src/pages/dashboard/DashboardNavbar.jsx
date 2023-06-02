@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { AdminNav } from "./adminDashboard/AdminNav";
+import EmployeeNav from "./employeeDashboard/EmployeeNav";
 import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
-    var role = "admin"
+    var role = "employee"
     console.log(role)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
@@ -39,6 +40,8 @@ export const DashboardNavbar = () => {
                     <ul className="flex items-center hidden space-x-8 lg:flex">
                         {role === "sender" && <SenderNav />}
                         {role === "admin" && <AdminNav />}
+                        {role === "employee" && <EmployeeNav />}
+
                     </ul>
                     <div className="lg:hidden">
                         <button
@@ -112,6 +115,7 @@ export const DashboardNavbar = () => {
                                     <nav>
                                         {role === "sender" && <SenderNav mobile />}
                                         {role === "admin" && <AdminNav mobile />}
+                                        {role === "employee" && <EmployeeNav mobile />}
                                     </nav>
                                 </div>
                             </div>

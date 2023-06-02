@@ -7,7 +7,7 @@ const SenderNav = ({ mobile }) => {
     <>
       <li>
         <NavLink
-          to="/dashboard"
+          to="/dashboard/sender"
           className={({ isActive }) => `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : 'text-gray-100'} ${isActive && `text-rose-600`}}`}
         >
           Dashboard
@@ -16,7 +16,7 @@ const SenderNav = ({ mobile }) => {
 
       <li>
         <NavLink
-          to="/dashboard/productreturn"
+          to="/dashboard/sender-product-return"
           className={({ isActive }) => `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : 'text-gray-100'} ${isActive && `text-rose-600`}}`}
         >
           Return
@@ -37,6 +37,22 @@ const SenderNav = ({ mobile }) => {
           className={({ isActive }) => `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : 'text-gray-100'} ${isActive && `text-rose-600`}}`}
         >
           Create parcel
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/dashboard/payment"
+          className={({ isActive }) => `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : 'text-gray-100'} ${isActive && `text-rose-600`}}`}
+        >
+          Payment
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/dashboard/completed-parcel"
+          className={({ isActive }) => `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : 'text-gray-100'} ${isActive && `text-rose-600`}}`}
+        >
+          Completed Parcels
         </NavLink>
       </li>
 
