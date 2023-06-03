@@ -4,7 +4,7 @@ import { FaFacebookMessenger } from 'react-icons/fa';
 import { ImLocation2 } from 'react-icons/im';
 
 import { Link } from "react-router-dom";
-import logo from '../../../Assets/mainlogo.jpg';
+import logo from '../../../Assets/mainlogo.png';
 
 const Navbar = () => {
 
@@ -29,7 +29,7 @@ const Navbar = () => {
 
 
 
-      <div className="bg-orange-700">
+      <div className="bg-gradient-to-r  from-orange-600 via-amber-500 to-orange-700">
         <div className="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
           <div className="relative flex items-center justify-between">
             <Link
@@ -83,28 +83,31 @@ const Navbar = () => {
                   About us
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/dashboard"
-                  aria-label="Dashboard"
-                  title="Dashboard"
-                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                >
-                  Dashboard
-                </Link>
-              </li>
+             
+                <li>
+                  <Link
+                    to="/dashboard"
+                    aria-label="Dashboard"
+                    title="Dashboard"
+                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              
             </ul>
             <ul className="flex items-center hidden space-x-8 lg:flex">
-              <li>
-                <Link
-                  to="/register"
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-zinc-600 focus:shadow-outline focus:outline-none"
-                  aria-label="Sign up"
-                  title="Sign up"
-                >
-                  Sign up
-                </Link>
-              </li>
+                  
+                  <li>
+                    <Link
+                      to="/register"
+                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-zinc-600 focus:shadow-outline focus:outline-none"
+                      aria-label="Sign up"
+                      title="Sign up"
+                    >
+                      Sign up
+                    </Link>
+                  </li>
             </ul>
             <div className="lg:hidden">
               <button
