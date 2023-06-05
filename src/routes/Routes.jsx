@@ -21,6 +21,9 @@ import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
 import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
+import Features from "../pages/Features/Features";
+import AboutUs from "../pages/About/AboutUs";
+import Pricing from "../pages/Pricing/Pricing";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/features",
+        element: <Features />,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs />,
+      },
+      {
+        path: "/pricing",
+        element: <Pricing />,
       },
       {
         path: "/about",
