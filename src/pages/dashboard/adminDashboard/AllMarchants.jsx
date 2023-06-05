@@ -156,9 +156,7 @@ export const AllMarchants = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+        </>
+    )
+}
+
