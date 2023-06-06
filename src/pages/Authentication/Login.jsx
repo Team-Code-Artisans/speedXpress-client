@@ -1,41 +1,79 @@
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../API Operations/Auth";
+import { saveUser } from "../../API Operations/manageUsers";
+import SmallSpinner from "../../components/smallSpinner/SmallSpinner";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
 
-    // const [userEmail, setUserEmail] = useState('')
-    // const { signin, loading, setLoading, signInWithGoogle, resetPassword } =
-    //     useContext(AuthContext)
+    const [userEmail, setUserEmail] = useState('')
+    const { signin, loading, setLoading, signInWithGoogle, resetPassword,user } =
+        useContext(AuthContext)
 
     const { handleSubmit, register } = useForm()
 
-    // const navigate = useNavigate()
-    // const location = useLocation()
-    // const from = location.state?.from?.pathname || '/'
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = data => {
         console.log(data)
-        // const { email, password } = data;
+        const { email, password } = data;
 
-        // signin(email, password)
-        //     .then(result => {
-        //         toast.success('Login Successful✌')
-        //         // console.log(result.user)
-        //         setUserEmail(result.user?.email);
-        //         console.log(userEmail)
-        //         // Get Token and set it
+        signin(email, password)
+            .then(result => {
+                toast.success('Login Successful✌')
+                // console.log(result.user)
+                setUserEmail(result.user?.email);
+                console.log(userEmail)
+                // Get Token and set it
 
-        //         setLoading(false)
-        //         navigate(from, { replace: true })
-        //     })
-        //     .catch(err => {
-        //         toast.error(err.message)
-        //         console.log(err)
-        //         setLoading(false)
-        //     })
+                setLoading(false)
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                toast.error(err.message)
+                console.log(err)
+                setLoading(false)
+            })
     }
 
-   
+    const handleGoogleSignin = () => {
+        signInWithGoogle().then(result => {
+            console.log(result.user)
+            setAuthToken(result.user);
+            saveUser( {
+                email: user?.email,
+               name: user?.dispayName,
+               image: user?.photoURL,
+               account_type:"reciever",
+       })
+            setLoading(false)
+            navigate(from, { replace: true })
+        })
+        .catch(err => {
+            toast.error(err.message)
+            console.log(err)
+            setLoading(false)
+        })
+    }
+
+    // Pass reset
+    const handleReset = () => {
+        resetPassword(userEmail)
+            .then(() => {
+                toast.success('Please check your email for reset link');
+                setLoading(false)
+            })
+            .catch(err => {
+                toast.error(err.message)
+                console.log(err)
+                setLoading(false)
+            })
+    }
 
     return (
         <>
@@ -86,18 +124,18 @@ const Login = () => {
                                         />
                                     </div>
                                 </div>
-
+                                <p className="text-lg  hover:text-cyan-300 cursor-pointer " onClick={handleReset}>forgot password?</p>
                                 <button
                                     type="submit"
                                     className="block w-full rounded-lg bg-gradient-to-tr from-orange-600 via-amber-500 to-yellow px-5 py-3 text-sm font-medium text-white"
                                 >
-                                    { " Sign in"}
-                                   
+                                    {loading ? <SmallSpinner /> : " Sign in"}
+
                                 </button>
                                 <button
                                     type="submit"
                                     className="block w-full rounded-lg bg-neutral border-2 border-slate-100 px-5 py-3 text-sm font-medium text-white"
-                                    
+                                    onClick={handleGoogleSignin}
 
                                 >
                                     { "🌍 continue with google"}

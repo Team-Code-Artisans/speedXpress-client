@@ -8,6 +8,7 @@ export const DashboardNavbar = () => {
     var role = "employee"
     console.log(role)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     return (
         <div className="bg-gray-900 border">
             <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -38,6 +39,7 @@ export const DashboardNavbar = () => {
                         </span>
                     </a>
                     <ul className="flex items-center hidden space-x-8 lg:flex">
+                     
                         {role === "sender" && <SenderNav />}
                         {role === "admin" && <AdminNav />}
                         {role === "employee" && <EmployeeNav />}

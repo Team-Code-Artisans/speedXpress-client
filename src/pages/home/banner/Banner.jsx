@@ -1,6 +1,7 @@
 import bannerImage from "../../../Assets/Images/Yellow-Truck-PNG-Image.png";
 
 const Banner = () => {
+    
     return (
         <div className='bg-[#101920] overflow-x-hidden'>
             <div id="Banner" className="px-8 py-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl xl:max-w-screen-2xl md:px-16 lg:px-8 lg:py-4 ">
