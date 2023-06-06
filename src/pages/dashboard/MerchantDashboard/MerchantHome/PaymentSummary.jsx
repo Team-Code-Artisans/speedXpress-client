@@ -1,5 +1,6 @@
-import { BsBoxSeam, BsBoxArrowInRight, BsBox } from 'react-icons/bs'
+import { MdPayment, MdOutlinePayments, MdPendingActions } from 'react-icons/md'
 import { FiDollarSign } from 'react-icons/fi'
+
 const PaymentSummary = () => {
     return (
         <div className='my-10'>
@@ -9,7 +10,7 @@ const PaymentSummary = () => {
                     className=" space-y-4 rounded-xl bg-green-100 p-2 md:p-4 shadow-xl"
                 >
                     <div className='bg-green-200 rounded-2xl p-2 inline-block shadow-xl'>
-                        <BsBoxSeam size={'2rem'} className='text-green-600' />
+                        <MdPayment size={'2rem'} className='text-green-600' />
                     </div>
 
                     <h3 className="text-xl font-semibold sm:text-2xl text-black">
@@ -24,7 +25,7 @@ const PaymentSummary = () => {
                     className=" space-y-4 rounded-xl bg-orange-100 p-2 md:p-4 shadow-xl"
                 >
                     <div className='bg-orange-200 rounded-2xl p-2 inline-block shadow-xl'>
-                        <BsBox size={'2rem'} className=' text-orange-600' />
+                        <MdOutlinePayments size={'2rem'} className=' text-orange-600' />
                     </div>
 
                     <h3 className="text-xl font-semibold sm:text-2xl text-black">
@@ -39,7 +40,7 @@ const PaymentSummary = () => {
                     className=" space-y-4 rounded-xl bg-blue-100 p-2 md:p-4 shadow-xl"
                 >
                     <div className='bg-blue-200 rounded-2xl p-2 inline-block shadow-xl'>
-                        <BsBoxArrowInRight size={'2rem'} className='text-blue-600' />
+                        <MdPendingActions size={'2rem'} className='text-blue-600' />
                     </div>
 
                     <h3 className="text-xl font-semibold sm:text-2xl text-black">
