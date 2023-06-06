@@ -8,15 +8,10 @@ import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
-// import ReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel";
 import { CompletedParcels } from "../pages/dashboard/senderDashboard/CompletedParcels";
 import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
-// import SenderHome from "../pages/dashboard/senderDashboard/SenderHome";
 import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment";
-// import SenderReturnProduct from "../pages/dashboard/senderDashboard/SenderReturnProduct";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
-import { CompletedDeliveries } from "../pages/dashboard/employeeDashboard/CompletedDeliveries";
-import { PendingDeliveries } from "../pages/dashboard/employeeDashboard/PendingDeliveries";
 import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
 import SenderParcelTracking from "../pages/dashboard/senderDashboard/SenderParcelTracking";
 import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
@@ -25,6 +20,7 @@ import About from "../pages/home/about/About";
 import Features from "../pages/Features/Features";
 import AboutUs from "../pages/About/AboutUs";
 import Pricing from "../pages/Pricing/Pricing";
+import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
 
 const router = createBrowserRouter([
   {
@@ -93,7 +89,7 @@ const router = createBrowserRouter([
       // sender routes
       {
         path: "/dashboard/sender",
-        element: <SenderParcelTracking/>,
+        element: <SenderParcelTracking />,
       },
       {
         path: "/dashboard/create-parcel",
@@ -119,13 +115,11 @@ const router = createBrowserRouter([
         path: "/dashboard/completed-parcel",
         element: <CompletedParcels />,
       },
+
+      // Merchant Routes
       {
-        path: "/dashboard/pending-deliveries-list",
-        element: <PendingDeliveries />,
-      },
-      {
-        path: "/dashboard/completed-deliveries",
-        element: <CompletedDeliveries />,
+        path: "/dashboard/merchant",
+        element: <MerchantHome />,
       },
     ],
   },
