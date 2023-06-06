@@ -159,6 +159,9 @@ export const AllMarchants = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+      </>
+    )
 };
+
+export default AllMarchants
+
