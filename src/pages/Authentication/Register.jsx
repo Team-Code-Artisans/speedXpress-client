@@ -46,7 +46,7 @@ const [loading,setLoading]=useState(false)
                              email: user?.email,
                             name: fullName,
                             image: data,
-                            account_type:account,
+                            account_type:account ? account : "regular",
                     }
                     console.log(userData)
                     setAuthToken(user);
@@ -168,13 +168,13 @@ const [loading,setLoading]=useState(false)
                                                 {...register("account")} />
                                             <label htmlFor="account-type" className="ml-2 text-sm font-medium text-slate-50 ">Marchant</label>
                                         </div>
-                                        <div className="flex items-center mb-4">
+                                        {/* <div className="flex items-center mb-4">
                                             <input type="radio"
                                                 name="account"
-                                                value="reciever" htmlFor="account-type" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+                                                value="regular" htmlFor="account-type" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 {...register("account")} />
-                                            <label htmlFor="account-type" className="ml-2 text-sm font-medium text-slate-50 ">reciever</label>
-                                        </div>
+                                            <label htmlFor="account-type" className="ml-2 text-sm font-medium text-slate-50 ">regular</label>
+                                        </div> */}
 
                                     </div>
 

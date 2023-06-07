@@ -1,11 +1,30 @@
-import { useState } from "react";
-import { AdminNav } from "./adminDashboard/AdminNav";
+import { useContext, useEffect, useState } from "react";
+import instance from "../../axios";
+import { AuthContext } from "../../contexts/AuthProvider";
 import EmployeeNav from "./MerchantDashboard/MerchantNav/MerchantNav";
+import { AdminNav } from "./adminDashboard/AdminNav";
 import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
-    var role = "sender"
+    const [role, setRole] = useState("");
+    const [loading, setLoading] = useState(false)
+    const { user } = useContext(AuthContext);
+    useEffect(() => {
+        setLoading(true)
+        const url = `/user/${user?.email}`;
+        instance.get(url)
+            .then(data => {
+                console.log(data)
+                setRole(data?.account_type);
+                setLoading
+            })
+            .catch(err => {
+                console.log(err)
+                setLoading(false)
+            })
+
+    }, [role])
     console.log(role)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -39,8 +58,8 @@ export const DashboardNavbar = () => {
                         </span>
                     </a>
                     <ul className="flex items-center hidden space-x-8 lg:flex">
-                     
-                        {role === "sender" && <SenderNav />}
+
+                        {role === "merchant" && <SenderNav />}
                         {role === "admin" && <AdminNav />}
                         {role === "employee" && <EmployeeNav />}
 
