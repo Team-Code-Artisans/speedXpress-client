@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { AdminNav } from "./adminDashboard/AdminNav";
-import EmployeeNav from "./MerchantDashboard/MerchantNav/MerchantNav";
+import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
 import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
-    var role = "sender"
-    console.log(role)
+
+    let role = "merchant"
+    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -42,7 +43,7 @@ export const DashboardNavbar = () => {
                      
                         {role === "sender" && <SenderNav />}
                         {role === "admin" && <AdminNav />}
-                        {role === "employee" && <EmployeeNav />}
+                        {role === "merchant" && <MerchantNav />}
 
                     </ul>
                     <div className="lg:hidden">
@@ -117,7 +118,7 @@ export const DashboardNavbar = () => {
                                     <nav>
                                         {role === "sender" && <SenderNav mobile />}
                                         {role === "admin" && <AdminNav mobile />}
-                                        {role === "employee" && <EmployeeNav mobile />}
+                                        {role === "merchant" && <MerchantNav mobile />}
                                     </nav>
                                 </div>
                             </div>

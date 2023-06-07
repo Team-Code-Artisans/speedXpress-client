@@ -5,7 +5,7 @@ import { AiOutlineArrowUp, AiOutlineArrowDown, AiOutlineShop } from 'react-icons
 import { CgProfile } from 'react-icons/cg'
 import { MdOutlineCreate, MdInsertEmoticon, MdPayment, MdLocationPin, } from 'react-icons/md'
 
-const EmployeeNav = ({ mobile }) => {
+const MerchantNav = ({ mobile }) => {
 
   const [show, setShow] = useState(false);
 
@@ -99,4 +99,4 @@ const EmployeeNav = ({ mobile }) => {
   );
 };
 
-export default EmployeeNav;
+export default MerchantNav;
