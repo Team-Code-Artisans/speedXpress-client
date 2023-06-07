@@ -3,17 +3,18 @@ import InputDistricts from "./InputDistricts";
 import { divisions } from "../../../../data/Divisions";
 import { weights } from "../../../../data/Weight";
 import { useForm } from "react-hook-form";
+import { districts } from "../../../../data/Districts";
 
 const MerchantCreateParcel = () => {
+  const data = districts;
 
   const [dropdown1, setDropdown1] = useState(false);
   const [dropdown2, setDropdown2] = useState(false);
   const [division, setDivision] = useState("Dhaka");
-  const [district, setDistrict] = useState();
+  const [district, setDistrict] = useState(data);
   const [weight, setWeight] = useState("0.5KG - 1KG");
-  const [weightCharge, setWeightCharge] = useState(60);
+  const [weightCharge, setWeightCharge] = useState(10);
   const [deliveryFee, setDeliveryFee] = useState(60);
-  const [amount, setAmount] = useState(0);
 
   const divisionsData = divisions;
   const weightData = weights;
@@ -36,14 +37,9 @@ const MerchantCreateParcel = () => {
   } = useForm();
 
   const handleMerchantParcel = (data) => {
-    const submitData = { ...data, division, weight }
-    setAmount(data.amount)
+    const submitData = { ...data, division, weight, district }
     console.log(submitData)
   };
-
-  console.log(division);
-  console.log(district);
-  console.log(weight);
 
   return (
     <div className="overflow-y-hidden">
@@ -125,7 +121,7 @@ const MerchantCreateParcel = () => {
                     </div>
                   </div>
                 </div>
-                <InputDistricts />
+                <InputDistricts items={district} setItems={setDistrict} />
               </div>
               <input
                 {...register("address")}
@@ -197,10 +193,9 @@ const MerchantCreateParcel = () => {
               </div>
               <input
                 {...register("amount")}
-                onChange={(e) => setAmount(e.target.value)}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
                 type="number"
-                placeholder="COD Amount"
+                placeholder="COD Amount To Collect"
                 required
               />
               <input
@@ -240,23 +235,15 @@ const MerchantCreateParcel = () => {
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">
-                  COD Fee
-                </p>
-                <p className="text-lg font-semibold leading-4 text-gray-600">
-                  ${amount / 100 * 5}
-                </p>
-              </div>
-              <div className="flex justify-between w-full items-center">
                 <p className="text-lg leading-4 text-gray-600">Sub total </p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
-                  ${ }
+                  ${deliveryFee + weightCharge}
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
                 <p className="text-lg leading-4 text-gray-600">Promo Discount</p>
                 <p className="text-lg font-semibold leading-4 text-orange-600">
-                  - $35
+                  - $00
                 </p>
               </div>
             </div>
@@ -265,7 +252,7 @@ const MerchantCreateParcel = () => {
                 Estimated Total{" "}
               </p>
               <p className="text-lg font-semibold leading-4 text-gray-800">
-                $2900
+                ${(deliveryFee + weightCharge)}
               </p>
             </div>
           </div>
