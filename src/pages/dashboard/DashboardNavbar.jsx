@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AdminNav } from "./adminDashboard/AdminNav";
-import EmployeeNav from "./employeeDashboard/EmployeeNav";
+import EmployeeNav from "./MerchantDashboard/MerchantNav/MerchantNav";
 import SenderNav from "./senderDashboard/SenderNav";
 
 
