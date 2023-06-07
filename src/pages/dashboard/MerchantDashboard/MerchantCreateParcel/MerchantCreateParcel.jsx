@@ -1,16 +1,25 @@
 import React, { useState } from 'react'
 import InputDistricts from './InputDistricts';
 import { divisions } from '../../../../Data/Divisions';
+import { weights } from '../../../../Data/Weight';
 
 const MerchantCreateParcel = () => {
   const [dropdown1, setDropdown1] = useState(false);
+  const [dropdown2, setDropdown2] = useState(false);
   const [changeText1, setChangeText1] = useState("Dhaka");
+  const [changeText2, setChangeText2] = useState("0.5KG - 1KG");
 
   const divisionsData = divisions;
+  const weightData = weights;
 
   const HandleText1 = (e) => {
     setChangeText1(e);
     setDropdown1(false);
+  };
+
+  const HandleText2 = (e) => {
+    setChangeText2(e);
+    setDropdown2(false);
   };
 
   console.log(changeText1)
@@ -61,8 +70,29 @@ const MerchantCreateParcel = () => {
             </div>
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
               <div className='flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8'>
-                <input className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Parcel Weight" />
-                <input className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Parcel Quantity" />
+                <div className="relative w-full">
+                  <p id="button1" className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full">
+                    {changeText2}
+                  </p>
+                  <button onClick={() => setDropdown2(!dropdown2)} className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0">
+                    <svg id="close" className={` transform ${dropdown2 ? "rotate-180" : ""}  `} width={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6L8 10L4 6" stroke="#4B5563" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                  <div className={`shadow absolute z-10 bg-white top-10  w-full mt-3 ${dropdown2 ? "" : "hidden"}`}>
+                    <div className="flex flex-col  w-full">
+                      {weightData.map(e =>
+                        <p key={e.id} tabIndex={0} onClick={() => HandleText2(e.weight)} className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full">
+                          {e.weight}
+                        </p>)}
+                    </div>
+                  </div>
+                </div>
+                <input
+                  type="number"
+                  defaultValue="1"
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+                  placeholder="Parcel Quantity" />
               </div>
               <input className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="COD Amount" />
               <input className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Parcel Details (Optional)" />
