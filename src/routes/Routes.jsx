@@ -21,6 +21,7 @@ import Features from "../pages/Features/Features";
 import AboutUs from "../pages/About/AboutUs";
 import Pricing from "../pages/Pricing/Pricing";
 import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
+import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantCreateParcel/MerchantCreateParcel";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/merchant",
         element: <MerchantHome />,
+      },
+      {
+        path: "/dashboard/merchant/create-parcel",
+        element: <MerchantCreateParcel />,
       },
     ],
   },

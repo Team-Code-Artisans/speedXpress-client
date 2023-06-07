@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { GoSignOut } from 'react-icons/go'
 import { AiOutlineArrowUp, AiOutlineArrowDown, AiOutlineShop } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
@@ -13,7 +13,7 @@ const EmployeeNav = ({ mobile }) => {
     <>
       <li>
         <NavLink
-          to="/dashboard"
+          to="/dashboard/merchant"
           className={({ isActive }) =>
             `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
             } ${isActive && `text-rose-600`}}`
@@ -24,7 +24,7 @@ const EmployeeNav = ({ mobile }) => {
       </li>
       <li>
         <NavLink
-          to="/dashboard/pending-deliveries-list"
+          to="/dashboard/merchant/deliveries"
           className={({ isActive }) =>
             `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
             } ${isActive && `text-rose-600`}}`
@@ -35,17 +35,17 @@ const EmployeeNav = ({ mobile }) => {
       </li>
       <li>
         <NavLink
-          to="/dashboard/completed-deliveries"
+          to="/dashboard/merchant/invoices"
           className={({ isActive }) =>
             `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
             } ${isActive && `text-rose-600`}}`
           }
         >
-          Invoice
+          Invoices
         </NavLink>
       </li>
       <li>
-        <button className='bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg'>Create Parcel</button>
+        <Link to={'/dashboard/merchant/create-parcel'} className='bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg'>Create Parcel</Link>
       </li>
       <li>
         <div className="relative">
