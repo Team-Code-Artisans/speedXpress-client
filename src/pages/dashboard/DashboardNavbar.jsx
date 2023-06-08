@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 import { AdminNav } from "./adminDashboard/AdminNav";
+
+
+import { getRole } from "../../API Operations/manageUsers";
+import EmployeeNav from "./Employee Dashboard/EmployeeNav";
 import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
-import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
+    const [role, setRole] = useState("");
 
-    let role = "merchant"
-    
+    const { user } = useContext(AuthContext);
+    useEffect(() => {
+        if (user !== null) {
+            getRole(user.email)
+                .then(data => {
+                    setRole(data)
+                })
+        }
+
+    }, [user])
+    console.log(role)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -40,10 +54,12 @@ export const DashboardNavbar = () => {
                         </span>
                     </a>
                     <ul className="flex items-center hidden space-x-8 lg:flex">
-                     
-                        {role === "sender" && <SenderNav />}
+
+                        {/* {role === "regular" && <SenderNav />} */}
                         {role === "admin" && <AdminNav />}
                         {role === "merchant" && <MerchantNav />}
+                        {role === "employee" && <EmployeeNav />}
+
 
                     </ul>
                     <div className="lg:hidden">
@@ -116,9 +132,9 @@ export const DashboardNavbar = () => {
                                         </div>
                                     </div>
                                     <nav>
-                                        {role === "sender" && <SenderNav mobile />}
-                                        {role === "admin" && <AdminNav mobile />}
-                                        {role === "merchant" && <MerchantNav mobile />}
+                                        {role === "admin" && <AdminNav mobile/>}
+                                        {role === "merchant" && <MerchantNav mobile/>}
+                                        {role === "employee" && <EmployeeNav mobile/>}
                                     </nav>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const Login = () => {
 
     const [userEmail, setUserEmail] = useState('')
-    const { signin, loading, setLoading, signInWithGoogle, resetPassword,user } =
+    const { signin, loading, setLoading, signInWithGoogle, resetPassword, user } =
         useContext(AuthContext)
 
     const { handleSubmit, register } = useForm()
@@ -43,22 +43,23 @@ const Login = () => {
 
     const handleGoogleSignin = () => {
         signInWithGoogle().then(result => {
-            console.log(result.user)
+            const user=(result.user)
             setAuthToken(result.user);
-            saveUser( {
-                email: user?.email,
-               name: user?.dispayName,
-               image: user?.photoURL,
-               account_type:"reciever",
-       })
+                    saveUser( {
+                        email: user?.email,
+                       name: user?.dispayName,
+                       image: user?.photoURL,
+                       account_type:"regular",
+               })
+          
             setLoading(false)
             navigate(from, { replace: true })
         })
-        .catch(err => {
-            toast.error(err.message)
-            console.log(err)
-            setLoading(false)
-        })
+            .catch(err => {
+                toast.error(err.message)
+                console.log(err)
+                setLoading(false)
+            })
     }
 
     // Pass reset
@@ -93,7 +94,7 @@ const Login = () => {
                                     Login to your account
                                 </span>
                             </div>
-                            <form action="" className="mt-6 mb-0 space-y-4 bg-neutral rounded-lg p-8 shadow-2xl"
+                            <form action="" className="mt-6 mb-0 space-y-4  rounded-lg p-8 shadow-2xl"
                                 onSubmit={handleSubmit(handleLogin)}
                             >
 
@@ -104,7 +105,7 @@ const Login = () => {
                                         <input
                                             type="email"
                                             id="email"
-                                            className="w-full rounded-lg border-gray-200 p-4 pr-12 text-md text-neutral shadow-sm"
+                                            className="w-full rounded-lg border-gray-200 p-4 pr-12 text-md text-black shadow-sm"
                                             placeholder="Enter email"
                                             required
                                             {...register("email", { required: "email is required" })}
@@ -138,7 +139,7 @@ const Login = () => {
                                     onClick={handleGoogleSignin}
 
                                 >
-                                    { "🌍 continue with google"}
+                                    {"🌍 continue with google"}
                                 </button>
 
                                 <p className="text-center text-sm text-gray-100">

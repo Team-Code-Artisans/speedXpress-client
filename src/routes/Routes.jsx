@@ -1,27 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashBoard from "../layout/Dashboard";
 import Main from "../layout/Main";
+import AboutUs from "../pages/About/AboutUs";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import Features from "../pages/Features/Features";
+import Pricing from "../pages/Pricing/Pricing";
+import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome";
+import PendingDeliveries from "../pages/dashboard/Employee Dashboard/PendingDeliveries";
+import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantCreateParcel/MerchantCreateParcel";
+import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
-import { CompletedParcels } from "../pages/dashboard/senderDashboard/CompletedParcels";
-import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
-import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
+import { CompletedParcels } from "../pages/dashboard/senderDashboard/CompletedParcels";
 import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
+import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
 import SenderParcelTracking from "../pages/dashboard/senderDashboard/SenderParcelTracking";
+import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment";
 import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
-import Features from "../pages/Features/Features";
-import AboutUs from "../pages/About/AboutUs";
-import Pricing from "../pages/Pricing/Pricing";
-import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
-import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantCreateParcel/MerchantCreateParcel";
+
+
 
 const router = createBrowserRouter([
   {
@@ -126,6 +130,19 @@ const router = createBrowserRouter([
         path: "/dashboard/merchant/create-parcel",
         element: <MerchantCreateParcel />,
       },
+
+
+      // employee routes
+      {
+        path: "/dashboard/employee",
+        element: <EmployeeHome />,
+      },
+      {
+        path: "/dashboard/pending-deliveries",
+        element: <PendingDeliveries />,
+      },
+      
+      
     ],
   },
 ]);

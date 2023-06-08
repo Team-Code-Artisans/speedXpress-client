@@ -1,15 +1,15 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../API Operations/Auth";
 import { getImageUrl } from "../../API Operations/ImageUpload";
 import { saveUser } from "../../API Operations/manageUsers";
-import SmallSpinner from "../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../contexts/AuthProvider";
 import MerchantForm from "./MerchantForm";
 import RegularForm from "./RegularForm";
 import EmployeeForm from "./EmployeeForm";
+import MerchantForm from "./MerchantForm";
 import Tabs from "./Tabs";
 
 const Register = () => {
@@ -32,7 +32,6 @@ const Register = () => {
         formData.append('image', image);
 
         //  imgbb key =570054ebfb6d3aee9ac5eb169f91dce2
-
         getImageUrl(image)
             .then(data => {
                 console.log(data)
@@ -62,7 +61,6 @@ const Register = () => {
                             })
 
                         })
-
                 })
                     .catch(err => {
                         console.error(err.message)

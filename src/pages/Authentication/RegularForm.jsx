@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../contexts/AuthProvider'
+import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
-import { toast } from 'react-hot-toast'
+import { AuthContext } from '../../contexts/AuthProvider'
 
 const RegularForm = () => {
 
@@ -29,7 +29,6 @@ const RegularForm = () => {
                     address,
                     account_type: 'regular'
                 }
-
                 setAuthToken(user);
                 saveUser(userData);
                 toast.success("User Register Successfully")
