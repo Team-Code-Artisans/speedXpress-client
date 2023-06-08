@@ -9,7 +9,6 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import MerchantForm from "./MerchantForm";
 import RegularForm from "./RegularForm";
 import EmployeeForm from "./EmployeeForm";
-import MerchantForm from "./MerchantForm";
 import Tabs from "./Tabs";
 
 const Register = () => {
