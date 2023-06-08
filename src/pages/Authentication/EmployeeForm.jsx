@@ -17,22 +17,22 @@ const EmployeeForm = () => {
     const { register, reset, handleSubmit } = useForm()
 
     const handleRegister = (data) => {
-        const { ownerName, shopName, shopEmail, phoneNumber, shopAddress, password } = data
-        registerUser(shopEmail, password, shopName, phoneNumber)
+        const { name, email, phoneNumber, address, password } = data
+        registerUser(email, password, name, phoneNumber)
             .then(result => {
                 const user = result?.user;
 
                 const userData = {
-                    email: user?.email,
-                    ownerName,
+                    email,
+                    name,
                     phoneNumber,
-                    shopName,
-                    account_type: 'merchant'
+                    address,
+                    account_type: 'employee'
                 }
 
                 setAuthToken(user);
                 saveUser(userData);
-                toast.success("Merchant Register Successfully")
+                toast.success("Employee Register Successfully")
                 navigate(from, { replace: true });
             })
             .catch(error => console.log(error))
@@ -42,24 +42,17 @@ const EmployeeForm = () => {
         <>
             <form onSubmit={handleSubmit(handleRegister)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8 ">
                 <input
-                    {...register("ownerName")}
+                    {...register("name")}
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                     type="text"
-                    placeholder="Owner Name"
+                    placeholder="Full Name"
                     required
                 />
                 <input
-                    {...register("shopName")}
-                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
-                    type="text"
-                    placeholder="Shop Name"
-                    required
-                />
-                <input
-                    {...register("shopEmail")}
+                    {...register("email")}
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                     type="email"
-                    placeholder="Shop Email"
+                    placeholder="Your Email"
                     required
                 />
                 <input
@@ -77,10 +70,10 @@ const EmployeeForm = () => {
                     required
                 />
                 <input
-                    {...register("shopAddress")}
+                    {...register("address")}
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                     type="text"
-                    placeholder="Shop Address"
+                    placeholder="Full Address"
                     required
                 />
                 <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">

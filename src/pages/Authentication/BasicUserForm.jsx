@@ -32,7 +32,7 @@ const BasicUserForm = () => {
 
                 setAuthToken(user);
                 saveUser(userData);
-                toast.success("Merchant Register Successfully")
+                toast.success("User Register Successfully")
                 navigate(from, { replace: true });
             })
             .catch(error => console.log(error))
