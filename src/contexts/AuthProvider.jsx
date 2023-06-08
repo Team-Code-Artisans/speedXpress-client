@@ -22,7 +22,7 @@ const googleProvider = new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    console.log(user)
+
     //1. Create User
     const createUser = (email, password) => {
         setLoading(true)
@@ -43,6 +43,28 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return sendEmailVerification(auth.currentUser)
     }
+
+    const registerUser = async (email, password, displayName, phoneNumber) => {
+        setLoading(true);
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        const newUser = {
+            email,
+            displayName,
+            phoneNumber,
+        };
+
+        setUser(newUser);
+
+        updateProfile(userCredential.user, {
+            displayName,
+            phoneNumber
+        })
+    };
 
     // 4. Google Signin
     const signInWithGoogle = () => {
@@ -82,6 +104,8 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    console.log(user)
+
     const authInfo = {
         user,
         createUser,
@@ -93,6 +117,7 @@ const AuthProvider = ({ children }) => {
         resetPassword,
         loading,
         setLoading,
+        registerUser
     }
 
     return (

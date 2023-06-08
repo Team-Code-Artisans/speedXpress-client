@@ -1,19 +1,48 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { AuthContext } from '../../contexts/AuthProvider'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { setAuthToken } from '../../API Operations/Auth'
+import { saveUser } from '../../API Operations/manageUsers'
+import { toast } from 'react-hot-toast'
 
 const MerchantForm = () => {
+
+    const { registerUser } = useContext(AuthContext)
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/"
 
     const { register, reset, handleSubmit } = useForm()
 
     const handleRegister = (data) => {
-        console.log(data)
+        const { ownerName, shopName, shopEmail, phoneNumber, shopAddress, password } = data
+        registerUser(shopEmail, password, shopName, phoneNumber)
+            .then(result => {
+                const user = result?.user;
+
+                const userData = {
+                    email: user?.email,
+                    ownerName,
+                    phoneNumber,
+                    shopName,
+                    account_type: 'merchant'
+                }
+
+                setAuthToken(user);
+                saveUser(userData);
+                toast.success("Merchant Register Successfully")
+                navigate(from, { replace: true });
+            })
+            .catch(error => console.log(error))
     }
 
     return (
         <>
             <form onSubmit={handleSubmit(handleRegister)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8 ">
                 <input
-                    {...register("name")}
+                    {...register("ownerName")}
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                     type="text"
                     placeholder="Owner Name"
@@ -34,14 +63,21 @@ const MerchantForm = () => {
                     required
                 />
                 <input
-                    {...register("number")}
-                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-                    type="number"
+                    {...register("password")}
+                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    type="password"
+                    placeholder="Password"
+                    required
+                />
+                <input
+                    {...register("phoneNumber")}
+                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    type="text"
                     placeholder="Phone Number"
                     required
                 />
                 <input
-                    {...register("address")}
+                    {...register("shopAddress")}
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                     type="text"
                     placeholder="Shop Address"
