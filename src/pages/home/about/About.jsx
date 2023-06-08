@@ -1,5 +1,6 @@
 
 import video from "../../../Assets/Images/Ship - 32052.mp4";
+import {toast} from "react-hot-toast"
 const About = () => {
     return (
 
@@ -16,7 +17,7 @@ const About = () => {
                         <i className='font-medium   text-black text-3xl'> We aims</i>  to simplify the entire event planning process for customers and event planners by providing a platform that helps them with everything they need for an event, including event space or venue catering, event dress decoration, and budget planning.
                     </p>
 
-                    <button className="bg-gradient-to-tr from-orange-600 via-amber-500 to-yellow py-3.5 px-8 rounded shadow-md hover:shadow-none active:scale-95 duration-150 transition-all scale-100 text-white font-medium uppercase">
+                    <button className="bg-gradient-to-tr from-orange-600 via-amber-500 to-yellow py-3.5 px-8 rounded shadow-md hover:shadow-none active:scale-95 duration-150 transition-all scale-100 text-white font-medium uppercase" onClick={()=> toast}>
                         <span className="">Get started</span>
                     </button>
                 </div>

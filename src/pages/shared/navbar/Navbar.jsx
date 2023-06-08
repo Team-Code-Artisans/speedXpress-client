@@ -1,14 +1,36 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsClockHistory, BsLinkedin, BsTwitter } from 'react-icons/bs';
+import { CgLogOut } from 'react-icons/cg';
 import { FaFacebookMessenger } from 'react-icons/fa';
 import { ImLocation2 } from 'react-icons/im';
 
+
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { getRole } from "../../../API Operations/manageUsers";
 import logo from '../../../Assets/mainlogo.png';
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
-
+const [role,setRole]=useState("")
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout, } = useContext(AuthContext);
+
+  useEffect(()=>{
+    getRole(user?.email)
+    .then(data=>{
+      console.log(data)
+      setRole(data)
+    })
+  },[user,role])
+  const logoutUser = () => {
+    logout()
+      .then(() => {
+        toast.success("successfully logged out")
+      })
+      .catch(err => console.log(err.message))
+  }
+
 
   return (
     <div>
@@ -39,7 +61,7 @@ const Navbar = () => {
               className="inline-flex items-center"
             >
               <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                <img className="w-32 rounded-xl" src={logo} alt="mainLogo" />
+                <img className="w-40 rounded-xl" src={logo} alt="mainLogo" />
               </span>
             </Link>
             <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -50,7 +72,7 @@ const Navbar = () => {
                   title="Our product"
                   className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                 >
-                  Product
+                  Home
                 </Link>
               </li>
               <li>
@@ -83,31 +105,49 @@ const Navbar = () => {
                   About us
                 </Link>
               </li>
-             
-                <li>
-                  <Link
-                    to="/dashboard"
-                    aria-label="Dashboard"
-                    title="Dashboard"
-                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-              
-            </ul>
-            <ul className="flex items-center hidden space-x-8 lg:flex">
-                  
+              {
+                user?.email ?
                   <li>
                     <Link
-                      to="/register"
-                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-zinc-600 focus:shadow-outline focus:outline-none"
-                      aria-label="Sign up"
-                      title="Sign up"
+                      to={`/dashboard/${role}`}
+                      aria-label="Dashboard"
+                      title="Dashboard"
+                      className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                     >
-                      Sign up
+                      Dashboard
                     </Link>
                   </li>
+                  :
+                  <></>
+              }
+
+            </ul>
+            <ul className="flex items-center hidden space-x-8 lg:flex">
+
+              {
+                user
+                  && user?.email ?
+                  <li>
+                    <button type="button" className=" py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-transparent text-white shadow-sm align-middle hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm " onClick={logoutUser}>
+                      <span>Logout</span>
+                      <CgLogOut />
+
+                    </button>
+                  </li>
+                  :
+                  <>
+                    <li>
+                      <Link
+                        to="/register"
+                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-zinc-600 focus:shadow-outline focus:outline-none"
+                        aria-label="Sign up"
+                        title="Sign up"
+                      >
+                        Sign up
+                      </Link>
+                    </li>
+                  </>
+              }
             </ul>
             <div className="lg:hidden">
               <button
@@ -132,7 +172,7 @@ const Navbar = () => {
                 </svg>
               </button>
               {isMenuOpen && (
-                <div className="absolute top-0 left-0 w-full">
+                <div className="absolute top-0 left-0 w-full z-[99]">
                   <div className="p-5 bg-white border rounded shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                       <div>
