@@ -6,7 +6,6 @@ import { AdminNav } from "./adminDashboard/AdminNav";
 import { getRole } from "../../API Operations/manageUsers";
 import EmployeeNav from "./Employee Dashboard/EmployeeNav";
 import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
-import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
@@ -14,11 +13,11 @@ export const DashboardNavbar = () => {
 
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        if(user !== null){
-            getRole( user.email)
-            .then(data => {
-                setRole(data)
-            })
+        if (user !== null) {
+            getRole(user.email)
+                .then(data => {
+                    setRole(data)
+                })
         }
 
     }, [user])
@@ -133,9 +132,9 @@ export const DashboardNavbar = () => {
                                         </div>
                                     </div>
                                     <nav>
-                                        {role === "sender" && <SenderNav mobile />}
-                                        {role === "admin" && <AdminNav mobile />}
-                                        {role === "merchant" && <MerchantNav mobile />}
+                                        {role === "admin" && <AdminNav mobile/>}
+                                        {role === "merchant" && <MerchantNav mobile/>}
+                                        {role === "employee" && <EmployeeNav mobile/>}
                                     </nav>
                                 </div>
                             </div>
