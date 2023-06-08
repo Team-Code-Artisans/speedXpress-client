@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import InputDistricts from "./InputDistricts";
-import { divisions } from "../../../../data/Divisions";
-import { weights } from "../../../../data/Weight";
 import { useForm } from "react-hook-form";
 import { districts } from "../../../../data/Districts";
+import { divisions } from "../../../../data/Divisions";
+import { weights } from "../../../../data/Weight";
+import InputDistricts from "./InputDistricts";
 
 const MerchantCreateParcel = () => {
   const data = districts;
 
   const [dropdown1, setDropdown1] = useState(false);
+  const [filterId,setFilterId]=useState(6)
   const [dropdown2, setDropdown2] = useState(false);
   const [division, setDivision] = useState("Dhaka");
   const [district, setDistrict] = useState(data);
@@ -21,6 +22,8 @@ const MerchantCreateParcel = () => {
 
   const handleDivision = (e) => {
     setDivision(e.name);
+    setFilterId(e.id)
+    console.log(division)
     setDeliveryFee(e.name == "Dhaka" ? 60 : 120)
     setDropdown1(false);
   };
@@ -36,6 +39,7 @@ const MerchantCreateParcel = () => {
     handleSubmit
   } = useForm();
 
+  console.log(division)
   const handleMerchantParcel = (data) => {
     const submitData = { ...data, division, weight, district }
     console.log(submitData)
@@ -113,6 +117,7 @@ const MerchantCreateParcel = () => {
                           key={e.id}
                           tabIndex={0}
                           onClick={() => handleDivision(e)}
+                          onChange={()=>handleDivision(e)}
                           className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full"
                         >
                           {e.name}
@@ -121,7 +126,7 @@ const MerchantCreateParcel = () => {
                     </div>
                   </div>
                 </div>
-                <InputDistricts items={district} setItems={setDistrict} />
+                <InputDistricts items={district} setItems={setDistrict} filterId={filterId}/>
               </div>
               <input
                 {...register("address")}

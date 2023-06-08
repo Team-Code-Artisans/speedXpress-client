@@ -1,12 +1,16 @@
 import { useCombobox } from "downshift";
+import { useEffect } from "react";
 import { districts } from "../../../../data/Districts";
 
-const InputDistricts = ({ items, setItems }) => {
-  const data = districts;
+const InputDistricts = ({ items, setItems,filterId }) => {
+  let data = districts;
+  data=data.filter(singleDistrict=>singleDistrict.division_id === filterId)
+  console.log(data)
+
+  useEffect(()=>{},[data,items,filterId])
 
   function getDataFilter(inputValue) {
     const lowerCasedInputValue = inputValue.toLowerCase();
-
     return function dataFilter(value) {
       return (
         !inputValue || value.name.toLowerCase().includes(lowerCasedInputValue)
@@ -72,7 +76,7 @@ const InputDistricts = ({ items, setItems }) => {
         {...getMenuProps()}
       >
         {isOpen &&
-          items.map((item, index) => (
+          data.map((item, index) => (
             <li
               className={`${highlightedIndex === index && "bg-black"},
                             ${selectedItem === item && "font-bold"},

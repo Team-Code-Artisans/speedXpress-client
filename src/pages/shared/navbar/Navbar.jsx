@@ -19,6 +19,7 @@ const [role,setRole]=useState("")
   useEffect(()=>{
     getRole(user?.email)
     .then(data=>{
+      console.log(data)
       setRole(data)
     })
   },[user,role])

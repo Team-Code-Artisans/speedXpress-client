@@ -19,9 +19,6 @@ const Register = () => {
 
     const from = location.state?.from?.pathname || "/"
 
-
-
-
     const handleSignup = (data) => {
         setLoading(true)
         // console.log(data);
@@ -32,7 +29,6 @@ const Register = () => {
         // console.log(image);
 
         //  imgbb key =570054ebfb6d3aee9ac5eb169f91dce2
-
         getImageUrl(image)
             .then(data => {
                 console.log(data)
@@ -62,7 +58,6 @@ const Register = () => {
                             })
 
                         })
-
                 })
                     .catch(err => {
                         console.error(err.message)
