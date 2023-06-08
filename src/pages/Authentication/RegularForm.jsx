@@ -6,7 +6,7 @@ import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
 import { toast } from 'react-hot-toast'
 
-const BasicUserForm = () => {
+const RegularForm = () => {
 
     const { registerUser } = useContext(AuthContext)
 
@@ -27,7 +27,7 @@ const BasicUserForm = () => {
                     name,
                     phoneNumber,
                     address,
-                    account_type: 'basicUser'
+                    account_type: 'regular'
                 }
 
                 setAuthToken(user);
@@ -84,4 +84,4 @@ const BasicUserForm = () => {
     )
 }
 
-export default BasicUserForm
+export default RegularForm

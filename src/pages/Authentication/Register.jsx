@@ -8,7 +8,7 @@ import { saveUser } from "../../API Operations/manageUsers";
 import SmallSpinner from "../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../contexts/AuthProvider";
 import MerchantForm from "./MerchantForm";
-import BasicUserForm from "./BasicUserForm";
+import RegularForm from "./RegularForm";
 import EmployeeForm from "./EmployeeForm";
 import Tabs from "./Tabs";
 
@@ -85,7 +85,7 @@ const Register = () => {
                 </p>
                 <Tabs activeStatus={activeStatus} setActiveStatus={setActiveStatus} />
 
-                {activeStatus === 1 && <BasicUserForm />}
+                {activeStatus === 1 && <RegularForm />}
                 {activeStatus === 2 && <MerchantForm />}
                 {activeStatus === 3 && <EmployeeForm />}
             </div>
