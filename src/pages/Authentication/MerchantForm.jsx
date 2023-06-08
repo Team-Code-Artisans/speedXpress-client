@@ -23,10 +23,11 @@ const MerchantForm = () => {
                 const user = result?.user;
 
                 const userData = {
-                    email: user?.email,
+                    email: shopEmail,
                     ownerName,
                     phoneNumber,
                     shopName,
+                    shopAddress,
                     account_type: 'merchant'
                 }
 
