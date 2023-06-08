@@ -16,3 +16,15 @@ export const saveUser = async (userData) => {
 };
 
 
+// get role of a user
+
+export const getRole = async (email) => {
+    try {
+        const url = `/user/${email}`;
+        const res = await instance.get(url);
+        let role = (res.account_type);
+        return role;
+    } catch (error) {
+        console.log(error.message);
+    }
+}

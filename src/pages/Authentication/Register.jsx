@@ -10,8 +10,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const Register = () => {
 
-const [loading,setLoading]=useState(false)
-    const { createUser, updateUserProfile,  verifyEmail } = useContext(AuthContext)
+    const [loading, setLoading] = useState(false)
+    const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext)
     const { register, reset, handleSubmit } = useForm()
 
     const location = useLocation();
@@ -25,7 +25,7 @@ const [loading,setLoading]=useState(false)
     const handleSignup = (data) => {
         setLoading(true)
         // console.log(data);
-        const { email, password, fullName,account } = data;
+        const { email, password, fullName, account } = data;
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -43,10 +43,10 @@ const [loading,setLoading]=useState(false)
                     toast.success("login success");
                     reset();
                     const userData = {
-                             email: user?.email,
-                            name: fullName,
-                            image: data,
-                            account_type:account ? account : "regular",
+                        email: user?.email,
+                        name: fullName,
+                        image: data,
+                        account_type: account ? account : "regular",
                     }
                     console.log(userData)
                     setAuthToken(user);
@@ -75,7 +75,7 @@ const [loading,setLoading]=useState(false)
                 // if error occurs we stop the small spinner
                 setLoading(false);
             })
-       
+
 
 
 

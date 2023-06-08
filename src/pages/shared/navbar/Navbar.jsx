@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsClockHistory, BsLinkedin, BsTwitter } from 'react-icons/bs';
 import { CgLogOut } from 'react-icons/cg';
 import { FaFacebookMessenger } from 'react-icons/fa';
@@ -7,13 +7,21 @@ import { ImLocation2 } from 'react-icons/im';
 
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { getRole } from "../../../API Operations/manageUsers";
 import logo from '../../../Assets/mainlogo.png';
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
-
+const [role,setRole]=useState("")
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout, } = useContext(AuthContext);
+
+  useEffect(()=>{
+    getRole(user?.email)
+    .then(data=>{
+      setRole(data)
+    })
+  },[user,role])
   const logoutUser = () => {
     logout()
       .then(() => {
@@ -100,7 +108,7 @@ const Navbar = () => {
                 user?.email ?
                   <li>
                     <Link
-                      to="/dashboard"
+                      to={`/dashboard/${role}`}
                       aria-label="Dashboard"
                       title="Dashboard"
                       className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
