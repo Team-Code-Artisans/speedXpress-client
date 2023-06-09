@@ -8,7 +8,7 @@ const Tabs = ({ activeStatus, setActiveStatus }) => {
                 <li onClick={() => setActiveStatus(1)} className={activeStatus == 1 ? "text-sm md:text-xl border-orange-700 pt-3 rounded-t text-orange-700" : "text-sm md:text-xl text-gray-600 py-3 flex items-center hover:text-orange-700 cursor-pointer"}>
                     <div className="flex md:gap-2 gap-1 items-center mb-3">
                         <MdSwitchAccount size={'1.5rem'} />
-                        <span className="ml-1 font-normal">P2P</span>
+                        <span className="ml-1 font-normal">Regular</span>
                     </div>
                     {activeStatus == 1 && <div className="w-full h-1 bg-orange-700 rounded-t-md" />}
                 </li>

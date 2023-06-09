@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../contexts/AuthProvider'
+import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
-import { toast } from 'react-hot-toast'
+import { AuthContext } from '../../contexts/AuthProvider'
+import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
 
-const EmployeeForm = () => {
+const RegularForm = () => {
 
-    const { registerUser } = useContext(AuthContext)
+    const { registerUser, loading, setLoading } = useContext(AuthContext)
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -27,19 +28,24 @@ const EmployeeForm = () => {
                     name,
                     phoneNumber,
                     address,
-                    account_type: 'employee'
+                    account_type: 'regular'
                 }
-                reset();
+                reset()
+                setLoading(false)
                 setAuthToken(user);
                 saveUser(userData);
-                toast.success("Employee Register Successfully")
+                toast.success("User Register Successfully")
                 navigate(from, { replace: true });
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                toast.error(error.message)
+                setLoading(false)
+                console.log(error.message)
+            })
     }
 
     return (
-        <form onSubmit={handleSubmit(handleRegister)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8 ">
+        <form onSubmit={handleSubmit(handleRegister)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8">
             <div className='w-full'>
                 <input
                     {...register("name", {
@@ -103,11 +109,11 @@ const EmployeeForm = () => {
                 />
                 {errors.address && <span className='text-red-500'>{errors.address.message}</span>}
             </div>
-            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
-                Sign Up
+            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
+                {loading ? <SmallSpinner /> : "Sign Up"}
             </button>
         </form>
     )
 }
 
-export default EmployeeForm
+export default RegularForm

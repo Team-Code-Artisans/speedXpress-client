@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/AuthProvider'
 
 const BasicUserForm = () => {
 
-    const { registerUser,loading,setLoading } = useContext(AuthContext)
+    const { registerUser } = useContext(AuthContext)
 
     const location = useLocation();
     const navigate = useNavigate();
