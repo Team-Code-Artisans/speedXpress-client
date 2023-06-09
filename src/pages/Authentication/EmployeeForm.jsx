@@ -5,10 +5,11 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
 import { toast } from 'react-hot-toast'
+import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
 
 const EmployeeForm = () => {
 
-    const { registerUser } = useContext(AuthContext)
+    const { registerUser, setLoading, loading } = useContext(AuthContext)
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -30,12 +31,17 @@ const EmployeeForm = () => {
                     account_type: 'employee'
                 }
                 reset();
+                setLoading(false)
                 setAuthToken(user);
                 saveUser(userData);
                 toast.success("Employee Register Successfully")
                 navigate(from, { replace: true });
             })
-            .catch(error => console.log(error))
+            .catch(err => {
+                toast.error(err.message)
+                console.log(err)
+                setLoading(false)
+            })
     }
 
     return (
@@ -103,8 +109,8 @@ const EmployeeForm = () => {
                 />
                 {errors.address && <span className='text-red-500'>{errors.address.message}</span>}
             </div>
-            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
-                Sign Up
+            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
+                {loading ? <SmallSpinner /> : "Sign Up"}
             </button>
         </form>
     )
