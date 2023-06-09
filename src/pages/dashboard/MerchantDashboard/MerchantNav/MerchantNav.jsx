@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
+import { AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineShop } from 'react-icons/ai';
+import { CgProfile } from 'react-icons/cg';
+import { GoSignOut } from 'react-icons/go';
+import { MdInsertEmoticon, MdPayment } from 'react-icons/md';
 import { Link, NavLink } from "react-router-dom";
-import { GoSignOut } from 'react-icons/go'
-import { AiOutlineArrowUp, AiOutlineArrowDown, AiOutlineShop } from 'react-icons/ai'
-import { CgProfile } from 'react-icons/cg'
-import { MdOutlineCreate, MdInsertEmoticon, MdPayment, MdLocationPin, } from 'react-icons/md'
+import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const MerchantNav = ({ mobile }) => {
-
+const {logout}=useContext(AuthContext)
   const [show, setShow] = useState(false);
+  const logoutUser = () => {
+    logout()
+      .then(() => {
+        toast.success("successfully logged out")
+      })
+      .catch(err => console.log(err.message))
+  }
+
 
   return (
     <>
@@ -63,31 +73,30 @@ const MerchantNav = ({ mobile }) => {
           </div>
           {show && (
             <ul className="visible transition duration-300 opacity-100 bg-white shadow rounded mt-2 py-1 w-48 absolute">
-              <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                <MdOutlineCreate size={'1.5rem'} />
-                <span className="px-2">Create Parcel</span>
-              </li>
+      
               <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                 <AiOutlineShop size={'1.5rem'} />
                 <span className="px-2">My Shops</span>
               </li>
-              <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+              {/* <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                 <MdLocationPin size={'1.5rem'} />
                 <span className="px-2">Manage Pickup</span>
-              </li>
+              </li> */}
               <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                 <MdPayment size={'1.5rem'} />
                 <span className="px-2">Payment History</span>
               </li>
-              <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+              <Link to={`/dashboard/merchant/my-customers`} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+
                 <MdInsertEmoticon size={'1.5rem'} />
-                <span className="px-2">Customers Info</span>
-              </li>
+                <span className="px-2">My Customers</span>
+
+              </Link>
               <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                 <CgProfile size={'1.5rem'} />
                 <span className="px-2">Profile</span>
               </li>
-              <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+              <li className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center" onClick={logoutUser}>
                 <GoSignOut size={'1.5rem'} />
                 <span className="px-2">Sign Out</span>
               </li>

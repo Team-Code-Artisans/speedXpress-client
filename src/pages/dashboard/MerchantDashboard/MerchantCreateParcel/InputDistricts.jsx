@@ -1,17 +1,27 @@
 import { useCombobox } from "downshift";
+import PropTypes from 'prop-types';
 import { useEffect } from "react";
 import { districts } from "../../../../data/Districts";
 
-const InputDistricts = ({ items, setItems,filterId }) => {
-  let data = districts;
-  data=data.filter(singleDistrict=>singleDistrict.division_id === filterId)
-  console.log(data)
+const InputDistricts = ({ items, setItems, filterId }) => {
 
-  useEffect(()=>{},[data,items,filterId])
+  InputDistricts.propTypes = {
+    items: PropTypes.array.isRequired,
+    setItems: PropTypes.func.isRequired,
+    filterId: PropTypes.number.isRequired,
+  };
+
+  let data = districts;
+  data = data.filter(singleDistrict => singleDistrict.division_id === filterId)
+  // console.log(data)
+
+  useEffect(() => { }, [data, items, filterId])
 
   function getDataFilter(inputValue) {
+    // console.log("inputValue",inputValue)
     const lowerCasedInputValue = inputValue.toLowerCase();
     return function dataFilter(value) {
+      // console.log("value",!inputValue || value.name.toLowerCase().includes(lowerCasedInputValue))
       return (
         !inputValue || value.name.toLowerCase().includes(lowerCasedInputValue)
       );

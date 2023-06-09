@@ -5,16 +5,17 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
 import { toast } from 'react-hot-toast'
+import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
 
 const EmployeeForm = () => {
 
-    const { registerUser } = useContext(AuthContext)
+    const { registerUser, setLoading, loading } = useContext(AuthContext)
 
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/"
 
-    const { register, reset, handleSubmit } = useForm()
+    const { register, reset, handleSubmit, formState: { errors } } = useForm()
 
     const handleRegister = (data) => {
         const { name, email, phoneNumber, address, password } = data
@@ -29,58 +30,89 @@ const EmployeeForm = () => {
                     address,
                     account_type: 'employee'
                 }
-
+                reset();
+                setLoading(false)
                 setAuthToken(user);
                 saveUser(userData);
                 toast.success("Employee Register Successfully")
                 navigate(from, { replace: true });
             })
-            .catch(error => console.log(error))
+            .catch(err => {
+                toast.error(err.message)
+                console.log(err)
+                setLoading(false)
+            })
     }
 
     return (
-        <>
-            <form onSubmit={handleSubmit(handleRegister)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8 ">
+        <form onSubmit={handleSubmit(handleRegister)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8 ">
+            <div className='w-full'>
                 <input
-                    {...register("name")}
-                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    {...register("name", {
+                        required: "required",
+                    })}
+                    className={`px-2 focus:outline-none focus:ring-2 ${errors.name ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                     type="text"
                     placeholder="Full Name"
-                    required
                 />
+                {errors.name && <span className='text-red-500'>{errors.name.message}</span>}
+            </div>
+            <div className='w-full'>
                 <input
-                    {...register("email")}
-                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    {...register("email", {
+                        required: "required",
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: "invalid email address"
+                        }
+                    })}
+                    className={`px-2 focus:outline-none focus:ring-2 ${errors.email ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                     type="email"
                     placeholder="Your Email"
-                    required
                 />
+                {errors.email && <span className='text-red-500'>{errors.email.message}</span>}
+            </div>
+            <div className='w-full'>
                 <input
-                    {...register("password")}
-                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    {...register("password", {
+                        required: "required",
+                        minLength: {
+                            value: 6,
+                            message: "password must be 6 characters"
+                        }
+                    })}
+                    className={`px-2 focus:outline-none focus:ring-2 ${errors.password ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                     type="password"
                     placeholder="Password"
-                    required
                 />
+                {errors.password && <span className='text-red-500'>{errors.password.message}</span>}
+            </div>
+            <div className="w-full">
                 <input
-                    {...register("phoneNumber")}
-                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    {...register("phoneNumber", {
+                        required: "required",
+                    })}
+                    className={`px-2 focus:outline-none focus:ring-2 ${errors.phoneNumber ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                     type="text"
                     placeholder="Phone Number"
-                    required
                 />
+                {errors.phoneNumber && <span className='text-red-500'>{errors.phoneNumber.message}</span>}
+            </div>
+            <div className="w-full">
                 <input
-                    {...register("address")}
-                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    {...register("address", {
+                        required: "required",
+                    })}
+                    className={`px-2 focus:outline-none focus:ring-2 ${errors.address ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                     type="text"
                     placeholder="Full Address"
-                    required
                 />
-                <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
-                    Sign Up
-                </button>
-            </form>
-        </>
+                {errors.address && <span className='text-red-500'>{errors.address.message}</span>}
+            </div>
+            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
+                {loading ? <SmallSpinner /> : "Sign Up"}
+            </button>
+        </form>
     )
 }
 

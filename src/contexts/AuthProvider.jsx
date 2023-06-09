@@ -1,10 +1,8 @@
-
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     getAuth,
     onAuthStateChanged,
-    sendEmailVerification,
     sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signInWithPopup,
@@ -22,27 +20,6 @@ const googleProvider = new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-
-    //1. Create User
-    const createUser = (email, password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
-
-    //   2. Update Name
-    const updateUserProfile = (name, photo) => {
-        setLoading(true)
-        return updateProfile(auth.currentUser, {
-            displayName: name,
-            photoURL: photo,
-        })
-    }
-
-    //   3. Email Verify
-    const verifyEmail = () => {
-        setLoading(true)
-        return sendEmailVerification(auth.currentUser)
-    }
 
     const registerUser = async (email, password, displayName, phoneNumber) => {
         setLoading(true);
@@ -66,7 +43,7 @@ const AuthProvider = ({ children }) => {
         })
     };
 
-    // 4. Google Signin
+    // 4. Google SignIn
     const signInWithGoogle = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
@@ -80,7 +57,7 @@ const AuthProvider = ({ children }) => {
     }
 
     //6. Login with Password
-    const signin = (email, password) => {
+    const signIn = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
@@ -108,12 +85,9 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
-        createUser,
-        updateUserProfile,
-        verifyEmail,
         signInWithGoogle,
         logout,
-        signin,
+        signIn,
         resetPassword,
         loading,
         setLoading,
