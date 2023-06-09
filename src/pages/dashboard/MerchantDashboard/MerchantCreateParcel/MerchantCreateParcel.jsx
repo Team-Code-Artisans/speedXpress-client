@@ -84,6 +84,8 @@ const MerchantCreateParcel = () => {
 
     const customerInfo = {
       name, email, number, division, distrcitName, address,
+      customerOwnerEmail:user?.email,
+      customerOwnerName:user?.displayName
     }
 
     const parcelData = {
