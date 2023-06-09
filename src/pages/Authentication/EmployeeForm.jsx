@@ -29,7 +29,7 @@ const EmployeeForm = () => {
                     address,
                     account_type: 'employee'
                 }
-
+                reset();
                 setAuthToken(user);
                 saveUser(userData);
                 toast.success("Employee Register Successfully")

@@ -10,8 +10,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const Login = () => {
 
     const [userEmail, setUserEmail] = useState('')
-    const { signin, loading, setLoading, signInWithGoogle, resetPassword, user } =
-        useContext(AuthContext)
+    const { signIn, loading, setLoading, signInWithGoogle, resetPassword } = useContext(AuthContext)
 
     const { handleSubmit, register } = useForm()
 
@@ -20,17 +19,12 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/'
 
     const handleLogin = data => {
-        console.log(data)
         const { email, password } = data;
 
-        signin(email, password)
+        signIn(email, password)
             .then(result => {
-                toast.success('Login Successful✌')
-                // console.log(result.user)
+                toast.success('Login Successful')
                 setUserEmail(result.user?.email);
-                console.log(userEmail)
-                // Get Token and set it
-
                 setLoading(false)
                 navigate(from, { replace: true })
             })
@@ -41,17 +35,17 @@ const Login = () => {
             })
     }
 
-    const handleGoogleSignin = () => {
+    const handleGoogleSignIn = () => {
         signInWithGoogle().then(result => {
-            const user=(result.user)
+            const user = (result.user)
             setAuthToken(result.user);
-                    saveUser( {
-                        email: user?.email,
-                       name: user?.dispayName,
-                       image: user?.photoURL,
-                       account_type:"regular",
-               })
-          
+            saveUser({
+                email: user?.email,
+                name: user?.displayName,
+                image: user?.photoURL,
+                account_type: "regular",
+            })
+
             setLoading(false)
             navigate(from, { replace: true })
         })
@@ -66,7 +60,7 @@ const Login = () => {
     const handleReset = () => {
         resetPassword(userEmail)
             .then(() => {
-                toast.success('Please check your email for reset link');
+                toast.success('Please Check Tour Email');
                 setLoading(false)
             })
             .catch(err => {
@@ -77,85 +71,43 @@ const Login = () => {
     }
 
     return (
-        <>
-            <div
-                className="relative w-full overflow-hidden bg-cover bg-[100%] bg-no-repeat bg-black">
-                <img
-                    src="https://images.unsplash.com/photo-1634646809203-f3b4adff9127?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fpit=crop&w=870&q=80"
-                    className=" top-0 left-0 h-screen w-screen -z-10 opacity-50 "
-                />
-                <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden  border-red-950">
-
-                    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 min-h-screen">
-                        <div className="mx-auto max-w-lg text-white">
-
-                            <div className="text-center text-3xl font-bold">
-                                <span className="bg-clip-text text-transparent bg-gradient-to-r  from-orange-600 via-amber-500 to-yellow">
-                                    Login to your account
-                                </span>
-                            </div>
-                            <form action="" className="mt-6 mb-0 space-y-4  rounded-lg p-8 shadow-2xl"
-                                onSubmit={handleSubmit(handleLogin)}
-                            >
-
-                                <div>
-
-
-                                    <div className="relative mt-1">
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            className="w-full rounded-lg border-gray-200 p-4 pr-12 text-md text-black shadow-sm"
-                                            placeholder="Enter email"
-                                            required
-                                            {...register("email", { required: "email is required" })}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div className="relative mt-1">
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            className="w-full rounded-lg border-gray-200 p-4 pr-12 text-md  text-black shadow-sm"
-                                            placeholder="Enter password"
-                                            required
-                                            {...register("password", { required: "password is required" })}
-                                        />
-                                    </div>
-                                </div>
-                                <p className="text-lg  hover:text-cyan-300 cursor-pointer " onClick={handleReset}>forgot password?</p>
-                                <button
-                                    type="submit"
-                                    className="block w-full rounded-lg bg-gradient-to-tr from-orange-600 via-amber-500 to-yellow px-5 py-3 text-sm font-medium text-white"
-                                >
-                                    {loading ? <SmallSpinner /> : " Sign in"}
-
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="block w-full rounded-lg bg-neutral border-2 border-slate-100 px-5 py-3 text-sm font-medium text-white"
-                                    onClick={handleGoogleSignin}
-
-                                >
-                                    {"🌍 continue with google"}
-                                </button>
-
-                                <p className="text-center text-sm text-gray-100">
-                                    No account?
-                                    <Link className="underline" to="/register">Sign up</Link>
-
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-
-
-
+        <div className="flex justify-center items-center 2xl:container 2xl:mx-auto lg:py-16 md:py-12 py-9 px-4 md:px-6 lg:px-20 xl:px-44">
+            <div className="flex md:w-[40%] w-full flex-col justify-start items-start">
+                <p className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
+                    Sign In
+                </p>
+                <button onClick={handleGoogleSignIn} aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-orange-400 mt-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">
+                        <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
+                    </svg>
+                    <p>Login with Google</p>
+                </button>
+                <form onSubmit={handleSubmit(handleLogin)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8 ">
+                    <input
+                        {...register("email")}
+                        className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                        type="email"
+                        placeholder="Your Email"
+                        required
+                    />
+                    <input
+                        {...register("password")}
+                        className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                        type="password"
+                        placeholder="Password"
+                        required
+                    />
+                    <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
+                        {loading ? <SmallSpinner /> : "Sign In"}
+                    </button>
+                </form>
+                <div className="flex mt-8 space-x-4 text-lg self-center">
+                    <button onClick={handleReset} className="underline">Forgot Password?</button>
+                    <span>/</span>
+                    <Link to={'/register'} className="underline">Sign Up</Link>
                 </div>
-            </div >
-        </>
+            </div>
+        </div>
     );
 };
 
