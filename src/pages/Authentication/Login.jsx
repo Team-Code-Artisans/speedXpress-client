@@ -24,7 +24,6 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 toast.success('Login Successful')
-                setUserEmail(result.user?.email);
                 setLoading(false)
                 navigate(from, { replace: true })
             })
@@ -60,7 +59,7 @@ const Login = () => {
     const handleReset = () => {
         resetPassword(userEmail)
             .then(() => {
-                toast.success('Please Check Tour Email');
+                toast.success('Please Check Your Email');
                 setLoading(false)
             })
             .catch(err => {
@@ -92,6 +91,7 @@ const Login = () => {
                                     message: "invalid email address"
                                 }
                             })}
+                            onChange={e => setUserEmail(e.target.value)}
                             className={`px-2 focus:outline-none focus:ring-2 ${errors.email ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                             type="email"
                             placeholder="Your Email"
