@@ -65,7 +65,7 @@ const RegularForm = () => {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                             message: "invalid email address"
                         }
-                    })} name="email"
+                    })}
                     className={`px-2 focus:outline-none focus:ring-2 ${errors.email ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                     type="email"
                     placeholder="Your Email"
