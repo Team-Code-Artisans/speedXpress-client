@@ -10,6 +10,7 @@ import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome
 import PendingDeliveries from "../pages/dashboard/Employee Dashboard/PendingDeliveries";
 import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantCreateParcel/MerchantCreateParcel";
 import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
+import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/merchant/create-parcel",
         element: <MerchantCreateParcel />,
+      },
+      {
+        path: "/dashboard/merchant/my-customers",
+        element: <MyCustomers />,
       },
 
 

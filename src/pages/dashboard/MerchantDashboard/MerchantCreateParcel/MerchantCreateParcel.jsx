@@ -1,29 +1,43 @@
-import React, { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { createParcel } from "../../../../API Operations/manageParcels";
+// import { createParcel } from "API Operations/manageParcels";
+import { saveCustomer } from "../../../../API Operations/manageUsers";
+import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 import { districts } from "../../../../data/Districts";
 import { divisions } from "../../../../data/Divisions";
 import { weights } from "../../../../data/Weight";
 import InputDistricts from "./InputDistricts";
 
+
 const MerchantCreateParcel = () => {
+  const [loading, setLoading] = useState(false)
   const data = districts;
 
   const [dropdown1, setDropdown1] = useState(false);
-  const [filterId,setFilterId]=useState(6)
+  const [filterId, setFilterId] = useState(6)
   const [dropdown2, setDropdown2] = useState(false);
   const [division, setDivision] = useState("Dhaka");
   const [district, setDistrict] = useState(data);
   const [weight, setWeight] = useState("0.5KG - 1KG");
   const [weightCharge, setWeightCharge] = useState(10);
   const [deliveryFee, setDeliveryFee] = useState(60);
+  const [weightTotalCharge, setWeightTotalCharge] = useState(0);
+
+  const [tax, setTax] = useState(14)
 
   const divisionsData = divisions;
   const weightData = weights;
 
+
+
+  const { user } = useContext(AuthContext)
   const handleDivision = (e) => {
     setDivision(e.name);
     setFilterId(e.id)
-    console.log(division)
+    // console.log(division)
     setDeliveryFee(e.name == "Dhaka" ? 60 : 120)
     setDropdown1(false);
   };
@@ -34,15 +48,80 @@ const MerchantCreateParcel = () => {
     setDropdown2(false);
   };
 
+  const handleQuantity = (value = 1) => {
+    // here wwe handled the amount and calculated the amount charge according to parcel quantity
+    // console.log("total", value)
+    let weightchargeAmount = (weightCharge * value);
+    setWeightTotalCharge(weightchargeAmount);
+    console.log(weightTotalCharge)
+    handleCalculateTax(weightTotalCharge, deliveryFee)
+  }
+  useEffect(() => {
+
+  }, [weightTotalCharge])
+
+  const handleCalculateTax = (weightTotalCharge, deliveryFee) => {
+    // addding tax(vat =(15%)& sd=(5%))    -> along with total charge a
+    let vat = (weightTotalCharge + deliveryFee) * .15;
+    let sd = (weightTotalCharge + deliveryFee) * .05;
+    setTax(vat + sd)
+
+
+  }
+
   const {
     register,
+    reset,
     handleSubmit
   } = useForm();
 
-  console.log(division)
+
   const handleMerchantParcel = (data) => {
-    const submitData = { ...data, division, weight, district }
-    console.log(submitData)
+    setLoading(true)
+    let distrcitName = district && district[0]?.name
+    // console.log(data)
+    const { name, number, address, email } = data
+
+    const customerInfo = {
+      name, email, number, division, distrcitName, address,
+    }
+
+    const parcelData = {
+      customerInfo,
+      weight,
+      TotalchargeAmount: (weightTotalCharge + deliveryFee + tax),
+      deliveryFee,
+      senderEmail: user?.email,
+    }
+    console.log(parcelData)
+
+    // crete parcel here
+    createParcel(parcelData).then(data => {
+      console.log(data)
+      if (data.data.acknowledged) {
+        setLoading(false)
+        reset()
+        toast.success(data.message)
+      }
+    }).catch(err => {
+      setLoading(false)
+      console.log(err.message)
+    })
+
+    // also save customer info
+    saveCustomer(customerInfo)
+    setLoading(true)
+      .then(data => {
+        console.log(data)
+        if (data.acknowledged) {
+          toast.success("customer saved")
+          setLoading(false)
+        }
+      }).catch(err => {
+        console.log(err.message)
+        setLoading(false)
+      })
+
   };
 
   return (
@@ -70,6 +149,13 @@ const MerchantCreateParcel = () => {
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                 type="text"
                 placeholder="Full Name"
+                required
+              />
+              <input
+                {...register("email")}
+                className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                type="email"
+                placeholder="customer email"
                 required
               />
               <input
@@ -117,7 +203,7 @@ const MerchantCreateParcel = () => {
                           key={e.id}
                           tabIndex={0}
                           onClick={() => handleDivision(e)}
-                          onChange={()=>handleDivision(e)}
+                          onChange={() => handleDivision(e)}
                           className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full"
                         >
                           {e.name}
@@ -126,7 +212,7 @@ const MerchantCreateParcel = () => {
                     </div>
                   </div>
                 </div>
-                <InputDistricts items={district} setItems={setDistrict} filterId={filterId}/>
+                <InputDistricts items={district} setItems={setDistrict} filterId={filterId} />
               </div>
               <input
                 {...register("address")}
@@ -194,15 +280,17 @@ const MerchantCreateParcel = () => {
                   className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
                   placeholder="Parcel Quantity"
                   required
+
+                  onChange={(e) => handleQuantity(e.target.value)}
                 />
               </div>
-              <input
+              {/* <input
                 {...register("amount")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
                 type="number"
                 placeholder="COD Amount To Collect"
                 required
-              />
+              /> */}
               <input
                 {...register("details")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -211,7 +299,7 @@ const MerchantCreateParcel = () => {
               />
             </div>
             <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
-              Order Submit
+              {loading ? <SmallSpinner /> : "Order Submit"}
             </button>
           </div>
 
@@ -242,7 +330,13 @@ const MerchantCreateParcel = () => {
               <div className="flex justify-between w-full items-center">
                 <p className="text-lg leading-4 text-gray-600">Sub total </p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
-                  ${deliveryFee + weightCharge}
+                  {weightTotalCharge + deliveryFee}
+                </p>
+              </div>
+              <div className="flex justify-between w-full items-center">
+                <p className="text-lg leading-4 text-gray-600">Tax total </p>
+                <p className="text-lg font-semibold leading-4 text-gray-600">
+                  {tax}
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
@@ -257,7 +351,7 @@ const MerchantCreateParcel = () => {
                 Estimated Total{" "}
               </p>
               <p className="text-lg font-semibold leading-4 text-gray-800">
-                ${(deliveryFee + weightCharge)}
+                {weightTotalCharge + deliveryFee + tax}
               </p>
             </div>
           </div>

@@ -4,9 +4,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../API Operations/Auth";
 import { saveUser } from "../../API Operations/manageUsers";
 import { AuthContext } from "../../contexts/AuthProvider";
+import EmployeeForm from "./EmployeeForm";
 import MerchantForm from "./MerchantForm";
 import RegularForm from "./RegularForm";
-import EmployeeForm from "./EmployeeForm";
 import Tabs from "./Tabs";
 
 const Register = () => {
