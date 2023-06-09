@@ -10,7 +10,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const Login = () => {
 
     const [userEmail, setUserEmail] = useState('')
-    const { signin, loading, setLoading, signInWithGoogle, resetPassword, user } =
+    const { signin, loading, setLoading, signInWithGoogle, resetPassword,  } =
         useContext(AuthContext)
 
     const { handleSubmit, register } = useForm()

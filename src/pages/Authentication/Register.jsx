@@ -1,11 +1,4 @@
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
-import { setAuthToken } from "../../API Operations/Auth";
-import { getImageUrl } from "../../API Operations/ImageUpload";
-import { saveUser } from "../../API Operations/manageUsers";
-import { AuthContext } from "../../contexts/AuthProvider";
+import { useState } from "react";
 import BasicUserForm from "./BasicUserForm";
 import EmployeeForm from "./EmployeeForm";
 import MerchantForm from "./MerchantForm";
@@ -13,66 +6,66 @@ import Tabs from "./Tabs";
 
 const Register = () => {
 
-    const [loading, setLoading] = useState(false)
-    const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext)
-    const { register, reset, handleSubmit } = useForm()
+    // const [loading, setLoading] = useState(false)
+    // const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext)
+    // const { register, reset, handleSubmit } = useForm()
     const [activeStatus, setActiveStatus] = useState(1);
 
-    const location = useLocation();
-    const navigate = useNavigate();
+    // const location = useLocation();
+    // const navigate = useNavigate();
 
-    const from = location.state?.from?.pathname || "/"
+    // const from = location.state?.from?.pathname || "/"
 
-    const handleSignUp = (data) => {
-        setLoading(true)
-        const { email, password, fullName, account } = data;
-        const image = data.image[0];
-        const formData = new FormData();
-        formData.append('image', image);
+    // const handleSignUp = (data) => {
+    //     setLoading(true)
+    //     const { email, password, fullName, account } = data;
+    //     const image = data.image[0];
+    //     const formData = new FormData();
+    //     formData.append('image', image);
 
-        //  imgbb key =570054ebfb6d3aee9ac5eb169f91dce2
-        getImageUrl(image)
-            .then(data => {
-                console.log(data)
-                // create user
-                createUser(email, password).then(result => {
-                    const user = result.user;
-                    console.log(user);
-                    toast.success("login success");
-                    reset();
-                    const userData = {
-                        email: user?.email,
-                        name: fullName,
-                        image: data,
-                        account_type: account,
-                    }
-                    console.log(userData)
-                    setAuthToken(user);
-                    // save user to Db
-                    saveUser(userData)
-                    // update profile
-                    updateUserProfile(fullName, data)
-                        .then(() => {
-                            verifyEmail().then(() => {
-                                toast.success("Please check email for verification link");
-                                setLoading(false);
-                                navigate(from, { replace: true })
-                            })
+    //     //  imgbb key =570054ebfb6d3aee9ac5eb169f91dce2
+    //     getImageUrl(image)
+    //         .then(data => {
+    //             console.log(data)
+    //             // create user
+    //             createUser(email, password).then(result => {
+    //                 const user = result.user;
+    //                 console.log(user);
+    //                 toast.success("login success");
+    //                 reset();
+    //                 const userData = {
+    //                     email: user?.email,
+    //                     name: fullName,
+    //                     image: data,
+    //                     account_type: account,
+    //                 }
+    //                 console.log(userData)
+    //                 setAuthToken(user);
+    //                 // save user to Db
+    //                 saveUser(userData)
+    //                 // update profile
+    //                 updateUserProfile(fullName, data)
+    //                     .then(() => {
+    //                         verifyEmail().then(() => {
+    //                             toast.success("Please check email for verification link");
+    //                             setLoading(false);
+    //                             navigate(from, { replace: true })
+    //                         })
 
-                        })
-                })
-                    .catch(err => {
-                        console.error(err.message)
-                        setLoading(false)
-                    })
+    //                     })
+    //             })
+    //                 .catch(err => {
+    //                     console.error(err.message)
+    //                     setLoading(false)
+    //                 })
 
-            })
-            .catch(err => {
-                console.error(err);
-                // if error occurs we stop the small spinner
-                setLoading(false);
-            })
-    }
+    //         })
+    //         .catch(err => {
+    //             console.error(err);
+    //             // if error occurs we stop the small spinner
+    //             setLoading(false);
+    //         })
+    // }
 
     return (
         <div className="flex justify-center items-center 2xl:container 2xl:mx-auto lg:py-16 md:py-12 py-9 px-4 md:px-6 lg:px-20 xl:px-44">

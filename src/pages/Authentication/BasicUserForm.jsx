@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/AuthProvider'
 
 const BasicUserForm = () => {
 
-    const { registerUser } = useContext(AuthContext)
+    const { registerUser,loading,setLoading } = useContext(AuthContext)
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -31,6 +31,7 @@ const BasicUserForm = () => {
                 }
                 setAuthToken(user);
                 saveUser(userData);
+                reset();
                 toast.success("User Register Successfully")
                 navigate(from, { replace: true });
             })
