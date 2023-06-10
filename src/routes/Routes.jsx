@@ -63,10 +63,16 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+
+
+  //dianamic dashboard depend on user type or user role
   {
     path: "/dashboard",
     element: <DashBoard><AdminHome /></DashBoard>,
     children: [
+
+
       // admin routes
       {
         path: "/dashboard/",
@@ -92,9 +98,11 @@ const router = createBrowserRouter([
         path: "/dashboard/return-parcel",
         element: <AllReturnParcel />,
       },
+
+
       // sender routes
       {
-        path: "/dashboard/sender",
+        path: "/dashboard/regular",
         element: <SenderParcelTracking />,
       },
       {
@@ -122,6 +130,9 @@ const router = createBrowserRouter([
         element: <CompletedParcels />,
       },
 
+
+
+
       // Merchant Routes
       {
         path: "/dashboard/merchant",
@@ -137,6 +148,8 @@ const router = createBrowserRouter([
       },
 
 
+
+      
       // employee routes
       {
         path: "/dashboard/employee",

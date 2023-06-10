@@ -6,6 +6,7 @@ import { AdminNav } from "./adminDashboard/AdminNav";
 import { getRole } from "../../API Operations/manageUsers";
 import EmployeeNav from "./Employee Dashboard/EmployeeNav";
 import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
+import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
@@ -55,7 +56,7 @@ export const DashboardNavbar = () => {
                     </a>
                     <ul className="flex items-center hidden space-x-8 lg:flex">
 
-                        {/* {role === "regular" && <SenderNav />} */}
+                        {role === "regular" && <SenderNav />}
                         {role === "admin" && <AdminNav />}
                         {role === "merchant" && <MerchantNav />}
                         {role === "employee" && <EmployeeNav />}
