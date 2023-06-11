@@ -25,6 +25,8 @@ import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment"
 import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
+import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
+import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
 
 
 
@@ -139,6 +141,14 @@ const router = createBrowserRouter([
         element: <MerchantHome />,
       },
       {
+        path: "/dashboard/merchant/deliveries",
+        element: <MerchantDeliveries />,
+      },
+      {
+        path: "/dashboard/merchant/invoices",
+        element: <MerchantInvoices />,
+      },
+      {
         path: "/dashboard/merchant/create-parcel",
         element: <MerchantCreateParcel />,
       },
@@ -149,7 +159,7 @@ const router = createBrowserRouter([
 
 
 
-      
+
       // employee routes
       {
         path: "/dashboard/employee",
@@ -159,8 +169,8 @@ const router = createBrowserRouter([
         path: "/dashboard/pending-deliveries",
         element: <PendingDeliveries />,
       },
-      
-      
+
+
     ],
   },
 ]);
