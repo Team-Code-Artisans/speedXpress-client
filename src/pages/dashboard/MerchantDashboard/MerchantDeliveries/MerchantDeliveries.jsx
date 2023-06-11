@@ -1,12 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Tabs from './Tabs';
 import CompleteDeliveries from './CompleteDeliveries';
 import AllDeliveries from './AllDeliveries';
 import PendingDeliveries from './PendingDeliveries';
+import { useQuery } from '@tanstack/react-query';
+import { getParcels } from '../../../../API Operations/manageParcels';
+import { AuthContext } from '../../../../contexts/AuthProvider';
 
 const MerchantDeliveries = () => {
 
+    const { user } = useContext(AuthContext)
+
     const [activeStatus, setActiveStatus] = useState(1);
+
+    const { data: allParcels = [], isLoading, refetch } = useQuery({
+        queryKey: ['allParcels'],
+        queryFn: () => getParcels(user?.email)
+    });
+
+    console.log(allParcels)
 
     return (
         <div className='max-w-screen-2xl mx-auto px-4'>
