@@ -1,6 +1,18 @@
 import React from 'react'
+import { AiOutlineCopy } from 'react-icons/ai'
 
-const AllDeliveries = () => {
+const AllDeliveries = ({ allParcels }) => {
+
+    const currentDate = new Date();
+    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+
+    const formattedDate = currentDate.toLocaleDateString(undefined, dateOptions);
+    const formattedTime = currentDate.toLocaleTimeString(undefined, timeOptions);
+
+    console.log(formattedDate); // Output: 06/12/2023
+    console.log(formattedTime); // Output: 12:34 PM
+
     return (
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -12,16 +24,19 @@ const AllDeliveries = () => {
                         <tr>
                             <th
                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Date
+                                Date & Time
                             </th>
                             <th
                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Invoice ID
                             </th>
-
                             <th
                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Customer Name & <br /> Phone Number
+                                Customer Info
+                            </th>
+                            <th
+                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Parcel Info
                             </th>
                             <th
                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -33,7 +48,7 @@ const AllDeliveries = () => {
                             </th>
                             <th
                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Shop & Pickup
+                                Shop Info
                             </th>
                             <th
                                 className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -44,65 +59,74 @@ const AllDeliveries = () => {
 
                     {/* table body  */}
 
-                    <tbody>
-                        {[1].map(el => (
-                            <tr key={el}>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">
-                                        12-11-28
-                                    </p>
-                                </td>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <div className="flex items-center">
-                                        <div className="ml-3">
-                                            <p className="text-gray-900 whitespace-no-wrap text-md">
-                                                id:
-                                                <span className="text-rose-500 pl-1">d52fswdkd</span>
-                                            </p>
+                    <tbody className='divide-y divide-gray-200'>
+                        {allParcels.map(parcel => {
+                            const { TotalchargeAmount, customerInfo, deliveryFee, senderEmail, weight, _id } = parcel;
+                            const { address, customerOwnerEmail, customerOwnerName, distrcitName, division, email, name, number } = customerInfo;
+                            console.log(customerInfo)
+                            return (
+                                <tr key={_id} className='even:bg-gray-50'>
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p className="text-gray-900 whitespace-no-wrap">
+                                            {formattedDate} <br /> {formattedTime}
+                                        </p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <div className="flex items-center">
+                                            <div>
+                                                <p className="text-gray-900 whitespace-no-wrap text-md flex items-center gap-2 ">
+                                                    <span className="text-rose-500 pl-1">{_id.slice(0, 6)}</span>
+                                                    <AiOutlineCopy />
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <div className="flex items-center">
-                                        <div className="ml-3">
-                                            <p className="text-gray-900 whitespace-no-wrap">
-                                                Ashikur Rahman
-                                            </p>
-                                            <p className="text-gray-900 whitespace-no-wrap">+880183727</p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <div className="flex items-center">
+                                            <div>
+                                                <p className="text-gray-900 whitespace-no-wrap">{name}</p>
+                                                <p className="text-gray-900 whitespace-no-wrap">{number}</p>
+                                                <p className="text-gray-900 whitespace-no-wrap">{email}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
 
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">
-                                        Dhaka
-                                    </p>
-                                </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p className="text-gray-900 whitespace-no-wrap">
+                                            Weight: {weight}
+                                            <br />
+                                            Quantity: { }
+                                        </p>
+                                    </td>
 
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">Cash Collection Tk. 230 <br /> Total Charge Tk. 99 </p>
-                                </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p className="text-gray-900 whitespace-no-wrap">
+                                            {division}, {distrcitName} <br /> {address}
+                                        </p>
+                                    </td>
 
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">
-                                        SpeedXpress <br /> Uttar Badda
-                                    </p>
-                                </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p className="text-gray-900 whitespace-no-wrap">Delivery Fee Tk. {deliveryFee} <br /> Total Charge Tk. {TotalchargeAmount} </p>
+                                    </td>
 
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-slate-50 whitespace-no-wrap bg-emerald-400 py-1 rounded-full text-center ">
-                                        Completed
-                                    </p>
-                                </td>
-                            </tr>
-                        ))
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p className="text-gray-900 whitespace-no-wrap">
+                                            {customerOwnerName} <br /> {customerOwnerEmail}
+                                        </p>
+                                    </td>
 
-
-                        }
+                                    <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p className="text-slate-50 whitespace-no-wrap bg-emerald-400 py-1 rounded-full text-center ">
+                                            Completed
+                                        </p>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
 
-                <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                <div className="px-5 py-5  border-t flex flex-col xs:flex-row items-center xs:justify-between">
                     <span className="text-xs xs:text-sm text-gray-900">
                         Showing 1 to 10 of 50 orders
                     </span>

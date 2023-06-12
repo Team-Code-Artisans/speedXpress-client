@@ -53,7 +53,7 @@ const MerchantDeliveries = () => {
                     </div>
                 </div>
 
-                {activeStatus === 1 && <AllDeliveries />}
+                {activeStatus === 1 && <AllDeliveries allParcels={allParcels} />}
                 {activeStatus === 2 && <PendingDeliveries />}
                 {activeStatus === 3 && <CompleteDeliveries />}
 
