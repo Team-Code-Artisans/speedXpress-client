@@ -9,7 +9,8 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import { districts } from "../../../../data/Districts";
 import { divisions } from "../../../../data/Divisions";
 import { weights } from "../../../../data/Weight";
-import InputDistricts from "./InputDistricts";
+import InputDistricts1 from "./InputDistricts1";
+import InputDistricts from "./InputDistrict";
 
 
 const MerchantCreateParcel = () => {
@@ -146,6 +147,7 @@ const MerchantCreateParcel = () => {
               </p>
             </div>
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
+              <InputDistricts />
               <input
                 {...register("name")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -214,7 +216,7 @@ const MerchantCreateParcel = () => {
                     </div>
                   </div>
                 </div>
-                <InputDistricts items={district} setItems={setDistrict} filterId={filterId} />
+                <InputDistricts1 items={district} setItems={setDistrict} filterId={filterId} />
               </div>
               <input
                 {...register("address")}

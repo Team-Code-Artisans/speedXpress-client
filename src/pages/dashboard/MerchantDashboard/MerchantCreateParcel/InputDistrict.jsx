@@ -14,6 +14,7 @@ const people = [
 export default function InputDistricts() {
     const [selected, setSelected] = useState(people[0])
     const [query, setQuery] = useState('')
+    console.log(selected)
 
     const filteredPeople =
         query === ''

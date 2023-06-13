@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth'
 import { createContext, useEffect, useState } from 'react'
 import app from '../firebase/firebase.config'
+import { toast } from 'react-hot-toast'
 
 export const AuthContext = createContext()
 const auth = getAuth(app)
@@ -54,6 +55,10 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         localStorage.removeItem('speedXpress-token')
         return signOut(auth)
+            .then(() => {
+                toast.success("Successfully Logged Out")
+            })
+            .catch(err => console.log(err.message))
     }
 
     //6. Login with Password
