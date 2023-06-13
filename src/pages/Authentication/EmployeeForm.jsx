@@ -47,10 +47,9 @@ const EmployeeForm = () => {
     return (
         <form onSubmit={handleSubmit(handleRegister)} className="mt-6 flex flex-col justify-start items-start w-full space-y-8 ">
             <div className='w-full'>
-                <input
-                    {...register("name", {
-                        required: "required",
-                    })}
+                <input {...register("name", {
+                    required: "required",
+                })}
                     className={`px-2 focus:outline-none focus:ring-2 ${errors.name ? "focus:ring-red-500" : "focus:ring-gray-500"} border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full`}
                     type="text"
                     placeholder="Full Name"
