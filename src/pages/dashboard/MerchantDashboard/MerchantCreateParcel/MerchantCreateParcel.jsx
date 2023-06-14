@@ -141,7 +141,7 @@ const MerchantCreateParcel = () => {
                 {...register("email")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                 type="email"
-                placeholder="customer email"
+                placeholder="Customer Email"
                 required
               />
               <input
@@ -180,6 +180,7 @@ const MerchantCreateParcel = () => {
                   <button
                     onClick={() => setDropdown2(!dropdown2)}
                     className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0"
+                    type="button"
                   >
                     <svg
                       id="close"
