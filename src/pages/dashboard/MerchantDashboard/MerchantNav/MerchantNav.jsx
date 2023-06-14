@@ -9,7 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import { GoSignOut } from "react-icons/go";
 import { MdInsertEmoticon, MdPayment } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
-import MerchantDropDrown from "./MerchantDropdown";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const MerchantNav = ({ mobile }) => {
   const { logout } = useContext(AuthContext)
