@@ -6,6 +6,7 @@ import PendingDeliveries from "./PendingDeliveries";
 import { useQuery } from "@tanstack/react-query";
 import { getParcels } from "../../../../API Operations/manageParcels";
 import { AuthContext } from "../../../../contexts/AuthProvider";
+import Table from "./Table";
 
 const MerchantDeliveries = () => {
   const { user } = useContext(AuthContext);
@@ -76,7 +77,7 @@ const MerchantDeliveries = () => {
         </div>
 
         {activeStatus === 1 && <AllDeliveries allParcels={allParcels} />}
-        {activeStatus === 2 && <PendingDeliveries />}
+        {/* {activeStatus === 2 && <Table />} */}
         {activeStatus === 3 && <CompleteDeliveries />}
       </div>
     </div>
