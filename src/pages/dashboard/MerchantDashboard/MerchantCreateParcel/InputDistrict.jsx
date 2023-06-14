@@ -1,20 +1,16 @@
 import { Fragment, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
-import { AiOutlineCheck, AiOutlineUp } from 'react-icons/ai'
-import { districts } from '../../../../data/Districts'
+import { AiOutlineCheck } from 'react-icons/ai'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
-const district = districts;
+export default function InputDistricts({ selected, setSelected, data }) {
 
-export default function InputDistricts() {
-    const [selected, setSelected] = useState(district[0])
     const [query, setQuery] = useState('')
-    console.log(selected)
 
     const filteredDistrict =
         query === ''
-            ? district
-            : district.filter((singleDistrict) =>
+            ? data
+            : data.filter((singleDistrict) =>
                 singleDistrict.name
                     .toLowerCase()
                     .replace(/\s+/g, '')

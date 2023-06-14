@@ -8,23 +8,24 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import { districts } from "../../../../data/Districts";
 import { divisions } from "../../../../data/Divisions";
 import { weights } from "../../../../data/Weight";
-import InputDistricts1 from "./InputDistricts1";
 import InputDistricts from "./InputDistrict";
 
 const MerchantCreateParcel = () => {
-  const [loading, setLoading] = useState(false)
-  const data = districts;
 
-  const [dropdown1, setDropdown1] = useState(false);
   const [filterId, setFilterId] = useState(6)
   const [dropdown2, setDropdown2] = useState(false);
   const [division, setDivision] = useState("Dhaka");
-  const [district, setDistrict] = useState(data);
+
+  let data = districts;
+  data = data.filter(singleDistrict => singleDistrict.division_id === filterId)
+
+  const [district, setDistrict] = useState(data[7])
+  const [loading, setLoading] = useState(false)
+  const [dropdown1, setDropdown1] = useState(false);
   const [weight, setWeight] = useState("0.5KG - 1KG");
   const [weightCharge, setWeightCharge] = useState(10);
   const [deliveryFee, setDeliveryFee] = useState(60);
   const [weightTotalCharge, setWeightTotalCharge] = useState(0);
-
   const [tax, setTax] = useState(14)
 
   const divisionsData = divisions;
@@ -138,7 +139,6 @@ const MerchantCreateParcel = () => {
               </p>
             </div>
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
-              <InputDistricts />
               <input
                 {...register("name")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -207,7 +207,7 @@ const MerchantCreateParcel = () => {
                     </div>
                   </div>
                 </div>
-                <InputDistricts1 items={district} setItems={setDistrict} filterId={filterId} />
+                <InputDistricts selected={district} setSelected={setDistrict} data={data} />
               </div>
               <input
                 {...register("address")}
