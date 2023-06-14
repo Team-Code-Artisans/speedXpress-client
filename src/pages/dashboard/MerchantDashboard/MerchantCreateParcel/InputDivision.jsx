@@ -3,15 +3,15 @@ import { Combobox, Transition } from '@headlessui/react'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
-export default function InputDistrict({ district, setDistrict, districts }) {
+export default function InputDivision({ division, setDivision, divisions }) {
 
     const [query, setQuery] = useState('')
 
-    const filteredDistrict =
+    const filteredDivision =
         query === ''
-            ? districts
-            : districts.filter((singleDistrict) =>
-                singleDistrict.name
+            ? divisions
+            : divisions.filter((singleDivision) =>
+                singleDivision.name
                     .toLowerCase()
                     .replace(/\s+/g, '')
                     .includes(query.toLowerCase().replace(/\s+/g, ''))
@@ -19,12 +19,12 @@ export default function InputDistrict({ district, setDistrict, districts }) {
 
     return (
         <div className="w-72 z-10">
-            <Combobox value={district} onChange={setDistrict}>
+            <Combobox value={division} onChange={setDivision}>
                 <div className="relative mt-1">
                     <div className="flex shadow-sm bg-white gap-0.5 relative">
                         <Combobox.Input
                             className="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 pt-4 pb-3 w-full"
-                            displayValue={(singleDistrict) => singleDistrict.name}
+                            displayValue={(singleDivision) => singleDivision.name}
                             onChange={(e) => setQuery(e.target.value)}
                         />
                         <Combobox.Button className="absolute inset-y-0 right-0 flex flex-col -space-y-1 justify-center items-center pr-2">
@@ -46,29 +46,29 @@ export default function InputDistrict({ district, setDistrict, districts }) {
                         afterLeave={() => setQuery('')}
                     >
                         <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                            {filteredDistrict.length === 0 && query !== '' ? (
+                            {filteredDivision.length === 0 && query !== '' ? (
                                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                                    No District Found.
+                                    No Division Found.
                                 </div>
                             ) : (
-                                filteredDistrict.map((singleDistrict) => (
+                                filteredDivision.map((singleDivision) => (
                                     <Combobox.Option
-                                        key={singleDistrict.id}
+                                        key={singleDivision.id}
                                         className={({ active }) =>
                                             `relative select-none py-2 pl-10 pr-4 text-base cursor-pointer ${active ? 'bg-gray-800 text-white' : 'text-gray-900'
                                             }`
                                         }
-                                        value={singleDistrict}
+                                        value={singleDivision}
                                     >
-                                        {({ district, active }) => (
+                                        {({ division, active }) => (
                                             <>
                                                 <span
-                                                    className={`block truncate ${district ? 'font-medium' : 'font-normal'
+                                                    className={`block truncate ${division ? 'font-medium' : 'font-normal'
                                                         }`}
                                                 >
-                                                    {singleDistrict.name}
+                                                    {singleDivision.name}
                                                 </span>
-                                                {district ? (
+                                                {division ? (
                                                     <span
                                                         className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-gray-800'
                                                             }`}

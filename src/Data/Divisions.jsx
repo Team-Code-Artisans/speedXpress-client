@@ -1,4 +1,4 @@
-export const divisions = [
+export const divisionsData = [
     {
         id: 1,
         name: "Chattagram",

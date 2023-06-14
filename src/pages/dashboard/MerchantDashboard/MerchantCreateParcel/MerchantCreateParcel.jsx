@@ -5,45 +5,36 @@ import { createParcel } from "../../../../API Operations/manageParcels";
 import { saveCustomer } from "../../../../API Operations/manageUsers";
 import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { districts } from "../../../../data/Districts";
-import { divisions } from "../../../../data/Divisions";
 import { weights } from "../../../../data/Weight";
-import InputDistricts from "./InputDistrict";
+import { divisionsData } from "../../../../data/Divisions";
+import { districtsData } from "../../../../data/Districts";
+import InputDistrict from "./InputDistrict";
+import InputDivision from "./InputDivision";
 
 const MerchantCreateParcel = () => {
 
-  const [filterId, setFilterId] = useState(6)
+  const divisions = divisionsData;
+  const [division, setDivision] = useState(divisions[5]);
+  const districts = districtsData;
+  const [district, setDistrict] = useState(districts[0])
   const [dropdown2, setDropdown2] = useState(false);
-  const [division, setDivision] = useState("Dhaka");
-
-  let data = districts;
-  data = data.filter(singleDistrict => singleDistrict.division_id === filterId)
-
-  const [district, setDistrict] = useState(data[7])
   const [loading, setLoading] = useState(false)
-  const [dropdown1, setDropdown1] = useState(false);
   const [weight, setWeight] = useState("0.5KG - 1KG");
   const [weightCharge, setWeightCharge] = useState(10);
   const [deliveryFee, setDeliveryFee] = useState(60);
   const [weightTotalCharge, setWeightTotalCharge] = useState(0);
   const [tax, setTax] = useState(14)
 
-  const divisionsData = divisions;
   const weightData = weights;
   const { user } = useContext(AuthContext)
-
-  const handleDivision = (e) => {
-    setDivision(e.name);
-    setFilterId(e.id)
-    setDeliveryFee(e.name == "Dhaka" ? 60 : 120)
-    setDropdown1(false);
-  };
 
   const handleWeight = (e) => {
     setWeight(e.weight);
     setWeightCharge(e.price)
     setDropdown2(false);
   };
+
+  console.log(division, district.name, deliveryFee)
 
   // here we handled the amount and calculated the amount charge according to parcel quantity
   const handleQuantity = (value = 1) => {
@@ -161,53 +152,8 @@ const MerchantCreateParcel = () => {
                 required
               />
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
-                <div className="relative w-full">
-                  <p
-                    className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full"
-                  >
-                    {division}
-                  </p>
-                  <button
-                    onClick={() => setDropdown1(!dropdown1)}
-                    className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0"
-                  >
-                    <svg
-                      id="close"
-                      className={` transform ${dropdown1 ? "rotate-180" : ""
-                        }  `}
-                      width={16}
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 6L8 10L4 6"
-                        stroke="#4B5563"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    className={`shadow absolute z-10 bg-white top-10  w-full mt-3 
-                      ${dropdown1 ? "" : "hidden"}`}
-                  >
-                    <div className="flex flex-col  w-full">
-                      {divisionsData.map((e) => (
-                        <p
-                          key={e.id}
-                          tabIndex={0}
-                          onClick={() => handleDivision(e)}
-                          onChange={() => handleDivision(e)}
-                          className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full"
-                        >
-                          {e.name}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <InputDistricts selected={district} setSelected={setDistrict} data={data} />
+                <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
+                <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
               </div>
               <input
                 {...register("address")}

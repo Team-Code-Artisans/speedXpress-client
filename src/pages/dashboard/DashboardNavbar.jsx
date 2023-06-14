@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { AdminNav } from "./adminDashboard/AdminNav";
-
-
 import { getRole } from "../../API Operations/manageUsers";
 import EmployeeNav from "./Employee Dashboard/EmployeeNav";
 import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
@@ -22,7 +20,7 @@ export const DashboardNavbar = () => {
         }
 
     }, [user])
-    console.log(role)
+    // console.log(role)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -133,9 +131,9 @@ export const DashboardNavbar = () => {
                                         </div>
                                     </div>
                                     <nav>
-                                        {role === "admin" && <AdminNav mobile/>}
-                                        {role === "merchant" && <MerchantNav mobile/>}
-                                        {role === "employee" && <EmployeeNav mobile/>}
+                                        {role === "admin" && <AdminNav mobile />}
+                                        {role === "merchant" && <MerchantNav mobile />}
+                                        {role === "employee" && <EmployeeNav mobile />}
                                     </nav>
                                 </div>
                             </div>

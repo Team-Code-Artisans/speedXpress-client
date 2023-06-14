@@ -1,4 +1,4 @@
-export const districts = [
+export const districtsData = [
     {
         id: 1,
         division_id: 1,
