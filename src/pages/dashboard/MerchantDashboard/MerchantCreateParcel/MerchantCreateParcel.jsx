@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { createParcel } from "../../../../API Operations/manageParcels";
-// import { createParcel } from "API Operations/manageParcels";
 import { saveCustomer } from "../../../../API Operations/manageUsers";
 import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
@@ -11,7 +10,6 @@ import { divisions } from "../../../../data/Divisions";
 import { weights } from "../../../../data/Weight";
 import InputDistricts1 from "./InputDistricts1";
 import InputDistricts from "./InputDistrict";
-
 
 const MerchantCreateParcel = () => {
   const [loading, setLoading] = useState(false)
@@ -31,14 +29,11 @@ const MerchantCreateParcel = () => {
 
   const divisionsData = divisions;
   const weightData = weights;
-
-
-
   const { user } = useContext(AuthContext)
+
   const handleDivision = (e) => {
     setDivision(e.name);
     setFilterId(e.id)
-    // console.log(division)
     setDeliveryFee(e.name == "Dhaka" ? 60 : 120)
     setDropdown1(false);
   };
@@ -49,25 +44,21 @@ const MerchantCreateParcel = () => {
     setDropdown2(false);
   };
 
+  // here we handled the amount and calculated the amount charge according to parcel quantity
   const handleQuantity = (value = 1) => {
-    // here wwe handled the amount and calculated the amount charge according to parcel quantity
-    // console.log("total", value)
     let weightchargeAmount = (weightCharge * value);
     setWeightTotalCharge(weightchargeAmount);
-    console.log(weightTotalCharge)
     handleCalculateTax(weightTotalCharge, deliveryFee)
   }
   useEffect(() => {
 
   }, [weightTotalCharge])
 
+  // addding tax(vat =(15%)& sd=(5%))    -> along with total charge a
   const handleCalculateTax = (weightTotalCharge, deliveryFee) => {
-    // addding tax(vat =(15%)& sd=(5%))    -> along with total charge a
     let vat = (weightTotalCharge + deliveryFee) * .15;
     let sd = (weightTotalCharge + deliveryFee) * .05;
     setTax(vat + sd)
-
-
   }
 
   const {
@@ -80,7 +71,7 @@ const MerchantCreateParcel = () => {
   const handleMerchantParcel = (data) => {
     setLoading(true)
     let distrcitName = district && district[0]?.name
-    // console.log(data)
+
     const { name, number, address, email } = data
 
     const customerInfo = {
@@ -302,7 +293,7 @@ const MerchantCreateParcel = () => {
                 placeholder="Parcel Details (Optional)"
               />
             </div>
-            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
+            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
               {loading ? <SmallSpinner /> : "Order Submit"}
             </button>
           </div>
