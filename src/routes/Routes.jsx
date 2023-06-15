@@ -6,8 +6,6 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Features from "../pages/Features/Features";
 import Pricing from "../pages/Pricing/Pricing";
-import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome";
-import PendingDeliveries from "../pages/dashboard/Employee Dashboard/PendingDeliveries";
 import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantCreateParcel/MerchantCreateParcel";
 import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
 import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile";
@@ -15,7 +13,6 @@ import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
-import EmployeePage from "../pages/dashboard/adminDashboard/EmployeePage";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
@@ -29,6 +26,7 @@ import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
 import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
+import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome/EmployeeHome";
 
 
 
@@ -85,10 +83,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin",
         element: <AdminHome />,
-      },
-      {
-        path: "/dashboard/employee",
-        element: <EmployeePage />,
       },
       {
         path: "/dashboard/order-tracking",
@@ -156,7 +150,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/merchant/my-shops",
-        element: <MyShops/>
+        element: <MyShops />
       },
       {
         path: "/dashboard/merchant/my-customers",
@@ -164,7 +158,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/merchant/profile",
-        element: <MerchantProfile/>,
+        element: <MerchantProfile />,
       },
 
 
@@ -174,10 +168,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/employee",
         element: <EmployeeHome />,
-      },
-      {
-        path: "/dashboard/pending-deliveries",
-        element: <PendingDeliveries />,
       },
 
 
