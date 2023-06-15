@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../contexts/AuthProvider'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -6,10 +6,18 @@ import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
 import { toast } from 'react-hot-toast'
 import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
+import InputDivision from '../../components/InputDivision'
+import InputDistrict from '../../components/InputDistrict'
+import { divisionsData } from '../../data/Divisions'
+import { districtsData } from '../../data/Districts'
 
 const EmployeeForm = () => {
 
     const { registerUser, setLoading, loading } = useContext(AuthContext)
+    const divisions = divisionsData;
+    const [division, setDivision] = useState(divisions[5]);
+    const districts = districtsData;
+    const [district, setDistrict] = useState(districts[46])
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -18,18 +26,21 @@ const EmployeeForm = () => {
     const { register, reset, handleSubmit, formState: { errors } } = useForm()
 
     const handleRegister = (data) => {
-        const { name, email, phoneNumber, address, password } = data
+        const { name, email, phoneNumber, district, division, address, password } = data
         registerUser(email, password, name, phoneNumber)
             .then(result => {
                 const user = result?.user;
 
                 const userData = {
-                    email,
                     name,
+                    account_type: 'employee',
+                    email,
                     phoneNumber,
+                    division,
+                    district,
                     address,
-                    account_type: 'employee'
                 }
+                console.log(userData)
                 reset();
                 setLoading(false)
                 setAuthToken(user);
@@ -96,6 +107,10 @@ const EmployeeForm = () => {
                     placeholder="Phone Number"
                 />
                 {errors.phoneNumber && <span className='text-red-500'>{errors.phoneNumber.message}</span>}
+            </div>
+            <div className='flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8'>
+                <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
+                <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
             </div>
             <div className="w-full">
                 <input

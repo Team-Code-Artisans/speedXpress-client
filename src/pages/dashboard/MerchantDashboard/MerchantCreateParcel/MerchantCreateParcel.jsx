@@ -8,15 +8,15 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import { weights } from "../../../../data/Weight";
 import { divisionsData } from "../../../../data/Divisions";
 import { districtsData } from "../../../../data/Districts";
-import InputDistrict from "./InputDistrict";
-import InputDivision from "./InputDivision";
+import InputDivision from "../../../../components/InputDivision";
+import InputDistrict from "../../../../components/InputDistrict";
 
 const MerchantCreateParcel = () => {
 
   const divisions = divisionsData;
   const [division, setDivision] = useState(divisions[5]);
   const districts = districtsData;
-  const [district, setDistrict] = useState(districts[0])
+  const [district, setDistrict] = useState(districts[46])
   const [dropdown2, setDropdown2] = useState(false);
   const [loading, setLoading] = useState(false)
   const [weight, setWeight] = useState("0.5KG - 1KG");
