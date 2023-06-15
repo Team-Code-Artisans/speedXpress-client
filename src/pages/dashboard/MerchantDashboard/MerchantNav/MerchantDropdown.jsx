@@ -13,7 +13,7 @@ export default function MerchantDropDrown() {
 
     return (
         <>
-            <Menu as="div" className="relative inline-block text-left">
+            <Menu as="div" className="relative inline-block text-left z-10">
                 <div>
                     <Menu.Button className="text-white">
                         <AiOutlineMenu size={'2rem'} />

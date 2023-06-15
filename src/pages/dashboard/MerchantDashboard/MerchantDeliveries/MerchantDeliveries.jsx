@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Tabs from "./Tabs";
 import CompleteDeliveries from "./CompleteDeliveries";
 import AllDeliveries from "./AllDeliveries";
@@ -6,11 +6,14 @@ import PendingDeliveries from "./PendingDeliveries";
 import { useQuery } from "@tanstack/react-query";
 import { getParcels } from "../../../../API Operations/manageParcels";
 import { AuthContext } from "../../../../contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const MerchantDeliveries = () => {
   const { user } = useContext(AuthContext);
 
+  const [search, setSearch] = useState("");
   const [activeStatus, setActiveStatus] = useState(1);
+  const [filterData, setFilterData] = useState([]);
 
   const {
     data: allParcels = [],
@@ -22,6 +25,20 @@ const MerchantDeliveries = () => {
   });
 
   console.log(allParcels);
+
+  useEffect(() => {
+    const result = allParcels?.filter(parcel => {
+      const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
+        parcel?.customerInfo.name?.toLowerCase()?.match(search?.toLowerCase()) ||
+        parcel?.customerInfo.number?.toLowerCase()?.match(search?.toLowerCase())
+      return filter;
+    });
+    setFilterData(result);
+  }, [allParcels, search]);
+
+  const handleCopy = () => {
+    toast.success("Copied Successfully");
+  };
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4">
@@ -60,24 +77,25 @@ const MerchantDeliveries = () => {
                 />
               </svg>
               <input
-                className="bg-gray-100 outline-none ml-3 block "
+                onChange={(e) => setSearch(e.target.value)}
+                className="bg-gray-100 outline-none ml-3 block w-full "
                 type="text"
-                name=""
-                id=""
-                placeholder="Search By Parcel ID"
+                name="search"
+                id="search"
+                placeholder="Search By Parcel ID, Name, Email, Number"
               />
             </div>
             <div className="lg:ml-5 ml-5 space-x-8">
-              <button className="bg-orange-600 hover:bg-orange-800 active:bg-gray-800 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer text-xs lg:text-base">
+              <button type="submit" className="bg-orange-600 hover:bg-orange-800 active:bg-gray-800 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer text-base">
                 Search
               </button>
             </div>
           </div>
         </div>
 
-        {activeStatus === 1 && <AllDeliveries allParcels={allParcels} />}
-        {activeStatus === 2 && <PendingDeliveries />}
-        {activeStatus === 3 && <CompleteDeliveries />}
+        {activeStatus === 1 && <AllDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
       </div>
     </div>
   );
