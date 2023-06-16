@@ -8,15 +8,15 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import { weights } from "../../../../data/Weight";
 import { divisionsData } from "../../../../data/Divisions";
 import { districtsData } from "../../../../data/Districts";
-import InputDistrict from "./InputDistrict";
-import InputDivision from "./InputDivision";
+import InputDivision from "../../../../components/InputDivision";
+import InputDistrict from "../../../../components/InputDistrict";
 
 const MerchantCreateParcel = () => {
 
   const divisions = divisionsData;
   const [division, setDivision] = useState(divisions[5]);
   const districts = districtsData;
-  const [district, setDistrict] = useState(districts[0])
+  const [district, setDistrict] = useState(districts[46])
   const [dropdown2, setDropdown2] = useState(false);
   const [loading, setLoading] = useState(false)
   const [weight, setWeight] = useState("0.5KG - 1KG");
@@ -24,6 +24,7 @@ const MerchantCreateParcel = () => {
   const [deliveryFee, setDeliveryFee] = useState(60);
   const [weightTotalCharge, setWeightTotalCharge] = useState(0);
   const [tax, setTax] = useState(14)
+  const [urgent,setUrgent] = useState(0)
 
   const weightData = weights;
   const { user } = useContext(AuthContext)
@@ -37,7 +38,7 @@ const MerchantCreateParcel = () => {
   console.log(division, district.name, deliveryFee)
 
   // here we handled the amount and calculated the amount charge according to parcel quantity
-  const handleQuantity = (value = 1) => {
+  const handleQuantity = (value) => {
     let weightchargeAmount = (weightCharge * value);
     setWeightTotalCharge(weightchargeAmount);
     handleCalculateTax(weightTotalCharge, deliveryFee)
@@ -68,20 +69,19 @@ const MerchantCreateParcel = () => {
 
     const customerInfo = {
       name, email, number, division, distrcitName, address,
-      customerOwnerEmail: user?.email,
-      customerOwnerName: user?.displayName
+      merchantEmail: user?.email,
+      merchantName: user?.displayName
     }
 
     const parcelData = {
       customerInfo,
       weight,
-      TotalchargeAmount: (weightTotalCharge + deliveryFee + tax),
+      TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent + tax),
       deliveryFee,
-      senderEmail: user?.email,
     }
     console.log(parcelData)
 
-    // crete parcel here
+    // crete parcel here and set this data to DATABASE
     createParcel(parcelData).then(data => {
       console.log(data)
       if (data.data.acknowledged) {
@@ -94,7 +94,7 @@ const MerchantCreateParcel = () => {
       console.log(err.message)
     })
 
-    // also save customer info
+    // also save customer info to the DATABASE
     saveCustomer(customerInfo)
     setLoading(true)
       .then(data => {
@@ -123,38 +123,70 @@ const MerchantCreateParcel = () => {
               </p>
             </div>
 
+
+
             {/* Customer Details */}
             <div className="mt-12">
               <p className="text-xl font-semibold leading-5 text-gray-800">
                 Customer Information
               </p>
             </div>
-            <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
-              <input
-                {...register("name")}
-                className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
-                type="text"
-                placeholder="Full Name"
-                required
-              />
-              <input
-                {...register("email")}
-                className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
-                type="email"
-                placeholder="Customer Email"
-                required
-              />
-              <input
+
+
+            <div className="mt-8 flex flex-col justify-start items-start w-full">
+          
+                <span className="text-xs text-gray-400">Full Name</span>
+                <input
+                  {...register("name")}
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Full Name"
+                  required
+                />
+        
+
+       
+              <span className="text-xs text-gray-400">Email</span>
+                <input
+                  {...register("email")}
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="email"
+                  placeholder="Customer Email"
+                  required
+                />
+      
+
+
+
+       
+            <span className="text-xs text-gray-400">Phone number</span>
+            <input
                 {...register("number")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                 type="text"
                 placeholder="Phone Number"
                 required
               />
+       
+
+
+
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
-                <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
-                <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
+
+
+                <div>
+                  <span className="text-xs text-gray-400">Select Division</span>
+                  <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
+                </div>
+                
+                <div>
+                  <span className="text-xs text-gray-400">Select Distric</span>
+                  <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
+                </div>
+
               </div>
+
+              <span className="text-xs text-gray-400">Address</span>
               <input
                 {...register("address")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -169,9 +201,69 @@ const MerchantCreateParcel = () => {
                 Delivery Details
               </p>
             </div>
+
+
+
+
+                {/* checked button */}
+                <div>
+                  <br />
+                                
+
+                                <fieldset className="grid grid-cols-2 gap-4">
+                                <legend className="sr-only">Delivery</legend>
+    
+                                <div>
+                                    <input
+                                    type="radio"
+                                    name="DeliveryOption"
+                                    value="DeliveryStandard"
+                                    id="DeliveryStandard"
+                                    className="peer hidden"
+                                    defaultChecked
+                                    onClick={()=>setUrgent(0)}
+                                    />
+    
+                                    <label
+                                    htmlFor="DeliveryStandard"
+                                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                                    >
+                                    <p className="text-gray-700">Standard</p>
+    
+                                    <p className="mt-1 text-gray-900">Regular charge</p>
+                                    </label>
+                                </div>
+    
+                                <div>
+                                    <input
+                                    type="radio"
+                                    name="DeliveryOption"
+                                    value="DeliveryPriority"
+                                    id="DeliveryPriority"
+                                    className="peer hidden"
+                                    onClick={()=>setUrgent(100)}
+                                    />
+    
+                                    <label
+                                    htmlFor="DeliveryPriority"
+                                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                                    >
+                                    <p className="text-gray-700">Next Day</p>
+    
+                                    <p className="mt-1 text-gray-900">TK 100 +</p>
+                                    </label>
+                                </div>
+                                </fieldset>
+                                  
+                                </div>
+
+
+
+
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
                 <div className="relative w-full">
+                <span className="text-xs text-gray-400">Total weight</span>
                   <p
                     className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full"
                   >
@@ -198,10 +290,7 @@ const MerchantCreateParcel = () => {
                       />
                     </svg>
                   </button>
-                  <div
-                    className={`shadow absolute z-10 bg-white top-10  w-full mt-3 
-                    ${dropdown2 ? "" : "hidden"}`}
-                  >
+                  <div className={`shadow absolute z-10 bg-white top-10  w-full mt-3 ${dropdown2 ? "" : "hidden"}`}>
                     <div className="flex flex-col  w-full">
                       {weightData.map((e) => (
                         <p
@@ -216,15 +305,20 @@ const MerchantCreateParcel = () => {
                     </div>
                   </div>
                 </div>
-                <input
-                  {...register("quantity")}
-                  type="number"
-                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-                  placeholder="Parcel Quantity"
-                  required
 
-                  onChange={(e) => handleQuantity(e.target.value)}
-                />
+
+                <div>
+                  <span className="text-xs text-gray-400">Parcel Quantity</span>
+                  <input
+                    {...register("quantity")}
+                    type="number"
+                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+                    placeholder="Parcel Quantity"
+                    required
+
+                    onChange={(e) => handleQuantity(e.target.value)}
+                  />
+                </div>
               </div>
               {/* <input
                 {...register("amount")}
@@ -233,6 +327,9 @@ const MerchantCreateParcel = () => {
                 placeholder="COD Amount To Collect"
                 required
               /> */}
+
+
+              <span className="text-xs text-gray-400">Additional info about your parcel</span>
               <input
                 {...register("details")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -270,9 +367,15 @@ const MerchantCreateParcel = () => {
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">Sub total </p>
+                <p className="text-lg leading-4 text-gray-600">Sub total <span className="text-xs text-amber-500">( w.charge × quantity + delivery )</span> </p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
                   {weightTotalCharge + deliveryFee}
+                </p>
+              </div>
+              <div className="flex justify-between w-full items-center">
+                <p className="text-lg leading-4 text-gray-600">Urgent Delivery Fee</p>
+                <p className="text-lg font-semibold leading-4 text-gray-600">
+                  {urgent}
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
@@ -293,7 +396,7 @@ const MerchantCreateParcel = () => {
                 Estimated Total{" "}
               </p>
               <p className="text-lg font-semibold leading-4 text-gray-800">
-                {weightTotalCharge + deliveryFee + tax}
+                {weightTotalCharge + deliveryFee + urgent + tax}
               </p>
             </div>
           </div>

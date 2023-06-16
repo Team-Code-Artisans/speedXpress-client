@@ -1,43 +1,41 @@
-import { useQuery } from "@tanstack/react-query";
-import { useContext, useEffect, useState } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
 import { LoaderIcon } from "react-hot-toast";
-import { getParcels } from "../../../../API Operations/manageParcels";
-import { AuthContext } from "../../../../contexts/AuthProvider";
+import { AiOutlineCopy } from 'react-icons/ai'
 
-const CompleteDeliveries = () => {
+const CompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
 
-    const { user } = useContext(AuthContext);
-    const [search, setSearch] = useState("");
-    // const [filterUser, setFilterUser] = useState([]);
+    const currentDate = new Date();
+    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
 
-    const {
-        data: allParcels = [],
-        isLoading,
-        refetch,
-    } = useQuery({
-        queryKey: ["allParcels"],
-        queryFn: () => getParcels(user?.email),
-    });
-
-    console.log(allParcels)
-
-    // useEffect(() => {
-    //     const result = allParcels?.filter(user => {
-    //         return user?.email?.toLowerCase()?.match(search?.toLowerCase());
-    //     });
-    //     setFilterUser(result);
-    // }, [allParcels, search]);
+    const formattedDate = currentDate.toLocaleDateString(undefined, dateOptions);
+    const formattedTime = currentDate.toLocaleTimeString(undefined, timeOptions);
 
     const columns = [
-        // {
-        //     name: "DATE & TIME",
-        //     selector: (row) => row.date,
-        //     sortable: true,
-        // },
+        {
+            name: "DATE & TIME",
+            selector: (row) => (
+                <>
+                    <div>
+                        <p className="text-gray-900 whitespace-no-wrap">
+                            {formattedDate} <br /> {formattedTime}
+                        </p>
+                    </div>
+                </>
+            ),
+            sortable: true,
+        },
         {
             name: "INVOICE ID",
-            selector: (row) => row._id.slice(0, 8),
+            selector: (row) => (
+                <>
+                    <CopyToClipboard onCopy={handleCopy} text={row._id}>
+                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                    </CopyToClipboard>
+                </>
+            ),
+            sortable: true
         },
         {
             name: "CUSTOMER INFO",
@@ -57,7 +55,7 @@ const CompleteDeliveries = () => {
                         </div>
                     }
                 </>
-            )
+            ),
         },
         {
             name: "PARCEL INFO",
@@ -119,17 +117,27 @@ const CompleteDeliveries = () => {
                 </>
             )
         },
-        // {
-        //     name: "STATUS",
-        //     selector: (row) => row.status,
-        // },
+        {
+            name: "STATUS",
+            selector: (row) => (
+                <>
+                    {
+                        <div>
+                            <p className="text-slate-50 bg-emerald-400 px-4 py-2 rounded-full text-center">
+                                Completed
+                            </p>
+                        </div>
+                    }
+                </>
+            ),
+        },
     ];
 
 
     return (
         <DataTable
             columns={columns}
-            data={allParcels}
+            data={filterData}
             direction="auto"
             fixedHeader
             fixedHeaderScrollHeight="600px"
@@ -141,8 +149,22 @@ const CompleteDeliveries = () => {
             pointerOnHover
             progressPending={isLoading}
             progressComponent={<LoaderIcon />}
+            customStyles={styles}
         />
     );
 };
 
 export default CompleteDeliveries;
+
+const styles = {
+    rows: {
+        style: {
+            fontSize: '1rem'
+        },
+    },
+    headRow: {
+        style: {
+            backgroundColor: '#fed7aa'
+        },
+    },
+};

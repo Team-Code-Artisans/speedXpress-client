@@ -1,126 +1,170 @@
-import React from 'react'
+import CopyToClipboard from "react-copy-to-clipboard";
+import DataTable from "react-data-table-component";
+import { LoaderIcon } from "react-hot-toast";
+import { AiOutlineCopy } from 'react-icons/ai'
 
-const PendingDeliveries = () => {
-    return (
-        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table className="min-w-full leading-normal overflow-scroll">
+const PendingDeliveries = ({ isLoading, filterData, handleCopy }) => {
 
-                    {/* table header  */}
+    const currentDate = new Date();
+    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
 
-                    <thead>
-                        <tr>
-                            <th
-                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Date
-                            </th>
-                            <th
-                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Invoice ID
-                            </th>
+    const formattedDate = currentDate.toLocaleDateString(undefined, dateOptions);
+    const formattedTime = currentDate.toLocaleTimeString(undefined, timeOptions);
 
-                            <th
-                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Customer Name & <br /> Phone Number
-                            </th>
-                            <th
-                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Customer Address
-                            </th>
-                            <th
-                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Payment Info
-                            </th>
-                            <th
-                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Shop & Pickup
-                            </th>
-                            <th
-                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Status
-                            </th>
-                        </tr>
-                    </thead>
-
-                    {/* table body  */}
-
-                    <tbody>
-                        {[1].map(el => (
-                            <tr key={el}>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">
-                                        12-11-28
-                                    </p>
-                                </td>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <div className="flex items-center">
-                                        <div className="ml-3">
-                                            <p className="text-gray-900 whitespace-no-wrap text-md">
-                                                id:
-                                                <span className="text-rose-500 pl-1">d52fswdkd</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <div className="flex items-center">
-                                        <div className="ml-3">
-                                            <p className="text-gray-900 whitespace-no-wrap">
-                                                Ashikur Rahman
-                                            </p>
-                                            <p className="text-gray-900 whitespace-no-wrap">+880183727</p>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">
-                                        Dhaka
-                                    </p>
-                                </td>
-
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">Cash Collection Tk. 230 <br /> Total Charge Tk. 99 </p>
-                                </td>
-
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-gray-900 whitespace-no-wrap">
-                                        SpeedXpress <br /> Uttar Badda
-                                    </p>
-                                </td>
-
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p className="text-slate-50 whitespace-no-wrap bg-orange-400 py-1 rounded-full text-center ">
-                                        Pending
-                                    </p>
-                                </td>
-                            </tr>
-                        ))
-
-
-                        }
-                    </tbody>
-                </table>
-
-                <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                    <span className="text-xs xs:text-sm text-gray-900">
-                        Showing 1 to 10 of 50 orders
-                    </span>
-                    <div className="inline-flex mt-2 xs:mt-0">
-                        <button
-                            className="text-sm text-indigo-50 transition duration-150 hover:bg-orange-600 bg-gray-800 font-semibold py-2 px-4 rounded-l">
-                            Prev
-                        </button>
-                        &nbsp; &nbsp;
-                        <button
-                            className="text-sm text-indigo-50 transition duration-150 hover:bg-orange-600 bg-gray-800 font-semibold py-2 px-4 rounded-r">
-                            Next
-                        </button>
+    const columns = [
+        {
+            name: "DATE & TIME",
+            selector: (row) => (
+                <>
+                    <div>
+                        <p className="text-gray-900 whitespace-no-wrap">
+                            {formattedDate} <br /> {formattedTime}
+                        </p>
                     </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+                </>
+            ),
+            sortable: true,
+        },
+        {
+            name: "INVOICE ID",
+            selector: (row) => (
+                <>
+                    <CopyToClipboard onCopy={handleCopy} text={row._id}>
+                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                    </CopyToClipboard>
+                </>
+            ),
+            sortable: true
+        },
+        {
+            name: "CUSTOMER INFO",
+            selector: (row) => (
+                <>
+                    {
+                        <div className="space-y-1 py-2 text-sm">
+                            <p>
+                                {row.customerInfo.name}
+                            </p>
+                            <p>
+                                {row.customerInfo.email}
+                            </p>
+                            <p>
+                                {row.customerInfo.number}
+                            </p>
+                        </div>
+                    }
+                </>
+            ),
+        },
+        {
+            name: "PARCEL INFO",
+            selector: (row) => row.weight,
+        },
+        {
+            name: "CUSTOMER ADDRESS",
+            selector: (row) => (
+                <>
+                    {
+                        <div className="space-y-1 py-2 text-sm">
+                            <p>
+                                {row.customerInfo.division}
+                            </p>
+                            <p>
+                                {row.customerInfo.district}
+                            </p>
+                            <p>
+                                {row.customerInfo.address}
+                            </p>
+                        </div>
+                    }
+                </>
+            )
+        },
+        {
+            name: "PAYMENT INFO",
+            selector: (row) => (
+                <>
+                    {
+                        <div className="space-y-1 py-2 text-sm">
+                            <p>
+                                Delivery Fee: { }
+                                {row.deliveryFee}
+                            </p>
+                            <p>
+                                Total Charge: { }
+                                {row.TotalchargeAmount}
+                            </p>
+                        </div>
+                    }
+                </>
+            )
+        },
+        {
+            name: "SHOP INFO",
+            selector: (row) => (
+                <>
+                    {
+                        <div className="space-y-1 py-2 text-sm">
+                            <p>
+                                {row.customerInfo.customerOwnerName}
+                            </p>
+                            <p>
+                                {row.customerInfo.customerOwnerEmail}
+                            </p>
+                        </div>
+                    }
+                </>
+            )
+        },
+        {
+            name: "STATUS",
+            selector: (row) => (
+                <>
+                    {
+                        <div>
+                            <p className="text-slate-50 bg-orange-400 px-4 py-2 rounded-full text-center">
+                                Pending
+                            </p>
+                        </div>
+                    }
+                </>
+            ),
+        },
+    ];
 
-export default PendingDeliveries
+
+    return (
+        <DataTable
+            columns={columns}
+            data={filterData}
+            direction="auto"
+            fixedHeader
+            fixedHeaderScrollHeight="600px"
+            highlightOnHover
+            noHeader
+            pagination
+            responsive
+            striped
+            pointerOnHover
+            progressPending={isLoading}
+            progressComponent={<LoaderIcon />}
+            customStyles={styles}
+        />
+    );
+};
+
+export default PendingDeliveries;
+
+const styles = {
+    rows: {
+        style: {
+            fontSize: '1rem'
+        },
+    },
+    headRow: {
+        style: {
+            backgroundColor: '#fed7aa'
+        },
+    },
+};
