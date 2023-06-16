@@ -1,268 +1,367 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { createParcel } from "../../../API Operations/manageParcels";
+import { saveCustomer } from "../../../API Operations/manageUsers";
+import SmallSpinner from "../../../components/smallSpinner/SmallSpinner";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import { weights } from "../../../data/Weight";
 
 const CreateParcel = () => {
 
-        const [urgent,setUrgent] = useState(0)
-        const [deliveryCharge,setDeliveryCharge] = useState(0)
+    const [dropdown2, setDropdown2] = useState(false);
+    const [loading, setLoading] = useState(false)
+    const [weight, setWeight] = useState("0.5KG - 1KG");
+    const [weightCharge, setWeightCharge] = useState(10);
+    const [deliveryFee, setDeliveryFee] = useState(60);
+    const [weightTotalCharge, setWeightTotalCharge] = useState(0);
 
-    
-        
-
-        
-        const summaryCardUpdate = () => {
-            setDeliveryCharge(150)
-        }
-
-
-
-        const handleSubmit = (event) =>{
-            event.preventDefault()
-
-            const form = event.target;
-            const receiverName = form.receiverName.value;
-            const receiverPhone = form.receiverPhone.value;
-            const receiverAddress = form.receiverAddress.value;
-
-            const parcelWeight = form.parcelWeight.value;
-            const productDetails = form.productDetails.value;
-
-            if(receiverPhone.length !== 11){
-                return  alert("Phone no should be 11 digit")
-            }
-
-            const createParcelData = {
-                receiverName,
-                receiverPhone,
-                receiverAddress,
-                parcelWeight,
-                productDetails
-            }
-
-
-            console.log(createParcelData);
-
-
-            // here need to put the post API for send the create data to database//
-            fetch('',{
-                method:'POST',
-                headers:{
-                    "Content-type" : "application/json",
-                },
-                body:JSON.stringify(createParcelData)
-            }
-            )
-            .then(res => res.json())
-            .then(result => console.log(result))
-        }
-
-
-
-
-    const formClear = ()=>{
-        alert('are u sure')
+    const [urgent,setUrgent] = useState(0)
+  
+    const weightData = weights;
+    const { user } = useContext(AuthContext)
+  
+    const handleWeight = (e) => {
+      setWeight(e.weight);
+      setWeightCharge(e.price)
+      setDropdown2(false);
+    };
+  
+  
+    // here we handled the amount and calculated the amount charge according to parcel quantity
+    const handleQuantity = (value) => {
+      let weightchargeAmount = (weightCharge * value);
+      setWeightTotalCharge(weightchargeAmount);
+     
     }
-
-
-
-
+    useEffect(() => {
+  
+    }, [weightTotalCharge])
+  
+   
+  
+    const {
+      register,
+      reset,
+      handleSubmit
+    } = useForm();
+  
+  
+    const handleMerchantParcel = (data) => {
+      setLoading(true)
+  
+      const { name, number, address, email } = data
+  
+      const customerInfo = {
+        name, email, number, address,
+        merchantEmail: user?.email,
+        merchantName: user?.displayName
+      }
+  
+      const parcelData = {
+        customerInfo,
+        weight,
+        TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent),
+        deliveryFee,
+      }
+      console.log(parcelData)
+  
+      // crete parcel here and set this data to DATABASE
+      createParcel(parcelData).then(data => {
+        console.log(data)
+        if (data.data.acknowledged) {
+          setLoading(false)
+          reset()
+          toast.success(data.message)
+        }
+      }).catch(err => {
+        setLoading(false)
+        console.log(err.message)
+      })
+  
+      // also save customer info to the DATABASE
+      saveCustomer(customerInfo)
+      setLoading(true)
+        .then(data => {
+          console.log(data)
+          if (data.acknowledged) {
+            toast.success("customer saved")
+            setLoading(false)
+          }
+        }).catch(err => {
+          console.log(err.message)
+          setLoading(false)
+        })
+  
+    };
+  
     return (
-        <div className="container m-auto">
-                <div className="lg:grid grid-cols-6 gap-4 lg:mx-0 mx-2">
-
-                    <div className="w-full col-span-4">
-                        <h1 className="text-3xl font-bold text-zinc-700 my-6">Create New Parcel</h1>
-
-                            {/* checked button */}
-                            <div>
-                                
-
-                            <fieldset className="grid grid-cols-2 gap-4">
-                            <legend className="sr-only">Delivery</legend>
-
-                            <div>
-                                <input
-                                type="radio"
-                                name="DeliveryOption"
-                                value="DeliveryStandard"
-                                id="DeliveryStandard"
-                                className="peer hidden"
-                                checked
-                                onClick={()=>setUrgent(0)}
-                                />
-
-                                <label
-                                htmlFor="DeliveryStandard"
-                                className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                                >
-                                <p className="text-gray-700">Standard</p>
-
-                                <p className="mt-1 text-gray-900">Regular charge</p>
-                                </label>
-                            </div>
-
-                            <div>
-                                <input
-                                type="radio"
-                                name="DeliveryOption"
-                                value="DeliveryPriority"
-                                id="DeliveryPriority"
-                                className="peer hidden"
-                                onClick={()=>setUrgent(100)}
-                                />
-
-                                <label
-                                htmlFor="DeliveryPriority"
-                                className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                                >
-                                <p className="text-gray-700">Next Day</p>
-
-                                <p className="mt-1 text-gray-900">TK 100 +</p>
-                                </label>
-                            </div>
-                            </fieldset>
-                              
-                            </div>
-
-
-
-                            {/* input form for parcel  */}
-
-                              <form action="" onSubmit={handleSubmit}>
-                              <>
+      <div className="overflow-y-hidden">
+        <div className="flex justify-center items-center 2xl:container 2xl:mx-auto lg:py-16 md:py-12 py-9 px-4 md:px-6 lg:px-20 xl:px-44 ">
+          <form onSubmit={handleSubmit(handleMerchantParcel)} className="flex w-full sm:w-9/12 lg:w-full flex-col lg:flex-row justify-center items-center lg:space-x-10 2xl:space-x-36 space-y-12 lg:space-y-0">
+  
+            {/* form submit */}
+            <div className="flex w-full  flex-col justify-start items-start">
+              <div>
+                <p className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
+                  Create Parcel
+                </p>
+              </div>
+  
+  
+  
+              {/* Customer Details */}
+              <div className="mt-12">
+                <p className="text-xl font-semibold leading-5 text-gray-800">
+                  Customer Information
+                </p>
+              </div>
+  
+  
+              <div className="mt-8 flex flex-col justify-start items-start w-full">
+            
+                  <span className="text-xs text-gray-400">Full Name</span>
+                  <input
+                    {...register("name")}
+                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                  />
+          
+  
+         
+                <span className="text-xs text-gray-400">Email</span>
+                  <input
+                    {...register("email")}
+                    className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                    type="email"
+                    placeholder="Customer Email"
+                    required
+                  />
+        
+  
+  
+  
+         
+              <span className="text-xs text-gray-400">Phone number</span>
+              <input
+                  {...register("number")}
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Phone Number"
+                  required
+                />
+         
+  
+  
+  
+                <span className="text-xs text-gray-400">Address</span>
+                <input
+                  {...register("address")}
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Customer Address"
+                />
+              </div>
+  
+              {/* Parcel Details */}
+              <div className="mt-12">
+                <p className="text-xl font-semibold leading-5 text-gray-800">
+                  Delivery Details
+                </p>
+              </div>
+  
+  
+  
+  
+                  {/* checked button */}
+                  <div>
+                    <br />
+                                  
+  
+                                  <fieldset className="grid grid-cols-2 gap-4">
+                                  <legend className="sr-only">Delivery</legend>
+      
+                                  <div>
+                                      <input
+                                      type="radio"
+                                      name="DeliveryOption"
+                                      value="DeliveryStandard"
+                                      id="DeliveryStandard"
+                                      className="peer hidden"
+                                      defaultChecked
+                                      onClick={()=>setUrgent(0)}
+                                      />
+      
+                                      <label
+                                      htmlFor="DeliveryStandard"
+                                      className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                                      >
+                                      <p className="text-gray-700">Standard</p>
+      
+                                      <p className="mt-1 text-gray-900">Regular charge</p>
+                                      </label>
+                                  </div>
+      
+                                  <div>
+                                      <input
+                                      type="radio"
+                                      name="DeliveryOption"
+                                      value="DeliveryPriority"
+                                      id="DeliveryPriority"
+                                      className="peer hidden"
+                                      onClick={()=>setUrgent(100)}
+                                      />
+      
+                                      <label
+                                      htmlFor="DeliveryPriority"
+                                      className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                                      >
+                                      <p className="text-gray-700">Next Day</p>
+      
+                                      <p className="mt-1 text-gray-900">TK 100 +</p>
+                                      </label>
+                                  </div>
+                                  </fieldset>
                                     
-                                    <h1 className="text-2xl font-bold text-zinc-700 my-4">Receiver Info</h1>
-                                    <div className="flex gap-2">
-                                        <div className="w-1/2">
-                                        <h3 className="text-sm leading-3 text-zinc-500">Receiver name</h3>
-                                        <input  name="receiverName" type="text" placeholder="receiver name" className="px-4 py-2 m-2 w-full text-gray-700 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300" required/>
-                                        </div>
-
-                                        <div className="w-1/2">
-                                            
-                                        <h3 className="text-sm leading-3 text-zinc-500">Receiver phone no</h3>
-                                        <input name="receiverPhone" className="px-4 py-2 m-2 w-full text-gray-700 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"  type="number" placeholder="write his/her phone no" required/>
-
-                                        </div>
-                                    </div>
-                                    <div>
-                                    <h3 className="text-sm leading-3 text-zinc-500">Receiver address</h3>
-                                        <input name="receiverAddress" className="px-4 py-2 m-2 w-full text-gray-700 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"  type="text" placeholder="Receiver address" required/>
-                                    </div>
-                                </>
-
-
-
-                                {/* delivery info */}
-                                <>
-                                <h1 className="text-2xl font-bold text-zinc-700 my-4">Delivery Info</h1>
-                                    <div className="flex gap-2">
-                                            <div className="w-1/2">
-                                            <h3 className="text-sm leading-3 text-zinc-500">Parcel weight in gm</h3>
-                                        <input  onChange={summaryCardUpdate} name="parcelWeight" type="number" placeholder="Parcel weight" className="px-4 py-2 m-2 w-full text-gray-700 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300" required/>
-                                            </div>
-
-                                            <div className="w-1/2">
-                                            <h3 className="text-sm leading-3 text-zinc-500">Select your plece of delivery</h3>
-                                                <select id="place" className="px-4 py-2 m-2 w-full border text-gray-700 bg-white rounded-lg ">
-                                                <option value="bogra">Bogra</option>
-                                                <option value="dhaka">Dhaka</option>
-                                                <option value="rajshahi">Rajshahi</option>
-                                                <option value="dinaspur">Dinaspur</option>
-                                                </select>
-                                             </div>
-
-                                    </div>
-
-                                    <div className="mt-3">
-                                    <h3 className="text-sm leading-3 text-zinc-500">write your product details (liquite/solit, aprox price , color , type etc)</h3>
-                                        <textarea placeholder="  write extra details" name="productDetails" className="mt-4 lg:mx-0 mx-2 rounded-lg border lg:w-full " cols="52" rows="7"></textarea>
-                                    </div>
-
-                                    <div>
-                                        <button className="bg-gray-500 px-4 py-2 rounded text-white font-semibold mx-2">Submit</button>
-                                        <b onClick={formClear} className="bg-red-500 px-4 py-2 rounded text-white font-semibold">Cancle</b>
-                                    </div>
-                                   
-                                </>
-                              </form>
+                                  </div>
+  
+  
+  
+  
+              <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
+                <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
+                  <div className="relative w-full">
+                  <span className="text-xs text-gray-400">Total weight</span>
+                    <p
+                      className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full"
+                    >
+                      {weight}
+                    </p>
+                    <button
+                      onClick={() => setDropdown2(!dropdown2)}
+                      className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0"
+                      type="button"
+                    >
+                      <svg
+                        id="close"
+                        className={` transform ${dropdown2 ? "rotate-180" : ""}`}
+                        width={16}
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 6L8 10L4 6"
+                          stroke="#4B5563"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                    <div className={`shadow absolute z-10 bg-white top-10  w-full mt-3 ${dropdown2 ? "" : "hidden"}`}>
+                      <div className="flex flex-col  w-full">
+                        {weightData.map((e) => (
+                          <p
+                            key={e.id}
+                            tabIndex={0}
+                            onClick={() => handleWeight(e)}
+                            className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full"
+                          >
+                            {e.weight}
+                          </p>
+                        ))}
+                      </div>
                     </div>
-               
-
-
-
-                    {/* summary card to shaw all the data in shortcart */}
-                 
-                    <div className="w-full col-span-2">
-                        <div className="flex flex-col max-w-md p-6 space-y-4 divide-y sm:w-96 sm:p-10 divide-gray-700 bg-gray-200 dark:text-gray-100">
-                            <div>
-                            <h2 className="text-2xl font-semibold">Tofayel Shop</h2>
-                            <span className="text-sm">your pickup address .....</span>
-                            </div>
-                            
-                            <ul className="flex flex-col pt-4 space-y-2">
-                                
-                                <li className="flex items-start justify-between">
-                                    <h3>Delivery Charge</h3>
-                                    <div className="text-right">
-                                        <span className="block">TK
-                                        {
-                                            deliveryCharge? deliveryCharge : '00'
-                                        }
-                                        </span>
-                                    </div>
-                                </li>
-                                <li className="flex items-start justify-between">
-                                    <h3>COD Charge</h3>
-                                    <div className="text-right">
-                                        <span className="block">TK 00</span>
-                                        
-                                    </div>
-                                </li>
-                                <li className="flex items-start justify-between">
-                                    <h3>Extra Charge (urgent Only)</h3>
-                                    <div className="text-right">
-                                        <span className="block">TK {urgent}</span>
-                                        
-                                    </div>
-                                </li>
-                            
-                            </ul>
-                            <div className="pt-4 space-y-2">
-                                <div>
-                                    <div className="flex justify-between">
-                                        <span>Subtotal</span>
-                                        <span>TK 00.00</span>
-                                    </div>
-                             
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>Discount</span>
-                                    <span>TK 00.00</span>
-                                </div>
-                            </div>
-                            <div className="pt-4 space-y-2">
-                               
-                              
-                                <div className="space-y-6">
-                                    <div className="flex justify-between text-orange-600">
-                                        <span>Total</span>
-                                        <span className="font-semibold">TK {urgent + deliveryCharge}</span>
-                                    </div>
-
-                                    {/*  depent on team opinion */}
-                                   <span>here can added a checkout button</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
+                  </div>
+  
+  
+                  <div>
+                    <span className="text-xs text-gray-400">Parcel Quantity</span>
+                    <input
+                      {...register("quantity")}
+                      type="number"
+                      className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+                      placeholder="Parcel Quantity"
+                      required
+  
+                      onChange={(e) => handleQuantity(e.target.value)}
+                    />
+                  </div>
                 </div>
-       
+        
+  
+  
+                <span className="text-xs text-gray-400">Additional info about your parcel</span>
+                <input
+                  {...register("details")}
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Parcel Details (Optional)"
+                />
+              </div>
+              <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
+                {loading ? <SmallSpinner /> : "Order Submit"}
+              </button>
+            </div>
+  
+            {/* Order Summary */}
+            <div className="flex flex-col justify-start items-start bg-gray-50 w-full p-6 md:p-14">
+              <div>
+                <h1 className="text-2xl font-semibold leading-6 text-gray-800">
+                  Order Summary
+                </h1>
+              </div>
+              <div className="flex mt-7 flex-col items-end w-full space-y-6">
+                <div className="flex justify-between w-full items-center">
+                  <p className="text-lg leading-4 text-gray-600">
+                    Delivery Fee
+                  </p>
+                  <p className="text-lg font-semibold leading-4 text-gray-600">
+                    ${deliveryFee}
+                  </p>
+                </div>
+                <div className="flex justify-between w-full items-center">
+                  <p className="text-lg leading-4 text-gray-600">
+                    Weight Charge
+                  </p>
+                  <p className="text-lg font-semibold leading-4 text-gray-600">
+                    ${weightCharge}
+                  </p>
+                </div>
+                <div className="flex justify-between w-full items-center">
+                  <p className="text-lg leading-4 text-gray-600">Sub total <span className="text-xs text-amber-500">( w.charge × quantity + delivery )</span> </p>
+                  <p className="text-lg font-semibold leading-4 text-gray-600">
+                    {weightTotalCharge + deliveryFee}
+                  </p>
+                </div>
+                <div className="flex justify-between w-full items-center">
+                  <p className="text-lg leading-4 text-gray-600">Urgent Delivery Fee</p>
+                  <p className="text-lg font-semibold leading-4 text-gray-600">
+                    {urgent}
+                  </p>
+                </div>
+               
+                <div className="flex justify-between w-full items-center">
+                  <p className="text-lg leading-4 text-gray-600">Promo Discount</p>
+                  <p className="text-lg font-semibold leading-4 text-orange-600">
+                    - $00
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between w-full items-center mt-32">
+                <p className="text-xl font-semibold leading-4 text-gray-800">
+                  Estimated Total{" "}
+                </p>
+                <p className="text-lg font-semibold leading-4 text-gray-800">
+                  {weightTotalCharge + deliveryFee + urgent}
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    );
-};
-
+    )
+  };
 export default CreateParcel;

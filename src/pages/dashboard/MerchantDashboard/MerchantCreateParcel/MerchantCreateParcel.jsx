@@ -220,7 +220,7 @@ const MerchantCreateParcel = () => {
                                     value="DeliveryStandard"
                                     id="DeliveryStandard"
                                     className="peer hidden"
-                                    checked
+                                    defaultChecked
                                     onClick={()=>setUrgent(0)}
                                     />
     
