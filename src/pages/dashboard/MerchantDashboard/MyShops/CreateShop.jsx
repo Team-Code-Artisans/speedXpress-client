@@ -1,8 +1,59 @@
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { createShop } from "../../../../API Operations/manageMerchantShop";
+import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
+import { AuthContext } from "../../../../contexts/AuthProvider";
+
 const CreateShop = () => {
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
+
+  const handleCreateShop = (data) => {
+
+    const {
+      fullName,
+      shopName,
+      shopEmail,
+      shopAddress,
+      pickupAddress,
+      pickupArea,
+      pickupPhone,
+      productType,
+    } = data;
+
+    const shopData = {
+      fullName,
+      shopName,
+      shopEmail,
+      shopAddress,
+      pickupAddress,
+      pickupArea,
+      pickupPhone,
+      productType,
+    };
+
+    // crete parcel here
+    createShop(shopData)
+      .then((data) => {
+        console.log(data);
+        if (data.data.acknowledged) {
+          setLoading(false);
+          reset();
+          toast.success(data.message);
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err.message);
+      });
+  };
+
   return (
     <div>
       <section className="bg-gray-100">
-        <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
             <div className="lg:col-span-2 lg:py-12">
               <p className="max-w-xl text-lg">
@@ -23,42 +74,47 @@ const CreateShop = () => {
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-              <form action="" className="space-y-4">
+              <form
+                onSubmit={handleSubmit(handleCreateShop)}
+                className="space-y-4"
+              >
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor="userName"
-                    className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
-                  >
-                    <input
-                      type="text"
-                      id="userName"
-                      placeholder="User Name"
-                      className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                    />
+                  <div>
+                    <label
+                      htmlFor="userName"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    >
+                      <input
+                        {...register("fullName")}
+                        type="text"
+                        id="full-name"
+                        placeholder="Full Name"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                      />
 
-                    <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                      Name
-                    </span>
-                  </label>
-                </div>
-                <div>
-                  <label
-                    htmlFor="userName"
-                    className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
-                  >
-                    <input
-                      type="number"
-                      id="number"
-                      placeholder="number"
-                      className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                    />
+                      <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                        Full Name
+                      </span>
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="userName"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    >
+                      <input
+                        {...register("shopName")}
+                        type="text"
+                        id="shop-name"
+                        placeholder="Shop Name"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                      />
 
-                    <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                      Number
-                    </span>
-                  </label>
-                </div>
+                      <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                        Shop Name
+                      </span>
+                    </label>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -68,14 +124,17 @@ const CreateShop = () => {
                       className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
                     >
                       <input
+                        {...register("shopEmail")}
+                        value={user.email}
+                        readOnly
                         type="email"
-                        id="userName"
-                        placeholder="User Name"
-                        className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                        id="shop-email"
+                        placeholder="Shop Email"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                       />
 
                       <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                        Email
+                        Shop Email
                       </span>
                     </label>
                   </div>
@@ -86,38 +145,105 @@ const CreateShop = () => {
                       className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
                     >
                       <input
-                        type="password"
-                        id="userName"
-                        placeholder="User Name"
-                        className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                        {...register("shopAddress")}
+                        type="text"
+                        id="shop-address"
+                        placeholder="Shop Address"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                       />
 
                       <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                        Password
+                        Shop Address
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="userName"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    >
+                      <input
+                        {...register("pickupAddress")}
+                        type="text"
+                        id="pickup-address"
+                        placeholder="Pickup Address"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                      />
+
+                      <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                        Pickup Address
+                      </span>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="userName"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    >
+                      <input
+                        {...register("pickupArea")}
+                        type="text"
+                        id="pickup-area"
+                        placeholder="Pickup Area"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                      />
+
+                      <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                        Pickup Area
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="userName"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    >
+                      <input
+                        {...register("pickupPhone")}
+                        type="number"
+                        id="pickup-phone"
+                        placeholder="Pickup Phone"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                      />
+
+                      <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                        Pickup Phone
+                      </span>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="userName"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    >
+                      <input
+                        {...register("productType")}
+                        type="text"
+                        id="product-type"
+                        placeholder="Product Type"
+                        className="peer h-10 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                      />
+
+                      <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                        Product Type
                       </span>
                     </label>
                   </div>
                 </div>
 
                 <div>
-                  <label className="sr-only" htmlFor="message">
-                    Address
-                  </label>
-
-                  <textarea
-                    className="w-full rounded-lg border border-gray-300 p-3 text-base mt-3"
-                    placeholder="Address"
-                    rows="8"
-                    id="message"
-                  ></textarea>
-                </div>
-
-                <div className="mt-4">
                   <button
                     type="submit"
-                    className="inline-block w-full rounded-lg bg-orange-600 px-5 py-3 font-medium text-white sm:w-auto"
+                    className="inline-block w-full rounded-lg bg-orange-600 px-8 py-3 mt-5 font-medium text-white sm:w-auto"
                   >
-                    Create Shop
+                    {loading ? <SmallSpinner /> : "Create Shop"}
                   </button>
                 </div>
               </form>
