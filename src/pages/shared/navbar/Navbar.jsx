@@ -13,8 +13,12 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 const Navbar = () => {
   const [role, setRole] = useState("")
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user,logout } = useContext(AuthContext);
 
+
+  const logOut= () => {
+    logout()
+  }
   useEffect(() => {
     getRole(user?.email)
       .then(data => {

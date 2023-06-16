@@ -8,7 +8,8 @@ import SenderNav from "./senderDashboard/SenderNav";
 
 
 export const DashboardNavbar = () => {
-    const [role, setRole] = useState("");
+    // here will be change .. for get role info
+    const [role, setRole] = useState("merchant");
 
     const { user } = useContext(AuthContext);
     useEffect(() => {

@@ -14,4 +14,9 @@ export const weights = [
         weight: '5KG - 10KG',
         price: 20
     },
+    {
+        id: 4,
+        weight: 'upto 10KG',
+        price: 30
+    },
 ]
