@@ -1,7 +1,7 @@
 import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
-import { LoaderIcon } from "react-hot-toast";
 import { AiOutlineCopy } from 'react-icons/ai'
+import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
 const CompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
 
@@ -148,7 +148,7 @@ const CompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
             striped
             pointerOnHover
             progressPending={isLoading}
-            progressComponent={<LoaderIcon />}
+            progressComponent={<BigSpinner />}
             customStyles={styles}
         />
     );
