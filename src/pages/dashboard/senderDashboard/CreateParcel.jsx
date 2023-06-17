@@ -6,8 +6,18 @@ import { saveCustomer } from "../../../API Operations/manageUsers";
 import SmallSpinner from "../../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { weights } from "../../../data/Weight";
+import InputDivision from "../../../components/InputDivision";
+import InputDistrict from "../../../components/InputDistrict";
+import { divisionsData } from "../../../data/Divisions";
+import { districtsData } from "../../../data/Districts";
 
 const CreateParcel = () => {
+
+
+    const divisions = divisionsData;
+    let [division, setDivision] = useState(divisions[5]);
+    const districts = districtsData;
+    const [district, setDistrict] = useState(districts[46])
 
     const [dropdown2, setDropdown2] = useState(false);
     const [loading, setLoading] = useState(false)
@@ -49,13 +59,13 @@ const CreateParcel = () => {
   
     const handleMerchantParcel = (data) => {
       setLoading(true)
+      let distrcitName = district.name
   
       const { name, number, address, email } = data
+      division = division.name
   
       const customerInfo = {
-        name, email, number, address,
-        merchantEmail: user?.email,
-        merchantName: user?.displayName
+        name, email, number,division, distrcitName, address,
       }
   
       const parcelData = {
@@ -63,6 +73,7 @@ const CreateParcel = () => {
         weight,
         TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent),
         deliveryFee,
+        senderEmail:user?.email
       }
       console.log(parcelData)
   
@@ -152,6 +163,26 @@ const CreateParcel = () => {
                   placeholder="Phone Number"
                   required
                 />
+
+
+
+
+
+                <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
+
+
+                <div>
+                  <span className="text-xs text-gray-400">Select Division</span>
+                  <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
+                </div>
+
+                <div>
+                  <span className="text-xs text-gray-400">Select Distric</span>
+                  <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
+                </div>
+
+                </div>
+
          
   
   
