@@ -3,7 +3,7 @@
 export default function BigSpinner() {
   return (
     <div className="flex justify-center items-center">
-      
+
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -28,7 +28,7 @@ export default function BigSpinner() {
           strokeWidth="4"
         />
       </svg>
-     
+
     </div>
   )
 }

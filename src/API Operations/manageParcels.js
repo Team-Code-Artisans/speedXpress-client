@@ -1,8 +1,4 @@
 import instance from "../axios";
-// import { useContext } from "react";
-// import { AuthContext } from "../contexts/AuthProvider";
-
-// const { user } = useContext(AuthContext)
 
 // create a parcel
 
@@ -21,9 +17,7 @@ export const createParcel = async (parcelData) => {
 export const getParcels = async (email) => {
   try {
     const response = await instance.get(`/parcels?email=${email}`);
-    const data = await response;
-    console.log(data);
-    return data;
+    return response.data;
   } catch (error) {
     console.log(error.message);
   }

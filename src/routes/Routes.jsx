@@ -27,6 +27,7 @@ import About from "../pages/home/about/About";
 import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
 import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
 import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome/EmployeeHome";
+import MerchantRoutes from "./MerchantRoutes";
 
 
 
@@ -132,17 +133,18 @@ const router = createBrowserRouter([
 
 
       // Merchant Routes
+
       {
         path: "/dashboard/merchant",
-        element: <MerchantHome />,
+        element: <MerchantRoutes><MerchantHome /></MerchantRoutes>,
       },
       {
         path: "/dashboard/merchant/deliveries",
-        element: <MerchantDeliveries />,
+        element: <MerchantRoutes><MerchantDeliveries /></MerchantRoutes>,
       },
       {
         path: "/dashboard/merchant/invoices",
-        element: <MerchantInvoices />,
+        element: <MerchantRoutes><MerchantInvoices /></MerchantRoutes>,
       },
       {
         path: "/dashboard/merchant/create-parcel",
