@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import MerchantDropDrown from "./MerchantDropdown";
+import MerchantDropdown from "./MerchantDropdown";
 
 const MerchantNav = ({ mobile }) => {
   return (
@@ -46,7 +46,7 @@ const MerchantNav = ({ mobile }) => {
         </Link>
       </li>
       <li>
-        <MerchantDropDrown />
+        <MerchantDropdown />
       </li>
     </>
   );

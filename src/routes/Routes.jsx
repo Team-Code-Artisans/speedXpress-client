@@ -12,22 +12,18 @@ import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfil
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
-import { AllMarchants } from "../pages/dashboard/adminDashboard/AllMarchants";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
 import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
 import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
-import { CompletedParcels } from "../pages/dashboard/senderDashboard/CompletedParcels";
-import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
-import SenderHistory from "../pages/dashboard/senderDashboard/SenderHistory";
-import SenderParcelTracking from "../pages/dashboard/senderDashboard/SenderParcelTracking";
-import { SenderPayment } from "../pages/dashboard/senderDashboard/SenderPayment";
-import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
 import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
 import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome/EmployeeHome";
 import MerchantRoutes from "./MerchantRoutes";
+import SenderHome from "../pages/dashboard/senderDashboard/SenderHome/SenderHome";
+import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
+import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
 
 
 
@@ -102,31 +98,35 @@ const router = createBrowserRouter([
       // sender routes
       {
         path: "/dashboard/regular",
-        element: <SenderParcelTracking />,
+        element: <SenderHome />,
       },
       {
-        path: "/dashboard/create-parcel",
+        path: "/dashboard/regular/create-parcel",
         element: <CreateParcel />,
       },
       {
-        path: "/dashboard/history",
-        element: <SenderHistory />,
+        path: "/dashboard/regular/deliveries",
+        element: <SenderHome />,
       },
       {
-        path: "/dashboard/sender-product-return",
+        path: "/dashboard/regular/invoices",
+        element: <SenderHome />,
+      },
+      {
+        path: "/dashboard/regular/return",
         element: <SenderReturnParcel />,
       },
       {
-        path: "/dashboard/marchents",
-        element: <AllMarchants />,
+        path: "/dashboard/regular/my-parcels",
+        element: <SenderHome />,
       },
       {
-        path: "/dashboard/payment",
-        element: <SenderPayment />,
+        path: "/dashboard/regular/payment-history",
+        element: <SenderHome />,
       },
       {
-        path: "/dashboard/completed-parcel",
-        element: <CompletedParcels />,
+        path: "/dashboard/regular/profile",
+        element: <SenderHome />,
       },
 
 

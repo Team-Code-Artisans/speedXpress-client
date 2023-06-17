@@ -4,7 +4,7 @@ import { AdminNav } from "./adminDashboard/AdminNav";
 import { getRole } from "../../API Operations/manageUsers";
 import EmployeeNav from "./Employee Dashboard/EmployeeNav/EmployeeNav";
 import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
-import SenderNav from "./senderDashboard/SenderNav";
+import SenderNav from "./senderDashboard/SenderNav/SenderNav";
 
 
 export const DashboardNavbar = () => {

@@ -7,7 +7,7 @@ import { GoSignOut } from 'react-icons/go';
 import { MdInsertEmoticon, MdPayment } from 'react-icons/md';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 
-export default function MerchantDropdown() {
+export default function SenderDropdown() {
 
     const { logout } = useContext(AuthContext)
 
@@ -31,9 +31,9 @@ export default function MerchantDropdown() {
                     <Menu.Items className="visible transition duration-300 opacity-100 bg-white shadow rounded mt-2 py-1 w-48 absolute -left-16">
                         <div className="p-1 ">
                             <Menu.Item>
-                                <Link to={'/dashboard/merchant/my-shops'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                <Link to={'/dashboard/regular/my-parcels'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                                     <AiOutlineShop size={'1.5rem'} />
-                                    <span className="px-2">My Shops</span>
+                                    <span className="px-2">My Parcels</span>
                                 </Link>
                             </Menu.Item>
                         </div>
@@ -45,17 +45,9 @@ export default function MerchantDropdown() {
                                 </Link>
                             </Menu.Item>
                         </div>
-                        <div className='p-1'>
-                            <Menu.Item>
-                                <Link to={`/dashboard/merchant/my-customers`} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                    <MdInsertEmoticon size={'1.5rem'} />
-                                    <span className="px-2">My Customers</span>
-                                </Link>
-                            </Menu.Item>
-                        </div>
                         <div className="p-1">
                             <Menu.Item>
-                                <Link to={'/dashboard/merchant/profile'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                <Link to={'/dashboard/regular/profile'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                                     <CgProfile size={'1.5rem'} />
                                     <span className="px-2">Profile</span>
                                 </Link>
