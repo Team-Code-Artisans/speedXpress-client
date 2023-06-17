@@ -23,6 +23,7 @@ export const getRole = async (email) => {
     try {
         const url = `/user/${email}`;
         const res = await instance.get(url);
+        console.log(res)
         let role = (res.account_type);
        
         return role;
