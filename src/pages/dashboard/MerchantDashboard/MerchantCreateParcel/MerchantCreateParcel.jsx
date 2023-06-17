@@ -3,18 +3,18 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { createParcel } from "../../../../API Operations/manageParcels";
 import { saveCustomer } from "../../../../API Operations/manageUsers";
+import InputDistrict from "../../../../components/InputDistrict";
+import InputDivision from "../../../../components/InputDivision";
 import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { weights } from "../../../../data/Weight";
-import { divisionsData } from "../../../../data/Divisions";
 import { districtsData } from "../../../../data/Districts";
-import InputDivision from "../../../../components/InputDivision";
-import InputDistrict from "../../../../components/InputDistrict";
+import { divisionsData } from "../../../../data/Divisions";
+import { weights } from "../../../../data/Weight";
 
 const MerchantCreateParcel = () => {
 
   const divisions = divisionsData;
-  const [division, setDivision] = useState(divisions[5]);
+  let [division, setDivision] = useState(divisions[5]);
   const districts = districtsData;
   const [district, setDistrict] = useState(districts[46])
   const [dropdown2, setDropdown2] = useState(false);
@@ -24,7 +24,7 @@ const MerchantCreateParcel = () => {
   const [deliveryFee, setDeliveryFee] = useState(60);
   const [weightTotalCharge, setWeightTotalCharge] = useState(0);
   const [tax, setTax] = useState(14)
-  const [urgent,setUrgent] = useState(0)
+  const [urgent, setUrgent] = useState(0)
 
   const weightData = weights;
   const { user } = useContext(AuthContext)
@@ -35,7 +35,7 @@ const MerchantCreateParcel = () => {
     setDropdown2(false);
   };
 
-  console.log(division, district.name, deliveryFee)
+  console.log(division.name, district.name, deliveryFee)
 
   // here we handled the amount and calculated the amount charge according to parcel quantity
   const handleQuantity = (value) => {
@@ -63,10 +63,10 @@ const MerchantCreateParcel = () => {
 
   const handleMerchantParcel = (data) => {
     setLoading(true)
-    let distrcitName = district && district[0]?.name
+    let distrcitName = district.name
 
     const { name, number, address, email } = data
-
+    division = division.name
     const customerInfo = {
       name, email, number, division, distrcitName, address,
       merchantEmail: user?.email,
@@ -78,6 +78,7 @@ const MerchantCreateParcel = () => {
       weight,
       TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent + tax),
       deliveryFee,
+      senderEmail:user?.email
     }
     console.log(parcelData)
 
@@ -96,16 +97,16 @@ const MerchantCreateParcel = () => {
 
     // also save customer info to the DATABASE
     saveCustomer(customerInfo)
-    setLoading(true)
+
       .then(data => {
         console.log(data)
         if (data.acknowledged) {
           toast.success("customer saved")
-          setLoading(false)
+
         }
       }).catch(err => {
         console.log(err.message)
-        setLoading(false)
+
       })
 
   };
@@ -134,40 +135,40 @@ const MerchantCreateParcel = () => {
 
 
             <div className="mt-8 flex flex-col justify-start items-start w-full">
-          
-                <span className="text-xs text-gray-400">Full Name</span>
-                <input
-                  {...register("name")}
-                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
-                  type="text"
-                  placeholder="Full Name"
-                  required
-                />
-        
 
-       
+              <span className="text-xs text-gray-400">Full Name</span>
+              <input
+                {...register("name")}
+                className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                type="text"
+                placeholder="Full Name"
+                required
+              />
+
+
+
               <span className="text-xs text-gray-400">Email</span>
-                <input
-                  {...register("email")}
-                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
-                  type="email"
-                  placeholder="Customer Email"
-                  required
-                />
-      
+              <input
+                {...register("email")}
+                className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                type="email"
+                placeholder="Customer Email"
+                required
+              />
 
 
 
-       
-            <span className="text-xs text-gray-400">Phone number</span>
-            <input
+
+
+              <span className="text-xs text-gray-400">Phone number</span>
+              <input
                 {...register("number")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
                 type="text"
                 placeholder="Phone Number"
                 required
               />
-       
+
 
 
 
@@ -178,7 +179,7 @@ const MerchantCreateParcel = () => {
                   <span className="text-xs text-gray-400">Select Division</span>
                   <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
                 </div>
-                
+
                 <div>
                   <span className="text-xs text-gray-400">Select Distric</span>
                   <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
@@ -205,57 +206,57 @@ const MerchantCreateParcel = () => {
 
 
 
-                {/* checked button */}
-                <div>
-                  <br />
-                                
+            {/* checked button */}
+            <div>
+              <br />
 
-                                <fieldset className="grid grid-cols-2 gap-4">
-                                <legend className="sr-only">Delivery</legend>
-    
-                                <div>
-                                    <input
-                                    type="radio"
-                                    name="DeliveryOption"
-                                    value="DeliveryStandard"
-                                    id="DeliveryStandard"
-                                    className="peer hidden"
-                                    defaultChecked
-                                    onClick={()=>setUrgent(0)}
-                                    />
-    
-                                    <label
-                                    htmlFor="DeliveryStandard"
-                                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                                    >
-                                    <p className="text-gray-700">Standard</p>
-    
-                                    <p className="mt-1 text-gray-900">Regular charge</p>
-                                    </label>
-                                </div>
-    
-                                <div>
-                                    <input
-                                    type="radio"
-                                    name="DeliveryOption"
-                                    value="DeliveryPriority"
-                                    id="DeliveryPriority"
-                                    className="peer hidden"
-                                    onClick={()=>setUrgent(100)}
-                                    />
-    
-                                    <label
-                                    htmlFor="DeliveryPriority"
-                                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                                    >
-                                    <p className="text-gray-700">Next Day</p>
-    
-                                    <p className="mt-1 text-gray-900">TK 100 +</p>
-                                    </label>
-                                </div>
-                                </fieldset>
-                                  
-                                </div>
+
+              <fieldset className="grid grid-cols-2 gap-4">
+                <legend className="sr-only">Delivery</legend>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="DeliveryOption"
+                    value="DeliveryStandard"
+                    id="DeliveryStandard"
+                    className="peer hidden"
+                    defaultChecked
+                    onClick={() => setUrgent(0)}
+                  />
+
+                  <label
+                    htmlFor="DeliveryStandard"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                  >
+                    <p className="text-gray-700">Standard</p>
+
+                    <p className="mt-1 text-gray-900">Regular charge</p>
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="DeliveryOption"
+                    value="DeliveryPriority"
+                    id="DeliveryPriority"
+                    className="peer hidden"
+                    onClick={() => setUrgent(100)}
+                  />
+
+                  <label
+                    htmlFor="DeliveryPriority"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                  >
+                    <p className="text-gray-700">Next Day</p>
+
+                    <p className="mt-1 text-gray-900">TK 100 +</p>
+                  </label>
+                </div>
+              </fieldset>
+
+            </div>
 
 
 
@@ -263,7 +264,7 @@ const MerchantCreateParcel = () => {
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
                 <div className="relative w-full">
-                <span className="text-xs text-gray-400">Total weight</span>
+                  <span className="text-xs text-gray-400">Total weight</span>
                   <p
                     className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full"
                   >

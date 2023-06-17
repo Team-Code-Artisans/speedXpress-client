@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
-import { AuthContext } from '../../contexts/AuthProvider'
 import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
+import { AuthContext } from '../../contexts/AuthProvider'
 
 const RegularForm = () => {
 
