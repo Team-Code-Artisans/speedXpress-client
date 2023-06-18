@@ -145,7 +145,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy }) => {
             pointerOnHover
             progressPending={isLoading}
             progressComponent={<BigSpinner />}
-            customStyles={styles}
+            custooomStyles={styles}
         />
     );
 };

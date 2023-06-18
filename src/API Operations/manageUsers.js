@@ -55,12 +55,12 @@ export const saveCustomer = async (customerData) => {
 
 // save customers info
 
-export const getMyCustomers = async (ownerEmail) => {
-    console.log(ownerEmail)
+export const getMyCustomers = async (merchantEmail) => {
+    console.log(merchantEmail)
     try {
-        const url = `/customers/${ownerEmail}`;
+        const url = `/customers/${merchantEmail}`;
         const res = await instance.get(url);
-        console.log(res);
+        const data = res.data
         return res;
     } catch (error) {
         console.log(error.message);
