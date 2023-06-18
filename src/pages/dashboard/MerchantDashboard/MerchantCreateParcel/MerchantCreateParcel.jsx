@@ -78,7 +78,7 @@ const MerchantCreateParcel = () => {
       weight,
       TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent + tax),
       deliveryFee,
-      senderEmail:user?.email
+      senderEmail:user?.email,
     }
     console.log(parcelData)
 
