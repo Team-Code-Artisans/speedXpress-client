@@ -1,57 +1,53 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SenderDropdown from "./SenderDropdown";
 
-const SenderNav = ({ mobile }) => {
+const SenderNav = () => {
     return (
         <>
             <li>
-                <NavLink
+                <Link
                     to="/dashboard/regular"
-                    className={({ isActive }) =>
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-                        } ${isActive && `text-rose-600`}}`
+                    className={
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Dashboard
-                </NavLink>
+                </Link>
             </li>
             <li>
-                <NavLink
+                <Link
                     to="/dashboard/regular/deliveries"
-                    className={({ isActive }) =>
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-                        } ${isActive && `text-rose-600`}}`
+                    className={
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Deliveries
-                </NavLink>
+                </Link>
             </li>
             <li>
-                <NavLink
+                <Link
                     to="/dashboard/regular/invoices"
-                    className={({ isActive }) =>
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-                        } ${isActive && `text-rose-600`}}`
+                    className={
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Invoices
-                </NavLink>
+                </Link>
             </li>
             <li>
-                <NavLink
+                <Link
                     to="/dashboard/regular/return"
-                    className={({ isActive }) =>
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-                        } ${isActive && `text-rose-600`}}`
+                    className={
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Return
-                </NavLink>
+                </Link>
             </li>
             <li>
                 <Link
                     to={"/dashboard/regular/create-parcel"}
-                    className="bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg"
+                    className="bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg hidden md:block"
                 >
                     Create Parcel
                 </Link>

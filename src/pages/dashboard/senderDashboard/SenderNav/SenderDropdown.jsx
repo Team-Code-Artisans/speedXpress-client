@@ -28,7 +28,7 @@ export default function SenderDropdown() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="visible transition duration-300 opacity-100 bg-white shadow rounded mt-2 py-1 w-48 absolute -left-16">
+                    <Menu.Items className="visible transition duration-300 opacity-100 bg-white shadow rounded mt-2 py-1 w-48 absolute -left-40 md:-left-20">
                         <div className="p-1 ">
                             <Menu.Item>
                                 <Link to={'/dashboard/regular/my-parcels'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">

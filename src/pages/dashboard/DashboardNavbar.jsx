@@ -31,7 +31,7 @@ export const DashboardNavbar = () => {
                         to={'/'}
                         aria-label="Company"
                         title="Company"
-                        className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase"
+                        className="text-xl font-bold tracking-wide text-gray-100 uppercase"
                     >
                         Speed
                         <span className="text-orange-600">

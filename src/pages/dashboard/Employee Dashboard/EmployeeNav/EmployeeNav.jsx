@@ -1,41 +1,38 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EmployeeDropdown from "./EmployeeDropdown";
 
-const EmployeeNav = ({ mobile }) => {
+const EmployeeNav = () => {
     return (
         <>
             <li>
-                <NavLink
+                <Link
                     to="/dashboard/employee"
-                    className={({ isActive }) =>
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-                        } ${isActive && `text-rose-600`}}`
+                    className={
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Dashboard
-                </NavLink>
+                </Link>
             </li>
             <li>
-                <NavLink
+                <Link
                     to="/dashboard/employee/deliveries"
-                    className={({ isActive }) =>
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-                        } ${isActive && `text-rose-600`}}`
+                    className={
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Deliveries
-                </NavLink>
+                </Link>
             </li>
             <li>
-                <NavLink
+                <Link
                     to="/dashboard/employee/earnings"
-                    className={({ isActive }) =>
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-                        } ${isActive && `text-rose-600`}}`
+                    className={
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Earnings
-                </NavLink>
+                </Link>
             </li>
             <li>
                 <EmployeeDropdown />
