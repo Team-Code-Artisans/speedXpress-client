@@ -2,7 +2,7 @@
 
 export default function BigSpinner() {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center h-screen">
 
       <svg
         viewBox="0 0 24 24"
