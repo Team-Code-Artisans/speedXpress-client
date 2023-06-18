@@ -11,10 +11,6 @@ import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/Merc
 import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile";
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
-import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
-import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking";
-import ParcelList from "../pages/dashboard/adminDashboard/ParcelList/ParcelList";
-import AllReturnParcel from "../pages/dashboard/adminDashboard/ReturnParcel/AllReturnParcel";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
@@ -29,6 +25,8 @@ import EmployeeEarnings from "../pages/dashboard/Employee Dashboard/Employee Ear
 import DeliveryHistory from "../pages/dashboard/Employee Dashboard/EmployeeHistory/DeliveryHistory";
 import EarningHistory from "../pages/dashboard/Employee Dashboard/EmployeeHistory/EarningHistory";
 import EmployeeProfile from "../pages/dashboard/Employee Dashboard/EmployeeProfile/EmployeeProfile";
+import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
+import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking/OrderTracking";
 
 
 
@@ -79,24 +77,48 @@ const router = createBrowserRouter([
 
       // admin routes
       {
-        path: "/dashboard/",
-        element: <AdminHome />,
-      },
-      {
         path: "/dashboard/admin",
         element: <AdminHome />,
       },
       {
-        path: "/dashboard/order-tracking",
+        path: "/dashboard/admin/order-tracking",
         element: <OrderTracking />,
       },
       {
-        path: "/dashboard/parcel-list",
-        element: <ParcelList />,
+        path: "/dashboard/admin/deliveries",
+        element: <AdminHome />,
       },
       {
-        path: "/dashboard/return-parcel",
-        element: <AllReturnParcel />,
+        path: "/dashboard/admin/invoices",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/manage-merchant",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/manage-employee",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/parcel-history",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/return",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/payment-history",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/return-history",
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/profile",
+        element: <AdminHome />,
       },
 
 

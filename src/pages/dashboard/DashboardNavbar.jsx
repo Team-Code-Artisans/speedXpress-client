@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { AdminNav } from "./adminDashboard/AdminNav";
 import { getRole } from "../../API Operations/manageUsers";
 import EmployeeNav from "./Employee Dashboard/EmployeeNav/EmployeeNav";
 import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
 import SenderNav from "./senderDashboard/SenderNav/SenderNav";
+import AdminNav from "./adminDashboard/AdminNav/AdminNav";
 
 
 export const DashboardNavbar = () => {

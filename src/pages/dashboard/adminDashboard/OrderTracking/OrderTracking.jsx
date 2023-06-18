@@ -1,109 +1,7 @@
-// const order = [
-//   {
-//     order_id: "123456789",
-//     customer_name: "John Smith",
-//     delivery_address: "123 Main Street, Cityville",
-//     items: [
-//       {
-//         item_name: "Product A",
-//         quantity: 2,
-//         price: 10.99,
-//       },
-//       {
-//         item_name: "Product B",
-//         quantity: 1,
-//         price: 24.99,
-//       },
-//     ],
-//     total_amount: 46.97,
-//     status: "Pending",
-//   },
-//   {
-//     order_id: "987654321",
-//     customer_name: "Jane Doe",
-//     delivery_address: "456 Elm Street, Townsville",
-//     items: [
-//       {
-//         item_name: "Product C",
-//         quantity: 3,
-//         price: 7.99,
-//       },
-//       {
-//         item_name: "Product D",
-//         quantity: 1,
-//         price: 12.99,
-//       },
-//       {
-//         item_name: "Product E",
-//         quantity: 2,
-//         price: 19.99,
-//       },
-//     ],
-//     total_amount: 81.93,
-//     status: "Shipped",
-//   },
-//   {
-//     order_id: "456789123",
-//     customer_name: "Sarah Johnson",
-//     delivery_address: "789 Oak Avenue, Villagetown",
-//     items: [
-//       {
-//         item_name: "Product F",
-//         quantity: 1,
-//         price: 14.99,
-//       },
-//     ],
-//     total_amount: 14.99,
-//     status: "Delivered",
-//   },
-//   {
-//     order_id: "654321987",
-//     customer_name: "Michael Brown",
-//     delivery_address: "321 Pine Street, Hamletville",
-//     items: [
-//       {
-//         item_name: "Product G",
-//         quantity: 5,
-//         price: 9.99,
-//       },
-//       {
-//         item_name: "Product H",
-//         quantity: 3,
-//         price: 5.99,
-//       },
-//     ],
-//     total_amount: 67.92,
-//     status: "Pending",
-//   },
-//   {
-//     order_id: "789123456",
-//     customer_name: "Emily Davis",
-//     delivery_address: "567 Cedar Road, Countryside",
-//     items: [
-//       {
-//         item_name: "Product I",
-//         quantity: 1,
-//         price: 29.99,
-//       },
-//       {
-//         item_name: "Product J",
-//         quantity: 2,
-//         price: 8.99,
-//       },
-//       {
-//         item_name: "Product K",
-//         quantity: 4,
-//         price: 3.99,
-//       },
-//     ],
-//     total_amount: 72.91,
-//     status: "Shipped",
-//   },
-// ];
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdPendingActions } from "react-icons/md";
-import trackingImg from "../../../Assets/tracking.png";
+import trackingImg from "../../../../Assets/tracking.png";
 
 const OrderTracking = () => {
   return (
@@ -179,17 +77,17 @@ const OrderTracking = () => {
                 <ol className="mt-4 grid grid-cols-3 text-sm font-medium text-gray-500">
                   <li className="flex items-center justify-start text-amber-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> Pending </span>
-                    <MdPendingActions className="text-xl"/>
+                    <MdPendingActions className="text-xl" />
                   </li>
 
                   <li className="flex items-center justify-center text-amber-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> On The Way </span>
-                    <HiOutlineLocationMarker className="text-xl"/>
+                    <HiOutlineLocationMarker className="text-xl" />
                   </li>
 
                   <li className="flex items-center justify-end sm:gap-1.5">
                     <span className="hidden sm:inline"> Delivered </span>
-                    <AiOutlineDeliveredProcedure className="text-xl"/>
+                    <AiOutlineDeliveredProcedure className="text-xl" />
                   </li>
                 </ol>
               </div>
