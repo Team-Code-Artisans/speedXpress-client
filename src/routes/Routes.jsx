@@ -6,27 +6,26 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Features from "../pages/Features/Features";
 import Pricing from "../pages/Pricing/Pricing";
+import EmployeeDeliveries from "../pages/dashboard/Employee Dashboard/Employee Deliveries/EmployeeDeliveries";
+import EmployeeEarnings from "../pages/dashboard/Employee Dashboard/Employee Earnings/EmployeeEarnings";
+import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome/EmployeeHome";
+import EmployeeProfile from "../pages/dashboard/Employee Dashboard/EmployeeProfile/EmployeeProfile";
 import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantCreateParcel/MerchantCreateParcel";
+import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
 import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
+import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
 import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile";
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
-import Home from "../pages/home/Home";
-import About from "../pages/home/about/About";
-import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
-import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
-import { EmployeeHome } from "../pages/dashboard/Employee Dashboard/EmployeeHome/EmployeeHome";
-import MerchantRoutes from "./MerchantRoutes";
-import SenderHome from "../pages/dashboard/senderDashboard/SenderHome/SenderHome";
-import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
-import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
-import EmployeeDeliveries from "../pages/dashboard/Employee Dashboard/Employee Deliveries/EmployeeDeliveries";
-import EmployeeEarnings from "../pages/dashboard/Employee Dashboard/Employee Earnings/EmployeeEarnings";
-import DeliveryHistory from "../pages/dashboard/Employee Dashboard/EmployeeHistory/DeliveryHistory";
-import EarningHistory from "../pages/dashboard/Employee Dashboard/EmployeeHistory/EarningHistory";
-import EmployeeProfile from "../pages/dashboard/Employee Dashboard/EmployeeProfile/EmployeeProfile";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking/OrderTracking";
+import AdminDeliveries from "../pages/dashboard/adminDashboard/adminDeliveies/AdminDeliveries";
+import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
+import SenderHome from "../pages/dashboard/senderDashboard/SenderHome/SenderHome";
+import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
+import Home from "../pages/home/Home";
+import About from "../pages/home/about/About";
+import MerchantRoutes from "./MerchantRoutes";
 
 
 
@@ -86,7 +85,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/deliveries",
-        element: <AdminHome />,
+        element: <AdminDeliveries />,
       },
       {
         path: "/dashboard/admin/invoices",

@@ -16,7 +16,7 @@ const AdminNav = () => {
             </li>
             <li>
                 <NavLink
-                    to="/dashboard/admin/parcel-tracking"
+                    to="/dashboard/admin/order-tracking"
                     className={
                         `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
@@ -36,7 +36,7 @@ const AdminNav = () => {
             </li>
             <li>
                 <NavLink
-                    to="/dashboard/admin/manage-merchants"
+                    to="/dashboard/admin/manage-merchant"
                     className={
                         `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }

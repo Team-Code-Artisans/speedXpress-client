@@ -40,7 +40,7 @@ const MyShops = () => {
           <div className="flex flex-wrap gap-5">
             {shops.data?.map((shop) => (
               <>
-                <div className="xl:w-1/4 md:w-1/2 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6">
+                <div key={shop._id} className="xl:w-1/4 md:w-1/2 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6">
                   <span className="inline-block rounded bg-orange-500 p-2 text-white">
                     <BsShop className="text-2xl" />
                   </span>
