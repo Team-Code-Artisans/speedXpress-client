@@ -86,7 +86,9 @@ const MerchantCreateParcel = () => {
       time,
       TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent + tax),
       deliveryFee,
-      senderEmail: user?.email
+      senderEmail: user?.email,
+      paid: false,
+      status: "pending",
     }
     console.log(parcelData)
 
