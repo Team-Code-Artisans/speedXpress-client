@@ -39,7 +39,7 @@ export const MyCustomers = () => {
     useEffect(()=>{
         const result = myCustomers?.filter(customer => {
             console.log(customer);
-           return customer?.name?.toLowerCase()?.match(search?.toLowarCase())
+           return customer?.name?.toLowerCase()?.match(search?.toLowerCase())
         })
         setFilterData(result)
     },[myCustomers,search])
