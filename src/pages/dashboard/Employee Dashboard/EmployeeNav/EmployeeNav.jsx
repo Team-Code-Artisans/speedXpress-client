@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import EmployeeDropDrown from "./EmployeeDropdown";
+import EmployeeDropdown from "./EmployeeDropdown";
 
 const EmployeeNav = ({ mobile }) => {
     return (
@@ -38,7 +38,7 @@ const EmployeeNav = ({ mobile }) => {
                 </NavLink>
             </li>
             <li>
-                <EmployeeDropDrown />
+                <EmployeeDropdown />
             </li>
         </>
     );

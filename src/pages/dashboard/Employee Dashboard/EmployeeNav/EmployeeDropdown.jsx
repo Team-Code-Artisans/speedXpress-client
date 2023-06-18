@@ -7,7 +7,7 @@ import { GoSignOut } from 'react-icons/go';
 import { MdPayment } from 'react-icons/md';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 
-export default function EmployeeDropDrown() {
+export default function EmployeeDropdown() {
 
     const { logout } = useContext(AuthContext)
 
@@ -31,7 +31,7 @@ export default function EmployeeDropDrown() {
                     <Menu.Items className="visible transition duration-300 opacity-100 bg-white shadow rounded mt-2 py-1 w-48 absolute -left-16">
                         <div className="px-1 py-1 ">
                             <Menu.Item>
-                                <Link to={'/dashboard/employee/deliveries-history'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                <Link to={'/dashboard/employee/delivery-history'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                                     <AiOutlineShop size={'1.5rem'} />
                                     <span className="px-2">Delivery History</span>
                                 </Link>
@@ -39,7 +39,7 @@ export default function EmployeeDropDrown() {
                         </div>
                         <div className="px-1 py-1">
                             <Menu.Item>
-                                <Link to={'/dashboard/employee/earnings-history'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                <Link to={'/dashboard/employee/earning-history'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
                                     <MdPayment size={'1.5rem'} />
                                     <span className="px-2">Earning History</span>
                                 </Link>

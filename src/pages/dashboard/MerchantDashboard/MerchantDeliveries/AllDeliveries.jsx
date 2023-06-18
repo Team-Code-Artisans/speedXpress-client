@@ -5,13 +5,6 @@ import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
 const AllDeliveries = ({ isLoading, filterData, handleCopy }) => {
 
-    const currentDate = new Date();
-    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
-
-    const formattedDate = currentDate.toLocaleDateString(undefined, dateOptions);
-    const formattedTime = currentDate.toLocaleTimeString(undefined, timeOptions);
-
     const columns = [
         {
             name: "DATE & TIME",
@@ -19,7 +12,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy }) => {
                 <>
                     <div>
                         <p className="text-gray-900 whitespace-no-wrap">
-                            {formattedDate} <br /> {formattedTime}
+                            {row.date} <br /> {row.time}
                         </p>
                     </div>
                 </>

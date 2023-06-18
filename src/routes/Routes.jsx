@@ -24,6 +24,11 @@ import MerchantRoutes from "./MerchantRoutes";
 import SenderHome from "../pages/dashboard/senderDashboard/SenderHome/SenderHome";
 import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
+import EmployeeDeliveries from "../pages/dashboard/Employee Dashboard/Employee Deliveries/EmployeeDeliveries";
+import EmployeeEarnings from "../pages/dashboard/Employee Dashboard/Employee Earnings/EmployeeEarnings";
+import DeliveryHistory from "../pages/dashboard/Employee Dashboard/EmployeeHistory/DeliveryHistory";
+import EarningHistory from "../pages/dashboard/Employee Dashboard/EmployeeHistory/EarningHistory";
+import EmployeeProfile from "../pages/dashboard/Employee Dashboard/EmployeeProfile/EmployeeProfile";
 
 
 
@@ -170,6 +175,26 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/employee",
         element: <EmployeeHome />,
+      },
+      {
+        path: "/dashboard/employee/deliveries",
+        element: <EmployeeDeliveries />,
+      },
+      {
+        path: "/dashboard/employee/earnings",
+        element: <EmployeeEarnings />,
+      },
+      {
+        path: "/dashboard/employee/delivery-history",
+        element: <DeliveryHistory />,
+      },
+      {
+        path: "/dashboard/employee/earning-history",
+        element: <EarningHistory />,
+      },
+      {
+        path: "/dashboard/employee/profile",
+        element: <EmployeeProfile />,
       },
 
 
