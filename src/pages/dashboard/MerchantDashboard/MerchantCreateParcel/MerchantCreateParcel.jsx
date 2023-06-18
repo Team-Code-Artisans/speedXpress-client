@@ -12,120 +12,117 @@ import { divisionsData } from "../../../../data/Divisions";
 import { weights } from "../../../../data/Weight";
 
 const MerchantCreateParcel = () => {
-
   const divisions = divisionsData;
   let [division, setDivision] = useState(divisions[5]);
   const districts = districtsData;
-  let [district, setDistrict] = useState(districts[46])
+  let [district, setDistrict] = useState(districts[46]);
   const [dropdown2, setDropdown2] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [weight, setWeight] = useState("0.5KG - 1KG");
   const [weightCharge, setWeightCharge] = useState(10);
   const [deliveryFee, setDeliveryFee] = useState(60);
   const [weightTotalCharge, setWeightTotalCharge] = useState(0);
-  const [tax, setTax] = useState(14)
-  const [urgent, setUrgent] = useState(0)
+  const [tax, setTax] = useState(14);
+  const [urgent, setUrgent] = useState(0);
 
   const currentDate = new Date();
-  const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+  const dateOptions = { day: "2-digit", month: "2-digit", year: "numeric" };
+  const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
 
   const date = currentDate.toLocaleDateString(undefined, dateOptions);
   const time = currentDate.toLocaleTimeString(undefined, timeOptions);
 
   const weightData = weights;
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   const handleWeight = (e) => {
     setWeight(e.weight);
-    setWeightCharge(e.price)
-    setDeliveryFee(division.name == 'Dhaka' ? 60 : 120)
+    setWeightCharge(e.price);
+    setDeliveryFee(division.name == "Dhaka" ? 60 : 120);
     setDropdown2(false);
   };
 
   // here we handled the amount and calculated the amount charge according to parcel quantity
   const handleQuantity = (value) => {
-    let weightchargeAmount = (weightCharge * value);
+    let weightchargeAmount = weightCharge * value;
     setWeightTotalCharge(weightchargeAmount);
-    handleCalculateTax(weightTotalCharge, deliveryFee)
-  }
-  useEffect(() => {
-
-  }, [weightTotalCharge])
+    handleCalculateTax(weightTotalCharge, deliveryFee);
+  };
+  useEffect(() => {}, [weightTotalCharge]);
 
   // addding tax(vat =(15%)& sd=(5%))    -> along with total charge a
   const handleCalculateTax = (weightTotalCharge, deliveryFee) => {
-    let vat = (weightTotalCharge + deliveryFee) * .15;
-    let sd = (weightTotalCharge + deliveryFee) * .05;
-    setTax(vat + sd)
-  }
+    let vat = (weightTotalCharge + deliveryFee) * 0.15;
+    let sd = (weightTotalCharge + deliveryFee) * 0.05;
+    setTax(vat + sd);
+  };
 
-  const {
-    register,
-    reset,
-    handleSubmit
-  } = useForm();
-
+  const { register, reset, handleSubmit } = useForm();
 
   const handleMerchantParcel = (data) => {
-    setLoading(true)
+    setLoading(true);
 
-    const { name, number, address, email } = data
-    division = division.name
-    district = district.name
+    const { name, number, address, email } = data;
+    division = division.name;
+    district = district.name;
     const customerInfo = {
-      name, email, number, division, district, address,
+      name,
+      email,
+      number,
+      division,
+      district,
+      address,
       merchantEmail: user?.email,
-      merchantName: user?.displayName
-    }
+      merchantName: user?.displayName,
+    };
 
     const parcelData = {
       customerInfo,
       weight,
       date,
       time,
-      TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent + tax),
+      TotalchargeAmount: weightTotalCharge + deliveryFee + urgent + tax,
       deliveryFee,
       senderEmail: user?.email,
       paid: false,
       status: "pending",
-    }
-    console.log(parcelData)
+    };
+    console.log(parcelData);
 
     // crete parcel here and set this data to DATABASE
-    createParcel(parcelData).then(data => {
-      console.log(data)
-      if (data.data.acknowledged) {
-        setLoading(false)
-        reset()
-        toast.success(data.message)
-      }
-    }).catch(err => {
-      setLoading(false)
-      console.log(err.message)
-    })
+    createParcel(parcelData)
+      .then((data) => {
+        console.log(data);
+        if (data.data.acknowledged) {
+          setLoading(false);
+          reset();
+          toast.success(data.message);
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err.message);
+      });
 
     // also save customer info to the DATABASE
     saveCustomer(customerInfo)
-
-      .then(data => {
-        console.log(data)
+      .then((data) => {
+        console.log(data);
         if (data.acknowledged) {
-          toast.success("customer saved")
-
+          toast.success("customer saved");
         }
-      }).catch(err => {
-        console.log(err.message)
-
       })
-
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
     <div className="overflow-y-hidden">
       <div className="flex justify-center items-center 2xl:container 2xl:mx-auto lg:py-16 md:py-12 py-9 px-4 md:px-6 lg:px-20 xl:px-44 ">
-        <form onSubmit={handleSubmit(handleMerchantParcel)} className="flex w-full sm:w-9/12 lg:w-full flex-col lg:flex-row justify-center items-center lg:space-x-10 2xl:space-x-36 space-y-12 lg:space-y-0">
-
+        <form
+          onSubmit={handleSubmit(handleMerchantParcel)}
+          className="flex w-full sm:w-9/12 lg:w-full flex-col lg:flex-row justify-center items-center lg:space-x-10 2xl:space-x-36 space-y-12 lg:space-y-0">
           {/* form submit */}
           <div className="flex w-full  flex-col justify-start items-start">
             <div>
@@ -134,8 +131,6 @@ const MerchantCreateParcel = () => {
               </p>
             </div>
 
-
-
             {/* Customer Details */}
             <div className="mt-12">
               <p className="text-xl font-semibold leading-5 text-gray-800">
@@ -143,9 +138,7 @@ const MerchantCreateParcel = () => {
               </p>
             </div>
 
-
             <div className="mt-8 flex flex-col justify-start items-start w-full">
-
               <span className="text-xs text-gray-400">Full Name</span>
               <input
                 {...register("name")}
@@ -154,8 +147,6 @@ const MerchantCreateParcel = () => {
                 placeholder="Full Name"
                 required
               />
-
-
 
               <span className="text-xs text-gray-400">Email</span>
               <input
@@ -166,10 +157,6 @@ const MerchantCreateParcel = () => {
                 required
               />
 
-
-
-
-
               <span className="text-xs text-gray-400">Phone number</span>
               <input
                 {...register("number")}
@@ -179,22 +166,24 @@ const MerchantCreateParcel = () => {
                 required
               />
 
-
-
-
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
-
-
                 <div>
                   <span className="text-xs text-gray-400">Select Division</span>
-                  <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
+                  <InputDivision
+                    division={division}
+                    setDivision={setDivision}
+                    divisions={divisions}
+                  />
                 </div>
 
                 <div>
                   <span className="text-xs text-gray-400">Select Distric</span>
-                  <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
+                  <InputDistrict
+                    district={district}
+                    setDistrict={setDistrict}
+                    districts={districts}
+                  />
                 </div>
-
               </div>
 
               <span className="text-xs text-gray-400">Address</span>
@@ -213,13 +202,9 @@ const MerchantCreateParcel = () => {
               </p>
             </div>
 
-
-
-
             {/* checked button */}
             <div>
               <br />
-
 
               <fieldset className="grid grid-cols-2 gap-4">
                 <legend className="sr-only">Delivery</legend>
@@ -237,8 +222,7 @@ const MerchantCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryStandard"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                  >
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500">
                     <p className="text-gray-700">Standard</p>
 
                     <p className="mt-1 text-gray-900">Regular charge</p>
@@ -257,42 +241,33 @@ const MerchantCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryPriority"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                  >
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500">
                     <p className="text-gray-700">Next Day</p>
 
                     <p className="mt-1 text-gray-900">TK 100 +</p>
                   </label>
                 </div>
               </fieldset>
-
             </div>
-
-
-
 
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
                 <div className="relative w-full">
                   <span className="text-xs text-gray-400">Total weight</span>
-                  <p
-                    className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full"
-                  >
+                  <p className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full">
                     {weight}
                   </p>
                   <button
                     onClick={() => setDropdown2(!dropdown2)}
                     className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0"
-                    type="button"
-                  >
+                    type="button">
                     <svg
                       id="close"
                       className={` transform ${dropdown2 ? "rotate-180" : ""}`}
                       width={16}
                       viewBox="0 0 16 16"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M12 6L8 10L4 6"
                         stroke="#4B5563"
@@ -301,22 +276,23 @@ const MerchantCreateParcel = () => {
                       />
                     </svg>
                   </button>
-                  <div className={`shadow absolute z-10 bg-white top-10  w-full mt-3 ${dropdown2 ? "" : "hidden"}`}>
+                  <div
+                    className={`shadow absolute z-10 bg-white top-10  w-full mt-3 ${
+                      dropdown2 ? "" : "hidden"
+                    }`}>
                     <div className="flex flex-col  w-full">
                       {weightData.map((e) => (
                         <p
                           key={e.id}
                           tabIndex={0}
                           onClick={() => handleWeight(e)}
-                          className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full"
-                        >
+                          className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full">
                           {e.weight}
                         </p>
                       ))}
                     </div>
                   </div>
                 </div>
-
 
                 <div>
                   <span className="text-xs text-gray-400">Parcel Quantity</span>
@@ -326,7 +302,6 @@ const MerchantCreateParcel = () => {
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
                     placeholder="Parcel Quantity"
                     required
-
                     onChange={(e) => handleQuantity(e.target.value)}
                   />
                 </div>
@@ -339,8 +314,9 @@ const MerchantCreateParcel = () => {
                 required
               /> */}
 
-
-              <span className="text-xs text-gray-400">Additional info about your parcel</span>
+              <span className="text-xs text-gray-400">
+                Additional info about your parcel
+              </span>
               <input
                 {...register("details")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -348,7 +324,9 @@ const MerchantCreateParcel = () => {
                 placeholder="Parcel Details (Optional)"
               />
             </div>
-            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
+            <button
+              type="submit"
+              className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
               {loading ? <SmallSpinner /> : "Order Submit"}
             </button>
           </div>
@@ -362,29 +340,32 @@ const MerchantCreateParcel = () => {
             </div>
             <div className="flex mt-7 flex-col items-end w-full space-y-6">
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">
-                  Delivery Fee
-                </p>
+                <p className="text-lg leading-4 text-gray-600">Delivery Fee</p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
                   ${deliveryFee}
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">
-                  Weight Charge
-                </p>
+                <p className="text-lg leading-4 text-gray-600">Weight Charge</p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
                   ${weightCharge}
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">Sub total <span className="text-xs text-amber-500">( w.charge × quantity + delivery )</span> </p>
+                <p className="text-lg leading-4 text-gray-600">
+                  Sub total{" "}
+                  <span className="text-xs text-amber-500">
+                    ( w.charge × quantity + delivery )
+                  </span>{" "}
+                </p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
                   {weightTotalCharge + deliveryFee}
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">Urgent Delivery Fee</p>
+                <p className="text-lg leading-4 text-gray-600">
+                  Urgent Delivery Fee
+                </p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
                   {urgent}
                 </p>
@@ -396,7 +377,9 @@ const MerchantCreateParcel = () => {
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">Promo Discount</p>
+                <p className="text-lg leading-4 text-gray-600">
+                  Promo Discount
+                </p>
                 <p className="text-lg font-semibold leading-4 text-orange-600">
                   - $00
                 </p>
