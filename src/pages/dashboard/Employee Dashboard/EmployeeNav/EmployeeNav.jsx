@@ -28,7 +28,7 @@ const EmployeeNav = ({ mobile }) => {
             </li>
             <li>
                 <NavLink
-                    to="/dashboard/merchant/Earnings"
+                    to="/dashboard/employee/earnings"
                     className={({ isActive }) =>
                         `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
                         } ${isActive && `text-rose-600`}}`
