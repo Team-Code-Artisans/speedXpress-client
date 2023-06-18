@@ -1,9 +1,9 @@
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdPendingActions } from "react-icons/md";
-import trackingImg from "../../../Assets/tracking.png";
+import trackingImg from "../../../../Assets/tracking.png";
 
-const SenderParcelTracking = () => {
+const OrderTracking = () => {
   return (
     <div>
       <section className="bg-gray-100 body-font">
@@ -98,32 +98,14 @@ const SenderParcelTracking = () => {
             </h1>
             <div className="flex justify-between text-start font-medium">
               <div className="w-1/2">
-                <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Name:</p>
-                  <p>unknown</p>
-                </div>
-                <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Location:</p>
-                  <p>anywhere</p>
-                </div>
-                <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Payment:</p>
-                  <p>free</p>
-                </div>
+                <p className="mb-2">Name:</p>
+                <p className="mb-2">Location:</p>
+                <p className="mb-2">Payment:</p>
               </div>
               <div className="w-1/2">
-                <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Delivery Time:</p>
-                  <p>anytime</p>
-                </div>
-                <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Delivery Location:</p>
-                  <p>anywhere</p>
-                </div>
-                <div className="flex">
-                  <p className="mr-3 text-amber-500">Delivery Man: </p>
-                  <p>anybody</p>
-                </div>
+                <p className="mb-2">Delivery Time:</p>
+                <p className="mb-2">Delivery Location:</p>
+                <p>Delivery Man: </p>
               </div>
             </div>
           </div>
@@ -133,4 +115,4 @@ const SenderParcelTracking = () => {
   );
 };
 
-export default SenderParcelTracking;
+export default OrderTracking;

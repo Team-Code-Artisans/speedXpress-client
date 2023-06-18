@@ -16,7 +16,7 @@ const MerchantCreateParcel = () => {
   const divisions = divisionsData;
   let [division, setDivision] = useState(divisions[5]);
   const districts = districtsData;
-  const [district, setDistrict] = useState(districts[46])
+  let [district, setDistrict] = useState(districts[46])
   const [dropdown2, setDropdown2] = useState(false);
   const [loading, setLoading] = useState(false)
   const [weight, setWeight] = useState("0.5KG - 1KG");
@@ -26,16 +26,22 @@ const MerchantCreateParcel = () => {
   const [tax, setTax] = useState(14)
   const [urgent, setUrgent] = useState(0)
 
+  const currentDate = new Date();
+  const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+
+  const date = currentDate.toLocaleDateString(undefined, dateOptions);
+  const time = currentDate.toLocaleTimeString(undefined, timeOptions);
+
   const weightData = weights;
   const { user } = useContext(AuthContext)
 
   const handleWeight = (e) => {
     setWeight(e.weight);
     setWeightCharge(e.price)
+    setDeliveryFee(division.name == 'Dhaka' ? 60 : 120)
     setDropdown2(false);
   };
-
-  console.log(division.name, district.name, deliveryFee)
 
   // here we handled the amount and calculated the amount charge according to parcel quantity
   const handleQuantity = (value) => {
@@ -63,12 +69,12 @@ const MerchantCreateParcel = () => {
 
   const handleMerchantParcel = (data) => {
     setLoading(true)
-    let distrcitName = district.name
 
     const { name, number, address, email } = data
     division = division.name
+    district = district.name
     const customerInfo = {
-      name, email, number, division, distrcitName, address,
+      name, email, number, division, district, address,
       merchantEmail: user?.email,
       merchantName: user?.displayName
     }
@@ -76,9 +82,11 @@ const MerchantCreateParcel = () => {
     const parcelData = {
       customerInfo,
       weight,
+      date,
+      time,
       TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent + tax),
       deliveryFee,
-      senderEmail:user?.email
+      senderEmail: user?.email
     }
     console.log(parcelData)
 

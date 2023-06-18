@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import MerchantDropDrown from "./MerchantDropdown";
+import MerchantDropdown from "./MerchantDropdown";
 
 const MerchantNav = ({ mobile }) => {
   return (
@@ -7,9 +7,8 @@ const MerchantNav = ({ mobile }) => {
       <li>
         <NavLink
           to="/dashboard/merchant"
-          className={({ isActive }) =>
-            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-            } ${isActive && `text-rose-600`}}`
+          className={
+            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
           }
         >
           Dashboard
@@ -18,9 +17,8 @@ const MerchantNav = ({ mobile }) => {
       <li>
         <NavLink
           to="/dashboard/merchant/deliveries"
-          className={({ isActive }) =>
-            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-            } ${isActive && `text-rose-600`}}`
+          className={
+            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
           }
         >
           Deliveries
@@ -29,9 +27,8 @@ const MerchantNav = ({ mobile }) => {
       <li>
         <NavLink
           to="/dashboard/merchant/invoices"
-          className={({ isActive }) =>
-            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 ${mobile ? `text-black` : "text-gray-100"
-            } ${isActive && `text-rose-600`}}`
+          className={
+            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
           }
         >
           Invoices
@@ -40,13 +37,13 @@ const MerchantNav = ({ mobile }) => {
       <li>
         <Link
           to={"/dashboard/merchant/create-parcel"}
-          className="bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg"
+          className="bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg md:block hidden"
         >
           Create Parcel
         </Link>
       </li>
       <li>
-        <MerchantDropDrown />
+        <MerchantDropdown />
       </li>
     </>
   );
