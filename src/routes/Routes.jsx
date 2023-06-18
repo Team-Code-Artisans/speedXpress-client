@@ -101,19 +101,7 @@ const router = createBrowserRouter([
         element: <AdminHome />,
       },
       {
-        path: "/dashboard/admin/parcel-history",
-        element: <AdminHome />,
-      },
-      {
         path: "/dashboard/admin/return",
-        element: <AdminHome />,
-      },
-      {
-        path: "/dashboard/admin/payment-history",
-        element: <AdminHome />,
-      },
-      {
-        path: "/dashboard/admin/return-history",
         element: <AdminHome />,
       },
       {
@@ -145,10 +133,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/my-parcels",
-        element: <SenderHome />,
-      },
-      {
-        path: "/dashboard/regular/payment-history",
         element: <SenderHome />,
       },
       {
@@ -205,14 +189,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/employee/earnings",
         element: <EmployeeEarnings />,
-      },
-      {
-        path: "/dashboard/employee/delivery-history",
-        element: <DeliveryHistory />,
-      },
-      {
-        path: "/dashboard/employee/earning-history",
-        element: <EarningHistory />,
       },
       {
         path: "/dashboard/employee/profile",

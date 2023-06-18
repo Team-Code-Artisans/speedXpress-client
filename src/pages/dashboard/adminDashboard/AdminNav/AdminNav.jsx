@@ -1,14 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AdminDropdown from "./AdminDropdown";
 
-const AdminNav = ({ mobile }) => {
+const AdminNav = () => {
     return (
         <>
             <li>
                 <NavLink
                     to="/dashboard/admin"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Dashboard
@@ -18,7 +18,7 @@ const AdminNav = ({ mobile }) => {
                 <NavLink
                     to="/dashboard/admin/parcel-tracking"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Tracking
@@ -28,7 +28,7 @@ const AdminNav = ({ mobile }) => {
                 <NavLink
                     to="/dashboard/admin/deliveries"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Deliveries
@@ -38,7 +38,7 @@ const AdminNav = ({ mobile }) => {
                 <NavLink
                     to="/dashboard/admin/manage-merchants"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Merchants
@@ -48,7 +48,7 @@ const AdminNav = ({ mobile }) => {
                 <NavLink
                     to="/dashboard/admin/manage-employee"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Employees
