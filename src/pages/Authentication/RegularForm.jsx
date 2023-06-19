@@ -24,11 +24,11 @@ const RegularForm = () => {
                 const user = result?.user;
 
                 const userData = {
-                    email,
+                    account_type: 'regular',
                     name,
+                    email,
                     phoneNumber,
                     address,
-                    account_type: 'regular'
                 }
                 reset()
                 setLoading(false)
