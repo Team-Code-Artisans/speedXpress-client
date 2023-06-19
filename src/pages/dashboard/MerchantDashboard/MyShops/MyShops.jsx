@@ -17,7 +17,7 @@ const MyShops = () => {
     getShop(user?.email).then((data) => {
       setShops(data);
     });
-  }, []);
+  }, [shops.length]);
 
   return (
     <div>

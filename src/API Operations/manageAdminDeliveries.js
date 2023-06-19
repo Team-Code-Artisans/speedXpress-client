@@ -11,14 +11,13 @@ export const getAllDeliveries = async () => {
   }
 };
 
-// create merchant shop
-// export const createShop = async (shopData) => {
-//    try {
-//      const url = `/create-shop`;
-//      const response = await instance.post(url, shopData);
-//      console.log(response);
-//      return response;
-//    } catch (error) {
-//      console.log(error.message);
-//    }
-//  };
+// update delivery status
+export const updateStatus = async (parcelId, updatedStatus) => {
+  try {
+    const url = `/update-status`;
+    const response = await instance.patch(url, { parcelId, updatedStatus });
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
