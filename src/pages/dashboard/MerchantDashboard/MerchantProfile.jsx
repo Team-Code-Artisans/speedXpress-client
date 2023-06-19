@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { getUser, saveUser } from "../../../API Operations/manageUsers";
+import { getAUser, saveUser } from "../../../API Operations/manageUsers";
 import profile from "../../../Assets/profile.png";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
@@ -22,7 +22,7 @@ const MerchantProfile = () => {
     refetch,
   } = useQuery({
     queryKey: ["userData"],
-    queryFn: () => getUser(user?.email),
+    queryFn: () => getAUser(user?.email),
   });
 
   console.log(userData)
