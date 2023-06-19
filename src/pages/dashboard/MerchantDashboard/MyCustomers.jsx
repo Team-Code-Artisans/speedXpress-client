@@ -18,7 +18,6 @@ export const MyCustomers = () => {
         getMyCustomers(user?.email)
             .then(data => {
                 if (data.success) {
-                    console.log(data.data)
                     setMyCustomers(data.data)
                     setLoading(false)
                 }
