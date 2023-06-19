@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../contexts/AuthProvider'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -6,11 +6,18 @@ import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
 import { toast } from 'react-hot-toast'
 import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
+import { divisionsData } from '../../data/Divisions'
+import { districtsData } from '../../data/Districts'
+import InputDivision from '../../components/InputDivision'
+import InputDistrict from '../../components/InputDistrict'
 
 const MerchantForm = () => {
 
     const { registerUser, loading, setLoading } = useContext(AuthContext)
-
+    const divisions = divisionsData;
+    let [division, setDivision] = useState(divisions[5]);
+    const districts = districtsData;
+    let [district, setDistrict] = useState(districts[46])
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/"
@@ -19,17 +26,21 @@ const MerchantForm = () => {
 
     const handleRegister = (data) => {
         const { ownerName, shopName, shopEmail, phoneNumber, shopAddress, password } = data
+        division = division.name;
+        district = district.name;
         registerUser(shopEmail, password, shopName, phoneNumber)
             .then(result => {
                 const user = result?.user;
 
                 const userData = {
-                    email: shopEmail,
                     ownerName,
-                    phoneNumber,
+                    account_type: 'merchant',
                     shopName,
+                    email: shopEmail,
+                    phoneNumber,
+                    division,
+                    district,
                     shopAddress,
-                    account_type: 'merchant'
                 }
                 setLoading(false)
                 setAuthToken(user)
@@ -113,6 +124,10 @@ const MerchantForm = () => {
                     placeholder="Phone Number"
                 />
                 {errors.phoneNumber && <span className='text-red-500'>{errors.phoneNumber.message}</span>}
+            </div>
+            <div className='flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8'>
+                <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
+                <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
             </div>
             <div className="w-full">
                 <input
