@@ -29,6 +29,16 @@ export const getRole = async (email) => {
   }
 };
 
+// get user data
+export const getUser = async (email) => {
+  try {
+    const response = await instance.get(`/user/${email}`);
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 // ------------------------------------CUSTOMER -------------------------------------
 
 // save customers info
@@ -56,5 +66,17 @@ export const getMyCustomers = async (merchantEmail) => {
     return res;
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+// get merchant or Employee  of my organization  depending on the type
+
+export const getMerchant = async (userType) => {
+  try {
+    const url = `/myMerchants/${userType}`;
+    const res = await instance.get(url);
+    return res;
+  } catch (error) {
+    console.log(error);
   }
 };
