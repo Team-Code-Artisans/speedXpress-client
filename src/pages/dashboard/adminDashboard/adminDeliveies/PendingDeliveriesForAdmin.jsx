@@ -1,16 +1,23 @@
 import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
+import { toast } from "react-hot-toast";
 import { AiOutlineCopy } from "react-icons/ai";
 import { updateStatus } from "../../../../API Operations/manageAdminDeliveries";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
-const PendingDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
-
+const PendingDeliveriesForAdmin = ({
+  isLoading,
+  filterData,
+  handleCopy,
+  refetch,
+}) => {
   const handleAction = (data) => {
     console.log(data);
     const updatedStatus = "accepted";
     updateStatus(data._id, updatedStatus)
       .then((result) => {
+        refetch();
+        toast.success("accept delivery");
         console.log(result);
       })
       .catch((err) => {
@@ -114,18 +121,18 @@ const PendingDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
         </>
       ),
     },
-    {
-      name: "STATUS",
-      selector: (row) => (
-        <>
-          {
-            <div>
-              <p className="text-lg text-orange-400">Pending</p>
-            </div>
-          }
-        </>
-      ),
-    },
+    // {
+    //   name: "STATUS",
+    //   selector: (row) => (
+    //     <>
+    //       {
+    //         <div>
+    //           <p className="text-lg text-orange-400">Pending</p>
+    //         </div>
+    //       }
+    //     </>
+    //   ),
+    // },
     {
       name: "ACTION",
       selector: (row) => (
@@ -134,9 +141,9 @@ const PendingDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
             <div>
               <button
                 onClick={() => handleAction(row)}
-                className={`text-slate-50 bg-orange-400  px-4 py-2 rounded-full text-center`}
+                className={`text-slate-50 ${row.status == "accepted" ? "bg-green-400" : "bg-orange-400"} px-4 py-2 rounded-full text-center`}
               >
-                Accept
+                {row.status == "accepted" ? "accepted" : "accept"}
               </button>
             </div>
           }
