@@ -26,6 +26,8 @@ import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
+import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/AdminMerchant";
+import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
 
 
 
@@ -93,11 +95,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/manage-merchant",
-        element: <AdminHome />,
+        element: <AdminMerchant/>,
       },
       {
         path: "/dashboard/admin/manage-employee",
-        element: <AdminHome />,
+        element: <AdminEmployee/>,
       },
       {
         path: "/dashboard/admin/return",

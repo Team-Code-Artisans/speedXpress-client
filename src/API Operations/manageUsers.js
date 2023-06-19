@@ -23,7 +23,6 @@ export const getRole = async (email) => {
     try {
         const url = `/user/${email}`;
         const res = await instance.get(url);
-        // console.log(res)
         let role = (res.account_type);
        
         return role;
@@ -60,9 +59,22 @@ export const getMyCustomers = async (merchantEmail) => {
     try {
         const url = `/customers/${merchantEmail}`;
         const res = await instance.get(url);
-        const data = res.data
         return res;
     } catch (error) {
         console.log(error.message);
     }
 };
+
+
+
+// get merchant or Employee  of my organization  depending on the type
+
+export const getUser = async (userType) => {
+    try {
+        const url = `/myMerchants/${userType}`
+        const res = await instance.get(url)
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+}
