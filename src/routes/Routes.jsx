@@ -29,6 +29,7 @@ import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/Admin
 import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
 import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile/MerchantProfile";
 import AdminProfile from "../pages/dashboard/adminDashboard/AdminProfile/AdminProfile";
+import RegularProfile from "../pages/dashboard/senderDashboard/RegularProfile/RegularProfile";
 
 
 
@@ -139,7 +140,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/profile",
-        element: <SenderHome />,
+        element: <RegularProfile />,
       },
 
 

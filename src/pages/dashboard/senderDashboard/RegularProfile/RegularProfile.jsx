@@ -3,9 +3,9 @@ import { getAUser } from "../../../../API Operations/manageUsers";
 import profile from "../../../../Assets/profile.png";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
-import MerchantInfo from "./MerchantInfo";
+import RegularInfo from "./RegularInfo";
 
-const MerchantProfile = () => {
+const RegularProfile = () => {
 
   const { user } = useContext(AuthContext)
   const [userData, setUserData] = useState([])
@@ -34,7 +34,7 @@ const MerchantProfile = () => {
     <div className="w-full bg-gray-50">
       <section className="overflow-hidden w-[80%] mx-auto sm:grid sm:grid-cols-2 gap-6 sm:items-center">
 
-        <MerchantInfo userData={userData} fetchUser={fetchUser} />
+        <RegularInfo userData={userData} fetchUser={fetchUser} />
 
         <img
           alt="Violin"
@@ -46,4 +46,4 @@ const MerchantProfile = () => {
   );
 };
 
-export default MerchantProfile;
+export default RegularProfile;

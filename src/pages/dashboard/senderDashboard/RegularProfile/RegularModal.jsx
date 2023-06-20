@@ -1,8 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import MerchantUpdate from './MerchantUpdate'
+import RegularUpdate from './RegularUpdate'
 
-export default function MerchantModal({ userData, fetchUser }) {
+export default function RegularModal({ userData, fetchUser }) {
     let [isOpen, setIsOpen] = useState(false)
 
     function closeModal() {
@@ -55,7 +55,7 @@ export default function MerchantModal({ userData, fetchUser }) {
                                     >
                                         Update Profile
                                     </Dialog.Title>
-                                    <MerchantUpdate userData={userData} closeModal={closeModal} fetchUser={fetchUser} />
+                                    <RegularUpdate userData={userData} closeModal={closeModal} fetchUser={fetchUser} />
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

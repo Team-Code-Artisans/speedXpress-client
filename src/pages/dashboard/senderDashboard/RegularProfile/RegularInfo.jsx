@@ -1,9 +1,9 @@
 import React from 'react'
-import MerchantModal from './MerchantModal';
+import RegularModal from './RegularModal';
 
-const MerchantInfo = ({ userData, fetchUser }) => {
+const RegularInfo = ({ userData, fetchUser }) => {
 
-    const { shopName, shopAddress, phoneNumber, ownerName, email, account_type } = userData;
+    const { address, phoneNumber, name, email, account_type } = userData;
 
     return (
         <div className="flex flex-col justify-center items-center h-[100vh]">
@@ -12,14 +12,14 @@ const MerchantInfo = ({ userData, fetchUser }) => {
                     <h4 className="px-2 text-2xl font-bold text-navy-700 dark:text-white">
                         General Information
                     </h4>
-                    <MerchantModal userData={userData} fetchUser={fetchUser} />
+                    <RegularModal userData={userData} fetchUser={fetchUser} />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 px-2 w-full">
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                        <p className="text-sm text-gray-600">Owner Name</p>
+                        <p className="text-sm text-gray-600"> Name</p>
                         <p className="text-base font-medium text-navy-700 dark:text-white">
-                            {ownerName}
+                            {name}
                         </p>
                     </div>
 
@@ -27,13 +27,6 @@ const MerchantInfo = ({ userData, fetchUser }) => {
                         <p className="text-sm text-gray-600">Email</p>
                         <p className="text-base font-medium text-navy-700 dark:text-white">
                             {email}
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                        <p className="text-sm text-gray-600">Shop Name</p>
-                        <p className="text-base font-medium text-navy-700 dark:text-white">
-                            {shopName}
                         </p>
                     </div>
 
@@ -45,9 +38,9 @@ const MerchantInfo = ({ userData, fetchUser }) => {
                     </div>
 
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                        <p className="text-sm text-gray-600">Shop Address</p>
+                        <p className="text-sm text-gray-600"> Address</p>
                         <p className="text-base font-medium text-navy-700 dark:text-white">
-                            {shopAddress}
+                            {address}
                         </p>
                     </div>
 
@@ -63,4 +56,4 @@ const MerchantInfo = ({ userData, fetchUser }) => {
     )
 }
 
-export default MerchantInfo
+export default RegularInfo
