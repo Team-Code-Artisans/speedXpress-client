@@ -18,6 +18,7 @@ import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfil
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import RegularCreateParcel from "../pages/dashboard/RegularDashboard/RegularCreateParcel/RegularCreateParcel";
+import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
 import RegularHome from "../pages/dashboard/RegularDashboard/RegularHome/RegularHome";
 import RegularProfile from "../pages/dashboard/RegularDashboard/RegularProfile/RegularProfile";
 import RegularReturnParcel from "../pages/dashboard/RegularDashboard/RegularReturn/RegularReturnParcel";
