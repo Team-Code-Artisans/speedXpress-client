@@ -112,7 +112,7 @@ const router = createBrowserRouter([
       },
 
 
-      // sender routes
+      // regular user routes
       {
         path: "/dashboard/regular",
         element: <RegularHome />,
@@ -123,11 +123,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/deliveries",
-        element: <RegularHome />,
+        element: <p>deleivers</p>,
       },
       {
         path: "/dashboard/regular/invoices",
-        element: <RegularHome />,
+        element: <div>invoice <small>print</small></div>,
       },
       {
         path: "/dashboard/regular/return",

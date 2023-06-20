@@ -62,7 +62,6 @@ export const getMyCustomers = async (merchantEmail) => {
   try {
     const url = `/customers/${merchantEmail}`;
     const res = await instance.get(url);
-    const data = res.data;
     return res;
   } catch (error) {
     console.log(error.message);
