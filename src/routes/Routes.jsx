@@ -14,23 +14,22 @@ import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantC
 import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
 import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
 import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
+import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile/MerchantProfile";
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
+import RegularCreateParcel from "../pages/dashboard/RegularDashboard/RegularCreateParcel/RegularCreateParcel";
+import RegularHome from "../pages/dashboard/RegularDashboard/RegularHome/RegularHome";
+import RegularProfile from "../pages/dashboard/RegularDashboard/RegularProfile/RegularProfile";
+import RegularReturnParcel from "../pages/dashboard/RegularDashboard/RegularReturn/RegularReturnParcel";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
+import AdminProfile from "../pages/dashboard/adminDashboard/AdminProfile/AdminProfile";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking/OrderTracking";
 import AdminDeliveries from "../pages/dashboard/adminDashboard/adminDeliveies/AdminDeliveries";
+import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
+import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/AdminMerchant";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
-import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/AdminMerchant";
-import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
-import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile/MerchantProfile";
-import AdminProfile from "../pages/dashboard/adminDashboard/AdminProfile/AdminProfile";
-import RegularProfile from "../pages/dashboard/RegularDashboard/RegularProfile/RegularProfile";
-import RegularHome from "../pages/dashboard/RegularDashboard/RegularHome/RegularHome";
-import RegularReturnParcel from "../pages/dashboard/RegularDashboard/RegularReturn/RegularReturnParcel";
-import RegularCreateParcel from "../pages/dashboard/RegularDashboard/RegularCreateParcel/RegularCreateParcel";
-import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
 
 
 
@@ -124,7 +123,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/deliveries",
-        element: <RegularUserDeliveries/>,
+        element: <RegularUserDeliveries />,
       },
       {
         path: "/dashboard/regular/invoices",
