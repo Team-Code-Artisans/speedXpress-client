@@ -15,9 +15,9 @@ const MerchantForm = () => {
 
     const { registerUser, loading, setLoading } = useContext(AuthContext)
     const divisions = divisionsData;
-    const [division, setDivision] = useState(divisions[5]);
+    let [division, setDivision] = useState(divisions[5]);
     const districts = districtsData;
-    const [district, setDistrict] = useState(districts[46])
+    let [district, setDistrict] = useState(districts[46])
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/"
@@ -26,7 +26,8 @@ const MerchantForm = () => {
 
     const handleRegister = (data) => {
         const { ownerName, shopName, shopEmail, phoneNumber, shopAddress, password } = data
-
+        division = division.name;
+        district = district.name;
         registerUser(shopEmail, password, shopName, phoneNumber)
             .then(result => {
                 const user = result?.user;

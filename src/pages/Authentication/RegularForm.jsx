@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -6,10 +6,18 @@ import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
 import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
 import { AuthContext } from '../../contexts/AuthProvider'
+import InputDivision from '../../components/InputDivision'
+import InputDistrict from '../../components/InputDistrict'
+import { divisionsData } from '../../data/Divisions'
+import { districtsData } from '../../data/Districts'
 
 const RegularForm = () => {
 
     const { registerUser, loading, setLoading } = useContext(AuthContext)
+    const divisions = divisionsData;
+    let [division, setDivision] = useState(divisions[5]);
+    const districts = districtsData;
+    let [district, setDistrict] = useState(districts[46])
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -19,6 +27,8 @@ const RegularForm = () => {
 
     const handleRegister = (data) => {
         const { name, email, phoneNumber, address, password } = data
+        division = division.name
+        district = district.name
         registerUser(email, password, name, phoneNumber)
             .then(result => {
                 const user = result?.user;
@@ -28,6 +38,8 @@ const RegularForm = () => {
                     name,
                     email,
                     phoneNumber,
+                    division,
+                    district,
                     address,
                 }
                 reset()
@@ -97,6 +109,10 @@ const RegularForm = () => {
                     placeholder="Phone Number"
                 />
                 {errors.phoneNumber && <span className='text-red-500'>{errors.phoneNumber.message}</span>}
+            </div>
+            <div className='flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8'>
+                <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
+                <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
             </div>
             <div className="w-full">
                 <input

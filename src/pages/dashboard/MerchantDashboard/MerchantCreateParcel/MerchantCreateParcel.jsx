@@ -48,7 +48,7 @@ const MerchantCreateParcel = () => {
     setWeightTotalCharge(weightchargeAmount);
     handleCalculateTax(weightTotalCharge, deliveryFee);
   };
-  useEffect(() => {}, [weightTotalCharge]);
+  useEffect(() => { }, [weightTotalCharge]);
 
   // addding tax(vat =(15%)& sd=(5%))    -> along with total charge a
   const handleCalculateTax = (weightTotalCharge, deliveryFee) => {
@@ -139,7 +139,7 @@ const MerchantCreateParcel = () => {
             </div>
 
             <div className="mt-8 flex flex-col justify-start items-start w-full">
-              <span className="text-xs text-gray-400">Full Name</span>
+              <span className="text-sm text-gray-400 pb-2 pt-4">Full Name</span>
               <input
                 {...register("name")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -148,7 +148,7 @@ const MerchantCreateParcel = () => {
                 required
               />
 
-              <span className="text-xs text-gray-400">Email</span>
+              <span className="text-sm text-gray-400 pb-2 pt-4">Email</span>
               <input
                 {...register("email")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -157,7 +157,7 @@ const MerchantCreateParcel = () => {
                 required
               />
 
-              <span className="text-xs text-gray-400">Phone number</span>
+              <span className="text-sm text-gray-400 pb-2 pt-4">Phone number</span>
               <input
                 {...register("number")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -168,7 +168,7 @@ const MerchantCreateParcel = () => {
 
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
                 <div>
-                  <span className="text-xs text-gray-400">Select Division</span>
+                  <span className="text-sm text-gray-400 pb-2 pt-4">Select Division</span>
                   <InputDivision
                     division={division}
                     setDivision={setDivision}
@@ -177,7 +177,7 @@ const MerchantCreateParcel = () => {
                 </div>
 
                 <div>
-                  <span className="text-xs text-gray-400">Select Distric</span>
+                  <span className="text-sm text-gray-400 pb-2 pt-4">Select Distric</span>
                   <InputDistrict
                     district={district}
                     setDistrict={setDistrict}
@@ -186,7 +186,7 @@ const MerchantCreateParcel = () => {
                 </div>
               </div>
 
-              <span className="text-xs text-gray-400">Address</span>
+              <span className="text-sm text-gray-400 pb-2 pt-4">Address</span>
               <input
                 {...register("address")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -222,7 +222,7 @@ const MerchantCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryStandard"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500">
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-orange-500 peer-checked:ring-1 peer-checked:ring-orange-500">
                     <p className="text-gray-700">Standard</p>
 
                     <p className="mt-1 text-gray-900">Regular charge</p>
@@ -241,7 +241,7 @@ const MerchantCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryPriority"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500">
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-orange-500 peer-checked:ring-1 peer-checked:ring-orange-500">
                     <p className="text-gray-700">Next Day</p>
 
                     <p className="mt-1 text-gray-900">TK 100 +</p>
@@ -253,7 +253,7 @@ const MerchantCreateParcel = () => {
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
                 <div className="relative w-full">
-                  <span className="text-xs text-gray-400">Total weight</span>
+                  <span className="text-sm text-gray-400 pb-2 pt-4">Total weight</span>
                   <p className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full">
                     {weight}
                   </p>
@@ -277,9 +277,8 @@ const MerchantCreateParcel = () => {
                     </svg>
                   </button>
                   <div
-                    className={`shadow absolute z-10 bg-white top-10  w-full mt-3 ${
-                      dropdown2 ? "" : "hidden"
-                    }`}>
+                    className={`shadow absolute z-10 bg-white top-16  w-full mt-3 ${dropdown2 ? "" : "hidden"
+                      }`}>
                     <div className="flex flex-col  w-full">
                       {weightData.map((e) => (
                         <p
@@ -293,11 +292,14 @@ const MerchantCreateParcel = () => {
                     </div>
                   </div>
                 </div>
-
-                <div>
-                  <span className="text-xs text-gray-400">Parcel Quantity</span>
+                <div className="relative w-full">
+                  <span className="text-sm text-gray-400 pb-2 pt-4">Parcel Quantity</span>
                   <input
-                    {...register("quantity")}
+                    {...register("quantity", {
+                      pattern: {
+                        value: /^\d+(\.\d+)?$/,
+                      }
+                    })}
                     type="number"
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
                     placeholder="Parcel Quantity"
@@ -305,6 +307,7 @@ const MerchantCreateParcel = () => {
                     onChange={(e) => handleQuantity(e.target.value)}
                   />
                 </div>
+
               </div>
               {/* <input
                 {...register("amount")}
@@ -314,15 +317,17 @@ const MerchantCreateParcel = () => {
                 required
               /> */}
 
-              <span className="text-xs text-gray-400">
-                Additional info about your parcel
-              </span>
-              <input
-                {...register("details")}
-                className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
-                type="text"
-                placeholder="Parcel Details (Optional)"
-              />
+              <div className="relative w-full">
+                <span className="text-sm text-gray-400 pb-2">
+                  Additional info about your parcel
+                </span>
+                <input
+                  {...register("details")}
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Parcel Details (Optional)"
+                />
+              </div>
             </div>
             <button
               type="submit"
