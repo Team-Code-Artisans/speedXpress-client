@@ -3,15 +3,26 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { createParcel } from "../../../../API Operations/manageParcels";
 import { saveCustomer } from "../../../../API Operations/manageUsers";
+import InputDistrict from "../../../../components/InputDistrict";
+import InputDivision from "../../../../components/InputDivision";
 import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { weights } from "../../../../data/Weight";
-import InputDivision from "../../../../components/InputDivision";
-import InputDistrict from "../../../../components/InputDistrict";
-import { divisionsData } from "../../../../data/Divisions";
 import { districtsData } from "../../../../data/Districts";
+import { divisionsData } from "../../../../data/Divisions";
+import { weights } from "../../../../data/Weight";
 
 const RegularCreateParcel = () => {
+
+  // time  calculations here
+  
+  const currentDate = new Date();
+  const dateOptions = { day: "2-digit", month: "2-digit", year: "numeric" };
+  const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
+
+  const date = currentDate.toLocaleDateString(undefined, dateOptions);
+  const time = currentDate.toLocaleTimeString(undefined, timeOptions);
+
+
 
 
   const divisions = divisionsData;
@@ -69,10 +80,13 @@ const RegularCreateParcel = () => {
     }
 
     const parcelData = {
+      date,
+      time,
       customerInfo,
       weight,
       TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent),
       deliveryFee,
+      status:"pending",
       senderEmail: user?.email
     }
     console.log(parcelData)
@@ -92,16 +106,16 @@ const RegularCreateParcel = () => {
 
     // also save customer info to the DATABASE
     saveCustomer(customerInfo)
-    setLoading(true)
+    // setLoading(true)
       .then(data => {
         console.log(data)
         if (data.acknowledged) {
           toast.success("customer saved")
-          setLoading(false)
+          
         }
       }).catch(err => {
         console.log(err.message)
-        setLoading(false)
+        
       })
 
   };
@@ -118,8 +132,6 @@ const RegularCreateParcel = () => {
                 Create Parcel
               </p>
             </div>
-
-
 
             {/* Customer Details */}
             <div className="mt-12">

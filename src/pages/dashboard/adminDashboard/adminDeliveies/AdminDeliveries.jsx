@@ -25,6 +25,10 @@ const AdminDeliveries = () => {
 
   // console.log(allParcels);
 
+  // filtered data here
+const pendingDeliveries=filterData.filter(delivery=>delivery.status === 'pending')
+const completedDeliveries=filterData.filter(delivery=>delivery.status === 'complete')
+
   useEffect(() => {
     const result = allParcels.data?.filter(parcel => {
       const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
@@ -93,8 +97,8 @@ const AdminDeliveries = () => {
         </div>
 
         {activeStatus === 1 && <AllDeliveriesForAdmin isLoading={isLoading} refetch={refetch} filterData={filterData} handleCopy={handleCopy} />}
-        {activeStatus === 2 && <PendingDeliveriesForAdmin isLoading={isLoading} refetch={refetch} filterData={filterData} handleCopy={handleCopy} />}
-        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} refetch={refetch} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 2 && <PendingDeliveriesForAdmin isLoading={isLoading} refetch={refetch} pendingDeliveries={pendingDeliveries} handleCopy={handleCopy} />}
+        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} refetch={refetch} completedDeliveries={completedDeliveries} handleCopy={handleCopy} />}
       </div>
     </div>
   );
