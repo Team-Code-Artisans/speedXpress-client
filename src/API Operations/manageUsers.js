@@ -32,7 +32,7 @@ export const getRole = async (email) => {
 // get user data
 export const getAUser = async (email) => {
   try {
-    const response = await instance.get(`/user/${email}`);
+    const response = await instance.get(`/userData/${email}`);
     return response;
   } catch (error) {
     console.log(error.message);
