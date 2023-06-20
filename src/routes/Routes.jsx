@@ -30,6 +30,7 @@ import RegularProfile from "../pages/dashboard/RegularDashboard/RegularProfile/R
 import RegularHome from "../pages/dashboard/RegularDashboard/RegularHome/RegularHome";
 import RegularReturnParcel from "../pages/dashboard/RegularDashboard/RegularReturn/RegularReturnParcel";
 import RegularCreateParcel from "../pages/dashboard/RegularDashboard/RegularCreateParcel/RegularCreateParcel";
+import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
 
 
 
@@ -112,7 +113,7 @@ const router = createBrowserRouter([
       },
 
 
-      // sender routes
+      // regular user routes
       {
         path: "/dashboard/regular",
         element: <RegularHome />,
@@ -123,11 +124,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/deliveries",
-        element: <RegularHome />,
+        element: <RegularUserDeliveries/>,
       },
       {
         path: "/dashboard/regular/invoices",
-        element: <RegularHome />,
+        element: <div>invoice <small>print</small></div>,
       },
       {
         path: "/dashboard/regular/return",
