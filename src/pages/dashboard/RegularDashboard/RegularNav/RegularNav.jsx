@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import SenderDropdown from "./SenderDropdown";
+import RegularDropdown from "./RegularDropdown";
 
-const SenderNav = () => {
+const RegularNav = () => {
     return (
         <>
             <li>
@@ -53,10 +53,10 @@ const SenderNav = () => {
                 </Link>
             </li>
             <li>
-                <SenderDropdown />
+                <RegularDropdown />
             </li>
         </>
     );
 };
 
-export default SenderNav;
+export default RegularNav;

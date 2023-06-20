@@ -3,7 +3,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdPendingActions } from "react-icons/md";
 import trackingImg from "../../../../Assets/tracking.png";
 
-const SenderParcelTracking = () => {
+const RegularParcelTracking = () => {
   return (
     <div>
       <section className="bg-gray-100 body-font">
@@ -133,4 +133,4 @@ const SenderParcelTracking = () => {
   );
 };
 
-export default SenderParcelTracking;
+export default RegularParcelTracking;

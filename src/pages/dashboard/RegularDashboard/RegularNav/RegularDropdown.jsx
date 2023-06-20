@@ -1,13 +1,12 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { AiOutlineShop, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { GoSignOut } from 'react-icons/go';
-import { MdInsertEmoticon, MdPayment } from 'react-icons/md';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 
-export default function SenderDropdown() {
+export default function RegularDropdown() {
 
     const { logout } = useContext(AuthContext)
 
@@ -29,22 +28,6 @@ export default function SenderDropdown() {
                     leaveTo="transform opacity-0 scale-95"
                 >
                     <Menu.Items className="visible transition duration-300 opacity-100 bg-white shadow rounded mt-2 py-1 w-48 absolute -left-40 md:-left-20">
-                        <div className="p-1 ">
-                            <Menu.Item>
-                                <Link to={'/dashboard/regular/my-parcels'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                    <AiOutlineShop size={'1.5rem'} />
-                                    <span className="px-2">My Parcels</span>
-                                </Link>
-                            </Menu.Item>
-                        </div>
-                        <div className="p-1">
-                            <Menu.Item>
-                                <Link className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                    <MdPayment size={'1.5rem'} />
-                                    <span className="px-2">Payment History</span>
-                                </Link>
-                            </Menu.Item>
-                        </div>
                         <div className="p-1">
                             <Menu.Item>
                                 <Link to={'/dashboard/regular/profile'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
