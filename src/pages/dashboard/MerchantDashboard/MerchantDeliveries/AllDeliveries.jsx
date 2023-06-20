@@ -7,7 +7,7 @@ import StripeCheckout from "react-stripe-checkout";
 import instance from "../../../../axios";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-const AllDeliveries = ({ isLoading, filterData, handleCopy,refetch }) => {
+const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
     const stripeKey = import.meta.env.VITE_Stripe_public_key;
     // console.log(stripeKey)
     // Use stripeKey in your component
@@ -111,7 +111,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy,refetch }) => {
                                 {row.customerInfo.merchantName}
                             </p>
                             <p>
-                                {row.customerInfo.merhantEmail}
+                                {row.customerInfo.merchantEmail}
                             </p>
                         </div>
                     }
@@ -151,7 +151,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy,refetch }) => {
                                     amount={row.TotalchargeAmount * 100} //Amount in cents 
                                     token={(token) => onToken(token, row._id)}
                                     stripeKey={stripeKey}
-                                    image={user?.photoURL ? user?.photoURL :"https://cdn-icons-png.flaticon.com/512/1144/1144709.png" } //Pop-in header image
+                                    image={user?.photoURL ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/1144/1144709.png"} //Pop-in header image
                                 />
                                 : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
                                     PAID ✔
@@ -165,14 +165,14 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy,refetch }) => {
             ),
         },
     ];
-// handle token here
+    // handle token here
     const onToken = (token, parcelId) => {
         console.log(token, parcelId);
         instance
             .post("/payment", { token, parcelId })
             .then((response) => {
                 console.log(response);
-                if(response.success){
+                if (response.success) {
                     refetch()
                     toast.success("Payment Successfull");
                 }
