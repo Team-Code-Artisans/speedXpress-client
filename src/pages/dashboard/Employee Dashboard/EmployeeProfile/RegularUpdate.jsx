@@ -4,7 +4,7 @@ import { saveUser } from '../../../../API Operations/manageUsers'
 import { AuthContext } from '../../../../contexts/AuthProvider'
 import { Link } from 'react-router-dom'
 
-const MerchantUpdate = ({ userData, fetchUser, closeModal }) => {
+const EmployeeUpdate = ({ userData, fetchUser, closeModal }) => {
 
     const { user } = useContext(AuthContext)
 
@@ -13,11 +13,7 @@ const MerchantUpdate = ({ userData, fetchUser, closeModal }) => {
     const handleUpdate = (data) => {
         const email = user?.email
         const account_type = userData?.account_type
-        const shopName = userData?.shopName
-        const shopAddress = userData?.shopAddress
-        const division = userData?.division
-        const district = userData?.district
-        const upDatedData = { ...data, division, district, email, account_type, shopName, shopAddress }
+        const upDatedData = { ...data, email, account_type }
         saveUser(upDatedData)
             .then(result => {
                 fetchUser()
@@ -36,10 +32,10 @@ const MerchantUpdate = ({ userData, fetchUser, closeModal }) => {
                         className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
                     >
                         <input
-                            {...register("ownerName", {
+                            {...register("name", {
                                 required: "required",
                             })}
-                            defaultValue={userData.ownerName}
+                            defaultValue={userData.name}
                             type="text"
                             id="userName"
                             placeholder="User Name"
@@ -50,7 +46,7 @@ const MerchantUpdate = ({ userData, fetchUser, closeModal }) => {
                             Your Name
                         </span>
                     </label>
-                    {errors.ownerName && <span className='text-red-500'>{errors.ownerName.message}</span>}
+                    {errors.name && <span className='text-red-500'>{errors.name.message}</span>}
                 </div>
                 <div>
                     <label
@@ -78,6 +74,28 @@ const MerchantUpdate = ({ userData, fetchUser, closeModal }) => {
                     {errors.phoneNumber && <span className='text-red-500'>{errors.phoneNumber.message}</span>}
                 </div>
 
+                <div>
+                    <label
+                        htmlFor="address"
+                        className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    >
+                        <input
+                            {...register("address", {
+                                required: "required"
+                            })}
+                            defaultValue={userData.address}
+                            id="address"
+                            placeholder="address"
+                            className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-md"
+                        />
+
+                        <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-md peer-focus:top-2 peer-focus:text-sm">
+                            Address
+                        </span>
+                    </label>
+                    {errors.address && <span className='text-red-500'>{errors.address.message}</span>}
+                </div>
+
                 <div className="mt-4 flex items-center justify-between">
                     <button
                         onClick={closeModal}
@@ -93,4 +111,4 @@ const MerchantUpdate = ({ userData, fetchUser, closeModal }) => {
     )
 }
 
-export default MerchantUpdate
+export default EmployeeUpdate
