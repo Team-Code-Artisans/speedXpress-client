@@ -143,14 +143,17 @@ const PendingDeliveriesForAdmin = ({
       selector: (row) => (
         <>
           {
-            <div>
-              <button
-                onClick={() => handleAction(row)}
-                className={`text-slate-50 ${row.status == "accepted" ? "bg-green-400" : "bg-orange-400"
-                  } px-4 py-2 rounded-full text-center`}
-              >
-                {row.status == "accepted" ? "accepted" : "accept"}
-              </button>
+            <div className="flex justify-center items-center gap-2.5">
+              {
+                row?.status === "pending" && row?.paid ?
+                  <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
+                    onClick={() => handleChangStatus(row._id)}>
+                    <GrStatusGood size={20} className="text-slate-100" />
+                  </button>
+                  :
+                  <></>
+              }
+              <AiOutlineDelete size={20} color="red" />
             </div>
           }
         </>
