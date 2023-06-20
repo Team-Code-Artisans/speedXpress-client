@@ -93,7 +93,7 @@ const MerchantDeliveries = () => {
           </div>
         </div>
 
-        {activeStatus === 1 && <AllDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 1 && <AllDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
         {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
         {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
       </div>
