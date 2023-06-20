@@ -14,7 +14,6 @@ import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantC
 import MerchantDeliveries from "../pages/dashboard/MerchantDashboard/MerchantDeliveries/MerchantDeliveries";
 import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
 import MerchantInvoices from "../pages/dashboard/MerchantDashboard/MerchantInvoices/MerchantInvoices";
-import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile";
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
