@@ -124,8 +124,8 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy,refetch }) => {
                 <>
                     {
                         <div>
-                            <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-bold">
-                                Completed
+                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'} px-4 py-2 rounded-full text-center font-bold`}>
+                                {row?.status}
                             </p>
                         </div>
                     }
@@ -148,12 +148,10 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy,refetch }) => {
                                     name={user?.displayName} //Modal Header
                                     description={`Complete payment of parcel id ${row._id}`}
                                     // panelLabel={`Complete payment of parcel id ${row.id}` }//Submit button in modal
-                                    amount={row.TotalchargeAmount * 100} //Amount in cents $9.99
+                                    amount={row.TotalchargeAmount * 100} //Amount in cents 
                                     token={(token) => onToken(token, row._id)}
                                     stripeKey={stripeKey}
-                                    image={user?.photoURL} //Pop-in header image
-
-                                // billingAddress={true}
+                                    image={user?.photoURL ? user?.photoURL :"https://cdn-icons-png.flaticon.com/512/1144/1144709.png" } //Pop-in header image
                                 />
                                 : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
                                     PAID ✔
@@ -167,7 +165,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy,refetch }) => {
             ),
         },
     ];
-
+// handle token here
     const onToken = (token, parcelId) => {
         console.log(token, parcelId);
         instance
