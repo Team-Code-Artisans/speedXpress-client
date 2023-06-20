@@ -28,6 +28,7 @@ import MerchantRoutes from "./MerchantRoutes";
 import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/AdminMerchant";
 import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
 import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile/MerchantProfile";
+import AdminProfile from "../pages/dashboard/adminDashboard/AdminProfile/AdminProfile";
 
 
 
@@ -107,7 +108,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/profile",
-        element: <AdminHome />,
+        element: <AdminProfile />,
       },
 
 
