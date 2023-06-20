@@ -21,7 +21,7 @@ export const getRole = async (email) => {
     const url = `/user/${email}`;
     const res = await instance.get(url);
     console.log(res);
-    let role = res.account_type;
+    let role = res.data;
 
     return role;
   } catch (error) {
