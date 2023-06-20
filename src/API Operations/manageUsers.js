@@ -73,7 +73,7 @@ export const getMyCustomers = async (merchantEmail) => {
 
 export const getUser = async (userType) => {
   try {
-    const url = `/myMerchants/${userType}`;
+    const url = `/getUser/${userType}`;
     const res = await instance.get(url);
     return res;
   } catch (error) {
