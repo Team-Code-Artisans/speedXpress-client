@@ -19,9 +19,6 @@ import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking/OrderTracking";
 import AdminDeliveries from "../pages/dashboard/adminDashboard/adminDeliveies/AdminDeliveries";
-import CreateParcel from "../pages/dashboard/senderDashboard/CreateParcel";
-import SenderHome from "../pages/dashboard/senderDashboard/SenderHome/SenderHome";
-import SenderReturnParcel from "../pages/dashboard/senderDashboard/senderReturn/SenderReturnParcel";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
@@ -29,7 +26,10 @@ import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/Admin
 import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
 import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile/MerchantProfile";
 import AdminProfile from "../pages/dashboard/adminDashboard/AdminProfile/AdminProfile";
-import RegularProfile from "../pages/dashboard/senderDashboard/RegularProfile/RegularProfile";
+import RegularProfile from "../pages/dashboard/RegularDashboard/RegularProfile/RegularProfile";
+import RegularHome from "../pages/dashboard/RegularDashboard/RegularHome/RegularHome";
+import RegularReturnParcel from "../pages/dashboard/RegularDashboard/RegularReturn/RegularReturnParcel";
+import RegularCreateParcel from "../pages/dashboard/RegularDashboard/RegularCreateParcel/RegularCreateParcel";
 
 
 
@@ -77,7 +77,6 @@ const router = createBrowserRouter([
     element: <DashBoard><AdminHome /></DashBoard>,
     children: [
 
-
       // admin routes
       {
         path: "/dashboard/admin",
@@ -116,27 +115,23 @@ const router = createBrowserRouter([
       // sender routes
       {
         path: "/dashboard/regular",
-        element: <SenderHome />,
+        element: <RegularHome />,
       },
       {
         path: "/dashboard/regular/create-parcel",
-        element: <CreateParcel />,
+        element: <RegularCreateParcel />,
       },
       {
         path: "/dashboard/regular/deliveries",
-        element: <SenderHome />,
+        element: <RegularHome />,
       },
       {
         path: "/dashboard/regular/invoices",
-        element: <SenderHome />,
+        element: <RegularHome />,
       },
       {
         path: "/dashboard/regular/return",
-        element: <SenderReturnParcel />,
-      },
-      {
-        path: "/dashboard/regular/my-parcels",
-        element: <SenderHome />,
+        element: <RegularReturnParcel />,
       },
       {
         path: "/dashboard/regular/profile",

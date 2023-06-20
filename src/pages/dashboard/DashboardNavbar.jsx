@@ -3,9 +3,9 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { getRole } from "../../API Operations/manageUsers";
 import EmployeeNav from "./Employee Dashboard/EmployeeNav/EmployeeNav";
 import MerchantNav from "./MerchantDashboard/MerchantNav/MerchantNav";
-import SenderNav from "./senderDashboard/SenderNav/SenderNav";
 import AdminNav from "./adminDashboard/AdminNav/AdminNav";
 import { Link } from "react-router-dom";
+import RegularNav from "./RegularDashboard/RegularNav/RegularNav";
 
 
 export const DashboardNavbar = () => {
@@ -40,7 +40,7 @@ export const DashboardNavbar = () => {
                     </Link>
                     <ul className="md:flex items-center space-x-8">
 
-                        {role === "regular" && <SenderNav />}
+                        {role === "regular" && <RegularNav />}
                         {role === "admin" && <AdminNav />}
                         {role === "merchant" && <MerchantNav />}
                         {role === "employee" && <EmployeeNav />}

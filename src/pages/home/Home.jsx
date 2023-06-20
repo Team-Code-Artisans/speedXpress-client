@@ -6,14 +6,16 @@ import Feature from "./feature/Feature";
 import Pricing from "./pricing/Pricing";
 import Review from "./review/Review";
 import Service from "./service/Service";
+import Hero from "./Hero/Hero";
 
 const Home = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
-    
+
     }, [])
     return (
         <div>
+            {/* <Hero /> */}
             <Banner />
             <Service />
             <Feature />

@@ -1,8 +1,8 @@
 
-const SenderReturnEmptyList = () => {
-    return (
-      
-            <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+const RegularReturnEmptyList = () => {
+  return (
+
+    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-lg sm:text-center sm:mx-auto">
         <b
           className="inline-block mb-4"
@@ -25,7 +25,7 @@ const SenderReturnEmptyList = () => {
         </b>
         <h2 className="mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
           <span className="relative inline-block">
-          <svg
+            <svg
               viewBox="0 0 52 24"
               fill="currentColor"
               className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-32 lg:-mt-10 sm:block"
@@ -47,7 +47,7 @@ const SenderReturnEmptyList = () => {
                 height="24"
               />
             </svg>
-           
+
           </span>{' '}
           Right Now you have no <span className="text-orange-600">Return</span> product
         </h2>
@@ -55,12 +55,12 @@ const SenderReturnEmptyList = () => {
           Best wishes for your company , Be stay with <span className="text-orange-600 font-bold">speedXpress</span>
         </p>
         <hr className="my-8 border-gray-300" />
-    
-        
+
+
       </div>
     </div>
-       
-    );
+
+  );
 };
 
-export default SenderReturnEmptyList;
+export default RegularReturnEmptyList;
