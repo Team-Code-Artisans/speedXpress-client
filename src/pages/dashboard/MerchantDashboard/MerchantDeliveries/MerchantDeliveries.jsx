@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import Tabs from "./Tabs";
-import CompleteDeliveries from "./CompleteDeliveries";
-import AllDeliveries from "./AllDeliveries";
-import PendingDeliveries from "./PendingDeliveries";
 import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { getParcels } from "../../../../API Operations/manageParcels";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { toast } from "react-hot-toast";
+import AllDeliveries from "./AllDeliveries";
+import CompleteDeliveries from "./CompleteDeliveries";
+import PendingDeliveries from "./PendingDeliveries";
+import Tabs from "./Tabs";
 
 const MerchantDeliveries = () => {
   const { user } = useContext(AuthContext);
@@ -25,6 +25,11 @@ const MerchantDeliveries = () => {
   });
 
   console.log(allParcels);
+// filtered data here
+const pendingDeliveries=filterData.filter(delivery=>delivery.status === 'pending')
+const completedDeliveries=filterData.filter(delivery=>delivery.status === 'complete')
+console.log(pendingDeliveries)
+
 
   useEffect(() => {
     const result = allParcels?.filter(parcel => {
@@ -94,8 +99,8 @@ const MerchantDeliveries = () => {
         </div>
 
         {activeStatus === 1 && <AllDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
-        {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
-        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} pendingDeliveries={pendingDeliveries} handleCopy={handleCopy} />}
+        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} completedDeliveries={completedDeliveries} handleCopy={handleCopy} />}
       </div>
     </div>
   );

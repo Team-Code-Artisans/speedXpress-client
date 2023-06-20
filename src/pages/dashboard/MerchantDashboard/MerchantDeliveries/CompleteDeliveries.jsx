@@ -1,9 +1,9 @@
 import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
-import { AiOutlineCopy } from 'react-icons/ai'
+import { AiOutlineCopy } from 'react-icons/ai';
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
-const CompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
+const CompleteDeliveries = ({ isLoading, completedDeliveries, handleCopy }) => {
 
     const columns = [
         {
@@ -115,10 +115,10 @@ const CompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
             selector: (row) => (
                 <>
                     {
-                        <div>
-                            <p className="text-slate-50 bg-emerald-400 px-4 py-2 rounded-full text-center">
-                                Completed
-                            </p>
+                        <div
+                            className="flex items-center space-x-1.5 rounded-full border bg-emerald-500 border-gray-200 px-3 py-1 text-xs font-medium text-gray-800">
+                         
+                            <span className="text-slate-200">{row.status}</span>
                         </div>
                     }
                 </>
@@ -130,7 +130,7 @@ const CompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
     return (
         <DataTable
             columns={columns}
-            data={filterData}
+            data={completedDeliveries}
             direction="auto"
             fixedHeader
             fixedHeaderScrollHeight="600px"
