@@ -5,7 +5,7 @@ import { createShop } from "../../../../API Operations/manageMerchantShop";
 import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
-const CreateShop = () => {
+const CreateShop = ({refetch}) => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
@@ -42,6 +42,7 @@ const CreateShop = () => {
           setLoading(false);
           reset();
           toast.success(data.message);
+          refetch();
         }
       })
       .catch((err) => {

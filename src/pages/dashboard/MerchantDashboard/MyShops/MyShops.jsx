@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useContext, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
 import { getShop } from "../../../../API Operations/manageMerchantShop";
@@ -8,16 +9,26 @@ import CreateShop from "./CreateShop";
 const MyShops = () => {
   const { user } = useContext(AuthContext);
   const [shopForm, setShopForm] = useState(false);
-  const [shops, setShops] = useState([]);
+  // const [shops, setShops] = useState([]);
   const createShop = () => {
     setShopForm(!shopForm);
   };
-  console.log(shops);
-  useEffect(() => {
-    getShop(user?.email).then((data) => {
-      setShops(data);
-    });
-  }, []);
+  // console.log(shops);
+
+  const {
+    data: shops = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["all-parcels"],
+    queryFn: () => getShop(user?.email),
+  });
+
+  // useEffect(() => {
+  //   getShop(user?.email).then((data) => {
+  //     setShops(data);
+  //   });
+  // }, [shops.length]);
 
   return (
     <div>
@@ -97,7 +108,7 @@ const MyShops = () => {
           </div>
         </div>
       </section>
-      {shopForm ? <CreateShop /> : <></>}
+      {shopForm ? <CreateShop refetch={refetch} /> : <></>}
     </div>
   );
 };

@@ -92,9 +92,9 @@ const AdminDeliveries = () => {
           </div>
         </div>
 
-        {activeStatus === 1 && <AllDeliveriesForAdmin isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
-        {activeStatus === 2 && <PendingDeliveriesForAdmin isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
-        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 1 && <AllDeliveriesForAdmin isLoading={isLoading} refetch={refetch} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 2 && <PendingDeliveriesForAdmin isLoading={isLoading} refetch={refetch} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} refetch={refetch} filterData={filterData} handleCopy={handleCopy} />}
       </div>
     </div>
   );

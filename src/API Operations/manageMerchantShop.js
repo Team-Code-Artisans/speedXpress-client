@@ -18,8 +18,8 @@ export const getShop = async (email) => {
   try {
     const response = await instance.get(`/shop?email=${email}`);
     const data = await response;
+    console.log(data);
     return data;
-    
   } catch (error) {
     console.log(error.message);
   }
