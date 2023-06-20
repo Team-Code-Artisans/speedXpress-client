@@ -1,19 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import { toast } from "react-hot-toast";
+import { AiOutlineDelete, AiOutlinePlusCircle } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
-import { getShop } from "../../../../API Operations/manageMerchantShop";
+import {
+  deleteShop,
+  getShop,
+} from "../../../../API Operations/manageMerchantShop";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import CreateShop from "./CreateShop";
+import CreateShopForm from "./CreateShopForm";
+import ShopEditModal from "./ShopEditModal";
 
 const MyShops = () => {
   const { user } = useContext(AuthContext);
   const [shopForm, setShopForm] = useState(false);
-  // const [shops, setShops] = useState([]);
   const createShop = () => {
     setShopForm(!shopForm);
   };
-  // console.log(shops);
 
   const {
     data: shops = [],
@@ -23,12 +26,23 @@ const MyShops = () => {
     queryKey: ["all-parcels"],
     queryFn: () => getShop(user?.email),
   });
+  console.log(shops.data);
 
-  // useEffect(() => {
-  //   getShop(user?.email).then((data) => {
-  //     setShops(data);
-  //   });
-  // }, [shops.length]);
+  const handleShopDelete = (shopId) => {
+    deleteShop(shopId)
+      .then((res) => {
+        console.log(res);
+        if (res.deletedCount === 1) {
+          toast.success("Shop deleted successful");
+        } else {
+          toast.error("delete shop failed")
+        }
+      })
+      .catch((err) => {
+        // setLoading(false);
+        console.log(err.message);
+      });
+  };
 
   return (
     <div>
@@ -51,48 +65,37 @@ const MyShops = () => {
           <div className="flex flex-wrap gap-5">
             {shops.data?.map((shop) => (
               <>
-                <div key={shop._id} className="xl:w-1/4 md:w-1/2 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6">
-                  <span className="inline-block rounded bg-orange-500 p-2 text-white">
-                    <BsShop className="text-2xl" />
-                  </span>
+                <div
+                  key={shop._id}
+                  className="xl:w-1/4 md:w-1/2 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6"
+                >
+                  <div className="flex justify-between">
+                    <span className="inline-block rounded bg-orange-500 p-2 text-white">
+                      <BsShop className="text-2xl" />
+                    </span>
+                    <span className="inline-block rounded bg-gray-400 p-2 text-white">
+                      <button onClick={() => handleShopDelete(shop?._id)}>
+                        <AiOutlineDelete className="text-2xl" />
+                      </button>
+                    </span>
+                  </div>
 
                   <h3 className="mt-0.5 text-lg font-medium text-gray-900">
                     Shop Name: {shop.shopName}
                   </h3>
                   <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Shop Owner: {shop.fullName}
+                    Shop Owner: {shop.ownerName}
                   </p>
                   <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
                     Shop Email: {shop.shopEmail}
                   </p>
                   <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Phone: {shop.pickupPhone}
+                    Phone: {shop.phoneNumber}
                   </p>
                   <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
                     Shop Address: {shop.shopAddress}
                   </p>
-                  <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Pickup Area: {shop.pickupArea}
-                  </p>
-                  <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Pickup Address: {shop.pickupAddress}
-                  </p>
-                  <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Product Type: {shop.productType}
-                  </p>
-
-                  <a
-                    href="#"
-                    className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-orange-500"
-                  >
-                    Find out more
-                    <span
-                      aria-hidden="true"
-                      className="block transition-all group-hover:ms-0.5 rtl:rotate-180"
-                    >
-                      &rarr;
-                    </span>
-                  </a>
+                  <ShopEditModal shopsData={shop} />
                 </div>
               </>
             ))}
@@ -108,7 +111,7 @@ const MyShops = () => {
           </div>
         </div>
       </section>
-      {shopForm ? <CreateShop refetch={refetch} /> : <></>}
+      {shopForm ? <CreateShopForm refetch={refetch} /> : <></>}
     </div>
   );
 };

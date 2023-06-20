@@ -16,9 +16,13 @@ const PendingDeliveriesForAdmin = ({
     const updatedStatus = "accepted";
     updateStatus(data._id, updatedStatus)
       .then((result) => {
-        refetch();
-        toast.success("accept delivery");
-        console.log(result);
+        if (result.modifiedCount === 1) {
+          toast.success("status updated successfully");
+          refetch();
+          console.log(result);
+        } else {
+          toast.error("status update failed");
+        }
       })
       .catch((err) => {
         // setLoading(false);
@@ -141,7 +145,9 @@ const PendingDeliveriesForAdmin = ({
             <div>
               <button
                 onClick={() => handleAction(row)}
-                className={`text-slate-50 ${row.status == "accepted" ? "bg-green-400" : "bg-orange-400"} px-4 py-2 rounded-full text-center`}
+                className={`text-slate-50 ${
+                  row.status == "accepted" ? "bg-green-400" : "bg-orange-400"
+                } px-4 py-2 rounded-full text-center`}
               >
                 {row.status == "accepted" ? "accepted" : "accept"}
               </button>

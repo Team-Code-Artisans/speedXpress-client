@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../contexts/AuthProvider'
+import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { setAuthToken } from '../../API Operations/Auth'
+import { createShop } from '../../API Operations/manageMerchantShop'
 import { saveUser } from '../../API Operations/manageUsers'
-import { toast } from 'react-hot-toast'
-import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
-import { divisionsData } from '../../data/Divisions'
-import { districtsData } from '../../data/Districts'
-import InputDivision from '../../components/InputDivision'
 import InputDistrict from '../../components/InputDistrict'
+import InputDivision from '../../components/InputDivision'
+import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
+import { AuthContext } from '../../contexts/AuthProvider'
+import { districtsData } from '../../data/Districts'
+import { divisionsData } from '../../data/Divisions'
 
 const MerchantForm = () => {
 
@@ -44,6 +45,7 @@ const MerchantForm = () => {
                 setLoading(false)
                 setAuthToken(user)
                 saveUser(userData)
+                createShop()
                 reset()
                 toast.success("Merchant Register Successfully")
                 navigate(from, { replace: true })
