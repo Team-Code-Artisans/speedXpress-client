@@ -1,18 +1,10 @@
-import { useContext } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
-import { toast } from "react-hot-toast";
-import { AiOutlineCopy } from 'react-icons/ai';
-import StripeCheckout from "react-stripe-checkout";
-import instance from "../../../../axios";
+import { AiOutlineCopy } from 'react-icons/ai'
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
-import { AuthContext } from "../../../../contexts/AuthProvider";
-const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
-    const stripeKey = import.meta.env.VITE_Stripe_public_key;
-    // console.log(stripeKey)
-    // Use stripeKey in your component
-    console.log(filterData)
-    const { user } = useContext(AuthContext)
+
+const RegularPendingDelivery = ({ isLoading, filterData, handleCopy }) => {
+
     const columns = [
         {
             name: "DATE & TIME",
@@ -20,7 +12,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                 <>
                     <div>
                         <p className="text-gray-900 whitespace-no-wrap">
-                            {row.date} <br /> {row.time}
+                            {row?.date} <br /> {row?.time}
                         </p>
                     </div>
                 </>
@@ -108,10 +100,10 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.merchantName}
+                                {row.customerInfo?.merchantName}
                             </p>
                             <p>
-                                {row.customerInfo.merchantEmail}
+                                {row.customerInfo?.merchantEmail}
                             </p>
                         </div>
                     }
@@ -124,64 +116,16 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                 <>
                     {
                         <div>
-                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'} px-4 py-2 rounded-full text-center font-bold`}>
-                                {row?.status}
+                            <p className="text-slate-50 bg-orange-400 px-4 py-2 rounded-full text-center">
+                                Pending
                             </p>
                         </div>
                     }
                 </>
             ),
         },
-        {
-            name: "Action",
-            selector: (row, index) => (
-                <>
-                    {
-
-                        <div>
-                            {/* here row._id is my that selected specific parcel id */}
-                            {/* {console.log(row._id,index)} */}
-                            {!row.paid ?
-
-                                <StripeCheckout
-                                    label="pay now" //Component button text
-                                    name={user?.displayName} //Modal Header
-                                    description={`Complete payment of parcel id ${row._id}`}
-                                    // panelLabel={`Complete payment of parcel id ${row.id}` }//Submit button in modal
-                                    amount={row.TotalchargeAmount * 100} //Amount in cents 
-                                    token={(token) => onToken(token, row._id)}
-                                    stripeKey={stripeKey}
-                                    image={user?.photoURL ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/1144/1144709.png"} //Pop-in header image
-                                />
-                                : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
-                                    PAID ✔
-                                </p>
-
-                            }
-
-                        </div>
-                    }
-                </>
-            ),
-        },
     ];
-    // handle token here
-    const onToken = (token, parcelId) => {
-        console.log(token, parcelId);
-        instance
-            .post("/payment", { token, parcelId })
-            .then((response) => {
-                console.log(response);
-                if (response.success) {
-                    refetch()
-                    toast.success("Payment Successfull");
-                }
-            })
-            .catch((error) => {
-                console.log("Payment Error: ", error);
-                toast.error("Payment operation faild");
-            });
-    };
+
 
     return (
         <DataTable
@@ -198,12 +142,12 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
             pointerOnHover
             progressPending={isLoading}
             progressComponent={<BigSpinner />}
-            custooomStyles={styles}
+            customStyles={styles}
         />
     );
 };
 
-export default AllDeliveries;
+export default RegularPendingDelivery;
 
 const styles = {
     rows: {

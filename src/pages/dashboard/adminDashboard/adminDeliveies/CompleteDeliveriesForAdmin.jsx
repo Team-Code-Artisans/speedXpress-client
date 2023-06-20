@@ -3,7 +3,7 @@ import DataTable from "react-data-table-component";
 import { AiOutlineCopy } from 'react-icons/ai';
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
-const CompleteDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
+const CompleteDeliveriesForAdmin = ({ isLoading, completedDeliveries, handleCopy }) => {
 
     const columns = [
         {
@@ -130,7 +130,7 @@ const CompleteDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
     return (
         <DataTable
             columns={columns}
-            data={filterData}
+            data={completedDeliveries}
             direction="auto"
             fixedHeader
             fixedHeaderScrollHeight="600px"

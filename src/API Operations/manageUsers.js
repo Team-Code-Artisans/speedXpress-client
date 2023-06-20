@@ -32,7 +32,7 @@ export const getRole = async (email) => {
 // get user data
 export const getAUser = async (email) => {
   try {
-    const response = await instance.get(`/user/${email}`);
+    const response = await instance.get(`/userData/${email}`);
     return response;
   } catch (error) {
     console.log(error.message);
@@ -62,7 +62,6 @@ export const getMyCustomers = async (merchantEmail) => {
   try {
     const url = `/customers/${merchantEmail}`;
     const res = await instance.get(url);
-    const data = res.data;
     return res;
   } catch (error) {
     console.log(error.message);

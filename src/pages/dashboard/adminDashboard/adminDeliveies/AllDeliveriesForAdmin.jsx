@@ -1,9 +1,13 @@
 import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
-import { AiOutlineCopy } from 'react-icons/ai';
+import { toast } from "react-hot-toast";
+import { AiOutlineCopy, AiOutlineDelete } from 'react-icons/ai';
+import { GrStatusGood } from 'react-icons/gr';
+
+import { updateStatus } from "../../../../API Operations/manageAdminDeliveries";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
-const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
+const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) => {
 
     const columns = [
         {
@@ -37,13 +41,13 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.name}
+                                {row.customerInfo?.name}
                             </p>
                             <p>
-                                {row.customerInfo.email}
+                                {row.customerInfo?.email}
                             </p>
                             <p>
-                                {row.customerInfo.number}
+                                {row.customerInfo?.number}
                             </p>
                         </div>
                     }
@@ -61,13 +65,13 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.division}
+                                {row.customerInfo?.division}
                             </p>
                             <p>
-                                {row.customerInfo.district}
+                                {row.customerInfo?.district}
                             </p>
                             <p>
-                                {row.customerInfo.address}
+                                {row.customerInfo?.address}
                             </p>
                         </div>
                     }
@@ -88,40 +92,83 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
                                 Total Charge: { }
                                 {row.TotalchargeAmount}
                             </p>
-                            <p className={`text-slate-50 ${row.paid ? 'bg-emerald-400' : 'bg-orange-600'} p-1 rounded-full text-center`}>
-                                {!row.paid ? 'Pay Now' : 'Paid'}
-                            </p>
                         </div>
                     }
                 </>
             )
         },
+        // {
+        //     name: "SHOP INFO",
+        //     selector: (row) => (
+        //         <>
+        //             {
+        //                 <div className="space-y-1 py-2 text-sm">
+        //                     <p>
+        //                         {row.customerInfo.merchantName}
+        //                     </p>
+        //                     <p>
+        //                         {row.customerInfo.merhantEmail}
+        //                     </p>
+        //                 </div>
+        //             }
+        //         </>
+        //     )
+        // },
+
         {
-            name: "SHOP INFO",
-            selector: (row) => (
+            name: "PAYMENT",
+            selector: (row, index) => (
                 <>
                     {
-                        <div className="space-y-1 py-2 text-sm">
-                            <p>
-                                {row.customerInfo.customerOwnerName}
-                            </p>
-                            <p>
-                                {row.customerInfo.customerOwnerEmail}
-                            </p>
+
+                        <div className="-ml-5 p-2">
+                            {!row.paid ?
+                                <p className="text-rose-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
+                                    UNPAID ❌
+                                </p>
+
+                                : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
+                                    PAID ✔
+                                </p>
+
+                            }
+
                         </div>
                     }
                 </>
-            )
+            ),
         },
         {
             name: "STATUS",
             selector: (row) => (
                 <>
                     {
-                        <div>
-                            <p className="text-slate-50 bg-emerald-400 px-4 py-2 rounded-full text-center">
-                                Completed
+                        <div className="-ml-5 p-2">
+                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'}
+                            ${row?.status === "accepted" && 'text-green-600'} px-4 py-2 rounded-full text-center font-bold`}>
+                                {row?.status}
                             </p>
+                        </div>
+                    }
+                </>
+            ),
+        },
+        {
+            name: "ACTION",
+            selector: (row) => (
+                <>
+                    {
+                        <div className="flex justify-center items-center gap-2.5">
+                            {
+                                row?.status === "pending" && row?.paid ?
+                                    <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
+                                    onClick={()=>handleChangStatus(row._id)}>
+                                        <GrStatusGood size={20} className="text-slate-100"/>
+                                    </button>
+                                    :
+                                    <></>
+                            }
+                            <AiOutlineDelete size={20} color="red" />
                         </div>
                     }
                 </>
@@ -129,6 +176,21 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy }) => {
         },
     ];
 
+
+    const handleChangStatus = (id) => {
+        console.log(id);
+        const updatedStatus = "accepted";
+        updateStatus(id, updatedStatus)
+          .then((result) => {
+            refetch();
+            toast.success("Parcel delivery accepted by system");
+            console.log(result);
+          })
+          .catch((err) => {
+            // setLoading(false);
+            console.log(err.message);
+          });
+      };
 
     return (
         <DataTable
@@ -160,7 +222,9 @@ const styles = {
     },
     headRow: {
         style: {
-            backgroundColor: '#fed7aa'
+            backgroundColor: '#fed7aa',
+
+
         },
     },
 };

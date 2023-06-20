@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
+import RegularAllDelivery from "./RegularAllDelivery";
+import { useQuery } from "@tanstack/react-query";
 import { getParcels } from "../../../../API Operations/manageParcels";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import AllDeliveries from "./AllDeliveries";
-import CompleteDeliveries from "./CompleteDeliveries";
-import PendingDeliveries from "./PendingDeliveries";
-import Tabs from "./Tabs";
+import { toast } from "react-hot-toast";
+import RegularPendingDelivery from "./RegularPendingDelivery";
+import RegularCompleteDeliveries from "./RegularCompleteDeliveries";
+import SubRouteTab from "./SubRouteTab";
 
-const MerchantDeliveries = () => {
+const RegularUserDeliveries = () => {
   const { user } = useContext(AuthContext);
 
   const [search, setSearch] = useState("");
@@ -25,11 +25,6 @@ const MerchantDeliveries = () => {
   });
 
   console.log(allParcels);
-// filtered data here
-const pendingDeliveries=filterData.filter(delivery=>delivery.status === 'pending')
-const completedDeliveries=filterData.filter(delivery=>delivery.status === 'complete')
-console.log(pendingDeliveries)
-
 
   useEffect(() => {
     const result = allParcels?.filter(parcel => {
@@ -62,7 +57,7 @@ console.log(pendingDeliveries)
       <div className="bg-white rounded-md w-full">
         <div className=" lg:flex items-center justify-between pb-6">
           <div>
-            <Tabs
+            <SubRouteTab
               setActiveStatus={setActiveStatus}
               activeStatus={activeStatus}
             />
@@ -98,12 +93,12 @@ console.log(pendingDeliveries)
           </div>
         </div>
 
-        {activeStatus === 1 && <AllDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
-        {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} pendingDeliveries={pendingDeliveries} handleCopy={handleCopy} />}
-        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} completedDeliveries={completedDeliveries} handleCopy={handleCopy} />}
+        {activeStatus === 1 && <RegularAllDelivery isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
+        {activeStatus === 2 && <RegularPendingDelivery isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 3 && <RegularCompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
       </div>
     </div>
   );
 };
 
-export default MerchantDeliveries;
+export default RegularUserDeliveries;
