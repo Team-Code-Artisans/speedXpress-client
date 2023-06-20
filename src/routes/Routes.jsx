@@ -8,7 +8,6 @@ import Features from "../pages/Features/Features";
 import Pricing from "../pages/Pricing/Pricing";
 import MerchantCreateParcel from "../pages/dashboard/MerchantDashboard/MerchantCreateParcel/MerchantCreateParcel";
 import MerchantHome from "../pages/dashboard/MerchantDashboard/MerchantHome/MerchantHome";
-import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile";
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import Home from "../pages/home/Home";
@@ -27,6 +26,7 @@ import EarningHistory from "../pages/dashboard/Employee Dashboard/EmployeeHistor
 import EmployeeProfile from "../pages/dashboard/Employee Dashboard/EmployeeProfile/EmployeeProfile";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking/OrderTracking";
+import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfile/MerchantProfile";
 
 
 
