@@ -1,6 +1,6 @@
-import { BsBoxSeam, BsBoxArrowInRight, BsBox } from 'react-icons/bs'
+import { BsBox, BsBoxArrowInRight, BsBoxSeam } from 'react-icons/bs'
 
-const OrderSummary = () => {
+const OrderSummary = ({totalPendingDeliveries, totalCompletedDeliveries}) => {
     return (
         <div className='my-10'>
             <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white pb-4">Order Summary</h1>
@@ -17,7 +17,7 @@ const OrderSummary = () => {
                     </h3>
 
                     <p className="text-lg text-gray-600 ">
-                        <span className=' text-2xl font-semibold pr-2'>234</span>packages
+                        <span className=' text-2xl font-semibold pr-2'>{totalCompletedDeliveries}</span>packages
                     </p>
                 </div>
                 <div
@@ -32,7 +32,7 @@ const OrderSummary = () => {
                     </h3>
 
                     <p className="text-lg text-gray-600 ">
-                        <span className=' text-2xl font-semibold pr-2'>234</span>packages
+                        <span className=' text-2xl font-semibold pr-2'>{totalPendingDeliveries}</span>packages
                     </p>
                 </div>
                 <div
@@ -47,7 +47,7 @@ const OrderSummary = () => {
                     </h3>
 
                     <p className="text-lg text-gray-600 ">
-                        <span className=' text-2xl font-semibold pr-2'>234</span>packages
+                        <span className=' text-2xl font-semibold pr-2'>00</span>packages
                     </p>
                 </div>
             </div>

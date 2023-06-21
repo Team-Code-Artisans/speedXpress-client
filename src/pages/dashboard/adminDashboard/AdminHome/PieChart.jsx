@@ -1,5 +1,5 @@
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
 import React from 'react'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 
 ChartJS.register(
@@ -8,14 +8,14 @@ ChartJS.register(
     Legend
 )
 
-const PieChart = () => {
+const PieChart = ({totalPendingDeliveries, totalCompletedDeliveries}) => {
 
     const data = {
-        labels: ['Completed', 'Pending', 'Canceled'],
+        labels: ['Completed', 'Pending', 'In-Transit', 'Return'],
         datasets: [{
             label: 'Total Order Summary',
-            data: [100, 65, 10],
-            backgroundColor: ['#00a353', '#255ee5', '#f45b1d']
+            data: [totalCompletedDeliveries, totalPendingDeliveries, 13, 4],
+            backgroundColor: ['#00a353', '#255ee5', '#D6B85A','#f45b1d']
         }]
     }
 

@@ -34,7 +34,7 @@ const EmployeeDeliveries = () => {
 
 
     useEffect(() => {
-        const result = deliveryParcels?.filter(parcel => {
+        const result = deliveryParcels.data?.filter(parcel => {
             const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.name?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.number?.toLowerCase()?.match(search?.toLowerCase())

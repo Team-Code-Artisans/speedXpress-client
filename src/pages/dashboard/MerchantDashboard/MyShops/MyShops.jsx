@@ -7,6 +7,7 @@ import {
   deleteShop,
   getShop,
 } from "../../../../API Operations/manageMerchantShop";
+import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import CreateShopForm from "./CreateShopForm";
 import ShopEditModal from "./ShopEditModal";
@@ -35,7 +36,7 @@ const MyShops = () => {
         if (res.deletedCount === 1) {
           toast.success("Shop deleted successful");
         } else {
-          toast.error("delete shop failed")
+          toast.error("delete shop failed");
         }
       })
       .catch((err) => {
@@ -43,6 +44,9 @@ const MyShops = () => {
         console.log(err.message);
       });
   };
+  if (isLoading) {
+    <BigSpinner />;
+  }
 
   return (
     <div>
