@@ -3,8 +3,9 @@ import DataTable from "react-data-table-component";
 import { AiOutlineCopy } from 'react-icons/ai'
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
-const RegularPendingDelivery = ({ isLoading, filterData, handleCopy }) => {
+const RegularPendingDelivery = ({ isLoading,filterData , handleCopy }) => {
 
+  
     const columns = [
         {
             name: "DATE & TIME",
@@ -94,17 +95,15 @@ const RegularPendingDelivery = ({ isLoading, filterData, handleCopy }) => {
             )
         },
         {
-            name: "SHOP INFO",
+            name: "SENDER MAIL",
             selector: (row) => (
                 <>
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo?.merchantName}
+                                {row.senderEmail}
                             </p>
-                            <p>
-                                {row.customerInfo?.merchantEmail}
-                            </p>
+                            
                         </div>
                     }
                 </>
@@ -116,10 +115,10 @@ const RegularPendingDelivery = ({ isLoading, filterData, handleCopy }) => {
                 <>
                     {
                         <div>
-                            <p className="text-slate-50 bg-orange-400 px-4 py-2 rounded-full text-center">
-                                Pending
-                            </p>
-                        </div>
+                        <p className={` ${row.status==="accepted" ? "text-green-500" : "text-amber-400"} px-4 py-2 rounded-full text-center font-bold`}>
+                            {row.status}
+                        </p>
+                    </div>
                     }
                 </>
             ),

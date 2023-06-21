@@ -24,7 +24,9 @@ const MerchantDeliveries = () => {
     queryFn: () => getParcels(user?.email),
   });
 
-  console.log(allParcels);
+  // console.log(allParcels);
+
+
 // filtered data here
 const pendingDeliveries=filterData.filter(delivery=>delivery.status === 'pending')
 const completedDeliveries=filterData.filter(delivery=>delivery.status === 'complete')

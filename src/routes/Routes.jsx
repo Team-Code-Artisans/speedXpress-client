@@ -126,7 +126,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/deliveries",
-        element: <RegularUserDeliveries />,
+        element: <RegularUserDeliveries/>,
       },
       {
         path: "/dashboard/regular/invoices",
