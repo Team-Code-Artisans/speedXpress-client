@@ -8,7 +8,7 @@ import instance from "../../../../axios";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import ReactToPrint from "react-to-print";
-import MerchantDocument from "./MerchantDocument";
+import Document from "./Document";
 const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, componentRef }) => {
     const stripeKey = import.meta.env.VITE_Stripe_public_key;
 
@@ -165,7 +165,7 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, comp
                     {
                         <>
                             <div className='hidden'>
-                                <MerchantDocument componentRef={componentRef} data={row} />
+                                <Document componentRef={componentRef} data={row} />
                             </div>
                             <ReactToPrint
                                 trigger={() => <button className="px-4 py-2 rounded-full text-center bg-orange-500 text-white">Download</button>}

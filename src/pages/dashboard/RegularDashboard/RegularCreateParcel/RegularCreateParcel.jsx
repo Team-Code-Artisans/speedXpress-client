@@ -13,7 +13,7 @@ import { weights } from "../../../../data/Weight";
 const RegularCreateParcel = () => {
 
   // time  calculations here
-  
+
   const currentDate = new Date();
   const dateOptions = { day: "2-digit", month: "2-digit", year: "numeric" };
   const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
@@ -21,13 +21,10 @@ const RegularCreateParcel = () => {
   const date = currentDate.toLocaleDateString(undefined, dateOptions);
   const time = currentDate.toLocaleTimeString(undefined, timeOptions);
 
-
-
-
   const divisions = divisionsData;
   let [division, setDivision] = useState(divisions[5]);
   const districts = districtsData;
-  const [district, setDistrict] = useState(districts[46])
+  let [district, setDistrict] = useState(districts[46])
 
   const [dropdown2, setDropdown2] = useState(false);
   const [loading, setLoading] = useState(false)
@@ -59,7 +56,6 @@ const RegularCreateParcel = () => {
   }, [weightTotalCharge])
 
 
-
   const {
     register,
     reset,
@@ -69,13 +65,13 @@ const RegularCreateParcel = () => {
 
   const handleMerchantParcel = (data) => {
     setLoading(true)
-   
+
 
     const { name, number, address, email } = data
     division = division.name
-
+    district = district.name
     const customerInfo = {
-      name, email, number, division, district:district?.name, address,
+      name, email, number, division, district, address,
     }
 
     const parcelData = {
@@ -85,8 +81,8 @@ const RegularCreateParcel = () => {
       weight,
       TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent),
       deliveryFee,
-      paid:false,
-      status:"pending",
+      paid: false,
+      status: "pending",
       senderEmail: user?.email
     }
     console.log(parcelData)
@@ -104,7 +100,7 @@ const RegularCreateParcel = () => {
       console.log(err.message)
     })
 
-   
+
   };
 
   return (
@@ -130,7 +126,7 @@ const RegularCreateParcel = () => {
 
             <div className="mt-8 flex flex-col justify-start items-start w-full">
 
-              <span className="text-xs text-gray-400">Full Name</span>
+              <span className="text-xs text-gray-400 pt-4 pb-2">Full Name</span>
               <input
                 {...register("name")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -141,7 +137,7 @@ const RegularCreateParcel = () => {
 
 
 
-              <span className="text-xs text-gray-400">Email</span>
+              <span className="text-xs text-gray-400 pt-4 pb-2">Email</span>
               <input
                 {...register("email")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -150,11 +146,7 @@ const RegularCreateParcel = () => {
                 required
               />
 
-
-
-
-
-              <span className="text-xs text-gray-400">Phone number</span>
+              <span className="text-xs text-gray-400 pt-4 pb-2">Phone number</span>
               <input
                 {...register("number")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -163,30 +155,21 @@ const RegularCreateParcel = () => {
                 required
               />
 
-
-
-
-
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
 
-
                 <div>
-                  <span className="text-xs text-gray-400">Select Division</span>
+                  <span className="text-xs text-gray-400 pt-6 pb-4">Select Division</span>
                   <InputDivision division={division} setDivision={setDivision} divisions={divisions} />
                 </div>
 
                 <div>
-                  <span className="text-xs text-gray-400">Select Distric</span>
+                  <span className="text-xs text-gray-400 pt-6 pb-4">Select Distric</span>
                   <InputDistrict district={district} setDistrict={setDistrict} districts={districts} />
                 </div>
 
               </div>
 
-
-
-
-
-              <span className="text-xs text-gray-400">Address</span>
+              <span className="text-xs text-gray-400 pt-4 pb-2">Address</span>
               <input
                 {...register("address")}
                 className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
@@ -202,13 +185,9 @@ const RegularCreateParcel = () => {
               </p>
             </div>
 
-
-
-
             {/* checked button */}
             <div>
               <br />
-
 
               <fieldset className="grid grid-cols-2 gap-4">
                 <legend className="sr-only">Delivery</legend>
@@ -226,7 +205,7 @@ const RegularCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryStandard"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-orange-500 peer-checked:ring-1 peer-checked:ring-orange-500"
                   >
                     <p className="text-gray-700">Standard</p>
 
@@ -246,7 +225,7 @@ const RegularCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryPriority"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-orange-500 peer-checked:ring-1 peer-checked:ring-orange-500"
                   >
                     <p className="text-gray-700">Next Day</p>
 
@@ -254,34 +233,26 @@ const RegularCreateParcel = () => {
                   </label>
                 </div>
               </fieldset>
-
             </div>
-
-
-
 
             <div className="mt-8 flex flex-col justify-start items-start w-full space-y-8 ">
               <div className="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
                 <div className="relative w-full">
-                  <span className="text-xs text-gray-400">Total weight</span>
-                  <p
-                    className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full"
-                  >
+                  <span className="text-sm text-gray-400 pb-2 pt-4">Total weight</span>
+                  <p className=" px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full">
                     {weight}
                   </p>
                   <button
                     onClick={() => setDropdown2(!dropdown2)}
                     className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0"
-                    type="button"
-                  >
+                    type="button">
                     <svg
                       id="close"
                       className={` transform ${dropdown2 ? "rotate-180" : ""}`}
                       width={16}
                       viewBox="0 0 16 16"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M12 6L8 10L4 6"
                         stroke="#4B5563"
@@ -290,46 +261,50 @@ const RegularCreateParcel = () => {
                       />
                     </svg>
                   </button>
-                  <div className={`shadow absolute z-10 bg-white top-10  w-full mt-3 ${dropdown2 ? "" : "hidden"}`}>
+                  <div
+                    className={`shadow absolute z-10 bg-white top-16  w-full mt-3 ${dropdown2 ? "" : "hidden"
+                      }`}>
                     <div className="flex flex-col  w-full">
                       {weightData.map((e) => (
                         <p
                           key={e.id}
                           tabIndex={0}
                           onClick={() => handleWeight(e)}
-                          className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full"
-                        >
+                          className="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left  text-base text-gray-600 py-2 w-full">
                           {e.weight}
                         </p>
                       ))}
                     </div>
                   </div>
                 </div>
-
-
-                <div>
-                  <span className="text-xs text-gray-400">Parcel Quantity</span>
+                <div className="relative w-full">
+                  <span className="text-sm text-gray-400 pb-2 pt-4">Parcel Quantity</span>
                   <input
-                    {...register("quantity")}
+                    {...register("quantity", {
+                      pattern: {
+                        value: /^\d+(\.\d+)?$/,
+                      }
+                    })}
                     type="number"
                     className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
                     placeholder="Parcel Quantity"
                     required
-
                     onChange={(e) => handleQuantity(e.target.value)}
                   />
                 </div>
               </div>
 
-
-
-              <span className="text-xs text-gray-400">Additional info about your parcel</span>
-              <input
-                {...register("details")}
-                className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
-                type="text"
-                placeholder="Parcel Details (Optional)"
-              />
+              <div className="relative w-full">
+                <span className="text-sm text-gray-400 pb-2">
+                  Additional info about your parcel
+                </span>
+                <input
+                  {...register("details")}
+                  className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Parcel Details (Optional)"
+                />
+              </div>
             </div>
             <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-focus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">
               {loading ? <SmallSpinner /> : "Order Submit"}
