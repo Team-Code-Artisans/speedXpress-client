@@ -34,16 +34,7 @@ const RegularNav = () => {
                     Invoices
                 </Link>
             </li>
-            <li>
-                <Link
-                    to="/dashboard/regular/return"
-                    className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
-                    }
-                >
-                    Return
-                </Link>
-            </li>
+           
             <li>
                 <Link
                     to={"/dashboard/regular/create-parcel"}
