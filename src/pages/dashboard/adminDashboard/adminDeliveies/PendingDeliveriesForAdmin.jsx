@@ -1,7 +1,7 @@
 import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
 import { toast } from "react-hot-toast";
-import { AiOutlineCopy, AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineCopy } from "react-icons/ai";
 import { GrStatusGood } from "react-icons/gr";
 import { updateStatus } from "../../../../API Operations/manageAdminDeliveries";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
@@ -135,7 +135,7 @@ const PendingDeliveriesForAdmin = ({
                   :
                   <></>
               }
-              <AiOutlineDelete size={20} color="red" />
+              {/* <AiOutlineDelete size={20} color="red" /> */}
             </div>
           }
         </>

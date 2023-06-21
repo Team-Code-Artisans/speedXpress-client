@@ -62,7 +62,7 @@ const EmployeeDeliveries = () => {
         toast.success("Copied Successfully");
     };
 
-    if (loader || isLoading || deliveryParcels.length === 0) {
+    if (loader || isLoading) {
         return <BigSpinner />;
     }
 

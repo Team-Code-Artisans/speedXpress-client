@@ -1,9 +1,10 @@
+import { useRef, useState } from "react";
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdPendingActions } from "react-icons/md";
-import trackingImg from "../../../../Assets/tracking.png";
-import { useRef, useState } from "react";
+import { BsHouseCheck } from "react-icons/bs";
 import { getSingleParcel } from "../../../../API Operations/manageParcels";
+import trackingImg from "../../../../Assets/tracking.png";
 
 const RegularParcelTracking = () => {
   const inputTrackingID = useRef(null)
@@ -112,9 +113,17 @@ console.log(trackProduct);
               }
 
 
-            {/* accepted so this order is now on the way  */}
+            {/* accepted so this order is now in ware house */}
               {
                   trackProduct?.status=="accepted" && 
+                  
+                  <div className="overflow-hidden rounded-full bg-zinc-500">
+                  <div className="h-3 w-1/3 rounded-full bg-amber-400"></div>
+                  </div>
+              }
+               {/* accepted so this order is now on the way  */}
+              {
+                  trackProduct?.status=="in-transit" && 
                   
                   <div className="overflow-hidden rounded-full bg-zinc-500">
                   <div className="h-3 w-1/3 rounded-full bg-amber-400"></div>
@@ -150,12 +159,16 @@ console.log(trackProduct);
 
 
                 {/* list of status here */}
-                <ol className="mt-4 grid grid-cols-4 text-sm font-medium text-gray-500">
+                <ol className="mt-4 grid grid-cols-5 text-sm font-medium text-gray-500">
                   <li className="flex items-center justify-start text-amber-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> Pending </span>
                     <MdPendingActions className="text-xl" />
                   </li>
 
+                  <li className="flex items-center justify-center text-amber-400 sm:gap-1.5">
+                    <span className="hidden sm:inline"> In warehouse </span>
+                    <BsHouseCheck className="text-xl" />
+                  </li>
                   <li className="flex items-center justify-center text-amber-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> On The Way </span>
                     <HiOutlineLocationMarker className="text-xl" />

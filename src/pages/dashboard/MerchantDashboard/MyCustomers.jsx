@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react"
+import DataTable from "react-data-table-component"
 import { toast } from "react-hot-toast"
-import { getMyCustomers } from "../../../API Operations/manageUsers"
+import { BiTrashAlt } from "react-icons/bi"
+import { deleteData, getMyCustomers } from "../../../API Operations/manageUsers"
 import BigSpinner from "../../../components/Spinners/BigSpinner"
 import { AuthContext } from "../../../contexts/AuthProvider"
-import DataTable from "react-data-table-component"
 
 export const MyCustomers = () => {
     const [loading, setLoading] = useState(true)
@@ -15,6 +16,11 @@ export const MyCustomers = () => {
     const [filterData, setFilterData] = useState()
 
     useEffect(() => {
+        fetchCustomers()
+
+    }, [user?.email])
+
+    const fetchCustomers = () => {
         getMyCustomers(user?.email)
             .then(data => {
                 if (data.success) {
@@ -28,10 +34,7 @@ export const MyCustomers = () => {
                 setLoading(false);
                 toast.error("operation failed")
             })
-
-    }, [user?.email])
-
-
+    }
 
     // filter data depend on search 
 
@@ -62,8 +65,41 @@ export const MyCustomers = () => {
             name: 'Customer Phone',
             selector: row => row.number,
         },
+        {
+            name: "Action",
+            selector: row => (
+                <>
+                    {
+                        <div className="space-y-1 py-2 text-sm">
+                            <p>
+                                <button className="text-rose-700" title="Delete merchant account" onClick={() => handleDelete(row?._id)} >
+                                    <BiTrashAlt size={22} />
+                                </button>
+                            </p>
+
+                        </div>
+                    }
+                </>
+            ),
+        },
     ]
 
+    const handleDelete = (id) => {
+        console.log("deleteing", id)
+        let context="customer"
+        if (confirm("Are you sure to delete data")) {
+            deleteData(id,context).then(data => {
+                if (data?.success) {
+                    toast.success(data?.message)
+                    console.log(data?.message)
+                    fetchCustomers()
+                }
+            })
+                .catch(err => {
+                    toast.error(err.message)
+                })
+        }
+    }
 
     const styles = {
         rows: {
