@@ -2,9 +2,8 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
 import { AiOutlineCopy } from 'react-icons/ai'
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
-import { useEffect, useState } from "react";
 
-const RegularPendingDelivery = ({ isLoading, , handleCopy }) => {
+const RegularPendingDelivery = ({ isLoading,filterData , handleCopy }) => {
 
   
     const columns = [
@@ -96,17 +95,15 @@ const RegularPendingDelivery = ({ isLoading, , handleCopy }) => {
             )
         },
         {
-            name: "SHOP INFO",
+            name: "SENDER MAIL",
             selector: (row) => (
                 <>
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo?.merchantName}
+                                {row.senderEmail}
                             </p>
-                            <p>
-                                {row.customerInfo?.merchantEmail}
-                            </p>
+                            
                         </div>
                     }
                 </>
@@ -118,10 +115,10 @@ const RegularPendingDelivery = ({ isLoading, , handleCopy }) => {
                 <>
                     {
                         <div>
-                            <p className="text-slate-50 bg-orange-400 px-4 py-2 rounded-full text-center">
-                                Pending
-                            </p>
-                        </div>
+                        <p className={` ${row.status==="accepted" ? "text-green-500" : "text-amber-400"} px-4 py-2 rounded-full text-center font-bold`}>
+                            {row.status}
+                        </p>
+                    </div>
                     }
                 </>
             ),
@@ -132,7 +129,7 @@ const RegularPendingDelivery = ({ isLoading, , handleCopy }) => {
     return (
         <DataTable
             columns={columns}
-            data={}
+            data={filterData}
             direction="auto"
             fixedHeader
             fixedHeaderScrollHeight="600px"

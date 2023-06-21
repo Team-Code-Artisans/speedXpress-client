@@ -36,6 +36,13 @@ const RegularUserDeliveries = () => {
     setFilterData(result);
   }, [allParcels, search]);
 
+  
+// filtered data here
+const pendingDeliveries=filterData.filter(delivery=>delivery.status === 'pending')
+const completedDeliveries=filterData.filter(delivery=>delivery.status === 'complete')
+console.log(pendingDeliveries)
+
+
   const handleCopy = () => {
     toast.success("Copied Successfully");
   };
@@ -94,8 +101,8 @@ const RegularUserDeliveries = () => {
         </div>
 
         {activeStatus === 1 && <RegularAllDelivery isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
-        {activeStatus === 2 && <RegularPendingDelivery isLoading={isLoading} allParcels={allParcels} handleCopy={handleCopy} />}
-        {activeStatus === 3 && <RegularCompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 2 && <RegularPendingDelivery isLoading={isLoading} filterData={pendingDeliveries} handleCopy={handleCopy} />}
+        {activeStatus === 3 && <RegularCompleteDeliveries isLoading={isLoading} filterData={completedDeliveries} handleCopy={handleCopy} />}
       </div>
     </div>
   );
