@@ -94,7 +94,7 @@ const RegularUserDeliveries = () => {
         </div>
 
         {activeStatus === 1 && <RegularAllDelivery isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
-        {activeStatus === 2 && <RegularPendingDelivery isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+        {activeStatus === 2 && <RegularPendingDelivery isLoading={isLoading} allParcels={allParcels} handleCopy={handleCopy} />}
         {activeStatus === 3 && <RegularCompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
       </div>
     </div>

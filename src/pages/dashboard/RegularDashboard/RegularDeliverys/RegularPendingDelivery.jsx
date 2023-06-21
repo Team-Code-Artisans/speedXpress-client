@@ -2,9 +2,11 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
 import { AiOutlineCopy } from 'react-icons/ai'
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
+import { useEffect, useState } from "react";
 
-const RegularPendingDelivery = ({ isLoading, filterData, handleCopy }) => {
+const RegularPendingDelivery = ({ isLoading, , handleCopy }) => {
 
+  
     const columns = [
         {
             name: "DATE & TIME",
@@ -130,7 +132,7 @@ const RegularPendingDelivery = ({ isLoading, filterData, handleCopy }) => {
     return (
         <DataTable
             columns={columns}
-            data={filterData}
+            data={}
             direction="auto"
             fixedHeader
             fixedHeaderScrollHeight="600px"
