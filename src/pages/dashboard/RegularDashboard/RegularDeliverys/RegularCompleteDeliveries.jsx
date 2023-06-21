@@ -94,17 +94,15 @@ const RegularCompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
             )
         },
         {
-            name: "SHOP INFO",
+            name: "SENDER MAIL",
             selector: (row) => (
                 <>
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.customerOwnerName}
+                                {row.senderEmail}
                             </p>
-                            <p>
-                                {row.customerInfo.customerOwnerEmail}
-                            </p>
+                            
                         </div>
                     }
                 </>
@@ -116,10 +114,10 @@ const RegularCompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
                 <>
                     {
                         <div>
-                            <p className="text-slate-50 bg-emerald-400 px-4 py-2 rounded-full text-center">
-                                Completed
-                            </p>
-                        </div>
+                        <p className={` ${row.status==="accepted" ? "text-green-500" : "text-amber-400"} px-4 py-2 rounded-full text-center font-bold`}>
+                            {row.status}
+                        </p>
+                    </div>
                     }
                 </>
             ),

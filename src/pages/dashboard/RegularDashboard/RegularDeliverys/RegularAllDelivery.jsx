@@ -104,17 +104,15 @@ const RegularAllDelivery = ({ isLoading, filterData, handleCopy,refetch }) => {
             )
         },
         {
-            name: "SHOP INFO",
+            name: "SENDER MAIL",
             selector: (row) => (
                 <>
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.merchantName}
+                                {row.senderEmail}
                             </p>
-                            <p>
-                                {row.customerInfo.merhantEmail}
-                            </p>
+                            
                         </div>
                     }
                 </>
@@ -126,8 +124,8 @@ const RegularAllDelivery = ({ isLoading, filterData, handleCopy,refetch }) => {
                 <>
                     {
                         <div>
-                            <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-bold">
-                                Completed
+                            <p className={` ${row.status==="accepted" ? "text-green-500" : "text-amber-400"} px-4 py-2 rounded-full text-center font-bold`}>
+                                {row.status}
                             </p>
                         </div>
                     }
