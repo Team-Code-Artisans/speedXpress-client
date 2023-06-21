@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import RegularAllDelivery from "./RegularAllDelivery";
 import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { getParcels } from "../../../../API Operations/manageParcels";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { toast } from "react-hot-toast";
-import RegularPendingDelivery from "./RegularPendingDelivery";
+import RegularAllDelivery from "./RegularAllDelivery";
 import RegularCompleteDeliveries from "./RegularCompleteDeliveries";
+import RegularPendingDelivery from "./RegularPendingDelivery";
 import SubRouteTab from "./SubRouteTab";
 
 const RegularUserDeliveries = () => {

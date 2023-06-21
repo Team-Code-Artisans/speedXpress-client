@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { createParcel } from "../../../../API Operations/manageParcels";
-import { saveCustomer } from "../../../../API Operations/manageUsers";
 import InputDistrict from "../../../../components/InputDistrict";
 import InputDivision from "../../../../components/InputDivision";
 import SmallSpinner from "../../../../components/smallSpinner/SmallSpinner";
@@ -70,13 +69,13 @@ const RegularCreateParcel = () => {
 
   const handleMerchantParcel = (data) => {
     setLoading(true)
-    let distrcitName = district.name
+   
 
     const { name, number, address, email } = data
     division = division.name
 
     const customerInfo = {
-      name, email, number, division, distrcitName, address,
+      name, email, number, division, district:district?.name, address,
     }
 
     const parcelData = {
@@ -86,6 +85,7 @@ const RegularCreateParcel = () => {
       weight,
       TotalchargeAmount: (weightTotalCharge + deliveryFee + urgent),
       deliveryFee,
+      paid:false,
       status:"pending",
       senderEmail: user?.email
     }
@@ -104,20 +104,7 @@ const RegularCreateParcel = () => {
       console.log(err.message)
     })
 
-    // also save customer info to the DATABASE
-    saveCustomer(customerInfo)
-    // setLoading(true)
-      .then(data => {
-        console.log(data)
-        if (data.acknowledged) {
-          toast.success("customer saved")
-          
-        }
-      }).catch(err => {
-        console.log(err.message)
-        
-      })
-
+   
   };
 
   return (
