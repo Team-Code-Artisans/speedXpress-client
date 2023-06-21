@@ -28,10 +28,14 @@ const MerchantHome = () => {
   const completedDeliveries = allParcels.filter(
     (delivery) => delivery.status === "complete"
   );
+  const returnDeliveries = allParcels.filter(
+    (delivery) => delivery.status === "return"
+  );
 
   const totalPendingDeliveries = pendingDeliveries?.length;
   const totalCompletedDeliveries = completedDeliveries?.length;
-  //   console.log(totalPendingDeliveries, totalCompletedDeliveries);
+  const totalReturnDeliveries = returnDeliveries?.length;
+  //   console.log(totalPendingDeliveries, totalCompletedDeliveries, totalReturnDeliveries);
 
   const paidDeliveries = allParcels.filter(
     (delivery) => delivery.paid === true
@@ -62,6 +66,7 @@ const MerchantHome = () => {
       <OrderSummary
         totalPendingDeliveries={totalPendingDeliveries}
         totalCompletedDeliveries={totalCompletedDeliveries}
+        totalReturnDeliveries={totalReturnDeliveries}
       />
       <PaymentSummary
         totalAmount={totalAmount}

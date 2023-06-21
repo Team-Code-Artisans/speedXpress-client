@@ -1,8 +1,18 @@
-import { BsBox, BsBoxArrowInRight, BsBoxSeam } from "react-icons/bs";
+import {
+  BsArrowReturnLeft,
+  BsBox,
+  BsBoxArrowInRight,
+  BsBoxSeam,
+} from "react-icons/bs";
 
-const Stats = ({ totalPendingDeliveries, totalCompletedDeliveries }) => {
+const Stats = ({
+  totalPendingDeliveries,
+  totalInTransitDeliveries,
+  totalCompletedDeliveries,
+  totalReturnDeliveries,
+}) => {
   return (
-    <div className="grid md:grid-cols-3 grid-cols-1 gap-8 px-2">
+    <div className="grid md:grid-cols-4 grid-cols-1 gap-8 px-2">
       <div className=" space-y-4 rounded-xl bg-orange-100 p-2 md:p-4 shadow-xl">
         <div className="bg-orange-200 rounded-2xl p-2 inline-block shadow-xl">
           <BsBox size={"2rem"} className=" text-orange-600" />
@@ -29,7 +39,26 @@ const Stats = ({ totalPendingDeliveries, totalCompletedDeliveries }) => {
         </h3>
 
         <p className="text-lg text-gray-600 ">
-          <span className=" text-2xl font-semibold pr-2">00</span>packages
+          <span className=" text-2xl font-semibold pr-2">
+            {totalInTransitDeliveries}
+          </span>
+          packages
+        </p>
+      </div>
+      <div className=" space-y-4 rounded-xl bg-amber-100 p-2 md:p-4 shadow-xl">
+        <div className="bg-amber-200 rounded-2xl p-2 inline-block shadow-xl">
+          <BsArrowReturnLeft size={"2rem"} className="text-amber-600" />
+        </div>
+
+        <h3 className="text-xl font-semibold sm:text-2xl text-black">
+          Return Deliveries
+        </h3>
+
+        <p className="text-lg text-gray-600 ">
+          <span className=" text-2xl font-semibold pr-2">
+            {totalReturnDeliveries}
+          </span>
+          packages
         </p>
       </div>
       <div className=" space-y-4 rounded-xl bg-blue-100 p-2 md:p-4 shadow-xl">

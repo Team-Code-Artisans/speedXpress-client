@@ -28,10 +28,14 @@ export const EmployeeHome = () => {
   const completedDeliveries = allParcels.filter(
     (delivery) => delivery.status === "complete"
   );
+  const returnDeliveries = allParcels.filter(
+    (delivery) => delivery.status === "return"
+  );
 
   const totalPendingDeliveries = pendingDeliveries?.length;
   const totalCompletedDeliveries = completedDeliveries?.length;
-  console.log(totalPendingDeliveries, totalCompletedDeliveries);
+  const totalReturnDeliveries = returnDeliveries?.length;
+  // console.log(totalPendingDeliveries, totalCompletedDeliveries, totalReturnDeliveries);
 
   const paidDeliveries = allParcels.filter(
     (delivery) => delivery.paid === true
@@ -40,7 +44,7 @@ export const EmployeeHome = () => {
     (total, delivery) => total + delivery.TotalchargeAmount,
     0
   );
-  console.log(totalAmount);
+  // console.log(totalAmount);
 
   const totalPendingDeliveriesAmount = allParcels.filter(
     (delivery) => delivery.status === "pending"
@@ -49,7 +53,7 @@ export const EmployeeHome = () => {
     (total, delivery) => total + delivery.TotalchargeAmount,
     0
   );
-  console.log(totalPendingAmount);
+  // console.log(totalPendingAmount);
 
   if (isLoading) {
     <BigSpinner />;
@@ -62,6 +66,7 @@ export const EmployeeHome = () => {
       <DeliverySummary
         totalPendingDeliveries={totalPendingDeliveries}
         totalCompletedDeliveries={totalCompletedDeliveries}
+        totalReturnDeliveries={totalReturnDeliveries}
       />
       <EarningSummary
         totalAmount={totalAmount}

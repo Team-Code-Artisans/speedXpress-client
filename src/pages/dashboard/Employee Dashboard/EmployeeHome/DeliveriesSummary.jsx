@@ -3,6 +3,7 @@ import { BsBox, BsBoxArrowInRight, BsBoxSeam } from "react-icons/bs";
 const DeliverySummary = ({
   totalPendingDeliveries,
   totalCompletedDeliveries,
+  totalReturnDeliveries,
 }) => {
   return (
     <div className="my-10">
@@ -52,7 +53,10 @@ const DeliverySummary = ({
           </h3>
 
           <p className="text-lg text-gray-600 ">
-            <span className=" text-2xl font-semibold pr-2">00</span>packages
+            <span className=" text-2xl font-semibold pr-2">
+              {totalReturnDeliveries}
+            </span>
+            packages
           </p>
         </div>
       </div>
