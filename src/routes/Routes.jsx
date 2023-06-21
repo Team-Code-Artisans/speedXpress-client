@@ -32,6 +32,7 @@ import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
 import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
 import RegularInvoices from "../pages/dashboard/RegularDashboard/RegularInvoices/RegularInvoices";
+import AdminInvoices from "../pages/dashboard/adminDashboard/AdminInvoices/AdminInvoices";
 
 
 
@@ -94,7 +95,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/invoices",
-        element: <AdminHome />,
+        element: <AdminInvoices />,
       },
       {
         path: "/dashboard/admin/manage-merchant",

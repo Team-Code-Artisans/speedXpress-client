@@ -9,7 +9,7 @@ import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
 
-const RegularAllDelivery = ({ isLoading, filterData, handleCopy,refetch }) => {
+const RegularAllDelivery = ({ isLoading, filterData, handleCopy, refetch }) => {
     const stripeKey = import.meta.env.VITE_Stripe_public_key;
     // console.log(stripeKey)
     // Use stripeKey in your component
@@ -176,7 +176,7 @@ const RegularAllDelivery = ({ isLoading, filterData, handleCopy,refetch }) => {
             .post("/payment", { token, parcelId })
             .then((response) => {
                 console.log(response);
-                if(response.success){
+                if (response.success) {
                     refetch()
                     toast.success("Payment Successfull");
                 }
@@ -202,7 +202,7 @@ const RegularAllDelivery = ({ isLoading, filterData, handleCopy,refetch }) => {
             pointerOnHover
             progressPending={isLoading}
             progressComponent={<BigSpinner />}
-            custooomStyles={styles}
+            customStyles={styles}
         />
     );
 };

@@ -1,9 +1,9 @@
 
-const Document = ({ componentRef, data }) => {
+const AdminDocument = ({ componentRef, data }) => {
 
     const { paid, time, TotalchargeAmount, date, _id, customerInfo } = data
     const { address, district, division, email, name, number } = customerInfo;
-
+    console.log(data)
     return (
         <>
             <div ref={componentRef} className="flex flex-col justify-center items-center h-[100vh]">
@@ -72,4 +72,4 @@ const Document = ({ componentRef, data }) => {
     )
 }
 
-export default Document
+export default AdminDocument

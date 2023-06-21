@@ -1,13 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { AuthContext } from '../../../../contexts/AuthProvider';
+import React, { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query';
-import { getParcels } from '../../../../API Operations/manageParcels';
 import { toast } from 'react-hot-toast';
-import MerchantInvoiceTable from './MerchantInvoiceTable';
+import AdminInvoiceTable from './AdminInvoiceTable';
+import { getAllDeliveries } from '../../../../API Operations/manageAdminDeliveries';
 
-const MerchantInvoices = () => {
-
-    const { user } = useContext(AuthContext);
+const AdminInvoices = () => {
     const componentRef = useRef();
 
     const [search, setSearch] = useState("");
@@ -19,13 +16,13 @@ const MerchantInvoices = () => {
         refetch,
     } = useQuery({
         queryKey: ["allParcels"],
-        queryFn: () => getParcels(user?.email),
+        queryFn: () => getAllDeliveries(),
     });
 
     console.log(allParcels);
 
     useEffect(() => {
-        const result = allParcels?.filter(parcel => {
+        const result = allParcels?.data?.filter(parcel => {
             const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.name?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.number?.toLowerCase()?.match(search?.toLowerCase())
@@ -45,7 +42,7 @@ const MerchantInvoices = () => {
                     <div>
                         <div className="my-10">
                             <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
-                                All <span className="text-orange-600">Deliveries</span>
+                                All <span className="text-orange-600">Invoices</span>
                             </h1>
 
                             <div className="mt-2">
@@ -86,10 +83,10 @@ const MerchantInvoices = () => {
                     </div>
                 </div>
 
-                <MerchantInvoiceTable isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch} componentRef={componentRef} />
+                <AdminInvoiceTable isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch} componentRef={componentRef} />
             </div>
         </div>
     )
 }
 
-export default MerchantInvoices
+export default AdminInvoices

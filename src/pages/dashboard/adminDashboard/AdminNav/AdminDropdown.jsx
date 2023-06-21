@@ -1,10 +1,10 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { AiOutlineShop, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { GoSignOut } from 'react-icons/go';
-import { MdInsertEmoticon, MdPayment } from 'react-icons/md';
+import { MdPayment, MdPendingActions } from 'react-icons/md';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 
 export default function AdminDropdown() {
@@ -31,14 +31,14 @@ export default function AdminDropdown() {
                     <Menu.Items className="visible transition duration-300 opacity-100 bg-white shadow rounded mt-2 py-1 w-48 absolute -left-40 md:-left-20">
                         <div className="p-1">
                             <Menu.Item>
-                                <Link to={'/dashboard/admin/profile'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                    <CgProfile size={'1.5rem'} />
+                                <Link to={'/dashboard/admin/return'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                    <MdPendingActions size={'1.5rem'} />
                                     <span className="px-2">Return</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item>
-                                <Link to={'/dashboard/admin/profile'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                    <CgProfile size={'1.5rem'} />
+                                <Link to={'/dashboard/admin/invoices'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                    <MdPayment size={'1.5rem'} />
                                     <span className="px-2">Invoices</span>
                                 </Link>
                             </Menu.Item>

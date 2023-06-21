@@ -45,7 +45,7 @@ const MerchantInvoices = () => {
                     <div>
                         <div className="my-10">
                             <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
-                                All <span className="text-orange-600">Deliveries</span>
+                                All <span className="text-orange-600">Invoices</span>
                             </h1>
 
                             <div className="mt-2">
