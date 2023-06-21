@@ -118,7 +118,7 @@ console.log(trackProduct);
                   trackProduct?.status=="accepted" && 
                   
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-1/3 rounded-full bg-amber-400"></div>
+                  <div className="h-3 w-1/4 rounded-full bg-amber-400"></div>
                   </div>
               }
                {/* accepted so this order is now on the way  */}
@@ -126,7 +126,7 @@ console.log(trackProduct);
                   trackProduct?.status=="in-transit" && 
                   
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-1/3 rounded-full bg-amber-400"></div>
+                  <div className="h-3 w-1/2 rounded-full bg-amber-400"></div>
                   </div>
               }
 
@@ -135,7 +135,7 @@ console.log(trackProduct);
                   trackProduct?.status=="complete" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-2/3 rounded-full bg-amber-400"></div>
+                  <div className="h-3 w-3/4 rounded-full bg-amber-400"></div>
                   </div>
               }
 
@@ -180,7 +180,7 @@ console.log(trackProduct);
                   </li>
 
                   <li className="flex items-center justify-end sm:gap-1.5">
-                    <span className="hidden sm:inline"> RETURN </span>
+                    <span className="hidden sm:inline"> Return </span>
                     <AiOutlineDeliveredProcedure className="text-xl" />
                   </li>
                 </ol>
