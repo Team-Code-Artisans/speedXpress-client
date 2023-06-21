@@ -5,6 +5,7 @@ import { AiOutlineCopy, AiOutlineDelete } from 'react-icons/ai';
 import { GrStatusGood } from 'react-icons/gr';
 
 import { updateStatus } from "../../../../API Operations/manageAdminDeliveries";
+import { deleteData } from "../../../../API Operations/manageUsers";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
 const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) => {
@@ -168,7 +169,9 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
                                     :
                                     <></>
                             }
-                            <AiOutlineDelete size={20} color="red" />
+                            <button onClick={()=>handleDelete(row?._id)}>
+                                <AiOutlineDelete size={20} color="red" />
+                            </button>
                         </div>
                     }
                 </>
@@ -191,6 +194,25 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
                 console.log(err.message);
             });
     };
+
+    const handleDelete = (id) => {
+        console.log("deleteing", id)
+        let context="parcel"
+        if (confirm("Are you sure to delete data")) {
+            deleteData(id,context).then(data => {
+                if (data?.success) {
+                    toast.success(data?.message)
+                    console.log(data?.message)
+                    refetch()
+                }
+            })
+                .catch(err => {
+                    toast.error(err.message)
+                })
+        }
+    }
+
+
 
     return (
         <DataTable
