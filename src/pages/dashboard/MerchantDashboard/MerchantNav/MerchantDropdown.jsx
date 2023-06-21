@@ -37,14 +37,6 @@ export default function MerchantDropdown() {
                                 </Link>
                             </Menu.Item>
                         </div>
-                        <div className="p-1">
-                            <Menu.Item>
-                                <Link className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                    <MdPayment size={'1.5rem'} />
-                                    <span className="px-2">Payment History</span>
-                                </Link>
-                            </Menu.Item>
-                        </div>
                         <div className='p-1'>
                             <Menu.Item>
                                 <Link to={`/dashboard/merchant/my-customers`} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
