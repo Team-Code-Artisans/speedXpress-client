@@ -30,6 +30,7 @@ import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/Admin
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
+import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
 
 
 
