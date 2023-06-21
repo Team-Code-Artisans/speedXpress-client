@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { getParcels } from '../../../../API Operations/manageParcels';
 import { toast } from 'react-hot-toast';
 import MerchantInvoiceTable from './MerchantInvoiceTable';
-import MyDocument from './Document';
 
 const MerchantInvoices = () => {
 
@@ -85,10 +84,6 @@ const MerchantInvoices = () => {
                             </button>
                         </div>
                     </div>
-                </div>
-
-                <div className='hidden'>
-                    <MyDocument filterData={filterData} componentRef={componentRef} />
                 </div>
 
                 <MerchantInvoiceTable isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch} componentRef={componentRef} />

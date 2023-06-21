@@ -8,11 +8,9 @@ import instance from "../../../../axios";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import ReactToPrint from "react-to-print";
+import Document from "./Document";
 const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, componentRef }) => {
     const stripeKey = import.meta.env.VITE_Stripe_public_key;
-    // console.log(stripeKey)
-    // Use stripeKey in your component
-    console.log(filterData)
 
     const { user } = useContext(AuthContext)
     const columns = [
@@ -136,15 +134,12 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, comp
         },
         {
             name: "Action",
-            selector: (row, index) => (
+            selector: (row) => (
                 <>
                     {
 
                         <div>
-                            {/* here row._id is my that selected specific parcel id */}
-                            {/* {console.log(row._id,index)} */}
                             {!row.paid ?
-
                                 <StripeCheckout
                                     label="pay now" //Component button text
                                     name={user?.displayName} //Modal Header
@@ -158,24 +153,25 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, comp
                                 : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
                                     PAID ✔
                                 </p>
-
                             }
-
                         </div>
                     }
                 </>
             ),
         }, {
             name: "DOWNLOAD",
-            selector: () => (
+            selector: (row) => (
                 <>
                     {
-                        <div>
+                        <>
+                            <div className='hidden'>
+                                <Document componentRef={componentRef} data={row} />
+                            </div>
                             <ReactToPrint
                                 trigger={() => <button className="px-4 py-2 rounded-full text-center bg-orange-500 text-white">Download</button>}
                                 content={() => componentRef.current}
                             />
-                        </div>
+                        </>
                     }
                 </>
             ),
@@ -190,12 +186,12 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, comp
                 console.log(response);
                 if (response.success) {
                     refetch()
-                    toast.success("Payment Successfull");
+                    toast.success("Payment Successfully");
                 }
             })
             .catch((error) => {
                 console.log("Payment Error: ", error);
-                toast.error("Payment operation faild");
+                toast.error("Payment operation failed");
             });
     };
 
