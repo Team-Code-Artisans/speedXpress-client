@@ -1,23 +1,23 @@
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../contexts/AuthProvider'
+import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { setAuthToken } from '../../API Operations/Auth'
 import { saveUser } from '../../API Operations/manageUsers'
-import { toast } from 'react-hot-toast'
-import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
-import InputDivision from '../../components/InputDivision'
 import InputDistrict from '../../components/InputDistrict'
-import { divisionsData } from '../../data/Divisions'
+import InputDivision from '../../components/InputDivision'
+import SmallSpinner from '../../components/smallSpinner/SmallSpinner'
+import { AuthContext } from '../../contexts/AuthProvider'
 import { districtsData } from '../../data/Districts'
+import { divisionsData } from '../../data/Divisions'
 
 const EmployeeForm = () => {
 
     const { registerUser, setLoading, loading } = useContext(AuthContext)
-    const divisions = divisionsData;
-    const [division, setDivision] = useState(divisions[5]);
-    const districts = districtsData;
-    const [district, setDistrict] = useState(districts[46])
+    let divisions = divisionsData;
+    let [division, setDivision] = useState(divisions[5]);
+    let districts = districtsData;
+    let [district, setDistrict] = useState(districts[46])
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const EmployeeForm = () => {
     const { register, reset, handleSubmit, formState: { errors } } = useForm()
 
     const handleRegister = (data) => {
-        const { name, email, phoneNumber, district, division, address, password } = data
+        const { name, email, phoneNumber, address, password } = data
         registerUser(email, password, name, phoneNumber)
             .then(result => {
                 const user = result?.user;
@@ -36,8 +36,8 @@ const EmployeeForm = () => {
                     account_type: 'employee',
                     email,
                     phoneNumber,
-                    division,
-                    district,
+                    division:division?.name,
+                    district:district?.name,
                     address,
                 }
                 console.log(userData)

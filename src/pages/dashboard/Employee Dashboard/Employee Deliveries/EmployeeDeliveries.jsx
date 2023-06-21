@@ -1,39 +1,47 @@
-import React, { useContext, useEffect, useState } from "react";
-import Tabs from "./Tabs";
 import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import PendingDeliveries from "./PendingDeliveries";
-import CompleteDeliveries from "./CompletedDeliveries";
+import { getDeliveryParcels } from "../../../../API Operations/manageParcels";
+import { getAUser } from "../../../../API Operations/manageUsers";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { getParcels } from "../../../../API Operations/manageParcels";
+import CompleteDeliveries from "./CompletedDeliveries";
+import InTransitDeliveries from "./InTransitDeliveries";
+import PendingDeliveries from "./PendingDeliveries";
+import Tabs from "./Tabs";
 
 const EmployeeDeliveries = () => {
     const { user } = useContext(AuthContext);
-
+    const [employeeDistrict, setEmployeeDistrict] = useState("")
     const [activeStatus, setActiveStatus] = useState(2);
     const [search, setSearch] = useState("");
     const [filterData, setFilterData] = useState([]);
+    getAUser(user?.email).then(data => {
+        setEmployeeDistrict(data?.district)
+    })
 
     const {
-        data: allParcels = [],
+        data: deliveryParcels = [],
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["allParcels"],
-        queryFn: () => getParcels('speedxpress@gmail.com'),
+        queryKey: [employeeDistrict],
+        queryFn: () => getDeliveryParcels(employeeDistrict && employeeDistrict),
     });
 
-    console.log(allParcels);
+    console.log(deliveryParcels, employeeDistrict);
+
+
+
 
     useEffect(() => {
-        const result = allParcels?.filter(parcel => {
+        const result = deliveryParcels?.filter(parcel => {
             const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.name?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.number?.toLowerCase()?.match(search?.toLowerCase())
             return filter;
         });
         setFilterData(result);
-    }, [allParcels, search]);
+    }, [search,deliveryParcels]);
 
     const handleCopy = () => {
         toast.success("Copied Successfully");
@@ -92,8 +100,9 @@ const EmployeeDeliveries = () => {
                     </div>
                 </div>
 
-                {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
-                {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} />}
+                {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
+                {activeStatus === 4 && <InTransitDeliveries isLoading={isLoading} employeeDistrict={employeeDistrict} handleCopy={handleCopy} />}
+                {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading}  handleCopy={handleCopy} employeeDistrict={employeeDistrict} />}
             </div>
         </div>
     );
