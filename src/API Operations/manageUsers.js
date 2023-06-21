@@ -79,3 +79,18 @@ export const getUser = async (userType) => {
     console.log(error);
   }
 };
+
+
+
+// delete users
+
+
+export const deleteData = async (id,context) => {
+  try {
+    const url = `/delete/${context}/${id}`;
+    const res = await instance.delete(url);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
