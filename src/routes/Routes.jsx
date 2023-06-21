@@ -31,6 +31,7 @@ import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
 import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
+import RegularInvoices from "../pages/dashboard/RegularDashboard/RegularInvoices/RegularInvoices";
 
 
 
@@ -128,7 +129,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/invoices",
-        element: <div>invoice <small>print</small></div>,
+        element: <RegularInvoices />,
       },
       {
         path: "/dashboard/regular/return",
