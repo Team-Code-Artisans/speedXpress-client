@@ -22,6 +22,16 @@ export const getParcels = async (email) => {
     console.log(error.message);
   }
 };
+// get single spacific parcel form Database by its ID 
+
+export const getSingleParcel = async (id) => {
+  try {
+    const response = await instance.get(`/singleParcel?id=${id}`);
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 // get parcels for delivery by distrcit and status
 
 export const getDeliveryParcels = async (district) => {
