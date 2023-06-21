@@ -43,10 +43,19 @@ const MerchantForm = () => {
                     district,
                     shopAddress,
                 }
+                const shopData={
+                    ownerName,
+                    shopName,
+                    shopEmail,
+                    phoneNumber,
+                    division,
+                    district,
+                    shopAddress
+                }
                 setLoading(false)
                 setAuthToken(user)
                 saveUser(userData)
-                createShop()
+                createShop(shopData)
                 reset()
                 toast.success("Merchant Register Successfully")
                 navigate(from, { replace: true })

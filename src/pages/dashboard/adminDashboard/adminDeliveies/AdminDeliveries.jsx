@@ -26,8 +26,8 @@ const AdminDeliveries = () => {
   // console.log(allParcels);
 
   // filtered data here
-const pendingDeliveries=filterData.filter(delivery=>delivery.status === 'pending')
-const completedDeliveries=filterData.filter(delivery=>delivery.status === 'complete')
+const pendingDeliveries=filterData?.filter(delivery=>delivery.status === 'pending')
+const completedDeliveries=filterData?.filter(delivery=>delivery.status === 'complete')
 
   useEffect(() => {
     const result = allParcels.data?.filter(parcel => {

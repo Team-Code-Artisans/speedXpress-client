@@ -12,24 +12,6 @@ const PendingDeliveriesForAdmin = ({
   refetch,
 
 }) => {
-  const handleChangStatus = (data) => {
-    console.log(data);
-    const updatedStatus = "accepted";
-    updateStatus(data._id, updatedStatus)
-      .then((result) => {
-        if (result.modifiedCount === 1) {
-          toast.success("status updated successfully");
-          refetch();
-          console.log(result);
-        } else {
-          toast.error("status update failed");
-        }
-      })
-      .catch((err) => {
-        // setLoading(false);
-        console.log(err.message);
-      });
-  };
 
   const columns = [
     {
@@ -162,6 +144,23 @@ const PendingDeliveriesForAdmin = ({
 
 
   ];
+
+
+
+  const handleChangStatus = (id) => {
+    console.log(id);
+    const updatedStatus = "accepted";
+    updateStatus(id, updatedStatus)
+      .then((result) => {
+        refetch();
+        toast.success("Parcel delivery accepted by system");
+        console.log(result);
+      })
+      .catch((err) => {
+        // setLoading(false);
+        console.log(err.message);
+      });
+  };
 
   return (
     <DataTable

@@ -22,3 +22,39 @@ export const getParcels = async (email) => {
     console.log(error.message);
   }
 };
+// get parcels for delivery by distrcit and status
+
+export const getDeliveryParcels = async (district) => {
+  try {
+    console.log(district)
+    const url=`http://localhost:5000/parcels/${district}?status=accepted`
+    const response = await instance.get(url);
+    console.log("accepted by admin",response)
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const getIntransitParcels = async (district) => {
+  try {
+    console.log(district)
+    const url=`http://localhost:5000/parcels/${district}?status=in-transit`
+    const response = await instance.get(url);
+    console.log("accepted by employee",response)
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const getCompletedParcels = async (district) => {
+  try {
+    console.log(district)
+    const url=`http://localhost:5000/parcels/${district}?status=complete`
+    const response = await instance.get(url);
+    console.log("Completed by employee",response)
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+

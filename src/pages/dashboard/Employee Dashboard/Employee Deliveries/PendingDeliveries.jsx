@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
-import { AiOutlineCopy } from 'react-icons/ai'
+import { toast } from "react-hot-toast";
+import { AiOutlineCopy, AiOutlineDelete } from 'react-icons/ai';
+import { GrStatusGood } from "react-icons/gr";
+import { updateStatus } from "../../../../API Operations/manageAdminDeliveries";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 
-const PendingDeliveries = ({ isLoading, filterData, handleCopy }) => {
-
+const PendingDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
+const {user}=useContext(AuthContext)
     const columns = [
         {
             name: "DATE & TIME",
@@ -82,11 +87,12 @@ const PendingDeliveries = ({ isLoading, filterData, handleCopy }) => {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
                                 Delivery Fee: { }
-                                {row.deliveryFee}
+                                <span className="font-bold text-green-800">{row.deliveryFee}</span>
                             </p>
                             <p>
                                 Total Charge: { }
-                                {row.TotalchargeAmount}
+                                <span className="font-bold text-teal-600"> {row.TotalchargeAmount}</span>
+
                             </p>
                         </div>
                     }
@@ -100,7 +106,7 @@ const PendingDeliveries = ({ isLoading, filterData, handleCopy }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo?.merchantName}
+                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "from a reguler user"}
                             </p>
                             <p>
                                 {row.customerInfo?.merchantEmail}
@@ -116,16 +122,53 @@ const PendingDeliveries = ({ isLoading, filterData, handleCopy }) => {
                 <>
                     {
                         <div>
-                            <p className="text-slate-50 bg-orange-400 px-4 py-2 rounded-full text-center">
-                                Pending
+                            <p className="text-slate-50 bg-orange-400 px-3 py-1 rounded-full text-center text-sm font-medium ">
+                               {row.status}
                             </p>
                         </div>
                     }
                 </>
             ),
         },
+        {
+            name: "ACTION",
+            selector: (row) => (
+                <>
+                    {
+                        <div className="flex justify-center items-center gap-2.5">
+                            {
+                                row?.status === "accepted" && row?.paid ?
+                                    <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
+                                        onClick={() => handleChangStatus(row._id)}>
+                                        <GrStatusGood size={20} className="text-slate-100" />
+                                    </button>
+                                    :
+                                    <></>
+                            }
+                            <AiOutlineDelete size={20} color="red" />
+                        </div>
+                    }
+                </>
+            ),
+        },
+
     ];
 
+    const handleChangStatus = (id) => {
+        console.log(id);
+        // in transit after accepted by employee or delivery man
+        const updatedStatus = "in-transit";
+        updateStatus(id, updatedStatus)
+            .then((result) => {
+                refetch();
+                toast.success(`Parcel delivery accepted by ${user?.displayName} `);
+                console.log(result);
+            })
+            .catch((err) => {
+                // setLoading(false);
+                console.log(err.message);
+            });
+    };
 
     return (
         <DataTable
