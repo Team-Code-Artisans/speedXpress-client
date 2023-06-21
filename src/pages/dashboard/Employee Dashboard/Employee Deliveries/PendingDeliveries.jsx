@@ -122,8 +122,8 @@ const {user}=useContext(AuthContext)
                 <>
                     {
                         <div>
-                            <p className="text-slate-50 bg-orange-400 px-3 py-1 rounded-full text-center text-sm font-medium ">
-                               {row.status}
+                            <p className="text-slate-50 bg-orange-400 px-3 py-1 rounded-full text-center text-sm font-medium " title={row.status === "accepted" && "Approved by the system to delivery"}>
+                               {row.status === "accepted" && "Approved"}
                             </p>
                         </div>
                     }
@@ -139,13 +139,13 @@ const {user}=useContext(AuthContext)
                             {
                                 row?.status === "accepted" && row?.paid ?
                                     <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
-                                        onClick={() => handleChangStatus(row._id)}>
+                                        onClick={() => handleChangStatus(row._id)}  title="Accept for delivery">
                                         <GrStatusGood size={20} className="text-slate-100" />
                                     </button>
                                     :
                                     <></>
                             }
-                            <AiOutlineDelete size={20} color="red" />
+                            <AiOutlineDelete size={20} color="red"  />
                         </div>
                     }
                 </>
@@ -169,7 +169,7 @@ const {user}=useContext(AuthContext)
                 console.log(err.message);
             });
     };
-
+if(isLoading) return <BigSpinner/>
     return (
         <DataTable
             columns={columns}

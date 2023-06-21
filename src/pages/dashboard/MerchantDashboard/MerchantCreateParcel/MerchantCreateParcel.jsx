@@ -108,9 +108,9 @@ const MerchantCreateParcel = () => {
     saveCustomer(customerInfo)
       .then((data) => {
         console.log(data);
-        if (data.acknowledged) {
-          toast.success("customer saved");
-        }
+        // if (data.acknowledged) {
+        //   // toast.success("customer saved")
+        // }
       })
       .catch((err) => {
         console.log(err.message);

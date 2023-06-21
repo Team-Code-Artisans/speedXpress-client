@@ -100,7 +100,7 @@ const CompleteDeliveries = ({ isLoading, completedDeliveries, handleCopy }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.merchantName}
+                                {row.customerInfo.merchantName ? row.customerInfo.merchantName :"from reguler user" }
                             </p>
                             <p>
                                 {row.customerInfo.merchantEmail}

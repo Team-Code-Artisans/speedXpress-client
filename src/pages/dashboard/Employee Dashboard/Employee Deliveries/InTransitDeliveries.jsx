@@ -137,7 +137,7 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
                 <>
                     {
                         <div>
-                            <p className="text-slate-50 bg-orange-400 px-3 py-1 rounded-full text-center text-sm font-medium ">
+                            <p className="text-slate-50 bg-orange-400 px-3 py-1 rounded-full text-center text-sm font-medium " title= {row.status}>
                                 {row.status}
                             </p>
                         </div>
@@ -154,13 +154,13 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
                             {
                                 row?.status === "in-transit" && row?.paid ?
                                     <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
-                                        onClick={() => handleChangStatus(row._id)}>
+                                        onClick={() => handleChangStatus(row._id)}  title="Complete the delivery">
                                         <GrStatusGood size={20} className="text-slate-100" />
                                     </button>
                                     :
                                     <></>
                             }
-                            <AiOutlineDelete size={20} color="red" />
+                            <button  title="Delete"><AiOutlineDelete size={20} color="red" /></button>
                         </div>
                     }
                 </>

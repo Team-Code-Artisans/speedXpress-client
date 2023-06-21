@@ -17,35 +17,39 @@ const EmployeeDeliveries = () => {
     const [search, setSearch] = useState("");
     const [filterData, setFilterData] = useState([]);
     const [loader, setLoader] = useState(false)
-    getAUser(user?.email).then(data => {
-        setLoader(true)
-        setEmployeeDistrict(data?.district)
-        setLoader(false)
-    })
-        .catch(err => {
-            console.log(err)
-            setLoader(false)
-        })
+    const [deliveryParcels, setDeliveryParcels] = useState([]);
+    useEffect(() => {
+        getAUser(user?.email)
+            .then((data) => {
+                setLoader(true);
+                setEmployeeDistrict(data?.district);
+                setLoader(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoader(false);
+            });
+    }, [user]);
 
     const {
-        data: deliveryParcels = [],
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["deliveryParcels",employeeDistrict],
-        queryFn: () => getDeliveryParcels(employeeDistrict.length && employeeDistrict),
+        queryKey: ["deliveryParcels"],
+        queryFn: () => getDeliveryParcels(employeeDistrict),
+        enabled: !loader && employeeDistrict?.length > 0,
+        onSuccess: (data) => {
+            setDeliveryParcels(data);
+        },
     });
 
-    console.log(deliveryParcels, employeeDistrict);
-
-
-
-
     useEffect(() => {
-        const result =  deliveryParcels?.filter(parcel => {
-            const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
+        const result = deliveryParcels?.filter((parcel) => {
+            const filter =
+                parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) ||
+                parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.name?.toLowerCase()?.match(search?.toLowerCase()) ||
-                parcel?.customerInfo.number?.toLowerCase()?.match(search?.toLowerCase())
+                parcel?.customerInfo.number?.toLowerCase()?.match(search?.toLowerCase());
             return filter;
         });
         setFilterData(result);
@@ -55,9 +59,10 @@ const EmployeeDeliveries = () => {
         toast.success("Copied Successfully");
     };
 
-    if (isLoading) {
-        return <BigSpinner />
+    if (loader || isLoading || deliveryParcels.length === 0) {
+        return <BigSpinner />;
     }
+
     return (
         <div className="max-w-screen-2xl mx-auto px-4">
             <div className="my-10">
