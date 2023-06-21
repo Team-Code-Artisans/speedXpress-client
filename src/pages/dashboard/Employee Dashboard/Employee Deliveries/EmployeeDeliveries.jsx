@@ -3,11 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { getDeliveryParcels } from "../../../../API Operations/manageParcels";
 import { getAUser } from "../../../../API Operations/manageUsers";
+import { InfoAlert } from "../../../../components/Info Alert/InfoAlert";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import CompleteDeliveries from "./CompletedDeliveries";
 import InTransitDeliveries from "./InTransitDeliveries";
 import PendingDeliveries from "./PendingDeliveries";
+import { ReturnedDeliveries } from "./ReturnedDeliveries";
 import Tabs from "./Tabs";
 
 const EmployeeDeliveries = () => {
@@ -18,6 +20,7 @@ const EmployeeDeliveries = () => {
     const [filterData, setFilterData] = useState([]);
     const [loader, setLoader] = useState(false)
     const [deliveryParcels, setDeliveryParcels] = useState([]);
+    const [show, setShow] = useState(true);
     useEffect(() => {
         getAUser(user?.email)
             .then((data) => {
@@ -65,7 +68,7 @@ const EmployeeDeliveries = () => {
 
     return (
         <div className="max-w-screen-2xl mx-auto px-4">
-            <div className="my-10">
+            <div className="my-6">
                 <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
                     All <span className="text-orange-600">Deliveries</span>
                 </h1>
@@ -76,6 +79,8 @@ const EmployeeDeliveries = () => {
                     <span className="inline-block w-1 h-1 ml-1 bg-orange-500 rounded-full"></span>
                 </div>
             </div>
+
+            <InfoAlert message={`All approved deliveries by system of your area is here.\nAccept to delivery`} show={show} setShow={setShow}></InfoAlert>
 
             <div className="bg-white rounded-md w-full">
                 <div className=" lg:flex items-center justify-between pb-6">
@@ -119,6 +124,7 @@ const EmployeeDeliveries = () => {
                 {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch} />}
                 {activeStatus === 4 && <InTransitDeliveries isLoading={isLoading} employeeDistrict={employeeDistrict} handleCopy={handleCopy} />}
                 {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} handleCopy={handleCopy} employeeDistrict={employeeDistrict} />}
+                {activeStatus === 5 && <ReturnedDeliveries isLoading={isLoading} handleCopy={handleCopy} employeeDistrict={employeeDistrict} />}
             </div>
         </div>
     );

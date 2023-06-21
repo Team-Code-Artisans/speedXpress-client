@@ -1,15 +1,24 @@
-import { useContext } from "react";
-import CopyToClipboard from "react-copy-to-clipboard";
-import DataTable from "react-data-table-component";
-import { toast } from "react-hot-toast";
-import { AiOutlineCopy, AiOutlineDelete } from 'react-icons/ai';
-import { GrStatusGood } from "react-icons/gr";
-import { updateStatus } from "../../../../API Operations/manageAdminDeliveries";
-import BigSpinner from "../../../../components/Spinners/BigSpinner";
-import { AuthContext } from "../../../../contexts/AuthProvider";
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import DataTable from 'react-data-table-component';
+import { AiOutlineCopy } from 'react-icons/ai';
+import { getReturnedParcels } from '../../../../API Operations/manageParcels';
+import BigSpinner from '../../../../components/Spinners/BigSpinner';
 
-const PendingDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
-const {user}=useContext(AuthContext)
+export const ReturnedDeliveries = ({ handleCopy,employeeDistrict }) => {
+  
+const {
+    data: completedParcels = [],
+    isLoading,
+} = useQuery({
+    queryKey: [employeeDistrict],
+    queryFn: () => getReturnedParcels(employeeDistrict && employeeDistrict),
+});
+
+console.log(completedParcels, employeeDistrict);
+
+
     const columns = [
         {
             name: "DATE & TIME",
@@ -87,12 +96,11 @@ const {user}=useContext(AuthContext)
                         <div className="space-y-1 py-2 text-sm">
                             <p>
                                 Delivery Fee: { }
-                                <span className="font-bold text-green-800">{row.deliveryFee}</span>
+                                {row.deliveryFee}
                             </p>
                             <p>
                                 Total Charge: { }
-                                <span className="font-bold text-teal-600"> {row.TotalchargeAmount}</span>
-
+                                {row.TotalchargeAmount}
                             </p>
                         </div>
                     }
@@ -106,10 +114,10 @@ const {user}=useContext(AuthContext)
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "from a reguler user"}
+                                {row.customerInfo.merchantName ? row.customerInfo.merchantName : "from reguler user"}
                             </p>
                             <p>
-                                {row.customerInfo?.merchantEmail}
+                                {row.customerInfo.merchantEmail}
                             </p>
                         </div>
                     }
@@ -122,58 +130,21 @@ const {user}=useContext(AuthContext)
                 <>
                     {
                         <div>
-                            <p className="text-orange-700 bg-orange-100 px-3 py-2 rounded-full font-semibold text-xs" title={row.status === "accepted" && "Approved by the system to delivery"}>
-                               {row.status === "accepted" && "Approved"}
+                            <p className="text-rose-600 bg-rose-50 px-3 py-2 rounded-full font-semibold text-xs rounded-full text-center">
+                                Returned ❌
                             </p>
                         </div>
                     }
                 </>
             ),
         },
-        {
-            name: "ACTION",
-            selector: (row) => (
-                <>
-                    {
-                        <div className="flex justify-center items-center gap-2.5">
-                            {
-                                row?.status === "accepted" && row?.paid ?
-                                    <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
-                                        onClick={() => handleChangStatus(row._id)}  title="Accept for delivery">
-                                        <GrStatusGood size={20} className="text-slate-100" />
-                                    </button>
-                                    :
-                                    <></>
-                            }
-                            <AiOutlineDelete size={20} color="red"  />
-                        </div>
-                    }
-                </>
-            ),
-        },
-
     ];
 
-    const handleChangStatus = (id) => {
-        console.log(id);
-        // in transit after accepted by employee or delivery man
-        const updatedStatus = "in-transit";
-        updateStatus(id, updatedStatus)
-            .then((result) => {
-                refetch();
-                toast.success(`Parcel delivery accepted by ${user?.displayName} `);
-                console.log(result);
-            })
-            .catch((err) => {
-                // setLoading(false);
-                console.log(err.message);
-            });
-    };
-if(isLoading) return <BigSpinner/>
+
     return (
         <DataTable
             columns={columns}
-            data={filterData}
+            data={completedParcels}
             direction="auto"
             fixedHeader
             fixedHeaderScrollHeight="600px"
@@ -190,8 +161,6 @@ if(isLoading) return <BigSpinner/>
     );
 };
 
-export default PendingDeliveries;
-
 const styles = {
     rows: {
         style: {
@@ -204,3 +173,4 @@ const styles = {
         },
     },
 };
+

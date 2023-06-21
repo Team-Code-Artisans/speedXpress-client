@@ -130,7 +130,7 @@ console.log(completedParcels, employeeDistrict);
                 <>
                     {
                         <div>
-                            <p className="text-slate-50 bg-emerald-400 px-4 py-2 rounded-full text-center">
+                            <p className="text-green-600 bg-green-50 px-3 py-2 rounded-full font-semibold text-xs rounded-full text-center">
                                 Completed
                             </p>
                         </div>

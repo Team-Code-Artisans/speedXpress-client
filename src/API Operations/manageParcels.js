@@ -57,4 +57,15 @@ export const getCompletedParcels = async (district) => {
     console.log(error.message);
   }
 };
+export const getReturnedParcels = async (district) => {
+  try {
+    console.log(district)
+    const url=`http://localhost:5000/parcels/${district}?status=return`
+    const response = await instance.get(url);
+    console.log("Completed by employee",response)
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
