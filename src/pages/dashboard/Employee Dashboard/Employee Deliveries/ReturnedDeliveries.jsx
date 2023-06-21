@@ -1,62 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import DataTable from 'react-data-table-component';
 import { AiOutlineCopy } from 'react-icons/ai';
-import { getCompletedParcels } from '../../../../API Operations/manageParcels';
-import { getAUser } from '../../../../API Operations/manageUsers';
+import { getReturnedParcels } from '../../../../API Operations/manageParcels';
 import BigSpinner from '../../../../components/Spinners/BigSpinner';
-import { AuthContext } from '../../../../contexts/AuthProvider';
 
-const EmployeeEarnings = ({ handleCopy }) => {
+export const ReturnedDeliveries = ({ handleCopy,employeeDistrict }) => {
+  
+const {
+    data: completedParcels = [],
+    isLoading,
+} = useQuery({
+    queryKey: [employeeDistrict],
+    queryFn: () => getReturnedParcels(employeeDistrict && employeeDistrict),
+});
 
-    const [completedParcels, setCompletedParcels] = useState([])
-    const [employeeDistrict, setEmployeeDistrict] = useState([])
-    const [totalIncome, setTotalIncome] = useState(0)
-    const [loader, setLoader] = useState(false)
-    const { user } = useContext(AuthContext)
-    useEffect(() => {
-        getAUser(user?.email)
-            .then((data) => {
-                setLoader(true);
-                setEmployeeDistrict(data?.district);
-                setLoader(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                setLoader(false);
-            });
-    }, [user]);
+console.log(completedParcels, employeeDistrict);
 
-    const {
-        isLoading,
-
-    } = useQuery({
-        queryKey: ["deliveryParcels"],
-        queryFn: () => getCompletedParcels(employeeDistrict),
-        enabled: !loader && employeeDistrict?.length > 0,
-        onSuccess: (data) => {
-            setCompletedParcels(data);
-            if (data.length) {
-                calculateTotalEarnings(data)
-            }
-        },
-    });
-
-    console.log(completedParcels, employeeDistrict);
-
-
-    // calculate total earning till now
-    const calculateTotalEarnings = (deliveries) => {
-
-        console.log("from func", deliveries)
-        let total = deliveries?.reduce((i, delivery) => {
-            let charge = Number(delivery.TotalchargeAmount)
-            // console.log(charge, i)
-            return charge + i;
-        },0)
-        setTotalIncome(total)
-    }
 
     const columns = [
         {
@@ -146,15 +107,31 @@ const EmployeeEarnings = ({ handleCopy }) => {
                 </>
             )
         },
-        
+        {
+            name: "SHOP INFO",
+            selector: (row) => (
+                <>
+                    {
+                        <div className="space-y-1 py-2 text-sm">
+                            <p>
+                                {row.customerInfo.merchantName ? row.customerInfo.merchantName : "from reguler user"}
+                            </p>
+                            <p>
+                                {row.customerInfo.merchantEmail}
+                            </p>
+                        </div>
+                    }
+                </>
+            )
+        },
         {
             name: "STATUS",
             selector: (row) => (
                 <>
                     {
                         <div>
-                            <p className="text-green-600 bg-green-50 px-3 py-2 rounded-full font-semibold text-xs rounded-full text-center">
-                                {row.status}
+                            <p className="text-rose-600 bg-rose-50 px-3 py-2 rounded-full font-semibold text-xs rounded-full text-center">
+                                Returned ❌
                             </p>
                         </div>
                     }
@@ -165,47 +142,35 @@ const EmployeeEarnings = ({ handleCopy }) => {
 
 
     return (
-        <>
-            <h1 className='text-2xl py-3.5 text-center font-semibold'>Total Earnings ${totalIncome}</h1>
-            <DataTable
-                columns={columns}
-                data={completedParcels}
-                direction="auto"
-                fixedHeader
-                fixedHeaderScrollHeight="600px"
-                highlightOnHover
-                noHeader
-                pagination
-                responsive
-                striped
-                pointerOnHover
-                progressPending={isLoading}
-                progressComponent={<BigSpinner />}
-                customStyles={styles}
-            />
-
-        </>
+        <DataTable
+            columns={columns}
+            data={completedParcels}
+            direction="auto"
+            fixedHeader
+            fixedHeaderScrollHeight="600px"
+            highlightOnHover
+            noHeader
+            pagination
+            responsive
+            striped
+            pointerOnHover
+            progressPending={isLoading}
+            progressComponent={<BigSpinner />}
+            customStyles={styles}
+        />
     );
 };
-
-
-
-
-export default EmployeeEarnings
-
 
 const styles = {
     rows: {
         style: {
-            fontSize: '1rem',
+            fontSize: '1rem'
         },
     },
     headRow: {
         style: {
-            backgroundColor: '#e8fccf',
-            marginTop:"1rem",
-    
+            backgroundColor: '#fed7aa'
         },
     },
-    
 };
+

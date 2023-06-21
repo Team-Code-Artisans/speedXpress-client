@@ -2,8 +2,24 @@ import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdPendingActions } from "react-icons/md";
 import trackingImg from "../../../../Assets/tracking.png";
+import { useRef, useState } from "react";
+import { getSingleParcel } from "../../../../API Operations/manageParcels";
 
 const RegularParcelTracking = () => {
+  const inputTrackingID = useRef(null)
+
+  const [trackProduct,setTrackProduct] = useState(null)
+
+
+  const handleTrackFunction = ()=>{
+    const parcelID = inputTrackingID.current.value;
+      console.log(parcelID);
+
+      getSingleParcel(parcelID)
+      .then(res => setTrackProduct(res))
+  }
+
+console.log(trackProduct);
   return (
     <div>
       <section className="bg-gray-100 body-font">
@@ -17,8 +33,8 @@ const RegularParcelTracking = () => {
           </div>
           <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <h1 className="title-font text-4xl lg:text-5xl mb-4 font-bold ">
-              Effortless <span className="text-amber-400">Parcel Tracking</span>{" "}
-              for Your Peace of Mind
+              Effortless <span className="text-amber-400">Tracking </span>
+             Your Shipment
             </h1>
             <p className="mb-8 leading-relaxed text-sm lg:text-base">
               Track your parcel hassle-free with our intuitive system. Stay
@@ -31,6 +47,10 @@ const RegularParcelTracking = () => {
               us for efficient and stress-free shipping. Start tracking your
               parcel today and enjoy a worry-free shipping experience.
             </p>
+
+
+            {/* take parcel ID by input field  */}
+
             <div className="flex w-full md:justify-start justify-center items-end">
               <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4">
                 <label
@@ -42,11 +62,13 @@ const RegularParcelTracking = () => {
                 <input
                   type="text"
                   id="hero-field"
-                  name="hero-field"
+                  name="trackingID"
+                  ref={inputTrackingID}
+                  placeholder="Track your parcel by ID"
                   className="w-full bg-gray-50 rounded border bg-opacity-40 border-gray-700 focus:ring-2 focus:bg-transparent focus:border-gray-500 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
-              <button className="inline-flex text-white bg-amber-400 border-0 py-2 px-6 focus:outline-none hover:bg-amber-500 rounded text-lg">
+              <button onClick={handleTrackFunction}  className="inline-flex text-white bg-amber-400 border-0 py-2 px-6 focus:outline-none hover:bg-amber-500 rounded text-lg">
                 Track
               </button>
             </div>
@@ -57,6 +79,11 @@ const RegularParcelTracking = () => {
         </div>
       </section>
 
+
+
+
+{/* information show ing  section  */}
+
       <section className="mb-16">
         <div className="p-4 max-w-screen-2xl mx-auto">
           <div className="h-full bg-gray-100 bg-opacity-40 px-8 pt-9 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -64,17 +91,66 @@ const RegularParcelTracking = () => {
               <h2 className="">Parcel ID:</h2>
               <h2 className="">Delivered by:</h2>
             </div>
+            
             <hr />
 
             <div className="max-w-5xl mx-auto mt-20">
               <h2 className="sr-only">Steps</h2>
 
               <div>
-                <div className="overflow-hidden rounded-full bg-gray-200">
-                  <div className="h-2 w-1/2 rounded-full bg-amber-400"></div>
-                </div>
 
-                <ol className="mt-4 grid grid-cols-3 text-sm font-medium text-gray-500">
+
+                {/* progress bar here */}
+
+            {/* just order not yet paid .... */}
+              {
+                  trackProduct?.status=="pending" &&
+
+                  <div className="overflow-hidden rounded-full bg-zinc-500">
+                  <div className="h-3 w-8 rounded-full bg-amber-400"></div>
+                  </div>
+              }
+
+
+            {/* accepted so this order is now on the way  */}
+              {
+                  trackProduct?.status=="accepted" && 
+                  
+                  <div className="overflow-hidden rounded-full bg-zinc-500">
+                  <div className="h-3 w-1/3 rounded-full bg-amber-400"></div>
+                  </div>
+              }
+
+              {/* this product is now delevered  */}
+              {
+                  trackProduct?.status=="complete" &&
+
+                  <div className="overflow-hidden rounded-full bg-zinc-500">
+                  <div className="h-3 w-2/3 rounded-full bg-amber-400"></div>
+                  </div>
+              }
+
+              {/* this product into delevery problem so its return  */}
+              {
+                  trackProduct?.status=="return" &&
+
+                  <div className="overflow-hidden rounded-full bg-zinc-500">
+                  <div className="h-3 w-full rounded-full bg-amber-400"></div>
+                  </div>
+              }
+              {
+                  trackProduct == null &&
+
+                  <div className=" h-2 overflow-hidden rounded-full bg-stone-200">
+                  
+                  </div>
+              }
+             
+               
+
+
+                {/* list of status here */}
+                <ol className="mt-4 grid grid-cols-4 text-sm font-medium text-gray-500">
                   <li className="flex items-center justify-start text-amber-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> Pending </span>
                     <MdPendingActions className="text-xl" />
@@ -89,6 +165,11 @@ const RegularParcelTracking = () => {
                     <span className="hidden sm:inline"> Delivered </span>
                     <AiOutlineDeliveredProcedure className="text-xl" />
                   </li>
+
+                  <li className="flex items-center justify-end sm:gap-1.5">
+                    <span className="hidden sm:inline"> RETURN </span>
+                    <AiOutlineDeliveredProcedure className="text-xl" />
+                  </li>
                 </ol>
               </div>
             </div>
@@ -100,7 +181,7 @@ const RegularParcelTracking = () => {
               <div className="w-1/2">
                 <div className="flex">
                   <p className="mb-2 mr-3 text-amber-500">Name:</p>
-                  <p>unknown</p>
+                  <p>{trackProduct?.customerInfo?.name}</p>
                 </div>
                 <div className="flex">
                   <p className="mb-2 mr-3 text-amber-500">Location:</p>
@@ -108,7 +189,7 @@ const RegularParcelTracking = () => {
                 </div>
                 <div className="flex">
                   <p className="mb-2 mr-3 text-amber-500">Payment:</p>
-                  <p>free</p>
+                  <p>{trackProduct?.deliveryFee}</p>
                 </div>
               </div>
               <div className="w-1/2">
@@ -118,7 +199,7 @@ const RegularParcelTracking = () => {
                 </div>
                 <div className="flex">
                   <p className="mb-2 mr-3 text-amber-500">Delivery Location:</p>
-                  <p>anywhere</p>
+                  <p>{trackProduct?.customerInfo?.district}</p>
                 </div>
                 <div className="flex">
                   <p className="mr-3 text-amber-500">Delivery Man: </p>

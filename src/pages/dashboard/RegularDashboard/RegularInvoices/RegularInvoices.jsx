@@ -3,9 +3,9 @@ import { AuthContext } from '../../../../contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { getParcels } from '../../../../API Operations/manageParcels';
 import { toast } from 'react-hot-toast';
-import MerchantInvoiceTable from './MerchantInvoiceTable';
+import RegularInvoiceTable from './RegularInvoiceTable';
 
-const MerchantInvoices = () => {
+const RegularInvoices = () => {
 
     const { user } = useContext(AuthContext);
     const componentRef = useRef();
@@ -86,10 +86,10 @@ const MerchantInvoices = () => {
                     </div>
                 </div>
 
-                <MerchantInvoiceTable isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch} componentRef={componentRef} />
+                <RegularInvoiceTable isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch} componentRef={componentRef} />
             </div>
         </div>
     )
 }
 
-export default MerchantInvoices
+export default RegularInvoices

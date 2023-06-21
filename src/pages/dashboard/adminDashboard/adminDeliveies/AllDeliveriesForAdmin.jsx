@@ -146,7 +146,7 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
                         <div className="-ml-5 p-2">
                             <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'}
                             ${row?.status === "accepted" && 'text-green-600'} px-4 py-2 rounded-full text-center font-bold`}>
-                                {row?.status}
+                                {row?.status === "accepted" ? "approved" : row?.status}
                             </p>
                         </div>
                     }
@@ -162,8 +162,8 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
                             {
                                 row?.status === "pending" && row?.paid ?
                                     <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
-                                    onClick={()=>handleChangStatus(row._id)}>
-                                        <GrStatusGood size={20} className="text-slate-100"/>
+                                        onClick={() => handleChangStatus(row._id)}>
+                                        <GrStatusGood size={20} className="text-slate-100" />
                                     </button>
                                     :
                                     <></>
@@ -181,16 +181,16 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
         console.log(id);
         const updatedStatus = "accepted";
         updateStatus(id, updatedStatus)
-          .then((result) => {
-            refetch();
-            toast.success("Parcel delivery accepted by system");
-            console.log(result);
-          })
-          .catch((err) => {
-            // setLoading(false);
-            console.log(err.message);
-          });
-      };
+            .then((result) => {
+                refetch();
+                toast.success("Parcel delivery accepted by system");
+                console.log(result);
+            })
+            .catch((err) => {
+                // setLoading(false);
+                console.log(err.message);
+            });
+    };
 
     return (
         <DataTable
@@ -207,7 +207,7 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
             pointerOnHover
             progressPending={isLoading}
             progressComponent={<BigSpinner />}
-            custooomStyles={styles}
+            customStyles={styles}
         />
     );
 };

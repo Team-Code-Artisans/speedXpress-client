@@ -18,7 +18,6 @@ import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfil
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import RegularCreateParcel from "../pages/dashboard/RegularDashboard/RegularCreateParcel/RegularCreateParcel";
-import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
 import RegularHome from "../pages/dashboard/RegularDashboard/RegularHome/RegularHome";
 import RegularProfile from "../pages/dashboard/RegularDashboard/RegularProfile/RegularProfile";
 import RegularReturnParcel from "../pages/dashboard/RegularDashboard/RegularReturn/RegularReturnParcel";
@@ -31,6 +30,9 @@ import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/Admin
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
+import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
+import RegularInvoices from "../pages/dashboard/RegularDashboard/RegularInvoices/RegularInvoices";
+import AdminInvoices from "../pages/dashboard/adminDashboard/AdminInvoices/AdminInvoices";
 
 
 
@@ -93,7 +95,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/invoices",
-        element: <AdminHome />,
+        element: <AdminInvoices />,
       },
       {
         path: "/dashboard/admin/manage-merchant",
@@ -124,11 +126,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/regular/deliveries",
-        element: <RegularUserDeliveries />,
+        element: <RegularUserDeliveries/>,
       },
       {
         path: "/dashboard/regular/invoices",
-        element: <div>invoice <small>print</small></div>,
+        element: <RegularInvoices />,
       },
       {
         path: "/dashboard/regular/return",
