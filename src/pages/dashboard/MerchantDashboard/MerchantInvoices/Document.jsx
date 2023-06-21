@@ -1,16 +1,9 @@
-import React, { useRef } from 'react'
-import ReactToPrint from 'react-to-print';
 
-const Document = () => {
+const Document = ({ componentRef, filterData }) => {
 
-    const componentRef = useRef();
 
     return (
         <>
-            <ReactToPrint
-                trigger={() => <button>Print this out!</button>}
-                content={() => componentRef.current}
-            />
             <div ref={componentRef} className="flex flex-col justify-center items-center h-[100vh]">
                 <div rer={componentRef} className="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 p-3">
                     <div className="mt-2 mb-8 w-full flex justify-between">

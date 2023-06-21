@@ -7,11 +7,13 @@ import StripeCheckout from "react-stripe-checkout";
 import instance from "../../../../axios";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch }) => {
+import ReactToPrint from "react-to-print";
+const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, componentRef }) => {
     const stripeKey = import.meta.env.VITE_Stripe_public_key;
     // console.log(stripeKey)
     // Use stripeKey in your component
     console.log(filterData)
+
     const { user } = useContext(AuthContext)
     const columns = [
         {
@@ -163,6 +165,20 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch }) =>
                     }
                 </>
             ),
+        }, {
+            name: "DOWNLOAD",
+            selector: () => (
+                <>
+                    {
+                        <div>
+                            <ReactToPrint
+                                trigger={() => <button className="px-4 py-2 rounded-full text-center bg-orange-500 text-white">Download</button>}
+                                content={() => componentRef.current}
+                            />
+                        </div>
+                    }
+                </>
+            ),
         },
     ];
     // handle token here
@@ -198,7 +214,7 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch }) =>
             pointerOnHover
             progressPending={isLoading}
             progressComponent={<BigSpinner />}
-            custooomStyles={styles}
+            customStyles={styles}
         />
     );
 };
