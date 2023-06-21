@@ -68,19 +68,22 @@ const EmployeeDeliveries = () => {
 
     return (
         <div className="max-w-screen-2xl mx-auto px-4">
-            <div className="my-6">
-                <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
-                    All <span className="text-orange-600">Deliveries</span>
-                </h1>
+            <div className="my-6 flex justify-between">
+                <div >
+                    <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
+                        All <span className="text-orange-600">Deliveries</span>
+                    </h1>
 
-                <div className="mt-2">
-                    <span className="inline-block w-20 h-1 bg-orange-500 rounded-full"></span>
-                    <span className="inline-block w-3 h-1 ml-1 bg-orange-500 rounded-full"></span>
-                    <span className="inline-block w-1 h-1 ml-1 bg-orange-500 rounded-full"></span>
+                    <div className="mt-2">
+                        <span className="inline-block w-20 h-1 bg-orange-500 rounded-full"></span>
+                        <span className="inline-block w-3 h-1 ml-1 bg-orange-500 rounded-full"></span>
+                        <span className="inline-block w-1 h-1 ml-1 bg-orange-500 rounded-full"></span>
+                    </div>
                 </div>
+                <InfoAlert message={`All approved deliveries by system of your area is here.\nAccept to delivery`} show={show} setShow={setShow}></InfoAlert>
             </div>
 
-            <InfoAlert message={`All approved deliveries by system of your area is here.\nAccept to delivery`} show={show} setShow={setShow}></InfoAlert>
+
 
             <div className="bg-white rounded-md w-full">
                 <div className=" lg:flex items-center justify-between pb-6">
