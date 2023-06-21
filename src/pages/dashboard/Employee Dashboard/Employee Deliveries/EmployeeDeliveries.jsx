@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { getDeliveryParcels } from "../../../../API Operations/manageParcels";
 import { getAUser } from "../../../../API Operations/manageUsers";
+import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import CompleteDeliveries from "./CompletedDeliveries";
 import InTransitDeliveries from "./InTransitDeliveries";
@@ -15,17 +16,24 @@ const EmployeeDeliveries = () => {
     const [activeStatus, setActiveStatus] = useState(2);
     const [search, setSearch] = useState("");
     const [filterData, setFilterData] = useState([]);
+    const [loader, setLoader] = useState(false)
     getAUser(user?.email).then(data => {
+        setLoader(true)
         setEmployeeDistrict(data?.district)
+        setLoader(false)
     })
+        .catch(err => {
+            console.log(err)
+            setLoader(false)
+        })
 
     const {
         data: deliveryParcels = [],
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: [employeeDistrict],
-        queryFn: () => getDeliveryParcels(employeeDistrict && employeeDistrict),
+        queryKey: ["deliveryParcels",employeeDistrict],
+        queryFn: () => getDeliveryParcels(employeeDistrict.length && employeeDistrict),
     });
 
     console.log(deliveryParcels, employeeDistrict);
@@ -34,19 +42,22 @@ const EmployeeDeliveries = () => {
 
 
     useEffect(() => {
-        const result = deliveryParcels?.filter(parcel => {
+        const result =  deliveryParcels?.filter(parcel => {
             const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.name?.toLowerCase()?.match(search?.toLowerCase()) ||
                 parcel?.customerInfo.number?.toLowerCase()?.match(search?.toLowerCase())
             return filter;
         });
         setFilterData(result);
-    }, [search,deliveryParcels]);
+    }, [search, deliveryParcels]);
 
     const handleCopy = () => {
         toast.success("Copied Successfully");
     };
 
+    if (isLoading) {
+        return <BigSpinner />
+    }
     return (
         <div className="max-w-screen-2xl mx-auto px-4">
             <div className="my-10">
@@ -100,9 +111,9 @@ const EmployeeDeliveries = () => {
                     </div>
                 </div>
 
-                {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch}/>}
+                {activeStatus === 2 && <PendingDeliveries isLoading={isLoading} filterData={filterData} handleCopy={handleCopy} refetch={refetch} />}
                 {activeStatus === 4 && <InTransitDeliveries isLoading={isLoading} employeeDistrict={employeeDistrict} handleCopy={handleCopy} />}
-                {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading}  handleCopy={handleCopy} employeeDistrict={employeeDistrict} />}
+                {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} handleCopy={handleCopy} employeeDistrict={employeeDistrict} />}
             </div>
         </div>
     );

@@ -20,7 +20,7 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
         refetch,
     } = useQuery({
         queryKey: [employeeDistrict],
-        queryFn: () => getIntransitParcels(employeeDistrict && employeeDistrict),
+        queryFn: () => getIntransitParcels(employeeDistrict.length && employeeDistrict),
     });
 
     console.log(inTrasitParcels, employeeDistrict);
