@@ -5,7 +5,7 @@ import { FaFacebookMessenger } from 'react-icons/fa';
 import { ImLocation2 } from 'react-icons/im';
 
 
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { getRole } from "../../../API Operations/manageUsers";
 import logo from '../../../Assets/mainlogo.png';
 import { AuthContext } from "../../../contexts/AuthProvider";
@@ -18,6 +18,7 @@ const Navbar = () => {
 
   const logOut= () => {
     logout()
+    
   }
   useEffect(() => {
     getRole(user?.email)
