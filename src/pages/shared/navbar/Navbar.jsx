@@ -5,7 +5,7 @@ import { FaFacebookMessenger } from 'react-icons/fa';
 import { ImLocation2 } from 'react-icons/im';
 
 
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getRole } from "../../../API Operations/manageUsers";
 import logo from '../../../Assets/mainlogo.png';
 import { AuthContext } from "../../../contexts/AuthProvider";
@@ -13,13 +13,8 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 const Navbar = () => {
   const [role, setRole] = useState("")
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user,logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
-
-  const logOut= () => {
-    logout()
-    
-  }
   useEffect(() => {
     getRole(user?.email)
       .then(data => {
@@ -125,7 +120,7 @@ const Navbar = () => {
                 user
                   && user?.email ?
                   <li>
-                    <button type="button" className=" py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-transparent text-white shadow-sm align-middle hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm " onClick={() => logOut()}>
+                    <button type="button" className=" py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-transparent text-white shadow-sm align-middle hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm " onClick={() => logout()}>
                       <span>Logout</span>
                       <CgLogOut />
 

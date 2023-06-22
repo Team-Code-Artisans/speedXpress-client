@@ -10,8 +10,8 @@ import {
     updateProfile,
 } from 'firebase/auth'
 import { createContext, useEffect, useState } from 'react'
-import app from '../firebase/firebase.config'
 import { toast } from 'react-hot-toast'
+import app from '../firebase/firebase.config'
 
 
 export const AuthContext = createContext()
@@ -21,7 +21,7 @@ const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
   
 
@@ -81,6 +81,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         //this part will execute once the component is mounted.
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            console.log(currentUser)
             setUser(currentUser)
             setLoading(false)
         })
