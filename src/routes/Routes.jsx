@@ -33,7 +33,7 @@ import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/Admin
 import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/AdminMerchant";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
-import MerchantRoutes from "./MerchantRoutes";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -84,35 +84,35 @@ const router = createBrowserRouter([
       // admin routes
       {
         path: "/dashboard/admin",
-        element: <AdminHome />,
+        element: <PrivateRoute><AdminHome /></PrivateRoute>,
       },
       {
         path: "/dashboard/admin/order-tracking",
-        element: <OrderTracking />,
+        element: <PrivateRoute><OrderTracking /></PrivateRoute>,
       },
       {
         path: "/dashboard/admin/deliveries",
-        element: <AdminDeliveries />,
+        element:<PrivateRoute><AdminDeliveries /></PrivateRoute>,
       },
       {
         path: "/dashboard/admin/invoices",
-        element: <AdminInvoices />,
+        element: <PrivateRoute><AdminInvoices /></PrivateRoute>,
       },
       {
         path: "/dashboard/admin/manage-merchant",
-        element: <AdminMerchant />,
+        element:<PrivateRoute> <AdminMerchant /></PrivateRoute>,
       },
       {
         path: "/dashboard/admin/manage-employee",
-        element: <AdminEmployee />,
+        element:<PrivateRoute> <AdminEmployee /></PrivateRoute>,
       },
       {
         path: "/dashboard/admin/return",
-        element: <AllReturnedParcels />,
+        element:<PrivateRoute> <AllReturnedParcels /></PrivateRoute>,
       },
       {
         path: "/dashboard/admin/profile",
-        element: <AdminProfile />,
+        element: <PrivateRoute><AdminProfile/></PrivateRoute>,
       },
       
 
@@ -120,27 +120,27 @@ const router = createBrowserRouter([
       // regular user routes
       {
         path: "/dashboard/regular",
-        element: <RegularHome />,
+        element: <PrivateRoute><RegularHome /></PrivateRoute>,
       },
       {
         path: "/dashboard/regular/create-parcel",
-        element: <RegularCreateParcel />,
+        element:<PrivateRoute><RegularCreateParcel /></PrivateRoute>,
       },
       {
         path: "/dashboard/regular/deliveries",
-        element: <RegularUserDeliveries/>,
+        element: <PrivateRoute><RegularUserDeliveries/></PrivateRoute>,
       },
       {
         path: "/dashboard/regular/invoices",
-        element: <RegularInvoices />,
+        element: <PrivateRoute><RegularInvoices /></PrivateRoute>,
       },
       {
         path: "/dashboard/regular/return",
-        element: <RegularReturnParcel />,
+        element: <PrivateRoute><RegularReturnParcel /></PrivateRoute>,
       },
       {
         path: "/dashboard/regular/profile",
-        element: <RegularProfile />,
+        element: <PrivateRoute><RegularProfile /></PrivateRoute>,
       },
 
 
@@ -150,31 +150,31 @@ const router = createBrowserRouter([
 
       {
         path: "/dashboard/merchant",
-        element: <MerchantRoutes><MerchantHome /></MerchantRoutes>,
+        element:<PrivateRoute><MerchantHome /></PrivateRoute>,
       },
       {
         path: "/dashboard/merchant/deliveries",
-        element: <MerchantRoutes><MerchantDeliveries /></MerchantRoutes>,
+        element: <PrivateRoute><MerchantDeliveries /></PrivateRoute>,
       },
       {
         path: "/dashboard/merchant/invoices",
-        element: <MerchantRoutes><MerchantInvoices /></MerchantRoutes>,
+        element: <PrivateRoute><MerchantInvoices /></PrivateRoute>,
       },
       {
         path: "/dashboard/merchant/create-parcel",
-        element: <MerchantCreateParcel />,
+        element:<PrivateRoute><MerchantCreateParcel /></PrivateRoute>,
       },
       {
         path: "/dashboard/merchant/my-shops",
-        element: <MyShops />
+        element:<PrivateRoute> <MyShops /></PrivateRoute>
       },
       {
         path: "/dashboard/merchant/my-customers",
-        element: <MyCustomers />,
+        element: <PrivateRoute><MyCustomers /></PrivateRoute>,
       },
       {
         path: "/dashboard/merchant/profile",
-        element: <MerchantProfile />,
+        element: <PrivateRoute><MerchantProfile /></PrivateRoute>,
       },
 
 
@@ -183,19 +183,19 @@ const router = createBrowserRouter([
       // employee routes
       {
         path: "/dashboard/employee",
-        element: <EmployeeHome />,
+        element: <PrivateRoute><EmployeeHome /></PrivateRoute>,
       },
       {
         path: "/dashboard/employee/deliveries",
-        element: <EmployeeDeliveries />,
+        element:<PrivateRoute> <EmployeeDeliveries /></PrivateRoute>,
       },
       {
         path: "/dashboard/employee/earnings",
-        element: <EmployeeEarnings />,
+        element:<PrivateRoute> <EmployeeEarnings /></PrivateRoute>,
       },
       {
         path: "/dashboard/employee/profile",
-        element: <EmployeeProfile />,
+        element:<PrivateRoute> <EmployeeProfile /></PrivateRoute>,
       },
 
 
