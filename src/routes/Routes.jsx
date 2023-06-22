@@ -18,21 +18,22 @@ import MerchantProfile from "../pages/dashboard/MerchantDashboard/MerchantProfil
 import { MyCustomers } from "../pages/dashboard/MerchantDashboard/MyCustomers";
 import MyShops from "../pages/dashboard/MerchantDashboard/MyShops/MyShops";
 import RegularCreateParcel from "../pages/dashboard/RegularDashboard/RegularCreateParcel/RegularCreateParcel";
+import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
 import RegularHome from "../pages/dashboard/RegularDashboard/RegularHome/RegularHome";
+import RegularInvoices from "../pages/dashboard/RegularDashboard/RegularInvoices/RegularInvoices";
 import RegularProfile from "../pages/dashboard/RegularDashboard/RegularProfile/RegularProfile";
 import RegularReturnParcel from "../pages/dashboard/RegularDashboard/RegularReturn/RegularReturnParcel";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome/AdminHome";
+import AdminInvoices from "../pages/dashboard/adminDashboard/AdminInvoices/AdminInvoices";
 import AdminProfile from "../pages/dashboard/adminDashboard/AdminProfile/AdminProfile";
 import OrderTracking from "../pages/dashboard/adminDashboard/OrderTracking/OrderTracking";
 import AdminDeliveries from "../pages/dashboard/adminDashboard/adminDeliveies/AdminDeliveries";
+import AllReturnedParcels from "../pages/dashboard/adminDashboard/adminDeliveies/AllReturnedParcels";
 import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
 import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/AdminMerchant";
 import Home from "../pages/home/Home";
 import About from "../pages/home/about/About";
 import MerchantRoutes from "./MerchantRoutes";
-import RegularUserDeliveries from "../pages/dashboard/RegularDashboard/RegularDeliverys/RegularUserDeliveries";
-import RegularInvoices from "../pages/dashboard/RegularDashboard/RegularInvoices/RegularInvoices";
-import AdminInvoices from "../pages/dashboard/adminDashboard/AdminInvoices/AdminInvoices";
 
 
 
@@ -107,12 +108,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/return",
-        element: <AdminHome />,
+        element: <AllReturnedParcels />,
       },
       {
         path: "/dashboard/admin/profile",
         element: <AdminProfile />,
       },
+      
 
 
       // regular user routes

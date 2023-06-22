@@ -79,3 +79,17 @@ export const getReturnedParcels = async (district) => {
   }
 };
 
+
+// get all parcel
+
+export const getAllReturnedParcels = async () => {
+  try {
+   
+    const url=`returned-parcels`
+    const response = await instance.get(url);
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
