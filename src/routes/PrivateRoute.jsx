@@ -1,28 +1,24 @@
-import  { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../contexts/AuthProvider'
-import BigSpinner from '../components/Spinners/BigSpinner';
-import { getRole } from '../API Operations/manageUsers';
-import { Navigate } from 'react-router-dom';
+import { useContext } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import BigSpinner from "../components/Spinners/BigSpinner";
+import { AuthContext } from "../contexts/AuthProvider";
+
 
 const PrivateRoute = ({ children }) => {
-
-const {user,loading} = useContext(AuthContext)
-const [userRole,setUserRole]=useState()
-    useEffect(()=>{
-        getRole(user.email)
-        .then(res => setUserRole(res))
-    },[user])
-
-  
-    if(loading){
-        return <BigSpinner></BigSpinner>
+    const { user, loading } = useContext(AuthContext)
+    const currentlocation = useLocation()
+    console.log("loading", loading)
+    if (loading) {
+        return <>
+            <BigSpinner />
+        </>
     }
-    if (userRole){
+    if (!loading && !user) {
+        return <Navigate to="/login" state={{ from: currentlocation }} replace></Navigate>
+    }
+    if (user?.email)
         return children;
-    }
-    if(!userRole){
-        <Navigate to='/login'></Navigate>
-    }
+
 }
 
 export default PrivateRoute
