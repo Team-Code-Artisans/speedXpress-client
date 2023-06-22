@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Service = () => {
     return (
         <div className="max-w-screen-xl mx-auto rounded-2xl bg-white shadow-xl p-8 -mt-10 z-20">
-            <div className="grid grid-cols-2 pb-8">
+            <div className="grid md:grid-cols-2 gap-4 pb-8">
                 <div className='space-y-6'>
                     <Link
                         className="group relative inline-block text-sm font-medium text-orange-600 focus:outline-none focus:ring active:text-orange-500"

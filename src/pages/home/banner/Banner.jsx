@@ -15,7 +15,7 @@ const Banner = () => {
 
 
                     <div className="md:flex lg:flex justify-between items-center relative md:px-10 md:gap-x-8 lg:px-14">
-                        <div className="p-2 max-w-full md:max-w-fit mb-6 -mt-40">
+                        <div className="p-2 max-w-full md:max-w-fit mb-6 md:-mt-40">
                             <h5 className='text-lg text-left text-slate-400 mb-6'>We deliver, Track and ship</h5>
 
                             <div className="p-3.5 bg-[#192732] inline-block rounded-l-lg -mb-2 ">

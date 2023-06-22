@@ -11,10 +11,10 @@ import Section1 from './sections/Section1'
 import Section2 from './sections/Section2'
 
 const Home = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
 
-    }, [])
+    // }, [])
     return (
         <div>
             {/* <Hero3 /> */}
