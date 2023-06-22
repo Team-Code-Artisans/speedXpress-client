@@ -21,8 +21,8 @@ const Home = () => {
             <Banner />
             <Service />
             <Section1 />
-            <Section2 />
             <Feature />
+            <Section2 />
             <Pricing />
             <Review />
             <Faq />

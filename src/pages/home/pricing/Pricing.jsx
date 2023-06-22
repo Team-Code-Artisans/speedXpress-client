@@ -1,6 +1,15 @@
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
+import Aos from 'aos';
+
 const Pricing = () => {
+    useEffect(() => {
+        Aos.init({ duration: 2000 })
+    }, []);
     return (
-        <div id="pricing" className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div
+            data-aos="zoom-up"
+            id="pricing" className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <section className="py-20  ">
                 <div className="container px-4 mx-auto">
                     <div className="max-w-2xl mx-auto mb-16 text-center">

@@ -1,10 +1,18 @@
 import { FiPackage } from "react-icons/fi";
 import { MdShareLocation } from "react-icons/md";
 import { RiCustomerService2Line } from "react-icons/ri";
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
+import Aos from 'aos';
 
 const Feature = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 })
+  }, []);
   return (
-    <section className="mt-24">
+    <section
+      data-aos="zoom-in"
+      className="mt-24">
       <div className="mx-auto max-w-screen-xl px-4 py-4 sm:py-12 sm:px- lg:px-8">
         <div className="lg:flex justify-evenly sm:flex-row mb-16">
           <h2 className="lg:text-4xl font-bold text-4xl lg:max-w-md">
