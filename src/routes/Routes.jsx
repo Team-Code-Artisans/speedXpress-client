@@ -71,6 +71,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: "/order-tracking",
+        element: <OrderTracking />,
+      },
     ],
   },
 
