@@ -13,6 +13,7 @@ import { createContext, useEffect, useState } from 'react'
 import app from '../firebase/firebase.config'
 import { toast } from 'react-hot-toast'
 
+
 export const AuthContext = createContext()
 const auth = getAuth(app)
 
@@ -21,6 +22,8 @@ const googleProvider = new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
+
+  
 
     const registerUser = async (email, password, displayName, phoneNumber) => {
         setLoading(true);
@@ -57,8 +60,10 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
             .then(() => {
                 toast.success("Successfully Logged Out")
+               
             })
             .catch(err => console.log(err.message))
+            
     }
 
     //6. Login with Password
@@ -86,8 +91,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    console.log(user)
-
+  
     const authInfo = {
         user,
         signInWithGoogle,

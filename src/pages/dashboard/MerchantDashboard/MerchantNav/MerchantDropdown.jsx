@@ -55,10 +55,10 @@ export default function MerchantDropdown() {
                         </div>
                         <div className="p-1">
                             <Menu.Item>
-                                <div className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center" onClick={() => logout()}>
+                                <Link to={'/'} className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center" onClick={() => logout()}>
                                     <GoSignOut size={'1.5rem'} />
                                     <span className="px-2">Sign Out</span>
-                                </div>
+                                </Link>
                             </Menu.Item>
                         </div>
                     </Menu.Items>

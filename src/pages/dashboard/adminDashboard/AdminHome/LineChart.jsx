@@ -1,18 +1,17 @@
-import React from 'react'
+import { CategoryScale, Chart as ChartJS, Filler, Legend, LineElement, LinearScale, PointElement, Tooltip } from 'chart.js';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend, Filler } from 'chart.js'
 
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip, Filler,
 )
 
-const LineChart = () => {
-
+const LineChart = ({deliveriesTimes, chargeAmount}) => {
     const data = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        labels: deliveriesTimes,
         datasets: [{
             label: 'Showing Monthly Order',
-            data: [65, 59, 80, 81, 56, 55, 40, 67, 84, 79],
+            data: chargeAmount,
             fill: true,
             borderColor: 'rgb(244, 91, 29)',
             pointBorderColor: 'rgb(244, 91, 29)',
@@ -31,8 +30,8 @@ const LineChart = () => {
         },
         scales: {
             y: {
-                min: 10,
-                max: 100,
+                min: 80,
+                max: 450,
             }
         }
     };
