@@ -7,6 +7,8 @@ import Pricing from "./pricing/Pricing";
 import Review from "./review/Review";
 import Service from "./service/Service";
 import Hero3 from "./hero/hero";
+import Section1 from './sections/Section1'
+import Section2 from './sections/Section2'
 
 const Home = () => {
     useEffect(() => {
@@ -18,6 +20,8 @@ const Home = () => {
             {/* <Hero3 /> */}
             <Banner />
             <Service />
+            <Section1 />
+            <Section2 />
             <Feature />
             <Pricing />
             <Review />
