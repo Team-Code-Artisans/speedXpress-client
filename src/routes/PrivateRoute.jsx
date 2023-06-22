@@ -8,19 +8,22 @@ const PrivateRoute = ({ children }) => {
 
 const {user,loading} = useContext(AuthContext)
 const [userRole,setUserRole]=useState()
+const [serverLoad,setServerLoad]=useState(true)
     useEffect(()=>{
-        getRole(user.email)
-        .then(res => setUserRole(res))
+        getRole(user?.email)
+        .then(res => {
+            setUserRole(res)
+            setServerLoad(false)
+        })
+       
     },[user])
 
   
-    if(loading){
+    if(loading || serverLoad){
         return <BigSpinner></BigSpinner>
-    }
-    if (userRole){
+    }else if(userRole){
         return children;
-    }
-    if(!userRole){
+    }else if(!userRole){
         <Navigate to='/login'></Navigate>
     }
 }

@@ -40,8 +40,7 @@ export default function RegularDropdown() {
                             <Menu.Item>
                                 <div className="cursor-pointer text-black leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center" onClick={() => logout()}>
                                     <GoSignOut size={'1.5rem'} />
-                                   
-                                    <Link to='/' className="px-2">Sign Out</Link>
+                                    <span className="px-2">Sign Out</span>
                                 </div>
                             </Menu.Item>
                         </div>
