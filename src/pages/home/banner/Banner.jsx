@@ -4,6 +4,7 @@ import delivery from '../../../Assets/Images/tracking-delivery.jpg'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
 
@@ -34,7 +35,7 @@ const Banner = () => {
                             <div className="py-5 px-4 bg-[#192732] rounded-lg">
                                 <div className="flex flex-col md:flex-row  justify-center gap-4 flex-wrap rounded-lg">
                                     <input type="text" placeholder='Tracking Id' className='border border-slate-500 rounded-lg px-6 py-2.5 bg-transparent text-slate-200 ' />
-                                    <button className='text-slate-900 bg-yellow px-8 py-2.5 rounded-lg'>TRACK</button>
+                                    <Link to={'/order-tracking'} className='text-slate-900 bg-yellow px-8 py-2.5 rounded-lg'>TRACK</Link>
                                 </div>
                             </div>
 

@@ -9,18 +9,18 @@ import { useRef, useState } from "react";
 const OrderTracking = () => {
   const inputTrackingID = useRef(null)
 
-  const [trackProduct,setTrackProduct] = useState(null)
+  const [trackProduct, setTrackProduct] = useState(null)
 
 
-  const handleTrackFunction = ()=>{
+  const handleTrackFunction = () => {
     const parcelID = inputTrackingID.current.value;
-      console.log(parcelID);
+    console.log(parcelID);
 
-      getSingleParcel(parcelID)
+    getSingleParcel(parcelID)
       .then(res => setTrackProduct(res))
   }
 
-console.log(trackProduct);
+  console.log(trackProduct);
   return (
     <div>
       <section className="bg-gray-100 body-font">
@@ -35,7 +35,7 @@ console.log(trackProduct);
           <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <h1 className="title-font text-4xl lg:text-5xl mb-4 font-bold ">
               Effortless <span className="text-amber-400">Tracking </span>
-             Your Shipment
+              Your Shipment
             </h1>
             <p className="mb-8 leading-relaxed text-sm lg:text-base">
               Track your parcel hassle-free with our intuitive system. Stay
@@ -69,7 +69,7 @@ console.log(trackProduct);
                   className="w-full bg-gray-50 rounded border bg-opacity-40 border-gray-700 focus:ring-2 focus:bg-transparent focus:border-gray-500 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
-              <button onClick={handleTrackFunction}  className="inline-flex text-white bg-amber-400 border-0 py-2 px-6 focus:outline-none hover:bg-amber-500 rounded text-lg">
+              <button onClick={handleTrackFunction} className="inline-flex text-white bg-amber-400 border-0 py-2 px-6 focus:outline-none hover:bg-amber-500 rounded text-lg">
                 Track
               </button>
             </div>
@@ -83,7 +83,7 @@ console.log(trackProduct);
 
 
 
-{/* information show ing  section  */}
+      {/* information show ing  section  */}
 
       <section className="mb-16">
         <div className="p-4 max-w-screen-2xl mx-auto">
@@ -92,7 +92,7 @@ console.log(trackProduct);
               <h2 className="">Parcel ID:</h2>
               <h2 className="">Delivered by:</h2>
             </div>
-            
+
             <hr />
 
             <div className="max-w-5xl mx-auto mt-20">
@@ -103,59 +103,59 @@ console.log(trackProduct);
 
                 {/* progress bar here */}
 
-            {/* just order not yet paid .... */}
-              {
-                  trackProduct?.status=="pending" &&
+                {/* just order not yet paid .... */}
+                {
+                  trackProduct?.status == "pending" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-8 rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-8 rounded-full bg-amber-400"></div>
                   </div>
-              }
+                }
 
 
-            {/* accepted so this order is now in ware house */}
-              {
-                  trackProduct?.status=="accepted" && 
-                  
-                  <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-1/4 rounded-full bg-amber-400"></div>
-                  </div>
-              }
-               {/* accepted so this order is now on the way  */}
-              {
-                  trackProduct?.status=="in-transit" && 
-                  
-                  <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-1/2 rounded-full bg-amber-400"></div>
-                  </div>
-              }
-
-              {/* this product is now delevered  */}
-              {
-                  trackProduct?.status=="complete" &&
+                {/* accepted so this order is now in ware house */}
+                {
+                  trackProduct?.status == "accepted" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-3/4 rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-1/4 rounded-full bg-amber-400"></div>
                   </div>
-              }
-
-              {/* this product into delevery problem so its return  */}
-              {
-                  trackProduct?.status=="return" &&
+                }
+                {/* accepted so this order is now on the way  */}
+                {
+                  trackProduct?.status == "in-transit" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                  <div className="h-3 w-full rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-1/2 rounded-full bg-amber-400"></div>
                   </div>
-              }
-              {
+                }
+
+                {/* this product is now delevered  */}
+                {
+                  trackProduct?.status == "complete" &&
+
+                  <div className="overflow-hidden rounded-full bg-zinc-500">
+                    <div className="h-3 w-3/4 rounded-full bg-amber-400"></div>
+                  </div>
+                }
+
+                {/* this product into delevery problem so its return  */}
+                {
+                  trackProduct?.status == "return" &&
+
+                  <div className="overflow-hidden rounded-full bg-zinc-500">
+                    <div className="h-3 w-full rounded-full bg-amber-400"></div>
+                  </div>
+                }
+                {
                   trackProduct == null &&
 
                   <div className=" h-2 overflow-hidden rounded-full bg-stone-200">
-                  
+
                   </div>
-              }
-             
-               
+                }
+
+
 
 
                 {/* list of status here */}
