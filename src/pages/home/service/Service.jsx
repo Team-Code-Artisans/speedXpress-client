@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Service = () => {
     return (
-        <div className="max-w-screen-xl mx-auto rounded-2xl bg-white shadow-xl p-8 -mt-20">
+        <div className="max-w-screen-xl mx-auto rounded-2xl bg-white shadow-xl p-8 -mt-10 z-20">
             <div className="grid grid-cols-2 pb-8">
                 <div className='space-y-6'>
                     <Link
