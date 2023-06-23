@@ -7,7 +7,7 @@ const Section1 = () => {
             <div className="max-w-screen-xl flex flex-col justify-center py-8 mx-auto lg:flex-row lg:justify-between">
                 <div
                     className="flex items-center justify-center md:w-1/2 px-10">
-                    <img src={logistics} alt="" className="w-full" />
+                    <img src={logistics} alt="" className="md:w-[80%] w-full" />
                 </div>
                 <div
                     className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
