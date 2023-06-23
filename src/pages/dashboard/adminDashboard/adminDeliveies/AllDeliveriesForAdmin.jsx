@@ -128,8 +128,8 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
                                     UNPAID ❌
                                 </p>
 
-                                : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
-                                    PAID ✔
+                                : <p className="text-emerald-500 font-semibold" aria-disabled>
+                                    PAID
                                 </p>
 
                             }
@@ -145,7 +145,7 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
                 <>
                     {
                         <div className="-ml-5 p-2">
-                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'}
+                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'}
                             ${row?.status === "accepted" && 'text-green-600'} px-4 py-2 rounded-full text-center font-bold`}>
                                 {row?.status === "accepted" ? "approved" : row?.status}
                             </p>
@@ -244,7 +244,7 @@ const styles = {
     },
     headRow: {
         style: {
-            backgroundColor: '#fed7aa',
+            backgroundColor: '#93c5fd',
 
 
         },

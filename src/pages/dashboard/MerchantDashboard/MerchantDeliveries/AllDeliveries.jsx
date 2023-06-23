@@ -124,7 +124,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                 <>
                     {
                         <div>
-                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'} px-4 py-2 rounded-full text-center font-bold`}>
+                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'} px-4 py-2 rounded-full text-center font-bold`}>
                                 {row?.status}
                             </p>
                         </div>
@@ -153,8 +153,8 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                                     stripeKey={stripeKey}
                                     image={user?.photoURL ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/1144/1144709.png"} //Pop-in header image
                                 />
-                                : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
-                                    PAID ✔
+                                : <p className="text-emerald-500 font-semibold" aria-disabled>
+                                    PAID
                                 </p>
 
                             }
@@ -213,7 +213,7 @@ const styles = {
     },
     headRow: {
         style: {
-            backgroundColor: '#fed7aa'
+            backgroundColor: '#93c5fd'
         },
     },
 };

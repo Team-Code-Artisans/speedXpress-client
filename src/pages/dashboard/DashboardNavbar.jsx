@@ -33,8 +33,8 @@ export const DashboardNavbar = () => {
                         title="Company"
                         className="text-xl font-bold tracking-wide text-gray-100 uppercase"
                     >
-                        Speed
-                        <span className="text-blue-600">
+                        Speed { }
+                        <span className="text-blue-400">
                             Xpress
                         </span>
                     </Link>

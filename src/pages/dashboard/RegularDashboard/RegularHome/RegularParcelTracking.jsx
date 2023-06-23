@@ -34,7 +34,7 @@ const RegularParcelTracking = () => {
           </div>
           <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <h1 className="title-font text-4xl lg:text-5xl mb-4 font-bold ">
-              Effortless <span className="text-amber-400">Tracking </span>
+              Effortless <span className="text-blue-400">Tracking </span>
               Your Shipment
             </h1>
             <p className="mb-8 leading-relaxed text-sm lg:text-base">
@@ -69,7 +69,7 @@ const RegularParcelTracking = () => {
                   className="w-full bg-gray-50 rounded border bg-opacity-40 border-gray-700 focus:ring-2 focus:bg-transparent focus:border-gray-500 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
-              <button onClick={handleTrackFunction} className="inline-flex text-white bg-amber-400 border-0 py-2 px-6 focus:outline-none hover:bg-amber-500 rounded text-lg">
+              <button onClick={handleTrackFunction} className="inline-flex text-white bg-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded text-lg">
                 Track
               </button>
             </div>
@@ -108,7 +108,7 @@ const RegularParcelTracking = () => {
                   trackProduct?.status == "pending" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                    <div className="h-3 w-8 rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-8 rounded-full bg-blue-400"></div>
                   </div>
                 }
 
@@ -118,7 +118,7 @@ const RegularParcelTracking = () => {
                   trackProduct?.status == "accepted" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                    <div className="h-3 w-1/4 rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-1/4 rounded-full bg-blue-400"></div>
                   </div>
                 }
                 {/* accepted so this order is now on the way  */}
@@ -126,7 +126,7 @@ const RegularParcelTracking = () => {
                   trackProduct?.status == "in-transit" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                    <div className="h-3 w-1/2 rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-1/2 rounded-full bg-blue-400"></div>
                   </div>
                 }
 
@@ -135,7 +135,7 @@ const RegularParcelTracking = () => {
                   trackProduct?.status == "complete" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                    <div className="h-3 w-3/4 rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-3/4 rounded-full bg-blue-400"></div>
                   </div>
                 }
 
@@ -144,7 +144,7 @@ const RegularParcelTracking = () => {
                   trackProduct?.status == "return" &&
 
                   <div className="overflow-hidden rounded-full bg-zinc-500">
-                    <div className="h-3 w-full rounded-full bg-amber-400"></div>
+                    <div className="h-3 w-full rounded-full bg-blue-400"></div>
                   </div>
                 }
                 {
@@ -160,16 +160,16 @@ const RegularParcelTracking = () => {
 
                 {/* list of status here */}
                 <ol className="mt-4 grid grid-cols-5 text-sm font-medium text-gray-500">
-                  <li className="flex items-center justify-start text-amber-400 sm:gap-1.5">
+                  <li className="flex items-center justify-start text-blue-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> Pending </span>
                     <MdPendingActions className="text-xl" />
                   </li>
 
-                  <li className="flex items-center justify-center text-amber-400 sm:gap-1.5">
+                  <li className="flex items-center justify-center text-blue-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> In warehouse </span>
                     <BsHouseCheck className="text-xl" />
                   </li>
-                  <li className="flex items-center justify-center text-amber-400 sm:gap-1.5">
+                  <li className="flex items-center justify-center text-blue-400 sm:gap-1.5">
                     <span className="hidden sm:inline"> On The Way </span>
                     <HiOutlineLocationMarker className="text-xl" />
                   </li>
@@ -193,29 +193,29 @@ const RegularParcelTracking = () => {
             <div className="flex justify-between text-start font-medium">
               <div className="w-1/2">
                 <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Name:</p>
+                  <p className="mb-2 mr-3 text-blue-500">Name:</p>
                   <p>{trackProduct?.customerInfo?.name}</p>
                 </div>
                 <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Location:</p>
+                  <p className="mb-2 mr-3 text-blue-500">Location:</p>
                   <p>anywhere</p>
                 </div>
                 <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Payment:</p>
+                  <p className="mb-2 mr-3 text-blue-500">Payment:</p>
                   <p>{trackProduct?.deliveryFee}</p>
                 </div>
               </div>
               <div className="w-1/2">
                 <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Delivery Time:</p>
+                  <p className="mb-2 mr-3 text-blue-500">Delivery Time:</p>
                   <p>anytime</p>
                 </div>
                 <div className="flex">
-                  <p className="mb-2 mr-3 text-amber-500">Delivery Location:</p>
+                  <p className="mb-2 mr-3 text-blue-500">Delivery Location:</p>
                   <p>{trackProduct?.customerInfo?.district}</p>
                 </div>
                 <div className="flex">
-                  <p className="mr-3 text-amber-500">Delivery Man: </p>
+                  <p className="mr-3 text-blue-500">Delivery Man: </p>
                   <p>anybody</p>
                 </div>
               </div>

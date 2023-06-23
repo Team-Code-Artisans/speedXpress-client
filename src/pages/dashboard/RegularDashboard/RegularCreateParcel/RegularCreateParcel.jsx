@@ -336,7 +336,7 @@ const RegularCreateParcel = () => {
                 </p>
               </div>
               <div className="flex justify-between w-full items-center">
-                <p className="text-lg leading-4 text-gray-600">Sub total <span className="text-xs text-amber-500">( w.charge × quantity + delivery )</span> </p>
+                <p className="text-lg leading-4 text-gray-600">Sub total <span className="text-xs text-blue-500">( w.charge × quantity + delivery )</span> </p>
                 <p className="text-lg font-semibold leading-4 text-gray-600">
                   {weightTotalCharge + deliveryFee}
                 </p>

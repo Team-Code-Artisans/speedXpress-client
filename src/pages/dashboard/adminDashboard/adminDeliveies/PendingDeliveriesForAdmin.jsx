@@ -111,7 +111,7 @@ const PendingDeliveriesForAdmin = ({
         <>
           {
             <div className="-ml-5 p-2">
-              <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'}
+              <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'}
                       ${row?.status === "accepted" && 'text-green-600'} px-4 py-2 rounded-full text-center font-bold`}>
                 {row?.status}
               </p>
@@ -192,7 +192,7 @@ const styles = {
   },
   headRow: {
     style: {
-      backgroundColor: "#fed7aa",
+      backgroundColor: "#93c5fd",
     },
   },
 };

@@ -109,7 +109,7 @@ export const MyCustomers = () => {
         },
         headCells: {
             style: {
-                backgroundColor: '#fed7aa',
+                backgroundColor: '#93c5fd',
                 color: 'red'
             },
         },

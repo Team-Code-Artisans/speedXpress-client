@@ -104,29 +104,12 @@ const RegularInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, compo
             )
         },
         {
-            name: "SHOP INFO",
-            selector: (row) => (
-                <>
-                    {
-                        <div className="space-y-1 py-2 text-sm">
-                            <p>
-                                {row.customerInfo.merchantName}
-                            </p>
-                            <p>
-                                {row.customerInfo.merchantEmail}
-                            </p>
-                        </div>
-                    }
-                </>
-            )
-        },
-        {
             name: "STATUS",
             selector: (row) => (
                 <>
                     {
                         <div>
-                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-amber-600'} px-4 py-2 rounded-full text-center font-bold`}>
+                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'} font-semibold uppercase`}>
                                 {row?.status}
                             </p>
                         </div>
@@ -152,8 +135,8 @@ const RegularInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, compo
                                     stripeKey={stripeKey}
                                     image={user?.photoURL ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/1144/1144709.png"} //Pop-in header image
                                 />
-                                : <p className="text-emerald-500 px-4 py-2 rounded-full text-center font-medium" aria-disabled>
-                                    PAID ✔
+                                : <p className="text-emerald-500 font-semibold" aria-disabled>
+                                    PAID
                                 </p>
                             }
                         </div>
@@ -170,7 +153,7 @@ const RegularInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, compo
                                 <RegularDocument componentRef={componentRef} data={row} />
                             </div>
                             <ReactToPrint
-                                trigger={() => <button className="px-4 py-2 rounded-full text-center bg-blue-500 text-white">Download</button>}
+                                trigger={() => <button className="px-4 py-2 rounded-full bg-blue-500 text-white">Download</button>}
                                 content={() => componentRef.current}
                             />
                         </>
@@ -227,7 +210,7 @@ const styles = {
     },
     headRow: {
         style: {
-            backgroundColor: '#fed7aa'
+            backgroundColor: '#93c5fd'
         },
     },
 };

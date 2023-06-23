@@ -171,7 +171,7 @@ const styles = {
     },
     headRow: {
         style: {
-            backgroundColor: '#fed7aa'
+            backgroundColor: '#93c5fd'
         },
     },
 };

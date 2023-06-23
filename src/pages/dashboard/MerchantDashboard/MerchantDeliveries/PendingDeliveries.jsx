@@ -116,7 +116,7 @@ const PendingDeliveries = ({ isLoading, pendingDeliveries, handleCopy }) => {
                 <>
                     {
                         <div
-                            className="flex items-center space-x-1.5 rounded-full border bg-amber-500 border-gray-200 px-3 py-1 text-xs font-medium text-gray-800">
+                            className="flex items-center space-x-1.5 rounded-full border bg-blue-500 border-gray-200 px-3 py-1 text-xs font-medium text-gray-800">
 
                             <span className="text-slate-200">{row.status}</span>
                         </div>
@@ -157,7 +157,7 @@ const styles = {
     },
     headRow: {
         style: {
-            backgroundColor: '#fed7aa'
+            backgroundColor: '#93c5fd'
         },
     },
 };

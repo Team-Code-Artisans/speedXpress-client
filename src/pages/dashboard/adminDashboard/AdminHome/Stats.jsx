@@ -45,9 +45,9 @@ const Stats = ({
           packages
         </p>
       </div>
-      <div className=" space-y-4 rounded-xl bg-amber-100 p-2 md:p-4 shadow-xl">
-        <div className="bg-amber-200 rounded-2xl p-2 inline-block shadow-xl">
-          <BsArrowReturnLeft size={"2rem"} className="text-amber-600" />
+      <div className=" space-y-4 rounded-xl bg-blue-100 p-2 md:p-4 shadow-xl">
+        <div className="bg-blue-200 rounded-2xl p-2 inline-block shadow-xl">
+          <BsArrowReturnLeft size={"2rem"} className="text-blue-600" />
         </div>
 
         <h3 className="text-xl font-semibold sm:text-2xl text-black">
