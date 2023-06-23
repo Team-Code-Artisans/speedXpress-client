@@ -18,7 +18,7 @@ const Hero3 = () => {
                 </div>
                 <div class="w-full md:max-w-sm mt-6 bg-gray-800 md:rounded-md absolute md:bottom-10 bottom-0 md:right-10">
                     <form class="flex flex-col md:flex-row">
-                        <input type="email" placeholder="Enter Tracking Number" class="flex-1 px-4 py-2 m-1 text-white text-center md:text-left placeholder-white placeholder:text-center md:placeholder:text-left bg-transparent border-none appearance-none focus:outline-none focus:placeholder-transparent focus:ring-0" />
+                        <input type="email" placeholder="Enter Tracking Number" class="flex-1 px-4 py-2 m-1 text-white text-center md:text-left placeholder-gray-400 placeholder:text-center md:placeholder:text-left bg-transparent border-none appearance-none focus:outline-none focus:placeholder-transparent focus:ring-0" />
 
                         <button type="button" class="h-full px-4 py-4 text-white transition-colors duration-300 transform bg-blue-500 hover:bg-blue-400 focus:outline-none focus:bg-blue-400">
                             Track Order

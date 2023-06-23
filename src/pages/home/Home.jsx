@@ -7,6 +7,8 @@ import Service from "./service/Service";
 import Hero3 from "./hero/hero";
 import Section1 from './sections/Section1'
 import Section2 from './sections/Section2'
+import GetStarted from "./GetStarted/GetStarted";
+import Offer from "./offer/offer";
 
 const Home = () => {
     // useEffect(() => {
@@ -20,9 +22,10 @@ const Home = () => {
             <Section1 />
             <Feature />
             <Section2 />
+            <Offer />
             <Review />
             <Faq />
-            <About />
+            <GetStarted />
         </div>
     );
 };
