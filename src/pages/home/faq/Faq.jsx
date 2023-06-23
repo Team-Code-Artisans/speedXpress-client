@@ -2,22 +2,22 @@ import faq from "../../../Assets/faqImg.png";
 
 const Faq = () => {
   return (
-    <div>
-      <div className="flex justify-center items-center mb-5">
-        <span className="w-1 h-5 bg-amber-400"></span>
-        <p className="text-sm font-bold ml-2">F A Q</p>
-        <h2>test</h2>
+    <div className="max-w-screen-xl mx-auto py-8 mb-10">
+      <div className="flex justify-center items-center">
+        <span className="w-1 h-5 bg-blue-400"></span>
+        <p className="text-sm font-bold px-2">F A Q</p>
+        <h2>Test</h2>
       </div>
-      <h2 className="text-center text-4xl font-semibold mb-14">
-        Get Your <span className="text-amber-400">Queries Solved</span>
+      <h2 className="text-center md:text-5xl text-4xl font-semibold mb-10">
+        Get Your <span className="text-blue-500">Queries Solved</span>
       </h2>
-      <div className="lg:flex sm:flex-row w-4/5 mx-auto">
+      <div className="lg:flex sm:flex-row w-full mx-auto px-2">
         <div className="max-w-2xl">
           <img src={faq} alt="" className="h-fit" />
         </div>
         <div className="space-y-4 lg:w-2/3 sm:w-auto my-auto">
           <details
-            className="group border-s-4 border-amber-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+            className="group border-s-4 border-blue-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
             open
           >
             <summary className="flex cursor-pointer items-center justify-between gap-1.5">
@@ -49,7 +49,7 @@ const Faq = () => {
             </p>
           </details>
 
-          <details className="group border-s-4 border-amber-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
+          <details className="group border-s-4 border-blue-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
             <summary className="flex cursor-pointer items-center justify-between gap-1.5">
               <h2 className="text-lg font-medium text-gray-900">
                 Can I request a quote for my shipping needs?
@@ -80,7 +80,7 @@ const Faq = () => {
             </p>
           </details>
 
-          <details className="group border-s-4 border-amber-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
+          <details className="group border-s-4 border-blue-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
             <summary className="flex cursor-pointer items-center justify-between gap-1.5">
               <h2 className="text-lg font-medium text-gray-900">
                 How do you ensure the safety and security of my goods?
@@ -112,7 +112,7 @@ const Faq = () => {
             </p>
           </details>
 
-          <details className="group border-s-4 border-amber-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
+          <details className="group border-s-4 border-blue-400 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
             <summary className="flex cursor-pointer items-center justify-between gap-1.5">
               <h2 className="text-lg font-medium text-gray-900">
                 Can you accommodate special handling requirements or sensitive
