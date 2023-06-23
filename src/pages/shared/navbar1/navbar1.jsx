@@ -5,7 +5,7 @@ const Navbar1 = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="w-full z-10">
+        <nav className="w-full z-10 bg-opacity-50 bg-white">
             <div className="container px-8 py-4 mx-auto md:flex md:justify-between md:items-center">
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-bold uppercase text-gray-800">
@@ -13,7 +13,7 @@ const Navbar1 = () => {
                     </h1>
 
                     {/* <!-- Mobile menu button --> */}
-                    <div className="flex lg:hidden">
+                    <div className="flex md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             type="button"
@@ -63,7 +63,7 @@ const Navbar1 = () => {
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
-                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-lg`}
+                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
                             href="#">
                             Home
                         </a>
@@ -71,7 +71,7 @@ const Navbar1 = () => {
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
-                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-lg`}
+                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
                             href="#">
                             Shop
                         </a>
@@ -79,7 +79,7 @@ const Navbar1 = () => {
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
-                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-lg`}
+                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
                             href="#">
                             Contact
                         </a>
@@ -87,14 +87,14 @@ const Navbar1 = () => {
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
-                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-lg`}
+                                } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
                             href="#">
                             About
                         </a>
                     </div>
 
-                    <div className="flex md:justify-center md:block">
-                        <button className="px-6 py-3 w-full bg-blue-400 hover:bg-blue-500 text-white text-base font-medium rounded-lg flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">
+                    <div className="flex md:justify-center items-center">
+                        <button className="px-6 py-3 w-full bg-blue-400 hover:bg-blue-500 text-white rounded-lg flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 text-xl">
                             Sign In
                             <AiOutlineArrowRight
                                 size={"1rem"}

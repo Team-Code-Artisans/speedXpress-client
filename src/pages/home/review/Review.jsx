@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import Aos from 'aos';
 
 const Review = () => {
-    useEffect(() => {
-        Aos.init({ duration: 2000 })
-    }, []);
+    // useEffect(() => {
+    //     Aos.init({ duration: 2000 })
+    // }, []);
     const settings = {
         dots: true,
         infinite: true,
@@ -48,7 +48,7 @@ const Review = () => {
     };
     return (
         <div
-            data-aos="zoom-out"
+            // data-aos="zoom-out"
             className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <h1 className="text-2xl text-center lg:text-4xl tracking-normal md:leading-[1.4em] lg:leading-[1.2em] capitalize dark:text-snow-white">
                 What our client<span className='text-yellow font-medium'> says</span>

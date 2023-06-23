@@ -6,10 +6,10 @@ import Navbar1 from "../pages/shared/navbar1/navbar1";
 const Main = () => {
     return (
         <div>
-            {/* <div className="md:hidden">
+            <div className="md:hidden">
                 <Navbar1 />
-            </div> */}
-            <Navbar />
+            </div>
+            {/* <Navbar /> */}
             <Outlet />
             <Footer />
         </div>

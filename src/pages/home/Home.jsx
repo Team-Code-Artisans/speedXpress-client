@@ -17,8 +17,8 @@ const Home = () => {
     // }, [])
     return (
         <div>
-            {/* <Hero3 /> */}
-            <Banner />
+            <Hero3 />
+            {/* <Banner /> */}
             <Service />
             <Section1 />
             <Feature />
