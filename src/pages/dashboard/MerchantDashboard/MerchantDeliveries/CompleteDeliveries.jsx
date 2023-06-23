@@ -24,7 +24,7 @@ const CompleteDeliveries = ({ isLoading, completedDeliveries, handleCopy }) => {
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),
@@ -100,7 +100,7 @@ const CompleteDeliveries = ({ isLoading, completedDeliveries, handleCopy }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.merchantName ? row.customerInfo.merchantName :"from reguler user" }
+                                {row.customerInfo.merchantName ? row.customerInfo.merchantName : "from reguler user"}
                             </p>
                             <p>
                                 {row.customerInfo.merchantEmail}
@@ -117,7 +117,7 @@ const CompleteDeliveries = ({ isLoading, completedDeliveries, handleCopy }) => {
                     {
                         <div
                             className="flex items-center space-x-1.5 rounded-full border bg-emerald-500 border-gray-200 px-3 py-1 text-xs font-medium text-gray-800">
-                         
+
                             <span className="text-slate-200">{row.status}</span>
                         </div>
                     }

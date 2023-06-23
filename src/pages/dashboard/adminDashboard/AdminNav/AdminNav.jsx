@@ -8,7 +8,7 @@ const AdminNav = () => {
                 <NavLink
                     to="/dashboard/admin"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Dashboard
@@ -18,7 +18,7 @@ const AdminNav = () => {
                 <NavLink
                     to="/dashboard/admin/order-tracking"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Tracking
@@ -28,7 +28,7 @@ const AdminNav = () => {
                 <NavLink
                     to="/dashboard/admin/deliveries"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Deliveries
@@ -38,7 +38,7 @@ const AdminNav = () => {
                 <NavLink
                     to="/dashboard/admin/manage-merchant"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Merchants
@@ -48,7 +48,7 @@ const AdminNav = () => {
                 <NavLink
                     to="/dashboard/admin/manage-employee"
                     className={
-                        `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+                        `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
                     }
                 >
                     Employees

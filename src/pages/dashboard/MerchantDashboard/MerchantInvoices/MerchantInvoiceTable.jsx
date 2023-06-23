@@ -32,7 +32,7 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, comp
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),
@@ -168,7 +168,7 @@ const MerchantInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, comp
                                 <MerchantDocument componentRef={componentRef} data={row} />
                             </div>
                             <ReactToPrint
-                                trigger={() => <button className="px-4 py-2 rounded-full text-center bg-orange-500 text-white">Download</button>}
+                                trigger={() => <button className="px-4 py-2 rounded-full text-center bg-blue-500 text-white">Download</button>}
                                 content={() => componentRef.current}
                             />
                         </>

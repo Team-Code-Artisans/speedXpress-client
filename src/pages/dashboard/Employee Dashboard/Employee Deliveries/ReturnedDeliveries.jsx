@@ -6,17 +6,17 @@ import { AiOutlineCopy } from 'react-icons/ai';
 import { getReturnedParcels } from '../../../../API Operations/manageParcels';
 import BigSpinner from '../../../../components/Spinners/BigSpinner';
 
-export const ReturnedDeliveries = ({ handleCopy,employeeDistrict }) => {
-  
-const {
-    data: completedParcels = [],
-    isLoading,
-} = useQuery({
-    queryKey: [employeeDistrict],
-    queryFn: () => getReturnedParcels(employeeDistrict && employeeDistrict),
-});
+export const ReturnedDeliveries = ({ handleCopy, employeeDistrict }) => {
 
-console.log(completedParcels, employeeDistrict);
+    const {
+        data: completedParcels = [],
+        isLoading,
+    } = useQuery({
+        queryKey: [employeeDistrict],
+        queryFn: () => getReturnedParcels(employeeDistrict && employeeDistrict),
+    });
+
+    console.log(completedParcels, employeeDistrict);
 
 
     const columns = [
@@ -38,7 +38,7 @@ console.log(completedParcels, employeeDistrict);
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),

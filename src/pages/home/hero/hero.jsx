@@ -7,7 +7,7 @@ const Hero3 = () => {
     return (
         <div className="pb-9 md:pb-12 lg:pb-24">
             <div className="relative">
-                <div className="hidden md:block absolute w-full">
+                <div className="md:absolute md:block w-full hidden">
                     <Navbar1 />
                 </div>
                 <video src={logistic} autoPlay loop className='w-full object-cover h-screen' />

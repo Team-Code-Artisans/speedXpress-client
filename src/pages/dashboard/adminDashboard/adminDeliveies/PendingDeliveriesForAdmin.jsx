@@ -34,7 +34,7 @@ const PendingDeliveriesForAdmin = ({
           <CopyToClipboard onCopy={handleCopy} text={row._id}>
             <p>
               ID:{" "}
-              <span className="text-orange-600 pr-2">
+              <span className="text-blue-600 pr-2">
                 {row._id.slice(0, 8)}
               </span>
               <AiOutlineCopy className="inline" />

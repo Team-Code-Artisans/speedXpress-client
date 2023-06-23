@@ -9,7 +9,7 @@ import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const PendingDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
-const {user}=useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const columns = [
         {
             name: "DATE & TIME",
@@ -29,7 +29,7 @@ const {user}=useContext(AuthContext)
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),
@@ -122,8 +122,8 @@ const {user}=useContext(AuthContext)
                 <>
                     {
                         <div>
-                            <p className="text-orange-700 bg-orange-100 px-3 py-2 rounded-full font-semibold text-xs" title={row.status === "accepted" && "Approved by the system to delivery"}>
-                               {row.status === "accepted" && "Approved"}
+                            <p className="text-blue-700 bg-blue-100 px-3 py-2 rounded-full font-semibold text-xs" title={row.status === "accepted" && "Approved by the system to delivery"}>
+                                {row.status === "accepted" && "Approved"}
                             </p>
                         </div>
                     }
@@ -139,13 +139,13 @@ const {user}=useContext(AuthContext)
                             {
                                 row?.status === "accepted" && row?.paid ?
                                     <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
-                                        onClick={() => handleChangStatus(row._id)}  title="Accept for delivery">
+                                        onClick={() => handleChangStatus(row._id)} title="Accept for delivery">
                                         <GrStatusGood size={20} className="text-slate-100" />
                                     </button>
                                     :
                                     <></>
                             }
-                            <AiOutlineDelete size={20} color="red"  />
+                            <AiOutlineDelete size={20} color="red" />
                         </div>
                     }
                 </>
@@ -169,7 +169,7 @@ const {user}=useContext(AuthContext)
                 console.log(err.message);
             });
     };
-if(isLoading) return <BigSpinner/>
+    if (isLoading) return <BigSpinner />
     return (
         <DataTable
             columns={columns}

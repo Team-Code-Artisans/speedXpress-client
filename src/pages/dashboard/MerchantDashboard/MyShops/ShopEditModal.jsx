@@ -36,7 +36,7 @@ export default function ShopEditModal({ shopsData }) {
         <button
           type="button"
           onClick={openModal}
-          className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-orange-500"
+          className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-500"
         >
           Edit Shop Info
           <span
@@ -85,7 +85,7 @@ export default function ShopEditModal({ shopsData }) {
                       <div>
                         <label
                           htmlFor="userName"
-                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                         >
                           <input
                             {...register("shopName")}
@@ -104,7 +104,7 @@ export default function ShopEditModal({ shopsData }) {
                       <div>
                         <label
                           htmlFor="userName"
-                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                         >
                           <input
                             {...register("ownerName")}
@@ -123,7 +123,7 @@ export default function ShopEditModal({ shopsData }) {
                       <div>
                         <label
                           htmlFor="userName"
-                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                         >
                           <input
                             {...register("phoneNumber")}
@@ -142,7 +142,7 @@ export default function ShopEditModal({ shopsData }) {
                       <div>
                         <label
                           htmlFor="userName"
-                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                          className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                         >
                           <input
                             {...register("shopAddress")}

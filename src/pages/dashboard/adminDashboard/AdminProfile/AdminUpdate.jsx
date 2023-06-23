@@ -29,7 +29,7 @@ const AdminUpdate = ({ userData, fetchUser, closeModal }) => {
                 <div>
                     <label
                         htmlFor="userName"
-                        className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                        className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                     >
                         <input
                             {...register("name", {
@@ -51,7 +51,7 @@ const AdminUpdate = ({ userData, fetchUser, closeModal }) => {
                 <div>
                     <label
                         htmlFor="number"
-                        className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                        className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                     >
                         <input
                             {...register("phoneNumber", {
@@ -77,7 +77,7 @@ const AdminUpdate = ({ userData, fetchUser, closeModal }) => {
                 <div>
                     <label
                         htmlFor="address"
-                        className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                        className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                     >
                         <input
                             {...register("address", {
@@ -100,7 +100,7 @@ const AdminUpdate = ({ userData, fetchUser, closeModal }) => {
                     <button
                         onClick={closeModal}
                         type="submit"
-                        className="inline-block w-full rounded-lg bg-orange-500 px-12 py-3 font-medium text-white sm:w-auto"
+                        className="inline-block w-full rounded-lg bg-blue-500 px-12 py-3 font-medium text-white sm:w-auto"
                     >
                         Save
                     </button>

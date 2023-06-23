@@ -22,9 +22,9 @@ const EarningSummary = ({ totalAmount, totalPendingAmount }) => {
             <FiDollarSign className="inline-block" />
           </p>
         </div>
-        <div className=" space-y-4 rounded-xl bg-orange-100 p-2 md:p-4 shadow-xl">
-          <div className="bg-orange-200 rounded-2xl p-2 inline-block shadow-xl">
-            <MdOutlinePayments size={"2rem"} className=" text-orange-600" />
+        <div className=" space-y-4 rounded-xl bg-blue-100 p-2 md:p-4 shadow-xl">
+          <div className="bg-blue-200 rounded-2xl p-2 inline-block shadow-xl">
+            <MdOutlinePayments size={"2rem"} className=" text-blue-600" />
           </div>
 
           <h3 className="text-xl font-semibold sm:text-2xl text-black">

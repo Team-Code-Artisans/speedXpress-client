@@ -86,9 +86,9 @@ export const MyCustomers = () => {
 
     const handleDelete = (id) => {
         console.log("deleteing", id)
-        let context="customer"
+        let context = "customer"
         if (confirm("Are you sure to delete data")) {
-            deleteData(id,context).then(data => {
+            deleteData(id, context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
                     console.log(data?.message)
@@ -129,13 +129,13 @@ export const MyCustomers = () => {
 
                         <div className="my-10">
                             <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
-                                All <span className="text-orange-600">Customers</span>
+                                All <span className="text-blue-600">Customers</span>
                             </h1>
 
                             <div className="mt-2">
-                                <span className="inline-block w-20 h-1 bg-orange-500 rounded-full"></span>
-                                <span className="inline-block w-3 h-1 ml-1 bg-orange-500 rounded-full"></span>
-                                <span className="inline-block w-1 h-1 ml-1 bg-orange-500 rounded-full"></span>
+                                <span className="inline-block w-20 h-1 bg-blue-500 rounded-full"></span>
+                                <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
+                                <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
                             </div>
                         </div>
 

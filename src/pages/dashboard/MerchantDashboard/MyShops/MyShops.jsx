@@ -57,7 +57,7 @@ const MyShops = () => {
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                 Pitchfork Kickstarter Taxidermy
               </h1>
-              <div className="h-1 w-20 bg-orange-500 rounded"></div>
+              <div className="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
             <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
               Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
@@ -74,7 +74,7 @@ const MyShops = () => {
                   className="xl:w-1/4 md:w-1/2 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6"
                 >
                   <div className="flex justify-between">
-                    <span className="inline-block rounded bg-orange-500 p-2 text-white">
+                    <span className="inline-block rounded bg-blue-500 p-2 text-white">
                       <BsShop className="text-2xl" />
                     </span>
                     <span className="inline-block rounded bg-gray-400 p-2 text-white">
@@ -104,10 +104,10 @@ const MyShops = () => {
               </>
             ))}
 
-            <div className="xl:w-1/5 md:w-1/2 h-72 my-auto rounded-lg border border-gray-100 bg-orange-50 shadow-sm">
+            <div className="xl:w-1/5 md:w-1/2 h-72 my-auto rounded-lg border border-gray-100 bg-blue-50 shadow-sm">
               <button
                 onClick={createShop}
-                className="xl:w-44 xl:h-44 bg-orange-200 rounded-full flex justify-center items-center mx-auto mt-[54px] hover:shadow-lg"
+                className="xl:w-44 xl:h-44 bg-blue-200 rounded-full flex justify-center items-center mx-auto mt-[54px] hover:shadow-lg"
               >
                 <AiOutlinePlusCircle className="text-7xl text-gray-500" />
               </button>

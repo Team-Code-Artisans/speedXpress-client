@@ -7,7 +7,7 @@ import { ImLocation2 } from 'react-icons/im';
 
 import { Link } from "react-router-dom";
 import { getRole } from "../../../API Operations/manageUsers";
-import logo from '../../../Assets/mainlogo.png';
+// import logo from '../../../Assets/mainlogo.png';
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
@@ -43,7 +43,7 @@ const Navbar = () => {
 
 
 
-      <div className="bg-gradient-to-r  from-orange-600 via-amber-500 to-orange-700">
+      <div className="bg-gradient-to-r  from-blue-600 via-amber-500 to-blue-700">
         <div className="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
           <div className="relative flex items-center justify-between">
             <Link
@@ -53,7 +53,7 @@ const Navbar = () => {
               className="inline-flex items-center"
             >
               <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                <img className="w-40 rounded-xl" src={logo} alt="mainLogo" />
+                {/* <img className="w-40 rounded-xl" src={logo} alt="mainLogo" /> */}
               </span>
             </Link>
             <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -186,7 +186,7 @@ const Navbar = () => {
                         >
 
                           <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                            <img className="w-44 rounded-xl" src={logo} alt="mainLogo" />
+                            {/* <img className="w-44 rounded-xl" src={logo} alt="mainLogo" /> */}
                           </span>
                         </Link>
                       </div>
@@ -251,7 +251,7 @@ const Navbar = () => {
                         <li>
                           <Link
                             to="/"
-                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-orange-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-blue-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                             aria-label="Sign up"
                             title="Sign up"
                           >

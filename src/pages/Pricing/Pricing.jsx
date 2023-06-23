@@ -19,7 +19,7 @@ const Pricing = () => {
                     </p>
                 </div>
                 <div className="grid gap-8 row-gap-5 mb-8 md:row-gap-8 lg:grid-cols-4 sm:grid-cols-2">
-                    <div className="duration-300 transform bg-white border-l-4 border-orange-600 hover:-translate-y-2">
+                    <div className="duration-300 transform bg-white border-l-4 border-blue-600 hover:-translate-y-2">
                         <div className="h-full p-5 border border-l-0 rounded-r shadow-sm">
                             <h6 className="mb-2 font-semibold leading-5">Payment Gateway Integration</h6>
                             <p className="text-sm text-gray-900">
@@ -27,7 +27,7 @@ const Pricing = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="duration-300 transform bg-white border-l-4 border-orange-600 hover:-translate-y-2">
+                    <div className="duration-300 transform bg-white border-l-4 border-blue-600 hover:-translate-y-2">
                         <div className="h-full p-5 border border-l-0 rounded-r shadow-sm">
                             <h6 className="mb-2 font-semibold leading-5">Order Invoicing and Billing</h6>
                             <p className="text-sm text-gray-900">
@@ -35,7 +35,7 @@ const Pricing = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="duration-300 transform bg-white border-l-4 border-orange-600 hover:-translate-y-2">
+                    <div className="duration-300 transform bg-white border-l-4 border-blue-600 hover:-translate-y-2">
                         <div className="h-full p-5 border border-l-0 rounded-r shadow-sm">
                             <h6 className="mb-2 font-semibold leading-5">
                                 Payment Status Tracking
@@ -45,7 +45,7 @@ const Pricing = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="duration-300 transform bg-white border-l-4 border-orange-600 hover:-translate-y-2">
+                    <div className="duration-300 transform bg-white border-l-4 border-blue-600 hover:-translate-y-2">
                         <div className="h-full p-5 border border-l-0 rounded-r shadow-sm">
                             <h6 className="mb-2 font-semibold leading-5">Subscription or Recurring Payments</h6>
                             <p className="text-sm text-gray-900">

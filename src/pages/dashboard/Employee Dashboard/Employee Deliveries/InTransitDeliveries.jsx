@@ -12,7 +12,7 @@ import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
 
-const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
+const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
     const { user } = useContext(AuthContext)
 
     const {
@@ -45,7 +45,7 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),
@@ -138,7 +138,7 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
                 <>
                     {
                         <div>
-                            <p className="text-orange-700 bg-orange-100 px-3 py-2 rounded-full font-semibold text-xs font-medium " title= {row.status}>
+                            <p className="text-blue-700 bg-blue-100 px-3 py-2 rounded-full font-semibold text-xs font-medium " title={row.status}>
                                 {row.status}
                             </p>
                         </div>
@@ -155,14 +155,14 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
                             {
                                 row?.status === "in-transit" && row?.paid ?
                                     <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
-                                        onClick={() => handleChangStatus(row._id,"complete")}  title="Complete the delivery">
+                                        onClick={() => handleChangStatus(row._id, "complete")} title="Complete the delivery">
                                         <GrStatusGood size={20} className="text-slate-100" />
                                     </button>
                                     :
                                     <></>
                             }
-                            <button  title="Delete"><AiOutlineDelete size={20} color="red" /></button>
-                            <button  title="return"><RiArrowGoBackFill size={20} className="text-orange-700" onClick={() => handleChangStatus(row._id,"return")}/></button>
+                            <button title="Delete"><AiOutlineDelete size={20} color="red" /></button>
+                            <button title="return"><RiArrowGoBackFill size={20} className="text-blue-700" onClick={() => handleChangStatus(row._id, "return")} /></button>
                         </div>
 
                     }
@@ -172,8 +172,8 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
 
     ];
 
-    const handleChangStatus = (id,updatedStatus) => {
-        console.log(id,updateStatus);
+    const handleChangStatus = (id, updatedStatus) => {
+        console.log(id, updateStatus);
         // complete by delivery man
         // const updatedStatus = "complete";
         updateStatus(id, updatedStatus)

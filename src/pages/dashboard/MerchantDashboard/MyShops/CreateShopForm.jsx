@@ -51,7 +51,7 @@ const CreateShopForm = ({ refetch }) => {
               </p>
 
               <div className="mt-8">
-                <a href="" className="text-2xl font-bold text-orange-500">
+                <a href="" className="text-2xl font-bold text-blue-500">
                   0151 475 4450
                 </a>
 
@@ -70,7 +70,7 @@ const CreateShopForm = ({ refetch }) => {
                   <div>
                     <label
                       htmlFor="userName"
-                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                     >
                       <input
                         {...register("ownerName")}
@@ -88,7 +88,7 @@ const CreateShopForm = ({ refetch }) => {
                   <div>
                     <label
                       htmlFor="userName"
-                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                     >
                       <input
                         {...register("shopName")}
@@ -109,7 +109,7 @@ const CreateShopForm = ({ refetch }) => {
                   <div>
                     <label
                       htmlFor="userName"
-                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                     >
                       <input
                         {...register("shopEmail")}
@@ -129,7 +129,7 @@ const CreateShopForm = ({ refetch }) => {
                   <div>
                     <label
                       htmlFor="userName"
-                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                      className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                     >
                       <input
                         {...register("phoneNumber")}
@@ -148,7 +148,7 @@ const CreateShopForm = ({ refetch }) => {
                 <div>
                   <label
                     htmlFor="userName"
-                    className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-orange-400"
+                    className="relative block overflow-hidden border-b border-gray-500 bg-transparent pt-3 focus-within:border-blue-400"
                   >
                     <input
                       {...register("shopAddress")}
@@ -166,7 +166,7 @@ const CreateShopForm = ({ refetch }) => {
                 <div>
                   <button
                     type="submit"
-                    className="inline-block w-full rounded-lg bg-orange-600 px-8 py-3 mt-5 font-medium text-white sm:w-auto"
+                    className="inline-block w-full rounded-lg bg-blue-600 px-8 py-3 mt-5 font-medium text-white sm:w-auto"
                   >
                     {loading ? <SmallSpinner /> : "Save"}
                   </button>

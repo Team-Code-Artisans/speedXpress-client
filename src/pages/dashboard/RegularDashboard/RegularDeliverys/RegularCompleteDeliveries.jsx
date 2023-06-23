@@ -24,7 +24,7 @@ const RegularCompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),
@@ -102,7 +102,7 @@ const RegularCompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
                             <p>
                                 {row.senderEmail}
                             </p>
-                            
+
                         </div>
                     }
                 </>
@@ -114,10 +114,10 @@ const RegularCompleteDeliveries = ({ isLoading, filterData, handleCopy }) => {
                 <>
                     {
                         <div>
-                        <p className={` ${row.status==="accepted" ? "text-green-500" : "text-amber-400"} px-4 py-2 rounded-full text-center font-bold`}>
-                            {row.status}
-                        </p>
-                    </div>
+                            <p className={` ${row.status === "accepted" ? "text-green-500" : "text-amber-400"} px-4 py-2 rounded-full text-center font-bold`}>
+                                {row.status}
+                            </p>
+                        </div>
                     }
                 </>
             ),

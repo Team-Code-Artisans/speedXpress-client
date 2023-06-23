@@ -34,7 +34,7 @@ export const DashboardNavbar = () => {
                         className="text-xl font-bold tracking-wide text-gray-100 uppercase"
                     >
                         Speed
-                        <span className="text-orange-600">
+                        <span className="text-blue-600">
                             Xpress
                         </span>
                     </Link>

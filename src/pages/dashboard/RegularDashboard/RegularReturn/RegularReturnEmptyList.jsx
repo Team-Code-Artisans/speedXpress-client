@@ -9,7 +9,7 @@ const RegularReturnEmptyList = () => {
         >
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
             <svg
-              className="w-10 h-10 text-orange-600"
+              className="w-10 h-10 text-blue-600"
               stroke="currentColor"
               viewBox="0 0 52 52"
             >
@@ -49,10 +49,10 @@ const RegularReturnEmptyList = () => {
             </svg>
 
           </span>{' '}
-          Right Now you have no <span className="text-orange-600">Return</span> product
+          Right Now you have no <span className="text-blue-600">Return</span> product
         </h2>
         <p className="text-base text-gray-700 md:text-lg">
-          Best wishes for your company , Be stay with <span className="text-orange-600 font-bold">speedXpress</span>
+          Best wishes for your company , Be stay with <span className="text-blue-600 font-bold">speedXpress</span>
         </p>
         <hr className="my-8 border-gray-300" />
 

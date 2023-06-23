@@ -205,7 +205,7 @@ const RegularCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryStandard"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-orange-500 peer-checked:ring-1 peer-checked:ring-orange-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
                   >
                     <p className="text-gray-700">Standard</p>
 
@@ -225,7 +225,7 @@ const RegularCreateParcel = () => {
 
                   <label
                     htmlFor="DeliveryPriority"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-orange-500 peer-checked:ring-1 peer-checked:ring-orange-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
                   >
                     <p className="text-gray-700">Next Day</p>
 
@@ -350,7 +350,7 @@ const RegularCreateParcel = () => {
 
               <div className="flex justify-between w-full items-center">
                 <p className="text-lg leading-4 text-gray-600">Promo Discount</p>
-                <p className="text-lg font-semibold leading-4 text-orange-600">
+                <p className="text-lg font-semibold leading-4 text-blue-600">
                   - $00
                 </p>
               </div>

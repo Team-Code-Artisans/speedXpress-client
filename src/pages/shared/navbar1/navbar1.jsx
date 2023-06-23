@@ -1,11 +1,22 @@
-import { AiOutlineArrowRight } from "react-icons/ai";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { getRole } from "../../../API Operations/manageUsers";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Navbar1 = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [role, setRole] = useState("")
+    const { user, logout } = useContext(AuthContext);
 
+    useEffect(() => {
+        getRole(user?.email)
+            .then(data => {
+                console.log(data)
+                setRole(data)
+            })
+    }, [user, role])
     return (
-        <nav className="w-full z-10 bg-opacity-50 bg-white">
+        <nav className="w-full bg-opacity-50 bg-white">
             <div className="container px-8 py-4 mx-auto md:flex md:justify-between md:items-center">
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-bold uppercase text-gray-800">
@@ -56,50 +67,57 @@ const Navbar1 = () => {
                 <div
                     className={`${isOpen
                         ? "translate-x-0 opacity-100"
-                        : "opacity-0 -translate-x-full}"
+                        : "opacity-0 -translate-x-full"
                         } absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center`}>
                     <div className="flex flex-col md:flex-row md:mx-6 md:gap-8">
-                        <a
+                        <Link
+                            to={'/'}
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
                                 } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
-                            href="#">
+                        >
                             Home
-                        </a>
-                        <a
+                        </Link>
+                        <Link to={'/features'}
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
                                 } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
-                            href="#">
-                            Shop
-                        </a>
-                        <a
+                        >
+                            Feature
+                        </Link>
+                        <Link
+                            to={'/pricing'}
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
                                 } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
-                            href="#">
-                            Contact
-                        </a>
-                        <a
+                        >
+                            Pricing
+                        </Link>
+                        <Link to={'/about'}
                             className={`my-2 ${isOpen
                                 ? "text-gray-800 hover:text-blue-600"
                                 : "text-gray-800 font-semibold before:bg-blue-500"
                                 } before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:transition hover:before:scale-100 relative text-2xl`}
-                            href="#">
+                        >
                             About
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="flex md:justify-center items-center">
-                        <button className="px-6 py-3 w-full bg-blue-400 hover:bg-blue-500 text-white rounded-lg flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 text-xl">
-                            Sign In
-                            <AiOutlineArrowRight
-                                size={"1rem"}
-                                className="ml-2"
-                            />
+                        <button className="px-6 py-3 w-full bg-blue-400 hover:bg-blue-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 text-xl">
+                            {
+                                user ?
+                                    <Link to={`/dashboard/${role}`}>
+                                        Dashboard
+                                    </Link>
+                                    :
+                                    <Link to={'/login'}>
+                                        Sign In
+                                    </Link>
+                            }
                         </button>
                     </div>
                 </div>

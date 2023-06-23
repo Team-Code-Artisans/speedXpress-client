@@ -8,7 +8,7 @@ const MerchantNav = ({ mobile }) => {
         <NavLink
           to="/dashboard/merchant"
           className={
-            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+            `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
           }
         >
           Dashboard
@@ -18,7 +18,7 @@ const MerchantNav = ({ mobile }) => {
         <NavLink
           to="/dashboard/merchant/deliveries"
           className={
-            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+            `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
           }
         >
           Deliveries
@@ -28,7 +28,7 @@ const MerchantNav = ({ mobile }) => {
         <NavLink
           to="/dashboard/merchant/invoices"
           className={
-            `font-medium tracking-wide  transition-colors duration-200 hover:text-orange-600 hover:underline underline-offset-4 text-white hidden md:block`
+            `font-medium tracking-wide  transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 text-white hidden md:block`
           }
         >
           Invoices
@@ -37,7 +37,7 @@ const MerchantNav = ({ mobile }) => {
       <li>
         <Link
           to={"/dashboard/merchant/create-parcel"}
-          className="bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg md:block hidden"
+          className="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-lg md:block hidden"
         >
           Create Parcel
         </Link>

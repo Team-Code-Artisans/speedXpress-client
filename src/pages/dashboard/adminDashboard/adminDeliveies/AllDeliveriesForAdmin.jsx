@@ -29,7 +29,7 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),
@@ -169,7 +169,7 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
                                     :
                                     <></>
                             }
-                            <button onClick={()=>handleDelete(row?._id)}>
+                            <button onClick={() => handleDelete(row?._id)}>
                                 <AiOutlineDelete size={20} color="red" />
                             </button>
                         </div>
@@ -197,9 +197,9 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
 
     const handleDelete = (id) => {
         console.log("deleteing", id)
-        let context="parcel"
+        let context = "parcel"
         if (confirm("Are you sure to delete data")) {
-            deleteData(id,context).then(data => {
+            deleteData(id, context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
                     console.log(data?.message)

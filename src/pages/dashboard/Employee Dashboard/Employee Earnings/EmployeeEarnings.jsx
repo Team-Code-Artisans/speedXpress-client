@@ -54,7 +54,7 @@ const EmployeeEarnings = ({ handleCopy }) => {
             let charge = Number(delivery.TotalchargeAmount)
             // console.log(charge, i)
             return charge + i;
-        },0)
+        }, 0)
         setTotalIncome(total)
     }
 
@@ -77,7 +77,7 @@ const EmployeeEarnings = ({ handleCopy }) => {
             selector: (row) => (
                 <>
                     <CopyToClipboard onCopy={handleCopy} text={row._id}>
-                        <p>ID: <span className="text-orange-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
+                        <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
             ),
@@ -146,7 +146,7 @@ const EmployeeEarnings = ({ handleCopy }) => {
                 </>
             )
         },
-        
+
         {
             name: "STATUS",
             selector: (row) => (
@@ -203,9 +203,9 @@ const styles = {
     headRow: {
         style: {
             backgroundColor: '#e8fccf',
-            marginTop:"1rem",
-    
+            marginTop: "1rem",
+
         },
     },
-    
+
 };
