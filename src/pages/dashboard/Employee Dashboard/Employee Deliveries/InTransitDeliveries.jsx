@@ -103,11 +103,11 @@ const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
                                 Delivery Fee: { }
-                                <span className="font-bold text-green-800">{row.deliveryFee}</span>
+                                <span className="font-bold text-blue-600">{row.deliveryFee}</span>
                             </p>
                             <p>
                                 Total Charge: { }
-                                <span className="font-bold text-teal-600"> {row.TotalchargeAmount}</span>
+                                <span className="font-bold text-blue-600"> {row.TotalchargeAmount}</span>
 
                             </p>
                         </div>
@@ -122,10 +122,10 @@ const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "from a reguler user"}
+                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "From Regular User"}
                             </p>
                             <p>
-                                {row.customerInfo?.merchantEmail}
+                                {row.customerInfo?.merchantEmail && row.customerInfo?.merchantEmail}
                             </p>
                         </div>
                     }
@@ -138,7 +138,7 @@ const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
                 <>
                     {
                         <div>
-                            <p className="text-blue-700 bg-blue-100 px-3 py-2 rounded-full font-semibold text-xs font-medium " title={row.status}>
+                            <p className="text-blue-700 bg-blue-100 px-3 py-2 rounded-full font-semibold text-xs uppercase" title={row.status}>
                                 {row.status}
                             </p>
                         </div>
@@ -151,18 +151,19 @@ const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
             selector: (row) => (
                 <>
                     {
-                        <div className="flex justify-center items-center gap-2.5">
+                        <div className="flex justify-center items-center gap-3">
                             {
                                 row?.status === "in-transit" && row?.paid ?
-                                    <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
+                                    <button className={`rounded-full text-center font-medium text-sm bg-blue-500 text-white px-4 py-2`}
                                         onClick={() => handleChangStatus(row._id, "complete")} title="Complete the delivery">
-                                        <GrStatusGood size={20} className="text-slate-100" />
+                                        {/* <GrStatusGood size={20} className="text-slate-100" /> */}
+                                        Complete
                                     </button>
                                     :
                                     <></>
                             }
-                            <button title="Delete"><AiOutlineDelete size={20} color="red" /></button>
-                            <button title="return"><RiArrowGoBackFill size={20} className="text-blue-700" onClick={() => handleChangStatus(row._id, "return")} /></button>
+                            {/* <button title="Delete"><AiOutlineDelete size={20} color="red" /></button> */}
+                            <button title="Return"><RiArrowGoBackFill size={'2rem'} className="text-blue-700" onClick={() => handleChangStatus(row._id, "return")} /></button>
                         </div>
 
                     }

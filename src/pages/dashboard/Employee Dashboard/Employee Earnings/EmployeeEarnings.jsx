@@ -153,7 +153,7 @@ const EmployeeEarnings = ({ handleCopy }) => {
                 <>
                     {
                         <div>
-                            <p className="text-green-600 bg-green-50 px-3 py-2 rounded-full font-semibold text-xs rounded-full text-center">
+                            <p className="text-green-600 bg-green-50 px-3 py-2 rounded-full font-semibold text-xs text-center">
                                 {row.status}
                             </p>
                         </div>

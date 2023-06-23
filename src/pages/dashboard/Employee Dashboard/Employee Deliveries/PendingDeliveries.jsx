@@ -87,11 +87,11 @@ const PendingDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
                                 Delivery Fee: { }
-                                <span className="font-bold text-green-800">{row.deliveryFee}</span>
+                                <span className="font-bold text-blue-600">{row.deliveryFee}</span>
                             </p>
                             <p>
                                 Total Charge: { }
-                                <span className="font-bold text-teal-600"> {row.TotalchargeAmount}</span>
+                                <span className="font-bold text-blue-600"> {row.TotalchargeAmount}</span>
 
                             </p>
                         </div>
@@ -135,17 +135,18 @@ const PendingDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
             selector: (row) => (
                 <>
                     {
-                        <div className="flex justify-center items-center gap-2.5">
+                        <div className="flex justify-center items-center gap-5">
                             {
                                 row?.status === "accepted" && row?.paid ?
-                                    <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
-                                        onClick={() => handleChangStatus(row._id)} title="Accept for delivery">
-                                        <GrStatusGood size={20} className="text-slate-100" />
+                                    <button className={`rounded-full text-center font-medium text-sm bg-blue-500 text-white px-4 py-2`}
+                                        onClick={() => handleChangStatus(row._id)} title="Accept For Delivery">
+                                        Accept
+                                        {/* <GrStatusGood size={20} className="text-slate-100" /> */}
                                     </button>
                                     :
                                     <></>
                             }
-                            <AiOutlineDelete size={20} color="red" />
+                            {/* <AiOutlineDelete size={20} /> */}
                         </div>
                     }
                 </>

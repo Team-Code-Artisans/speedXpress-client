@@ -2,7 +2,7 @@
 
 export const InfoAlert = ({ message, show, setShow }) => {
     return (
-        <div className={`mt-4 mb-4 mx-4 px-4 rounded-md bg-blue-50 md:max-w-2xl ${show ? 'block' : 'hidden'}` }>
+        <div className={`mx-4 px-4 rounded-md bg-blue-50 md:max-w-2xl ${show ? 'block' : 'hidden'}`}>
             <div className="flex justify-between py-3">
                 <div className="flex">
                     <div>

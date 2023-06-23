@@ -114,10 +114,10 @@ const CompleteDeliveries = ({ handleCopy, employeeDistrict }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.customerOwnerName}
+                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "From Regular User"}
                             </p>
                             <p>
-                                {row.customerInfo.customerOwnerEmail}
+                                {row.customerInfo?.merchantEmail && row.customerInfo?.merchantEmail}
                             </p>
                         </div>
                     }
@@ -130,7 +130,7 @@ const CompleteDeliveries = ({ handleCopy, employeeDistrict }) => {
                 <>
                     {
                         <div>
-                            <p className="text-green-600 bg-green-50 px-3 py-2 rounded-full font-semibold text-xs rounded-full text-center">
+                            <p className="text-green-600 bg-green-50 px-3 py-2 font-semibold text-xs rounded-full text-center">
                                 Completed
                             </p>
                         </div>

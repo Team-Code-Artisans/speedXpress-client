@@ -68,8 +68,8 @@ const EmployeeDeliveries = () => {
 
     return (
         <div className="max-w-screen-2xl mx-auto px-4">
-            <div className="my-6 flex justify-between">
-                <div >
+            <div className="my-10 flex justify-between items-center">
+                <div>
                     <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
                         All <span className="text-blue-600">Deliveries</span>
                     </h1>
