@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 const Service = () => {
     return (
         <div
-            className="max-w-screen-xl mx-auto rounded-2xl bg-white shadow-xl p-8 -mt-10 z-20">
+            className="max-w-screen-xl mx-auto rounded-2xl bg-white shadow-xl border p-8 mb-10">
             <div className="grid md:grid-cols-2 gap-4 pb-8">
                 <div className='space-y-6'>
                     <Link
@@ -46,7 +46,7 @@ const Service = () => {
                     </p>
                 </div>
                 <div
-                    className="block space-y-6 rounded-xl bg-sky-200 p-4 sm:p-6 lg:p-8"
+                    className="block space-y-6 rounded-xl bg-blue-200 p-4 sm:p-6 lg:p-8"
                 >
                     <div className='bg-blue-600 rounded-full p-2 inline-block shadow-xl'>
                         <MdAddHome size={'4rem'} className='text-white' />
