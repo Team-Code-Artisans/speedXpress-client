@@ -23,7 +23,7 @@ const Service = () => {
                     </h2>
                 </div>
                 <p className="text-xl text-gray-600 border-l-4 border-blue-600 pl-8  flex items-center">
-                    Collaboratively customize front-end materials with standardized infomediaries. Holisticly engineer performance based value. Assertively benchmark turnkey web-readiness rather than long.
+                    The website should have an intuitive and easy-to-navigate interface, making it simple for users to access and utilize the various features.
                 </p>
             </div>
             <div className='grid md:grid-cols-3 gap-4'>
@@ -56,9 +56,7 @@ const Service = () => {
                     </h3>
 
                     <p className="text-lg text-gray-600 ">
-                        Globally initiate resource maximizing to-
-                        tal linkage via enabled process
-                        improvements.
+                        This includes tracking stock levels, receiving notifications for low stock, and generating reports on inventory status.
                     </p>
                 </div>
                 <div
@@ -73,9 +71,7 @@ const Service = () => {
                     </h3>
 
                     <p className="text-lg text-gray-600 ">
-                        Globally initiate resource maximizing to-
-                        tal linkage via enabled process
-                        improvements.
+                        Provide a comprehensive tracking system that allows users to track their shipments in real-time.
                     </p>
                 </div>
             </div>

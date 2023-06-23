@@ -1,7 +1,6 @@
 import React from "react";
 import logistic from '../../../Assets/Images/logistics.mp4'
 import Navbar1 from "../../shared/navbar1/navbar1";
-import { motion as m } from 'framer-motion'
 
 const Hero3 = () => {
 
@@ -11,7 +10,7 @@ const Hero3 = () => {
                 <div className="hidden md:block absolute w-full">
                     <Navbar1 />
                 </div>
-                <video src={logistic} autoPlay loop muted className='w-full object-cover h-screen' />
+                <video src={logistic} autoPlay loop className='w-full object-cover h-screen' />
 
                 <div className="absolute z-10 md:top-10 top-0 left-0 mx-4 sm:mx-0 mt-36 sm:mt-0 sm:py-20 md:py-28 lg:py-20 xl:py-28 sm:pl-14 flex flex-col sm:justify-start items-start">
                     <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-gray-800 sm:w-[55%]">Delivering Excellence, On Time, Every Time</h1>

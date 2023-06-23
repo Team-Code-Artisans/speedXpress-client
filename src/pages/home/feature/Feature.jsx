@@ -9,8 +9,8 @@ const Feature = () => {
       <div className="mx-auto max-w-screen-xl px-4 py-4 sm:py-12 lg:px-8 border rounded-2xl">
         <div className="flex md:flex-row flex-col justify-between sm:flex-row gap-8">
           <h2 className="lg:text-4xl font-bold text-4xl lg:max-w-md">
-            Deliver Your <span className="text-blue-400">Logistic</span> Safely
-            and Quickly
+            Deliver Your <span className="text-blue-500">Logistic</span> Safely
+            & Quickly
           </h2>
           <div className="flex justify-center items-center">
             <span className="w-1 h-16 bg-blue-400 mr-4"></span>

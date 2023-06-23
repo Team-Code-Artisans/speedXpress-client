@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import About from "./about/About";
 import Faq from "./faq/Faq";
 import Feature from "./feature/Feature";
 import Review from "./review/Review";

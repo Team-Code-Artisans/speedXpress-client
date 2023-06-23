@@ -1,4 +1,4 @@
-import faq from "../../../Assets/faqImg.png";
+import faq from "../../../Assets/Images/faq.png";
 
 const Faq = () => {
   return (
@@ -13,7 +13,7 @@ const Faq = () => {
       </h2>
       <div className="lg:flex sm:flex-row w-full mx-auto px-2">
         <div className="max-w-2xl">
-          <img src={faq} alt="" className="h-fit" />
+          <img src={faq} alt="" className="h-fit" loading="lazy" />
         </div>
         <div className="space-y-4 lg:w-2/3 sm:w-auto my-auto">
           <details
