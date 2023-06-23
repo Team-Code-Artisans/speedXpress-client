@@ -1,6 +1,5 @@
 import { MdOutlineShareLocation, MdAddHome, MdAttachMoney } from 'react-icons/md'
 import { Link } from 'react-router-dom';
-import 'aos/dist/aos.css';
 
 const Service = () => {
     return (
