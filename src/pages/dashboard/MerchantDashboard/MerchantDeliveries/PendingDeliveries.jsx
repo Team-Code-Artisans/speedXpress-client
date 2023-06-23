@@ -115,11 +115,9 @@ const PendingDeliveries = ({ isLoading, pendingDeliveries, handleCopy }) => {
             selector: (row) => (
                 <>
                     {
-                        <div
-                            className="flex items-center space-x-1.5 rounded-full border bg-blue-500 border-gray-200 px-3 py-1 text-xs font-medium text-gray-800">
-
-                            <span className="text-slate-200">{row.status}</span>
-                        </div>
+                        <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'} font-semibold uppercase`}>
+                            {row?.status}
+                        </p>
                     }
                 </>
             ),

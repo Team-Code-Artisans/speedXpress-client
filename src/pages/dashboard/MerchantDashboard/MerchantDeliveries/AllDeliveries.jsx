@@ -124,7 +124,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                 <>
                     {
                         <div>
-                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'} px-4 py-2 rounded-full text-center font-bold`}>
+                            <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'} font-semibold uppercase`}>
                                 {row?.status}
                             </p>
                         </div>
