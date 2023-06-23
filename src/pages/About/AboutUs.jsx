@@ -1,5 +1,5 @@
 import React from 'react'
-import Logistics from '../../Assets/Logistics-amico.png'
+import Logistics from '../../Assets/Images/logisticsfeature.png'
 
 const AboutUs = () => {
     return (

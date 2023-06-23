@@ -32,7 +32,6 @@ import AllReturnedParcels from "../pages/dashboard/adminDashboard/adminDeliveies
 import AdminEmployee from "../pages/dashboard/adminDashboard/adminEmployee/AdminEmployee";
 import AdminMerchant from "../pages/dashboard/adminDashboard/adminMerchant/AdminMerchant";
 import Home from "../pages/home/Home";
-import About from "../pages/home/about/About";
 import PrivateRoute from "./PrivateRoute";
 import Error from "../pages/Error/Error";
 
@@ -58,10 +57,6 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />,
-      },
-      {
-        path: "/about",
-        element: <About />,
       },
       {
         path: "/login",

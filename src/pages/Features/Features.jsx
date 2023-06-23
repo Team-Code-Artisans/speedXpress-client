@@ -1,4 +1,5 @@
 import React from 'react'
+import warehouse from '../../Assets/Images/warehouse.jpeg'
 
 const Features = () => {
     return (
@@ -74,7 +75,7 @@ const Features = () => {
                         </div>
 
                         <div className="hidden lg:flex lg:w-1/2 lg:justify-center">
-                            <img className="w-[28rem] h-[28rem] flex-shrink-0 object-cover xl:w-[34rem] xl:h-[34rem] rounded-full" src="https://img.freepik.com/premium-vector/logistic-warehouse-with-truck-transportation-forklift-manual-robotic-staff-isometric-vector_93487-4416.jpg?w=740" alt="" />
+                            <img className="w-[28rem] h-[28rem] flex-shrink-0 object-cover xl:w-[34rem] xl:h-[34rem] rounded-full" src={warehouse} alt="" />
                         </div>
                     </div>
                 </div>

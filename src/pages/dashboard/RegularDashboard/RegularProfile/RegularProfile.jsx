@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { getAUser } from "../../../../API Operations/manageUsers";
-import profile from "../../../../Assets/profile.png";
+import profile from "../../../../Assets/Images/profile.png";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import RegularInfo from "./RegularInfo";

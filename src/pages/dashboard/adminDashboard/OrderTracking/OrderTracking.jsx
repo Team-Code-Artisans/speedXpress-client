@@ -1,7 +1,7 @@
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdPendingActions } from "react-icons/md";
-import trackingImg from "../../../../Assets/tracking.png";
+import trackingImg from "../../../../Assets/Images/tracking.png";
 import { BsHouseCheck } from "react-icons/bs";
 import { getSingleParcel } from "../../../../API Operations/manageParcels";
 import { useRef, useState } from "react";
