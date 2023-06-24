@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logistic from '../../../Assets/Images/logistics.mp4'
 import Navbar1 from "../../shared/navbar1/navbar1";
 import TrackingModal from "./TrackingModal";
@@ -26,13 +26,19 @@ const Hero3 = () => {
 
     { loading && <BigSpinner /> }
 
+    const videoRef = useRef(null);
+    useEffect(() => {
+        const video = videoRef.current;
+        video.play();
+    }, []);
+
     return (
         <div className="pb-9 md:pb-12 lg:pb-24">
             <div className="relative">
                 <div className="md:absolute md:block w-full hidden">
                     <Navbar1 />
                 </div>
-                <video src={logistic} autoPlay loop className='w-full object-cover h-screen' />
+                <video src={logistic} ref={videoRef} autoPlay loop muted className='w-full object-cover h-screen' />
 
                 <div className="absolute z-10 md:top-10 top-0 left-0 mx-4 sm:mx-0 mt-36 sm:mt-0 sm:py-20 md:py-28 lg:py-20 xl:py-28 sm:pl-14 flex flex-col sm:justify-start items-start">
                     <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-gray-800 sm:w-[55%]">Delivering Excellence, On Time, Every Time</h1>
