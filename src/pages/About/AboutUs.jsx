@@ -58,7 +58,7 @@ const AboutUs = () => {
                     <div className="mx-auto container flex flex-wrap px-2 lg:px-24">
                         <div tabIndex={0} aria-label="card 1" className="focus:outline-none flex sm:w-full md:w-1/2 lg:border-r-2 md:border-r-2 sm:border-r-0 border-blue-400 pb-10 lg:pt-10">
                             <div className="mr-5 hidden md:block">
-                                <img src="https://img.icons8.com/?size=1x&id=83Qu3wqaSoKV&format=png" alt="drawer" />
+                                <img src="https://img.icons8.com/?size=1x&id=83Qu3wqaSoKV&format=png" alt="drawer" loading='lazy' />
                             </div>
                             <div className="md:w-9/12 lg:w-9/12">
                                 <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-5">Streamline Operations</h2>
@@ -67,7 +67,7 @@ const AboutUs = () => {
                         </div>
                         <div tabIndex={0} aria-label="card 2" className="focus:outline-none flex sm:w-full md:w-1/2 lg:pb-10 lg:pt-10">
                             <div className="sm:ml-0 md:ml-10 lg:ml-10 mr-5 hidden md:block">
-                                <img src="https://img.icons8.com/?size=1x&id=xazBlgkNTu6a&format=png" alt="check" />
+                                <img src="https://img.icons8.com/?size=1x&id=xazBlgkNTu6a&format=png" alt="check" loading='lazy' />
                             </div>
                             <div className="md:w-9/12 lg:w-9/12 ">
                                 <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-5">Enhance Visibility</h2>
@@ -76,7 +76,7 @@ const AboutUs = () => {
                         </div>
                         <div tabIndex={0} aria-label="card 3" className="focus:outline-none flex sm:w-full md:w-1/2 lg:border-t-2 md:border-t-2 sm:border-t-0 lg:border-r-2 md:border-r-2 sm:border-r-0 border-blue-400 pt-10 lg:pb-20">
                             <div className="mr-5 hidden md:block">
-                                <img src="https://img.icons8.com/?size=1x&id=55HA7rVy08xX&format=png" alt="html-tag" />
+                                <img src="https://img.icons8.com/?size=1x&id=55HA7rVy08xX&format=png" alt="html-tag" loading='lazy' />
                             </div>
                             <div className="md:w-9/12 lg:w-9/12 ">
                                 <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-5">Improve Customer Experience</h2>
@@ -85,7 +85,7 @@ const AboutUs = () => {
                         </div>
                         <div tabIndex={0} aria-label="card 4" className="focus:outline-none flex sm:w-full md:w-1/2 lg:border-t-2 md:border-t-2 sm:border-t-0 border-blue-400 pt-10 lg:pb-20">
                             <div className="sm:ml-0 md:ml-10 lg:ml-10 mr-5 hidden md:block">
-                                <img src="https://img.icons8.com/?size=1x&id=FSapuq8PdZKX&format=png" alt="display" />
+                                <img src="https://img.icons8.com/?size=1x&id=FSapuq8PdZKX&format=png" alt="display" loading='lazy' />
                             </div>
                             <div className="md:w-9/12 lg:w-9/12 ">
                                 <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-5">Optimize Supply Chain</h2>
@@ -94,7 +94,7 @@ const AboutUs = () => {
                         </div>
                         <div tabIndex={0} aria-label="card 3" className="focus:outline-none flex sm:w-full md:w-1/2 lg:border-t-2 md:border-t-2 sm:border-t-0 lg:border-r-2 md:border-r-2 sm:border-r-0 border-blue-400 pt-10 lg:pb-20">
                             <div className="mr-5 hidden md:block">
-                                <img src="https://img.icons8.com/?size=1x&id=1609&format=png" alt="html-tag" />
+                                <img src="https://img.icons8.com/?size=1x&id=1609&format=png" alt="html-tag" loading='lazy' />
                             </div>
                             <div className="md:w-9/12 lg:w-9/12 ">
                                 <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-5">Foster Collaboration</h2>
@@ -103,7 +103,7 @@ const AboutUs = () => {
                         </div>
                         <div tabIndex={0} aria-label="card 4" className="focus:outline-none flex sm:w-full md:w-1/2 lg:border-t-2 md:border-t-2 sm:border-t-0 border-blue-400 pt-10 lg:pb-20">
                             <div className="sm:ml-0 md:ml-10 lg:ml-10 mr-5 hidden md:block">
-                                <img src="https://img.icons8.com/?size=1x&id=wDJdM2XOkMFO&format=png" alt="display" />
+                                <img src="https://img.icons8.com/?size=1x&id=wDJdM2XOkMFO&format=png" alt="display" loading='lazy' />
                             </div>
                             <div className="md:w-9/12 lg:w-9/12 ">
                                 <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-5">Provide Analytics and Insights</h2>

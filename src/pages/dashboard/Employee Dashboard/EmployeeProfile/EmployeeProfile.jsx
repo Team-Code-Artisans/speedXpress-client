@@ -40,6 +40,7 @@ const EmployeeProfile = () => {
           alt="Violin"
           src={profile}
           className="h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%_-_4rem)] md:rounded-ss-[60px]"
+          loading='lazy'
         />
       </section>
     </div>

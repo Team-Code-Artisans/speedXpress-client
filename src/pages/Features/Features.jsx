@@ -55,7 +55,7 @@ const Features = () => {
                                 <h1 className="text-xl font-semibold text-gray-700 capitalize dark:text-white">Inventory Management</h1>
 
                                 <p className="text-gray-500 dark:text-gray-300">
-                                    The website allows users to manage and track inventory levels, ensuring optimal stock levels and minimizing stockouts.
+                                    The website allows users to manage and track inventory levels, ensuring optimal stock levels and minimizing stock outs.
                                 </p>
                             </div>
 
@@ -75,7 +75,7 @@ const Features = () => {
                         </div>
 
                         <div className="hidden lg:flex lg:w-1/2 lg:justify-center">
-                            <img className="w-[28rem] h-[28rem] flex-shrink-0 object-cover xl:w-[34rem] xl:h-[34rem] rounded-full" src={warehouse} alt="" />
+                            <img className="w-[28rem] h-[28rem] flex-shrink-0 object-cover xl:w-[34rem] xl:h-[34rem] rounded-full" src={warehouse} alt="" loading='lazy' />
                         </div>
                     </div>
                 </div>
