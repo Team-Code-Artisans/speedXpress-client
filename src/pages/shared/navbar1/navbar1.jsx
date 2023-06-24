@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 const Navbar1 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [role, setRole] = useState("")
-    const { user, logout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         getRole(user?.email)
             .then(data => {
-                console.log(data)
                 setRole(data)
             })
     }, [user, role])

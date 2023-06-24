@@ -14,12 +14,10 @@ const MerchantHome = () => {
   const {
     data: allParcels = [],
     isLoading,
-    refetch,
   } = useQuery({
     queryKey: ["allParcels"],
     queryFn: () => getParcels(user?.email),
   });
-  //   console.log(allParcels);
 
   // filtered data here
   const pendingDeliveries = allParcels.filter(
@@ -35,7 +33,6 @@ const MerchantHome = () => {
   const totalPendingDeliveries = pendingDeliveries?.length;
   const totalCompletedDeliveries = completedDeliveries?.length;
   const totalReturnDeliveries = returnDeliveries?.length;
-  //   console.log(totalPendingDeliveries, totalCompletedDeliveries, totalReturnDeliveries);
 
   const paidDeliveries = allParcels.filter(
     (delivery) => delivery.paid === true
@@ -44,7 +41,6 @@ const MerchantHome = () => {
     (total, delivery) => total + delivery.TotalchargeAmount,
     0
   );
-//   console.log(totalAmount);
 
   const totalPendingDeliveriesAmount = allParcels.filter(
     (delivery) => delivery.status === "pending"
@@ -53,7 +49,6 @@ const MerchantHome = () => {
     (total, delivery) => total + delivery.TotalchargeAmount,
     0
   );
-//   console.log(totalPendingAmount);
 
   if (isLoading) {
     <BigSpinner />;

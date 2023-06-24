@@ -41,7 +41,6 @@ export const getDeliveryParcels = async (district) => {
     console.log(district);
     const url = `/parcels/${district}?status=accepted`;
     const response = await instance.get(url);
-    console.log("accepted by admin", response);
     return response;
   } catch (error) {
     console.log(error.message);
@@ -52,7 +51,6 @@ export const getIntransitParcels = async (district) => {
     console.log(district);
     const url = `/parcels/${district}?status=in-transit`;
     const response = await instance.get(url);
-    console.log("accepted by employee", response);
     return response;
   } catch (error) {
     console.log(error.message);
@@ -63,7 +61,6 @@ export const getCompletedParcels = async (district) => {
     console.log(district);
     const url = `/parcels/${district}?status=complete`;
     const response = await instance.get(url);
-    console.log("Completed by employee", response);
     return response;
   } catch (error) {
     console.log(error.message);
@@ -74,7 +71,6 @@ export const getReturnedParcels = async (district) => {
     console.log(district);
     const url = `/parcels/${district}?status=return`;
     const response = await instance.get(url);
-    console.log("Completed by employee", response);
     return response;
   } catch (error) {
     console.log(error.message);

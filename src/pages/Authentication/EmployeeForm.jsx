@@ -36,11 +36,10 @@ const EmployeeForm = () => {
                     account_type: 'employee',
                     email,
                     phoneNumber,
-                    division:division?.name,
-                    district:district?.name,
+                    division: division?.name,
+                    district: district?.name,
                     address,
                 }
-                console.log(userData)
                 reset();
                 setLoading(false)
                 setAuthToken(user);
@@ -50,7 +49,6 @@ const EmployeeForm = () => {
             })
             .catch(err => {
                 toast.error(err.message)
-                console.log(err)
                 setLoading(false)
             })
     }

@@ -24,7 +24,6 @@ const AdminProfile = () => {
     fetchUser()
   }, [user?.email]);
 
-  console.log(userData)
 
   if (isLoading) {
     return <BigSpinner />

@@ -39,7 +39,6 @@ export const MyCustomers = () => {
 
     useEffect(() => {
         const result = myCustomers?.filter(customer => {
-            console.log(customer);
             return customer?.name?.toLowerCase()?.match(search?.toLowerCase())
         })
         setFilterData(result)
@@ -89,7 +88,6 @@ export const MyCustomers = () => {
             deleteData(id, context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
-                    console.log(data?.message)
                     fetchCustomers()
                 }
             })

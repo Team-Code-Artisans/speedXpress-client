@@ -85,11 +85,9 @@ const RegularCreateParcel = () => {
       status: "pending",
       senderEmail: user?.email
     }
-    console.log(parcelData)
 
     // crete parcel here and set this data to DATABASE
     createParcel(parcelData).then(data => {
-      console.log(data)
       if (data.data.acknowledged) {
         setLoading(false)
         reset()

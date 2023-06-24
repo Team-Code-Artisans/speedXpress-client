@@ -9,13 +9,10 @@ const AdminHome = () => {
   const {
     data: allParcels = [],
     isLoading,
-    refetch,
   } = useQuery({
     queryKey: ["all-parcels"],
     queryFn: () => getAllDeliveries(),
   });
-
-  //   console.log(allParcels.data);
 
   // filtered data here
   const totalPendingDeliveries = allParcels.data?.filter(

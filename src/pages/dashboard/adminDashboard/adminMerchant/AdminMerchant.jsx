@@ -81,7 +81,6 @@ const AdminMerchant = () => {
             deleteData(id, context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
-                    console.log(data?.message)
                     fetchMerchants()
                 }
             })

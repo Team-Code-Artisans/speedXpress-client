@@ -87,12 +87,10 @@ const MerchantCreateParcel = () => {
       paid: false,
       status: "pending",
     };
-    console.log(parcelData);
 
     // crete parcel here and set this data to DATABASE
     createParcel(parcelData)
       .then((data) => {
-        console.log(data);
         if (data.data.acknowledged) {
           setLoading(false);
           reset();
@@ -108,9 +106,6 @@ const MerchantCreateParcel = () => {
     saveCustomer(customerInfo)
       .then((data) => {
         console.log(data);
-        // if (data.acknowledged) {
-        //   // toast.success("customer saved")
-        // }
       })
       .catch((err) => {
         console.log(err.message);

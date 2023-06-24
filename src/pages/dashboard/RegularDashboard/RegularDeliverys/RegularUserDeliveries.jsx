@@ -24,8 +24,6 @@ const RegularUserDeliveries = () => {
     queryFn: () => getParcels(user?.email),
   });
 
-  console.log(allParcels);
-
   useEffect(() => {
     const result = allParcels?.filter(parcel => {
       const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
@@ -36,12 +34,9 @@ const RegularUserDeliveries = () => {
     setFilterData(result);
   }, [allParcels, search]);
 
-
   // filtered data here
   const pendingDeliveries = filterData.filter(delivery => delivery.status === 'pending')
   const completedDeliveries = filterData.filter(delivery => delivery.status === 'complete')
-  console.log(pendingDeliveries)
-
 
   const handleCopy = () => {
     toast.success("Copied Successfully");

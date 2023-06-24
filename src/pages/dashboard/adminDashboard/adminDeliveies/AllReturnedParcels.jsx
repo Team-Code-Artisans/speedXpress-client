@@ -12,15 +12,12 @@ const AllReturnedParcels = () => {
     const {
         data: allParcels = [],
         isLoading,
-        refetch,
     } = useQuery({
         queryKey: ["all-parcels"],
         queryFn: () => getAllDeliveries(),
     });
 
     const allReturnParcels = allParcels?.data?.filter(delivery => delivery.status === 'return')
-
-    console.log(allReturnParcels);
 
     const columns = [
         {

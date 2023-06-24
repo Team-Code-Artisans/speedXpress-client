@@ -80,7 +80,6 @@ const AdminEmployee = () => {
             deleteData(id, context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
-                    console.log(data?.message)
                     fetchEmployee()
                 }
             })

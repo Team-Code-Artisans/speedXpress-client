@@ -156,8 +156,6 @@ const PendingDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
     ];
 
     const handleChangStatus = (id) => {
-        console.log(id);
-        // in transit after accepted by employee or delivery man
         const updatedStatus = "in-transit";
         updateStatus(id, updatedStatus)
             .then((result) => {
@@ -166,7 +164,6 @@ const PendingDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
                 console.log(result);
             })
             .catch((err) => {
-                // setLoading(false);
                 console.log(err.message);
             });
     };

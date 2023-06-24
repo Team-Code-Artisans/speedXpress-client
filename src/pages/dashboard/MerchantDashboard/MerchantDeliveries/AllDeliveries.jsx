@@ -8,11 +8,10 @@ import instance from "../../../../axios";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
+
     const stripeKey = import.meta.env.VITE_Stripe_public_key;
-    // console.log(stripeKey)
-    // Use stripeKey in your component
-    console.log(filterData)
     const { user } = useContext(AuthContext)
+
     const columns = [
         {
             name: "DATE & TIME",
@@ -137,12 +136,9 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
             selector: (row, index) => (
                 <>
                     {
-
                         <div>
                             {/* here row._id is my that selected specific parcel id */}
-                            {/* {console.log(row._id,index)} */}
                             {!row.paid ?
-
                                 <StripeCheckout
                                     label="pay now" //Component button text
                                     name={user?.displayName} //Modal Header
@@ -167,19 +163,17 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
     ];
     // handle token here
     const onToken = (token, parcelId) => {
-        console.log(token, parcelId);
         instance
             .post("/payment", { token, parcelId })
             .then((response) => {
-                console.log(response);
                 if (response.success) {
                     refetch()
-                    toast.success("Payment Successfull");
+                    toast.success("Payment Successful");
                 }
             })
             .catch((error) => {
                 console.log("Payment Error: ", error);
-                toast.error("Payment operation faild");
+                toast.error("Payment operation failed");
             });
     };
 

@@ -14,13 +14,11 @@ const RegularParcelTracking = () => {
 
   const handleTrackFunction = () => {
     const parcelID = inputTrackingID.current.value;
-    console.log(parcelID);
 
     getSingleParcel(parcelID)
       .then(res => setTrackProduct(res))
   }
 
-  console.log(trackProduct);
   return (
     <div>
       <section className="bg-gray-100 body-font">

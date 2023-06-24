@@ -24,7 +24,6 @@ const CreateShopForm = ({ refetch }) => {
     // crete parcel here
     createShop(shopData)
       .then((data) => {
-        console.log(data);
         if (data.data.acknowledged) {
           setLoading(false);
           reset();

@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
-  
+
 
     const registerUser = async (email, password, displayName, phoneNumber) => {
         setLoading(true);
@@ -60,10 +60,10 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
             .then(() => {
                 toast.success("Successfully Logged Out")
-               
+
             })
             .catch(err => console.log(err.message))
-            
+
     }
 
     //6. Login with Password
@@ -81,18 +81,14 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         //this part will execute once the component is mounted.
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser)
             setUser(currentUser)
             setLoading(false)
         })
-
         return () => {
-            //this part will execute once the component is unmounted.
             unsubscribe()
         }
     }, [])
 
-  
     const authInfo = {
         user,
         signInWithGoogle,

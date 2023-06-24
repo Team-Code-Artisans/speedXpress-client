@@ -16,9 +16,6 @@ export const ReturnedDeliveries = ({ handleCopy, employeeDistrict }) => {
         queryFn: () => getReturnedParcels(employeeDistrict && employeeDistrict),
     });
 
-    console.log(completedParcels, employeeDistrict);
-
-
     const columns = [
         {
             name: "DATE & TIME",

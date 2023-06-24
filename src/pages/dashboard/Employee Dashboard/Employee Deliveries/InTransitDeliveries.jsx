@@ -24,8 +24,6 @@ const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
         queryFn: () => getIntransitParcels(employeeDistrict.length && employeeDistrict),
     });
 
-    console.log(inTrasitParcels, employeeDistrict);
-
     const columns = [
         {
             name: "DATE & TIME",
@@ -174,9 +172,6 @@ const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
     ];
 
     const handleChangStatus = (id, updatedStatus) => {
-        console.log(id, updateStatus);
-        // complete by delivery man
-        // const updatedStatus = "complete";
         updateStatus(id, updatedStatus)
             .then((result) => {
                 refetch();
@@ -184,7 +179,6 @@ const InTransitDeliveries = ({ handleCopy, employeeDistrict }) => {
                 console.log(result);
             })
             .catch((err) => {
-                // setLoading(false);
                 console.log(err.message);
             });
     };

@@ -9,7 +9,6 @@ const PendingDeliveriesForAdmin = ({
   isLoading,
   pendingDeliveries, handleCopy,
   refetch,
-
 }) => {
 
   const columns = [

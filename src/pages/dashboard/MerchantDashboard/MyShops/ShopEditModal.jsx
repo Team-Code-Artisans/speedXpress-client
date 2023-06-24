@@ -17,7 +17,6 @@ export default function ShopEditModal({ shopsData }) {
   }
 
   const handleShopUpdate = (data) => {
-    console.log(data);
     editShop(shopsData._id, data)
       .then((res) => {
         console.log(res);
@@ -25,7 +24,6 @@ export default function ShopEditModal({ shopsData }) {
         reset();
       })
       .catch((err) => {
-        // setLoading(false);
         console.log(err.message);
       });
   };

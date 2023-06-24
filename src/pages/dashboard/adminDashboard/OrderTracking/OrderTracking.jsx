@@ -15,7 +15,6 @@ const OrderTracking = () => {
 
   const handleTrackFunction = () => {
     const parcelID = inputTrackingID.current.value;
-    console.log(parcelID);
 
     getSingleParcel(parcelID)
       .then(res => {
@@ -26,7 +25,6 @@ const OrderTracking = () => {
 
   { loading && <BigSpinner /> }
 
-  console.log(trackProduct);
   return (
     <div>
       <section className="bg-gray-100 body-font">

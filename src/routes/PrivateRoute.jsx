@@ -7,7 +7,6 @@ import { AuthContext } from "../contexts/AuthProvider";
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
     const currentlocation = useLocation()
-    console.log("loading", loading)
     if (loading) {
         return <>
             <BigSpinner />

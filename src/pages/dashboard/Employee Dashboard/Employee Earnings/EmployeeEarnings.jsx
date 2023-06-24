@@ -43,16 +43,11 @@ const EmployeeEarnings = ({ handleCopy }) => {
         },
     });
 
-    console.log(completedParcels, employeeDistrict);
-
-
     // calculate total earning till now
     const calculateTotalEarnings = (deliveries) => {
 
-        console.log("from func", deliveries)
         let total = deliveries?.reduce((i, delivery) => {
             let charge = Number(delivery.TotalchargeAmount)
-            // console.log(charge, i)
             return charge + i;
         }, 0)
         setTotalIncome(total)

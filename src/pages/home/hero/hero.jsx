@@ -22,8 +22,6 @@ const Hero3 = () => {
             })
     }
 
-    console.log(trackProduct)
-
     { loading && <BigSpinner /> }
 
     const videoRef = useRef(null);

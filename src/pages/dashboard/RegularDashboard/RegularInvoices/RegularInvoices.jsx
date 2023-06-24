@@ -22,8 +22,6 @@ const RegularInvoices = () => {
         queryFn: () => getParcels(user?.email),
     });
 
-    console.log(allParcels);
-
     useEffect(() => {
         const result = allParcels?.filter(parcel => {
             const filter = parcel?._id?.toLowerCase()?.match(search?.toLowerCase()) || parcel?.customerInfo.email?.toLowerCase()?.match(search?.toLowerCase()) ||
