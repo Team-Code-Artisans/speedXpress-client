@@ -27,7 +27,7 @@ export const getParcels = async (email) => {
 
 export const getSingleParcel = async (id) => {
   try {
-    const response = await instance.get(`/singleParcel?id=${id}`);
+    const response = await instance.get(`/singleParcel/${id}`);
     return response;
   } catch (error) {
     console.log(error.message);

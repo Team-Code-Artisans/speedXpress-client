@@ -1,5 +1,6 @@
 import React from 'react'
 import image from '../../..//Assets/Images/section1.png'
+import { Link } from 'react-router-dom'
 
 const Section1 = () => {
     return (
@@ -17,8 +18,8 @@ const Section1 = () => {
                         The website should aim to streamline logistics processes, such as inventory management, order tracking, and delivery scheduling.
                     </p>
                     <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                        <a rel="noopener noreferrer" href="#" className="px-8 py-3 bg-blue-500 text-lg font-semibold rounded">Get Started</a>
-                        <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold border rounded bg-blue-200">Order Now</a>
+                        <Link to={'/login'} rel="noopener noreferrer" className="px-8 py-3 bg-blue-500 text-lg font-semibold rounded">Get Started</Link>
+                        <Link to={'/register'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold border rounded bg-blue-200">Order Now</Link>
                     </div>
                 </div>
             </div>

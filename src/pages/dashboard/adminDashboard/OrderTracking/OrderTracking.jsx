@@ -5,20 +5,26 @@ import trackingImg from "../../../../Assets/Images/tracking.png";
 import { BsHouseCheck } from "react-icons/bs";
 import { getSingleParcel } from "../../../../API Operations/manageParcels";
 import { useRef, useState } from "react";
+import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
 const OrderTracking = () => {
   const inputTrackingID = useRef(null)
 
   const [trackProduct, setTrackProduct] = useState(null)
-
+  const [loading, setLoading] = useState(false)
 
   const handleTrackFunction = () => {
     const parcelID = inputTrackingID.current.value;
     console.log(parcelID);
 
     getSingleParcel(parcelID)
-      .then(res => setTrackProduct(res))
+      .then(res => {
+        setLoading(true)
+        setTrackProduct(res)
+      })
   }
+
+  { loading && <BigSpinner /> }
 
   console.log(trackProduct);
   return (
@@ -41,12 +47,7 @@ const OrderTracking = () => {
             <p className="mb-8 leading-relaxed text-sm lg:text-base">
               Track your parcel hassle-free with our intuitive system. Stay
               updated on its whereabouts and enjoy peace of mind. Enter your
-              unique tracking number for instant access to real-time status.
-              Know the current location and expected delivery time. Our reliable
-              logistics network ensures safe handling and timely delivery.
-              Monitor your packages progress effortlessly. Experience
-              convenience and stay informed throughout the entire journey. Trust
-              us for efficient and stress-free shipping. Start tracking your
+              unique tracking number for instant access to real-time status. Start tracking your
               parcel today and enjoy a worry-free shipping experience.
             </p>
 
@@ -191,25 +192,25 @@ const OrderTracking = () => {
             <h1 className="title-font sm:text-2xl text-xl font-medium text-black my-10">
               Parcel Details
             </h1>
-            <div className="flex justify-between text-start font-medium">
-              <div className="w-1/2">
+            <div className="flex justify-center font-medium mx-auto">
+              <div className="flex flex-col justify-center mx-auto text-xl">
                 <div className="flex">
                   <p className="mb-2 mr-3 text-blue-500">Name:</p>
                   <p>{trackProduct?.customerInfo?.name}</p>
                 </div>
                 <div className="flex">
                   <p className="mb-2 mr-3 text-blue-500">Location:</p>
-                  <p>anywhere</p>
+                  <p>{trackProduct?.customerInfo?.address}</p>
                 </div>
                 <div className="flex">
                   <p className="mb-2 mr-3 text-blue-500">Payment:</p>
                   <p>{trackProduct?.deliveryFee}</p>
                 </div>
               </div>
-              <div className="w-1/2">
+              <div className="flex flex-col justify-center mx-auto text-xl">
                 <div className="flex">
                   <p className="mb-2 mr-3 text-blue-500">Delivery Time:</p>
-                  <p>anytime</p>
+                  <p>Anytime</p>
                 </div>
                 <div className="flex">
                   <p className="mb-2 mr-3 text-blue-500">Delivery Location:</p>
@@ -217,7 +218,7 @@ const OrderTracking = () => {
                 </div>
                 <div className="flex">
                   <p className="mr-3 text-blue-500">Delivery Man: </p>
-                  <p>anybody</p>
+                  <p>Anybody</p>
                 </div>
               </div>
             </div>

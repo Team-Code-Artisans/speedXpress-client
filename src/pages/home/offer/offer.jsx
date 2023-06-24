@@ -2,6 +2,7 @@ import React from 'react'
 import image1 from '../../../Assets/Images/worldwide.jpeg'
 import image2 from '../../../Assets/Images/cardboard.jpeg'
 import image3 from '../../../Assets/Images/mobiletruck.jpeg'
+import { Link } from 'react-router-dom'
 
 
 const Offer = () => {
@@ -20,23 +21,23 @@ const Offer = () => {
                             Users should be able to track the status of their payments within the website.
                         </p>
                         <div className="flex flex-wrap gap-6">
-                            <a
-                                href="#"
+                            <Link
+                                to={'/login'}
                                 className="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-blue-500 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
                             >
                                 <span className="relative text-base font-semibold text-white"
                                 >Order now</span
                                 >
-                            </a>
-                            <a
-                                href="#"
+                            </Link>
+                            <Link
+                                to={'/about'}
                                 className="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:border before:border-gray-800 hover:before:border-none hover:before:bg-blue-500 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max text-gray-800 hover:text-white"
                             >
                                 <span
                                     className="relative text-base font-semibold text-primary"
                                 >More about</span
                                 >
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="grid grid-cols-5 grid-rows-4 gap-4 md:w-5/12 lg:w-6/12">
