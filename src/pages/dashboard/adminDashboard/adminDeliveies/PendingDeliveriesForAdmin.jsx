@@ -2,7 +2,6 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import DataTable from "react-data-table-component";
 import { toast } from "react-hot-toast";
 import { AiOutlineCopy } from "react-icons/ai";
-import { GrStatusGood } from "react-icons/gr";
 import { updateStatus } from "../../../../API Operations/manageAdminDeliveries";
 import BigSpinner from "../../../../components/Spinners/BigSpinner";
 
@@ -92,11 +91,11 @@ const PendingDeliveriesForAdmin = ({
               </p>
               {!row.paid ?
                 <p className="text-rose-500 px-4 py-[2px] rounded-full text-center font-medium" aria-disabled>
-                  UNPAID ❌
+                  UNPAID
                 </p>
 
                 : <p className="text-emerald-500 px-4 py-[2px] rounded-full text-center font-medium" aria-disabled>
-                  PAID ✔
+                  PAID
                 </p>
 
               }
@@ -110,9 +109,9 @@ const PendingDeliveriesForAdmin = ({
       selector: (row) => (
         <>
           {
-            <div className="-ml-5 p-2">
-              <p className={`${row?.status === "complete" && 'text-emerald-500'} ${row?.status === "pending" && 'text-blue-600'}
-                      ${row?.status === "accepted" && 'text-green-600'} px-4 py-2 rounded-full text-center font-bold`}>
+            <div className="uppercase font-semibold">
+              <p className={`${row?.status === "complete" && 'text-blue-500'} ${row?.status === "pending" && 'text-rose-600'}
+                      ${row?.status === "accepted" && 'text-green-600'}`}>
                 {row?.status}
               </p>
             </div>
@@ -128,24 +127,19 @@ const PendingDeliveriesForAdmin = ({
             <div className="flex justify-center items-center gap-2.5">
               {
                 row?.status === "pending" && row?.paid ?
-                  <button className={`  rounded-full text-center font-medium text-sm bg-emerald-500  text-white`}
+                  <button className={`rounded-full text-center  px-4 py-2 font-medium text-sm bg-blue-500  text-white`}
                     onClick={() => handleChangStatus(row._id)}>
-                    <GrStatusGood size={20} className="text-slate-100" />
+                    Accept
                   </button>
                   :
-                  <></>
+                  <p className="uppercase font-semibold text-blue-500">Accepted</p>
               }
-              {/* <AiOutlineDelete size={20} color="red" /> */}
             </div>
           }
         </>
       ),
     },
-
-
   ];
-
-
 
   const handleChangStatus = (id) => {
     console.log(id);
@@ -157,7 +151,6 @@ const PendingDeliveriesForAdmin = ({
         console.log(result);
       })
       .catch((err) => {
-        // setLoading(false);
         console.log(err.message);
       });
   };

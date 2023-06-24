@@ -2,13 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { getAllDeliveries } from "../../../../API Operations/manageAdminDeliveries";
-import CompleteDeliveries from "../../MerchantDashboard/MerchantDeliveries/CompleteDeliveries";
 import Tabs from "../../MerchantDashboard/MerchantDeliveries/Tabs";
 import AllDeliveriesForAdmin from "./AllDeliveriesForAdmin";
 import PendingDeliveriesForAdmin from "./PendingDeliveriesForAdmin";
+import CompleteDeliveriesForAdmin from "./CompleteDeliveriesForAdmin";
 
 const AdminDeliveries = () => {
-  // const { user } = useContext(AuthContext);
 
   const [search, setSearch] = useState("");
   const [activeStatus, setActiveStatus] = useState(1);
@@ -22,8 +21,6 @@ const AdminDeliveries = () => {
     queryKey: ["all-parcels"],
     queryFn: () => getAllDeliveries(),
   });
-
-  // console.log(allParcels);
 
   // filtered data here
   const pendingDeliveries = filterData?.filter(delivery => delivery.status === 'pending')
@@ -98,7 +95,7 @@ const AdminDeliveries = () => {
 
         {activeStatus === 1 && <AllDeliveriesForAdmin isLoading={isLoading} refetch={refetch} filterData={filterData} handleCopy={handleCopy} />}
         {activeStatus === 2 && <PendingDeliveriesForAdmin isLoading={isLoading} refetch={refetch} pendingDeliveries={pendingDeliveries} handleCopy={handleCopy} />}
-        {activeStatus === 3 && <CompleteDeliveries isLoading={isLoading} refetch={refetch} completedDeliveries={completedDeliveries} handleCopy={handleCopy} />}
+        {activeStatus === 3 && <CompleteDeliveriesForAdmin isLoading={isLoading} refetch={refetch} completedDeliveries={completedDeliveries} handleCopy={handleCopy} />}
       </div>
     </div>
   );

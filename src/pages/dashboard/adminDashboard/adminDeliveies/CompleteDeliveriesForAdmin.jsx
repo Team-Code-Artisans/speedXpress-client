@@ -100,10 +100,10 @@ const CompleteDeliveriesForAdmin = ({ isLoading, completedDeliveries, handleCopy
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.customerOwnerName}
+                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "From Regular User"}
                             </p>
                             <p>
-                                {row.customerInfo.customerOwnerEmail}
+                                {row.customerInfo?.merchantEmail && row.customerInfo?.merchantEmail}
                             </p>
                         </div>
                     }

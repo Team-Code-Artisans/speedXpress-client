@@ -108,10 +108,10 @@ const AdminInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, compone
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.merchantName}
+                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "From Regular User"}
                             </p>
                             <p>
-                                {row.customerInfo.merchantEmail}
+                                {row.customerInfo?.merchantEmail && row.customerInfo?.merchantEmail}
                             </p>
                         </div>
                     }

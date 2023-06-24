@@ -1,24 +1,26 @@
 
 import { useQuery } from '@tanstack/react-query';
-
 import CopyToClipboard from 'react-copy-to-clipboard';
 import DataTable from 'react-data-table-component';
 import { AiOutlineCopy } from 'react-icons/ai';
-import { getAllReturnedParcels } from '../../../../API Operations/manageParcels';
 import BigSpinner from '../../../../components/Spinners/BigSpinner';
+import { toast } from 'react-hot-toast';
+import { getAllDeliveries } from '../../../../API Operations/manageAdminDeliveries';
 
-const AllReturnedParcels = ({ handleCopy }) => {
+const AllReturnedParcels = () => {
 
     const {
-        data: allreturendParcels = [],
+        data: allParcels = [],
         isLoading,
+        refetch,
     } = useQuery({
-        queryKey: ["returnedParcels"],
-        queryFn: () => getAllReturnedParcels(),
+        queryKey: ["all-parcels"],
+        queryFn: () => getAllDeliveries(),
     });
 
-    console.log(allreturendParcels);
+    const allReturnParcels = allParcels?.data?.filter(delivery => delivery.status === 'return')
 
+    console.log(allReturnParcels);
 
     const columns = [
         {
@@ -38,7 +40,7 @@ const AllReturnedParcels = ({ handleCopy }) => {
             name: "INVOICE ID",
             selector: (row) => (
                 <>
-                    <CopyToClipboard onCopy={handleCopy} text={row._id}>
+                    <CopyToClipboard onCopy={() => toast.success("Parcel ID Copied")} text={row._id}>
                         <p>ID: <span className="text-blue-600 pr-2">{row._id.slice(0, 8)}</span><AiOutlineCopy className="inline" /></p>
                     </CopyToClipboard>
                 </>
@@ -115,10 +117,10 @@ const AllReturnedParcels = ({ handleCopy }) => {
                     {
                         <div className="space-y-1 py-2 text-sm">
                             <p>
-                                {row.customerInfo.merchantName ? row.customerInfo.merchantName : "from reguler user"}
+                                {row.customerInfo?.merchantName ? row.customerInfo?.merchantName : "From Regular User"}
                             </p>
                             <p>
-                                {row.customerInfo.merchantEmail}
+                                {row.customerInfo?.merchantEmail && row.customerInfo?.merchantEmail}
                             </p>
                         </div>
                     }
@@ -131,8 +133,8 @@ const AllReturnedParcels = ({ handleCopy }) => {
                 <>
                     {
                         <div>
-                            <p className="text-rose-600 bg-rose-50 px-3 py-2 rounded-full font-semibold text-xs rounded-full text-center">
-                                Returned ❌
+                            <p className="text-rose-600 bg-rose-50 px-3 py-2 rounded-full font-semibold text-xs text-center uppercase">
+                                Returned
                             </p>
                         </div>
                     }
@@ -143,13 +145,13 @@ const AllReturnedParcels = ({ handleCopy }) => {
 
 
     return (
-        <>
-            <h1 className="text-2xl font-semibold my-6 text-center">
-                All returend parcels are here
+        <div className='container mx-auto'>
+            <h1 className="text-2xl font-semibold my-6 text-center uppercase">
+                All returned parcels are here
             </h1>
             <DataTable
                 columns={columns}
-                data={allreturendParcels}
+                data={allReturnParcels}
                 direction="auto"
                 fixedHeader
                 fixedHeaderScrollHeight="600px"
@@ -164,7 +166,7 @@ const AllReturnedParcels = ({ handleCopy }) => {
                 customStyles={styles}
             />
 
-        </>
+        </div>
     );
 };
 
