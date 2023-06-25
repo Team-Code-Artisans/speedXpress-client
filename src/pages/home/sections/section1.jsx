@@ -18,8 +18,8 @@ const Section1 = () => {
                         The website should aim to streamline logistics processes, such as inventory management, order tracking, and delivery scheduling.
                     </p>
                     <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                        <Link to={'/login'} rel="noopener noreferrer" className="px-8 py-3 bg-blue-500 text-lg font-semibold rounded">Get Started</Link>
-                        <Link to={'/register'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold border rounded bg-blue-200">Order Now</Link>
+                        <Link to={'/login'} rel="noopener noreferrer" className="px-8 py-3 bg-blue-600 text-lg font-semibold rounded text-white">Get Started</Link>
+                        <Link to={'/register'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold border rounded bg-blue-400 text-white">Order Now</Link>
                     </div>
                 </div>
             </div>

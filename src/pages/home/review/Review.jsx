@@ -78,7 +78,7 @@ const Review = () => {
     };
     return (
         <div
-            className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10 py-8">
+            className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10 py-8">
             <h1 className="text-3xl font-semibold text-center lg:text-5xl tracking-normal md:leading-[1.4em] lg:leading-[1.2em] capitalize">
                 What our client<span className='text-blue-500 font-medium'> says</span>
             </h1>

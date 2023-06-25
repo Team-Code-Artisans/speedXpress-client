@@ -106,18 +106,16 @@ const Navbar1 = () => {
                     </div>
 
                     <div className="flex md:justify-center items-center">
-                        <button className="px-6 py-3 w-full bg-blue-400 hover:bg-blue-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 text-xl">
-                            {
-                                user ?
-                                    <Link to={`/dashboard/${role}`}>
-                                        Dashboard
-                                    </Link>
-                                    :
-                                    <Link to={'/login'}>
-                                        Sign In
-                                    </Link>
-                            }
-                        </button>
+                        {
+                            user ?
+                                <Link to={`/dashboard/${role}`} className="px-6 py-3 w-full bg-blue-400 hover:bg-blue-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 text-xl">
+                                    Dashboard
+                                </Link>
+                                :
+                                <Link to={`/login`} className="px-6 py-3 w-full bg-blue-400 hover:bg-blue-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 text-xl">
+                                    Login
+                                </Link>
+                        }
                     </div>
                 </div>
             </div>

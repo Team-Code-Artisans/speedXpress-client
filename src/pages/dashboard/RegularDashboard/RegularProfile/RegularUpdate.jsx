@@ -35,7 +35,7 @@ const RegularUpdate = ({ userData, fetchUser, closeModal }) => {
                             {...register("name", {
                                 required: "required",
                             })}
-                            defaultValue={userData.name}
+                            defaultValue={userData?.name}
                             type="text"
                             id="userName"
                             placeholder="User Name"
@@ -61,7 +61,7 @@ const RegularUpdate = ({ userData, fetchUser, closeModal }) => {
                                     message: "invalid phone number"
                                 }
                             })}
-                            defaultValue={userData.phoneNumber}
+                            defaultValue={userData?.phoneNumber}
                             id="number"
                             placeholder="Number"
                             className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-md"
@@ -83,7 +83,7 @@ const RegularUpdate = ({ userData, fetchUser, closeModal }) => {
                             {...register("address", {
                                 required: "required"
                             })}
-                            defaultValue={userData.address}
+                            defaultValue={userData?.address}
                             id="address"
                             placeholder="address"
                             className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-md"
@@ -96,7 +96,7 @@ const RegularUpdate = ({ userData, fetchUser, closeModal }) => {
                     {errors.address && <span className='text-red-500'>{errors.address.message}</span>}
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col md:flex-row gap-4 items-center justify-between">
                     <button
                         onClick={closeModal}
                         type="submit"

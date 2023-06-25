@@ -13,8 +13,8 @@ const section2 = () => {
                     <p className="mt-6 mb-8 text-lg sm:mb-12">Customers can place orders online, streamlining the order process and reducing the need for manual intervention.
                     </p>
                     <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                        <Link to={'/login'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold rounded bg-blue-500">Get Started</Link>
-                        <Link to={'/register'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold border rounded bg-blue-300">Order Now</Link>
+                        <Link to={'/login'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold rounded bg-blue-600 text-white">Get Started</Link>
+                        <Link to={'/register'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold border rounded bg-blue-400 text-white">Order Now</Link>
                     </div>
                 </div>
                 <div

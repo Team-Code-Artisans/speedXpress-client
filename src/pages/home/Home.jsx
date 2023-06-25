@@ -8,11 +8,12 @@ import Section1 from './sections/Section1'
 import Section2 from './sections/Section2'
 import GetStarted from "./GetStarted/GetStarted";
 import Offer from "./offer/offer";
+import Stats from "./stats/Stats";
 
 const Home = () => {
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [])
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
     return (
         <div>
             <Hero3 />
@@ -21,6 +22,7 @@ const Home = () => {
             <Feature />
             <Section2 />
             <Offer />
+            {/* <Stats /> */}
             <Review />
             <Faq />
             <GetStarted />
