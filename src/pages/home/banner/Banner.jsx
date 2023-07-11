@@ -1,16 +1,30 @@
 import bannerImage from "../../../Assets/Images/Yellow-Truck-PNG-Image.png";
-import carMobile from '../../../Assets/car with mobile.jpg'
-import delivery from '../../../Assets/Images/tracking-delivery.jpg'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const Banner = () => {
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         AOS.init({ duration: 2000 })
     }, []);
+
+
+
+
+
+
+
+    // test code for home page traking ... link and fetch 
+  const handleClick =(e)=>{
+    e.preventDefault()
+    const trackID = e.target.trackID.value;
+    navigate(`/order-tracking/${trackID}`)
+  }
+  //......
 
     return (
         <div>
@@ -33,10 +47,16 @@ const Banner = () => {
                                 <span className='text-center text-yellow'> Track here</span>
                             </div>
                             <div className="py-5 px-4 bg-[#192732] rounded-lg">
-                                <div className="flex flex-col md:flex-row  justify-center gap-4 flex-wrap rounded-lg">
-                                    <input type="text" placeholder='Tracking Id' className='border border-slate-500 rounded-lg px-6 py-2.5 bg-transparent text-slate-200 ' />
-                                    <Link to={'/order-tracking'} className='text-slate-900 bg-yellow px-8 py-2.5 rounded-lg'>TRACK</Link>
-                                </div>
+                                <form onSubmit={handleClick} className="flex flex-col md:flex-row  justify-center gap-4 flex-wrap rounded-lg">
+                                    <input 
+                                    type="text" 
+                                    placeholder='Tracking Id' 
+                                    name="trackID"
+                                    className='border border-slate-500 rounded-lg px-6 py-2.5 bg-transparent text-slate-200 ' 
+                                    />
+                                    {/* <Link to={'/order-tracking'} className='text-slate-900 bg-yellow px-8 py-2.5 rounded-lg'>TRACK</Link> */}
+                                    <button className='text-slate-900 bg-yellow px-8 py-2.5 rounded-lg'>track</button>
+                                </form>
                             </div>
 
                         </div>

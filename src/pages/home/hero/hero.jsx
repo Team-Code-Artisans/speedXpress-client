@@ -1,4 +1,4 @@
-import React from "react";
+
 import logistic from '../../../Assets/Images/logistics.mp4'
 import Navbar1 from "../../shared/navbar1/navbar1";
 
@@ -17,11 +17,11 @@ const Hero3 = () => {
                 </div>
                 <button className="absolute bottom-0 sm:hidden bg-gray-800 py-4 text-lg font-medium text-white mt-8 flex justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-700">Explore</button>
             </div>
-            <div class="w-full max-w-sm mt-6 bg-transparent border border-blue-400 rounded-md focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 focus-within:ring-opacity-40 absolute bottom-10 right-10">
-                <form class="flex flex-col md:flex-row">
-                    <input type="email" placeholder="Enter Tracking Number" class="flex-1 h-10 px-4 py-2 m-1 text-gray-800 placeholder-gray-800 bg-transparent border-none appearance-none focus:outline-none focus:placeholder-transparent focus:ring-0" />
+            <div className="w-full max-w-sm mt-6 bg-transparent border border-blue-400 rounded-md focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 focus-within:ring-opacity-40 absolute bottom-10 right-10">
+                <form className="flex flex-col md:flex-row">
+                    <input type="email" placeholder="Enter Tracking Number" className="flex-1 h-10 px-4 py-2 m-1 text-gray-800 placeholder-gray-800 bg-transparent border-none appearance-none focus:outline-none focus:placeholder-transparent focus:ring-0" />
 
-                    <button type="button" class="h-full px-4 py-4 text-white transition-colors duration-300 transform bg-blue-500 hover:bg-blue-400 focus:outline-none focus:bg-blue-400">
+                    <button type="button" className="h-full px-4 py-4 text-white transition-colors duration-300 transform bg-blue-500 hover:bg-blue-400 focus:outline-none focus:bg-blue-400">
                         Track Order
                     </button>
                 </form>
