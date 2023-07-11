@@ -179,18 +179,18 @@ const AdminInvoiceTable = ({ isLoading, filterData, handleCopy, refetch, compone
     ];
     // handle token here
     const onToken = (token, parcelId) => {
-        console.log(token, parcelId);
+        // console.log(token, parcelId);
         instance
             .post("/payment", { token, parcelId })
             .then((response) => {
-                console.log(response);
+                // console.log(response);
                 if (response.success) {
                     refetch()
                     toast.success("Payment Successfully");
                 }
             })
             .catch((error) => {
-                console.log("Payment Error: ", error);
+                // console.log("Payment Error: ", error);
                 toast.error("Payment operation failed");
             });
     };

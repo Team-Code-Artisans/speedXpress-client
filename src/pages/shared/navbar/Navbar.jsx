@@ -18,7 +18,7 @@ const Navbar = () => {
   useEffect(() => {
     getRole(user?.email)
       .then(data => {
-        console.log(data)
+        // console.log(data)
         setRole(data)
       })
   }, [user, role])

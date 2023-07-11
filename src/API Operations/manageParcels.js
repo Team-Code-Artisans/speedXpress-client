@@ -36,10 +36,10 @@ export const getSingleParcel = async (id) => {
 
 export const getDeliveryParcels = async (district) => {
   try {
-    console.log(district)
-    const url=`http://localhost:5000/parcels/${district}?status=accepted`
+    // console.log(district)
+    const url=`/parcels/${district}?status=accepted`
     const response = await instance.get(url);
-    console.log("accepted by admin",response)
+    // console.log("accepted by admin",response)
     return response;
   } catch (error) {
     console.log(error.message);
@@ -47,8 +47,8 @@ export const getDeliveryParcels = async (district) => {
 };
 export const getIntransitParcels = async (district) => {
   try {
-    console.log(district)
-    const url=`http://localhost:5000/parcels/${district}?status=in-transit`
+    // console.log(district)
+    const url=`/parcels/${district}?status=in-transit`
     const response = await instance.get(url);
     console.log("accepted by employee",response)
     return response;
@@ -58,10 +58,10 @@ export const getIntransitParcels = async (district) => {
 };
 export const getCompletedParcels = async (district) => {
   try {
-    console.log(district)
-    const url=`http://localhost:5000/parcels/${district}?status=complete`
+    // console.log(district)
+    const url=`/parcels/${district}?status=complete`
     const response = await instance.get(url);
-    console.log("Completed by employee",response)
+    // console.log("Completed by employee",response)
     return response;
   } catch (error) {
     console.log(error.message);
@@ -69,10 +69,10 @@ export const getCompletedParcels = async (district) => {
 };
 export const getReturnedParcels = async (district) => {
   try {
-    console.log(district)
-    const url=`http://localhost:5000/parcels/${district}?status=return`
+    // console.log(district)
+    const url=`/parcels/${district}?status=return`
     const response = await instance.get(url);
-    console.log("Completed by employee",response)
+    // console.log("Completed by employee",response)
     return response;
   } catch (error) {
     console.log(error.message);

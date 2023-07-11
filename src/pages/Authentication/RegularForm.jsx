@@ -52,7 +52,7 @@ const RegularForm = () => {
             .catch(error => {
                 toast.error(error.message)
                 setLoading(false)
-                console.log(error.message)
+                // console.log(error.message)
             })
     }
 

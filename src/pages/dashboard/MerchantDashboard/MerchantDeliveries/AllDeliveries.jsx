@@ -11,7 +11,7 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
     const stripeKey = import.meta.env.VITE_Stripe_public_key;
     // console.log(stripeKey)
     // Use stripeKey in your component
-    console.log(filterData)
+    // console.log(filterData)
     const { user } = useContext(AuthContext)
     const columns = [
         {
@@ -167,11 +167,11 @@ const AllDeliveries = ({ isLoading, filterData, handleCopy, refetch }) => {
     ];
     // handle token here
     const onToken = (token, parcelId) => {
-        console.log(token, parcelId);
+        // console.log(token, parcelId);
         instance
             .post("/payment", { token, parcelId })
             .then((response) => {
-                console.log(response);
+                // console.log(response);
                 if (response.success) {
                     refetch()
                     toast.success("Payment Successfull");

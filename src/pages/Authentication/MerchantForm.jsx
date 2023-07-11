@@ -63,7 +63,7 @@ const MerchantForm = () => {
             .catch(err => {
                 toast.error(err.message)
                 setLoading(false)
-                console.log(err.message)
+                // console.log(err.message)
             })
     }
 

@@ -148,13 +148,13 @@ const PendingDeliveriesForAdmin = ({
 
 
   const handleChangStatus = (id) => {
-    console.log(id);
+    // console.log(id);
     const updatedStatus = "accepted";
     updateStatus(id, updatedStatus)
       .then((result) => {
         refetch();
         toast.success("Parcel delivery accepted by system");
-        console.log(result);
+        // console.log(result);
       })
       .catch((err) => {
         // setLoading(false);

@@ -32,7 +32,7 @@ const MyShops = () => {
   const handleShopDelete = (shopId) => {
     deleteShop(shopId)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         if (res.deletedCount === 1) {
           toast.success("Shop deleted successful");
         } else {

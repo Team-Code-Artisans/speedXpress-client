@@ -14,10 +14,10 @@ export const getAllDeliveries = async () => {
 // update delivery status
 export const updateStatus = async (parcelId, updatedStatus) => {
   try {
-    console.log(parcelId)
+    // console.log(parcelId)
     const url = `/update-status`;
     const response = await instance.patch(url, { parcelId, updatedStatus });
-    console.log(response)
+    // console.log(response)
     return response;
   } catch (error) {
     console.log(error.message);

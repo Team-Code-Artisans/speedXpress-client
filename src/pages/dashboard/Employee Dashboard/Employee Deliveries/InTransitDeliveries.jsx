@@ -24,7 +24,7 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
         queryFn: () => getIntransitParcels(employeeDistrict.length && employeeDistrict),
     });
 
-    console.log(inTrasitParcels, employeeDistrict);
+    // console.log(inTrasitParcels, employeeDistrict);
 
     const columns = [
         {
@@ -173,14 +173,14 @@ const InTransitDeliveries = ({ handleCopy ,employeeDistrict}) => {
     ];
 
     const handleChangStatus = (id,updatedStatus) => {
-        console.log(id,updateStatus);
+        // console.log(id,updateStatus);
         // complete by delivery man
         // const updatedStatus = "complete";
         updateStatus(id, updatedStatus)
             .then((result) => {
                 refetch();
                 toast.success(`Parcel  successfully  delivered by ${user?.displayName} `);
-                console.log(result);
+                // console.log(result);
             })
             .catch((err) => {
                 // setLoading(false);

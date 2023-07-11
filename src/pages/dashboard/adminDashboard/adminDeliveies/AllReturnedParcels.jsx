@@ -17,7 +17,7 @@ const AllReturnedParcels = ({ handleCopy }) => {
         queryFn: () => getAllReturnedParcels(),
     });
 
-    console.log(allreturendParcels);
+    // console.log(allreturendParcels);
 
 
     const columns = [

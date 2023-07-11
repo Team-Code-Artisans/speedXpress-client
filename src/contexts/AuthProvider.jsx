@@ -81,7 +81,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         //this part will execute once the component is mounted.
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser)
+            // console.log(currentUser)
             setUser(currentUser)
             setLoading(false)
         })

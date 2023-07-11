@@ -181,13 +181,13 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
 
 
     const handleChangStatus = (id) => {
-        console.log(id);
+        // console.log(id);
         const updatedStatus = "accepted";
         updateStatus(id, updatedStatus)
             .then((result) => {
                 refetch();
                 toast.success("Parcel delivery accepted by system");
-                console.log(result);
+                // console.log(result);
             })
             .catch((err) => {
                 // setLoading(false);
@@ -196,13 +196,13 @@ const AllDeliveriesForAdmin = ({ isLoading, filterData, handleCopy, refetch }) =
     };
 
     const handleDelete = (id) => {
-        console.log("deleteing", id)
+        // console.log("deleteing", id)
         let context="parcel"
         if (confirm("Are you sure to delete data")) {
             deleteData(id,context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
-                    console.log(data?.message)
+                    // console.log(data?.message)
                     refetch()
                 }
             })

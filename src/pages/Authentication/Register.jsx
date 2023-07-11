@@ -34,7 +34,7 @@ const Register = () => {
         })
             .catch(err => {
                 toast.error(err.message)
-                console.log(err)
+                // console.log(err)
                 setLoading(false)
             })
     }
