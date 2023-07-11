@@ -24,7 +24,7 @@ const RegularProfile = () => {
     fetchUser()
   }, [user?.email]);
 
-  console.log(userData)
+  // console.log(userData)
 
   if (isLoading) {
     return <BigSpinner />

@@ -29,7 +29,7 @@ const Login = () => {
             })
             .catch(err => {
                 toast.error(err.message)
-                console.log(err)
+                // console.log(err)
                 setLoading(false)
             })
     }
@@ -50,7 +50,7 @@ const Login = () => {
         })
             .catch(err => {
                 toast.error(err.message)
-                console.log(err)
+                // console.log(err)
                 setLoading(false)
             })
     }

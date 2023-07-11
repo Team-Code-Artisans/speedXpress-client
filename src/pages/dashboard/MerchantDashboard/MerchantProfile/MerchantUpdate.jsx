@@ -21,8 +21,7 @@ const MerchantUpdate = ({ userData, fetchUser, closeModal }) => {
         saveUser(upDatedData)
             .then(result => {
                 fetchUser()
-                setIsLoading(false)
-                console.log(result)
+                // console.log(result)
             })
             .catch(err => console.log(err))
     }

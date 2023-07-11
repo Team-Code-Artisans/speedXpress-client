@@ -30,7 +30,7 @@ export const MyCustomers = () => {
 
             })
             .catch(err => {
-                console.log(err.message);
+                // console.log(err.message);
                 setLoading(false);
                 toast.error("operation failed")
             })
@@ -40,7 +40,7 @@ export const MyCustomers = () => {
 
     useEffect(() => {
         const result = myCustomers?.filter(customer => {
-            console.log(customer);
+            // console.log(customer);
             return customer?.name?.toLowerCase()?.match(search?.toLowerCase())
         })
         setFilterData(result)
@@ -85,13 +85,13 @@ export const MyCustomers = () => {
     ]
 
     const handleDelete = (id) => {
-        console.log("deleteing", id)
+        // console.log("deleteing", id)
         let context="customer"
         if (confirm("Are you sure to delete data")) {
             deleteData(id,context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
-                    console.log(data?.message)
+                    // console.log(data?.message)
                     fetchCustomers()
                 }
             })

@@ -19,7 +19,7 @@ const AdminInvoices = () => {
         queryFn: () => getAllDeliveries(),
     });
 
-    console.log(allParcels);
+    // console.log(allParcels);
 
     useEffect(() => {
         const result = allParcels?.data?.filter(parcel => {

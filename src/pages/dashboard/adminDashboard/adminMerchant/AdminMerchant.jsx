@@ -76,13 +76,13 @@ const AdminMerchant = () => {
         },
     ]
     const handleDelete = (id) => {
-        console.log("deleteing", id)
+        // console.log("deleteing", id)
         let context="merchant"
         if (confirm("Are you sure to delete data")) {
             deleteData(id,context).then(data => {
                 if (data?.success) {
                     toast.success(data?.message)
-                    console.log(data?.message)
+                    // console.log(data?.message)
                    fetchMerchants()
                 }
             })

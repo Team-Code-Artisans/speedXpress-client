@@ -16,7 +16,7 @@ const {
     queryFn: () => getReturnedParcels(employeeDistrict && employeeDistrict),
 });
 
-console.log(completedParcels, employeeDistrict);
+// console.log(completedParcels, employeeDistrict);
 
 
     const columns = [

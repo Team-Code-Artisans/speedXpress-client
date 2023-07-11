@@ -17,10 +17,10 @@ export default function ShopEditModal({ shopsData }) {
   }
 
   const handleShopUpdate = (data) => {
-    console.log(data);
+    // console.log(data);
     editShop(shopsData._id, data)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         toast.success("Shop updated successful");
         reset();
       })

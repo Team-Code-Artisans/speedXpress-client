@@ -155,14 +155,14 @@ const {user}=useContext(AuthContext)
     ];
 
     const handleChangStatus = (id) => {
-        console.log(id);
+        // console.log(id);
         // in transit after accepted by employee or delivery man
         const updatedStatus = "in-transit";
         updateStatus(id, updatedStatus)
             .then((result) => {
                 refetch();
                 toast.success(`Parcel delivery accepted by ${user?.displayName} `);
-                console.log(result);
+                // console.log(result);
             })
             .catch((err) => {
                 // setLoading(false);

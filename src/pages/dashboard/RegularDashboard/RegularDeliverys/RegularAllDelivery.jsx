@@ -169,11 +169,11 @@ const RegularAllDelivery = ({ isLoading, filterData, handleCopy, refetch }) => {
     ];
 
     const onToken = (token, parcelId) => {
-        console.log(token, parcelId);
+        // console.log(token, parcelId);
         instance
             .post("/payment", { token, parcelId })
             .then((response) => {
-                console.log(response);
+                // console.log(response);
                 if (response.success) {
                     refetch()
                     toast.success("Payment Successfull");

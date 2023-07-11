@@ -40,7 +40,7 @@ const EmployeeForm = () => {
                     district:district?.name,
                     address,
                 }
-                console.log(userData)
+                // console.log(userData)
                 reset();
                 setLoading(false)
                 setAuthToken(user);
@@ -50,7 +50,7 @@ const EmployeeForm = () => {
             })
             .catch(err => {
                 toast.error(err.message)
-                console.log(err)
+                // console.log(err)
                 setLoading(false)
             })
     }

@@ -7,7 +7,7 @@ export const saveUser = async (userData) => {
   try {
     const url = `/user/${userData.email}`;
     const res = await instance.put(url, userData);
-    console.log(res);
+    //console.log(res);
     return res;
   } catch (error) {
     console.log(error.message);
@@ -20,7 +20,7 @@ export const getRole = async (email) => {
   try {
     const url = `/user/${email}`;
     const res = await instance.get(url);
-    console.log(res);
+    //console.log(res);
     let role = res.data;
 
     return role;
@@ -44,11 +44,11 @@ export const getAUser = async (email) => {
 // save customers info
 
 export const saveCustomer = async (customerData) => {
-  console.log(customerData);
+  // console.log(customerData);
   try {
     const url = `/customer/${customerData.email}`;
     const res = await instance.put(url, customerData);
-    console.log(res);
+    //console.log(res);
     return res;
   } catch (error) {
     console.log(error.message);
@@ -58,7 +58,7 @@ export const saveCustomer = async (customerData) => {
 // save customers info
 
 export const getMyCustomers = async (merchantEmail) => {
-  console.log(merchantEmail);
+  // console.log(merchantEmail);
   try {
     const url = `/customers/${merchantEmail}`;
     const res = await instance.get(url);

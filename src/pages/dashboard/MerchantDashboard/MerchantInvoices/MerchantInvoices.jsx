@@ -22,7 +22,7 @@ const MerchantInvoices = () => {
         queryFn: () => getParcels(user?.email),
     });
 
-    console.log(allParcels);
+    // console.log(allParcels);
 
     useEffect(() => {
         const result = allParcels?.filter(parcel => {
