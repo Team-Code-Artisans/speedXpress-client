@@ -4,23 +4,29 @@ import { MdPendingActions } from "react-icons/md";
 import trackingImg from "../../../../Assets/tracking.png";
 import { BsHouseCheck } from "react-icons/bs";
 import { getSingleParcel } from "../../../../API Operations/manageParcels";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
 const OrderTracking = () => {
   const inputTrackingID = useRef(null)
-
   const [trackProduct, setTrackProduct] = useState(null)
 
+//traking comming from the home page ..
+  const data = useLoaderData()
+  useEffect(()=>{
+    setTrackProduct(data)
+  },[data])
 
+//.
   const handleTrackFunction = () => {
     const parcelID = inputTrackingID.current.value;
-    console.log(parcelID);
 
     getSingleParcel(parcelID)
-      .then(res => setTrackProduct(res))
+      .then(res => {
+        setTrackProduct(res)
+      })
   }
 
-  console.log(trackProduct);
   return (
     <div>
       <section className="bg-gray-100 body-font">

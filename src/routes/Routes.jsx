@@ -75,6 +75,14 @@ const router = createBrowserRouter([
         path: "/order-tracking",
         element: <OrderTracking />,
       },
+
+      {
+        path: "/order-tracking/:id",
+        loader:async ({ params }) => {
+          return fetch(`http://localhost:5000/singleParcel?id=${params.id}`);
+        },
+        element: <OrderTracking />,
+      },
     ],
   },
 
