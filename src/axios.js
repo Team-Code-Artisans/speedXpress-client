@@ -11,7 +11,7 @@ Ref video: https://www.youtube.com/watch?v=q-wZRtmnpws&ab_channel=CodeBlessYou
 
 const instance = axios.create({
   // this will work as default "/" to every api url
-  baseURL: "http://localhost:5000",
+  baseURL: "https://speed-xpress.vercel.app/",
 });
 
 // Add a request interceptor
