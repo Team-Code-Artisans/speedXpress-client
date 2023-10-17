@@ -79,7 +79,7 @@ const router = createBrowserRouter([
       {
         path: "/order-tracking/:id",
         loader:async ({ params }) => {
-          return fetch(`http://localhost:5000/singleParcel?id=${params.id}`);
+          return fetch(`https://speed-xpress.vercel.app/singleParcel?id=${params.id}`);
         },
         element: <OrderTracking />,
       },
